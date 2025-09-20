@@ -11,7 +11,7 @@ const Styles = StyleSheet.create({
   topImageContainer: {
     position: 'relative',
     width: '100%',
-    height: 250, // adjust as needed
+    paddingTop: 120,
   },
   topImage: {
     width: '100%',
@@ -19,44 +19,77 @@ const Styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   content: {
-    backgroundColor: 'rgba(255,255,255,0,4)', // less white
+    backgroundColor: '#fff', // less white
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 24,
     position: 'relative',
     zIndex: 1, // make sure it's above blur if needed
-    paddingTop:0
+    paddingTop: 0,
   },
+  // glassWrapper: {
+  //   position: 'absolute',
+  //   bottom: 0,
+  //   right: 0,
+  //   height: 80,
+  //   width: '100%',
+  //   overflow: 'hidden',
+  //   zIndex: 9,
+  // },
+  // glassEffect: {
+  //   flex: 1,
+  //   backgroundColor: 'rgba(255,255,255,0.6)', // lighter white
+  // },
   glassWrapper: {
     position: 'absolute',
-    top: -35,
-    left: 0,
-    right: 0,
-    height: 50,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    bottom: 0,
+    width: '100%',
+    height: 80,
     overflow: 'hidden',
-    zIndex: 0,
-  },
-  glassEffect: {
-    flex: 1,
-    backgroundColor: 'rgba(255,255,255,0.5)', // lighter white
+    zIndex: 9,
   },
 
+  blurLayer: {
+    ...StyleSheet.absoluteFillObject, // fill parent
+  },
+
+  gradientLayer: {
+    ...StyleSheet.absoluteFillObject, // gradient fade over blur
+  },
+
+  contentTop: {
+    position: 'relative',
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  contentTopText: {
+    position: 'relative',
+    width: '60%',
+  },
+  contentTopImg: {
+    width: '45%',
+    height: 200,
+  },
+  topImg: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'contain',
+  },
   title: {
-    fontSize: 24,
-    lineHeight: 28,
+    fontSize: 20,
+    lineHeight: 25,
     fontFamily: FONTS.bold,
     fontWeight: 'bold',
     color: Colors.primary,
-    marginBottom: 28,
-    marginTop: -10,
+    marginBottom: 0,
+    marginTop: 0,
   },
   subtitle: {
-    fontSize: 17,
+    fontSize: 12,
     textAlign: 'left',
-    marginVertical: 10,
-    fontFamily: FONTS.bold,
+    marginVertical: 0,
+    fontFamily: FONTS.medium,
     color: Colors.text,
   },
   formWrap: {

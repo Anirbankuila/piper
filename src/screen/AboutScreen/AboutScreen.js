@@ -27,11 +27,11 @@ const AboutScreen = () => {
   const [diagnosis, setDiagnosis] = useState(null);
 
   const options = [
-  { id: 'adhd', label: 'ADHD' },
-  { id: 'autism', label: 'Autism' },
-  { id: 'depression', label: 'Depression' },
-  { id: 'anxiety', label: 'Anxiety' },
-];
+    { id: 'adhd', label: 'ADHD' },
+    { id: 'autism', label: 'Autism' },
+    { id: 'depression', label: 'Depression' },
+    { id: 'anxiety', label: 'Anxiety' },
+  ];
 
   const pickImage = () => {
     launchImageLibrary(
@@ -133,10 +133,13 @@ const AboutScreen = () => {
               />
             )}
 
-            <TouchableOpacity
-              style={Styles.uploadPhoto}
-              onPress={() => {} /* pickImage logic here */}
-            >
+            <TouchableOpacity style={Styles.uploadPhoto} onPress={pickImage}>
+              <View style={Styles.uploadIconWrap}>
+                <Image
+                  source={require('../../../assets/icons/send-square.png')}
+                  style={Styles.uploadIcon} // new style for icon
+                />
+              </View>
               <Text style={Styles.uploadText}>Upload Child’s Photo</Text>
             </TouchableOpacity>
 

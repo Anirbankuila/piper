@@ -19,6 +19,7 @@ import GenderSelect from '../../components/GenderSelect/GenderSelect';
 import CustomRadio from '../../components/Radiobutton/Radiobutton';
 import { PlusCircleIcon } from 'react-native-heroicons/outline';
 import Routes from '../../navigation/Routes';
+import LinearGradient from 'react-native-linear-gradient';
 
 const ChildTeam = () => {
   const navigation = useNavigation();
@@ -27,11 +28,11 @@ const ChildTeam = () => {
   const [diagnosis, setDiagnosis] = useState(null);
 
   const options = [
-  { id: 'adhd', label: 'ADHD' },
-  { id: 'autism', label: 'Autism' },
-  { id: 'depression', label: 'Depression' },
-  { id: 'anxiety', label: 'Anxiety' },
-];
+    { id: 'adhd', label: 'ADHD' },
+    { id: 'autism', label: 'Autism' },
+    { id: 'depression', label: 'Depression' },
+    { id: 'anxiety', label: 'Anxiety' },
+  ];
 
   const pickImage = () => {
     launchImageLibrary(
@@ -93,11 +94,6 @@ const ChildTeam = () => {
     <ScrollView contentContainerStyle={Styles.container}>
       {/* Top Back Button */}
       <View style={Styles.topImageContainer}>
-        <Image
-          source={require('../../../assets/images/aboutimg.png')} // replace with your image
-          style={Styles.topImage}
-        />
-
         {/* Back Button Over Image */}
         <TouchableOpacity
           style={Styles.backButton}
@@ -107,22 +103,44 @@ const ChildTeam = () => {
             source={require('../../../assets/icons/back.png')}
             style={{ width: 20, height: 20, resizeMode: 'contain' }}
           />
+          <Text style={Styles.backButtonText}>Let’s build your team!</Text>
         </TouchableOpacity>
       </View>
 
       {/* Content */}
       <View style={Styles.content}>
-        <View style={Styles.glassWrapper}>
-          <BlurView
-            style={Styles.glassEffect}
-            blurType="light"
-            blurAmount={8}
-            reducedTransparencyFallbackColor="white"
-          />
+        <View style={Styles.contentTop}>
+          <View style={Styles.contentTopText}>
+            <Text style={Styles.title}>
+              Add the people in your {'\n'}child’s circle below.
+            </Text>
+            <Text style={Styles.subtitle}>
+              I’ll keep them in the loop, promise!
+            </Text>
+          </View>
+          <View style={Styles.contentTopImg}>
+            <View style={Styles.glassWrapper}>
+              {/* Blur Effect */}
+              <BlurView
+                style={Styles.blurLayer}
+                blurType="light"
+                blurAmount={15}
+              />
+
+              {/* Gradient Fade (white → transparent) */}
+              <LinearGradient
+                colors={['rgba(255,255,255,0.6)', 'rgba(255,255,255,0.1)']}
+                style={Styles.gradientLayer}
+                start={{ x: 0, y: 1 }}
+                end={{ x: 0, y: 0 }}
+              />
+            </View>
+            <Image
+              source={require('../../../assets/images/young-girl.png')}
+              style={Styles.topImg}
+            />
+          </View>
         </View>
-        <Text style={Styles.title}>
-          Tell me about your {'\n'}superstar child
-        </Text>
 
         {childForms.map(child => (
           <View key={child.id} style={Styles.formWrap}>
@@ -133,10 +151,13 @@ const ChildTeam = () => {
               />
             )}
 
-            <TouchableOpacity
-              style={Styles.uploadPhoto}
-              onPress={() => {} /* pickImage logic here */}
-            >
+            <TouchableOpacity style={Styles.uploadPhoto} onPress={pickImage}>
+              <View style={Styles.uploadIconWrap}>
+                <Image
+                  source={require('../../../assets/icons/send-square.png')}
+                  style={Styles.uploadIcon} // new style for icon
+                />
+              </View>
               <Text style={Styles.uploadText}>Upload Child’s Photo</Text>
             </TouchableOpacity>
 
