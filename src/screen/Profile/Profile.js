@@ -86,7 +86,7 @@ const Profile = () => {
           title="Continue"
           textStyle={Styles.buttonText}
           style={Styles.button}
-          onPress={() => navigation.navigate('ChildProfile')}
+          onPress={() => navigation.navigate(Routes.OTPSCREEN)}
         />
       </View>
     </View>

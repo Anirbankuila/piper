@@ -43,7 +43,7 @@ const Styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 15,
+    top: 50,
     left: 20,
     zIndex: 10,
     display: 'flex',
@@ -58,23 +58,22 @@ const Styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingTop: 60, // space for back button
+    paddingTop: 90, // space for back button
     paddingBottom: 20,
   },
   passwordWrapper: {
-  position: 'relative',
-  marginVertical: 10,
-},
-iconWrapper: {
-  position: 'absolute',
-  right: 10,
-  top: '50%',
-  transform: [{ translateY: -10 }],
-},
-eyeIcon:{
-    color:'#0064D2'
-}
-
+    position: 'relative',
+    marginVertical: 10,
+  },
+  iconWrapper: {
+    position: 'absolute',
+    right: 10,
+    top: '50%',
+    transform: [{ translateY: -10 }],
+  },
+  eyeIcon: {
+    color: '#0064D2',
+  },
 });
 
 export default Styles;

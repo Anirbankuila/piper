@@ -3,6 +3,9 @@ import Onboarding from '../screen/Onboarding/Onboarding';
 import Splash from '../screen/Splash/Splash';
 import Profile from '../screen/Profile/Profile';
 import Privacy from '../screen/Privacy/Privacy';
+import Otpscreen from '../screen/OtpScreen/OtpScreen';
+import AboutScreen from '../screen/AboutScreen/AboutScreen';
+
 import Routes from './Routes';
 
 export default function RootStack() {
@@ -25,6 +28,16 @@ export default function RootStack() {
         name={Routes.PRIVACY}
         component={Privacy}
         headerShown={true}
+      />
+      <Stack.Screen
+        name={Routes.OTPSCREEN}
+        component={Otpscreen}
+        headerShown={true}
+      />
+      <Stack.Screen
+        name={Routes.ABOUTSCREEN}
+        component={AboutScreen}
+        headerShown={false}
       />
     </Stack.Navigator>
   );

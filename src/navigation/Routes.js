@@ -3,6 +3,8 @@ const Routes = {
   ONBOARDING: 'Onboarding',
   PROFILE:'Profile',
   PRIVACY: 'Privacy',
+  OTPSCREEN:'Otpscreen',
+  ABOUTSCREEN:'AboutScreen'
 
 };
 

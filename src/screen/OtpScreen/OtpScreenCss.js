@@ -4,7 +4,7 @@ import FONTS from '../../constants/fonts';
 
 const Styles = StyleSheet.create({
   container: {
-   flexGrow: 1,
+    flexGrow: 1,
     backgroundColor: Colors.bg,
     padding: 24,
   },
@@ -14,7 +14,8 @@ const Styles = StyleSheet.create({
     fontFamily: FONTS.bold,
     fontWeight: 'bold',
     color: Colors.primary,
-    maxWidth: '80%',
+    textAlign: 'center',
+    marginBottom:48
   },
   subtitle: {
     fontSize: 17,
@@ -59,9 +60,26 @@ const Styles = StyleSheet.create({
     fontFamily: FONTS.bold,
   },
   content: {
-    // flex: 1,
+    flex: 1,
     paddingTop: 90, // space for back button
     paddingBottom: 20,
+    
+  },
+  otpContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+    marginBottom:70
+  },
+  otpInput: {
+    width: 48,
+    height: 48,
+    borderWidth: 1,
+    borderColor: Colors.strokeColor,
+    borderRadius: 12,
+    textAlign: 'center',
+    fontSize: 14,
+    backgroundColor: '#fff',
   },
 });
 

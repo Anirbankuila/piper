@@ -7,7 +7,7 @@ import RootStack from '../piper/src/navigation/RootStack';
 function App() {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
+      <SafeAreaView style={styles.container} edges={[ 'left', 'right', 'bottom']}>
         <NavigationContainer>
           <RootStack />
         </NavigationContainer>
