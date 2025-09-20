@@ -108,7 +108,7 @@ const Privacy = () => {
           title="Agree"
           textStyle={Styles.buttonText}
           style={Styles.button}
-          onPress={() => navigation.navigate(Routes.ABOUTSCREEN)}
+          onPress={() => navigation.navigate(Routes.OTPSCREEN)}
         />
       </View>
     </View>

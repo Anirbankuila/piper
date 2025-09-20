@@ -61,7 +61,7 @@ const Styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingTop: 90, // space for back button
+    paddingTop: 120, // space for back button
     paddingBottom: 20,
     
   },
