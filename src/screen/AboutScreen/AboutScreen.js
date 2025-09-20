@@ -19,6 +19,7 @@ import GenderSelect from '../../components/GenderSelect/GenderSelect';
 import CustomRadio from '../../components/Radiobutton/Radiobutton';
 import { PlusCircleIcon } from 'react-native-heroicons/outline';
 import Routes from '../../navigation/Routes';
+import CustomSelect from '../../components/GenderSelect/GenderSelect';
 
 const AboutScreen = () => {
   const navigation = useNavigation();
@@ -155,8 +156,11 @@ const AboutScreen = () => {
               onChange={date => updateChildForm(child.id, 'dob', date)}
             />
 
-            <GenderSelect
+            <CustomSelect
               value={child.gender}
+              options={['Male', 'Female', 'Others']}
+              title="Choose Gender"
+              placeholder="Child’s gender*"
               onChange={val => updateChildForm(child.id, 'gender', val)}
             />
 

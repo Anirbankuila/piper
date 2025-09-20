@@ -26,6 +26,7 @@ const Styles = StyleSheet.create({
     position: 'relative',
     zIndex: 1, // make sure it's above blur if needed
     paddingTop: 0,
+    flex:1
   },
   // glassWrapper: {
   //   position: 'absolute',
@@ -62,24 +63,27 @@ const Styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom:40
   },
   contentTopText: {
     position: 'relative',
-    width: '60%',
+    width: '70%',
+    zIndex:9
   },
   contentTopImg: {
-    width: '45%',
-    height: 200,
+    position: 'absolute',
+    width: '100%',
+    zIndex:0
   },
   topImg: {
     width: '100%',
-    height: 200,
+    height: 300,
     resizeMode: 'contain',
   },
   title: {
     fontSize: 20,
     lineHeight: 25,
-    fontFamily: FONTS.bold,
+    fontFamily: FONTS.semiBold,
     fontWeight: 'bold',
     color: Colors.primary,
     marginBottom: 0,
@@ -93,17 +97,16 @@ const Styles = StyleSheet.create({
     color: Colors.text,
   },
   formWrap: {
-    marginTop: 0,
+    marginTop: 10,
   },
   uploadPhoto: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent:'center',
+    textAlign:'center',
+    paddingVertical:20
   },
-  uploadPhoto: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 15,
-  },
+ 
   uploadIconWrap: {
     marginRight: 8,
     borderWidth: 1,
@@ -126,6 +129,21 @@ const Styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: FONTS.bold,
     color: Colors.text,
+  },
+  addChild:{
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-between',
+    paddingVertical:20
+  },
+  addtitle:{
+    fontSize: 20,
+    lineHeight: 25,
+    fontFamily: FONTS.bold,
+    fontWeight: 'bold',
+    color: Colors.primary,
+    marginBottom: 0,
+    marginTop: 0,
   },
   eachInput: {
     padding: 16,
@@ -175,8 +193,8 @@ const Styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#C1C1C1',
     borderStyle: 'dashed',
-    marginTop: 18,
-    marginBottom: 10,
+    marginTop: 28,
+    marginBottom: 20,
   },
   addAnotherText: {
     fontFamily: FONTS.bold,
@@ -189,6 +207,10 @@ const Styles = StyleSheet.create({
     width: 42,
     height: 42,
   },
+  bottomButton:{
+    paddingHorizontal:20,
+    paddingBottom:20
+  }
 });
 
 export default Styles;

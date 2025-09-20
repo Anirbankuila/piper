@@ -1,13 +1,18 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import { ChevronDownIcon } from 'react-native-heroicons/outline';
 import Colors from '../../constants/colors';
 import FONTS from '../../constants/fonts';
-import { ChevronDownIcon } from 'react-native-heroicons/outline';
 
-const GenderSelect = ({ value, onChange }) => {
+const CustomSelect = ({ 
+  value, 
+  onChange, 
+  options = [], 
+  title = "Select Option", 
+  placeholder = "Select" 
+}) => {
   const refRBSheet = useRef();
-  const options = ['Male', 'Female', 'Other'];
 
   return (
     <View>
@@ -16,12 +21,8 @@ const GenderSelect = ({ value, onChange }) => {
         style={styles.inputBox}
         onPress={() => refRBSheet.current.open()}
       >
-        <Text
-          style={[
-            value ? styles.selectedText : styles.placeholderText, // ✅ conditional style
-          ]}
-        >
-          {value || 'Select Gender'}
+        <Text style={value ? styles.selectedText : styles.placeholderText}>
+          {value || placeholder}
         </Text>
         <ChevronDownIcon style={styles.inputBoxIcon} />
       </TouchableOpacity>
@@ -31,14 +32,14 @@ const GenderSelect = ({ value, onChange }) => {
         ref={refRBSheet}
         closeOnDragDown={true}
         closeOnPressMask={true}
-        height={250}
+        height={300}
         customStyles={{
           wrapper: { backgroundColor: 'rgba(0,0,0,0.5)' },
           container: { borderTopLeftRadius: 20, borderTopRightRadius: 20 },
         }}
       >
         <View style={styles.sheetContent}>
-          <Text style={styles.sheetTitle}>Choose Gender</Text>
+          <Text style={styles.sheetTitle}>{title}</Text>
           {options.map((opt, index) => (
             <TouchableOpacity
               key={index}
@@ -57,7 +58,7 @@ const GenderSelect = ({ value, onChange }) => {
   );
 };
 
-export default GenderSelect;
+export default CustomSelect;
 
 const styles = StyleSheet.create({
   inputBox: {
@@ -70,7 +71,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: FONTS.bold,
     color: Colors.text,
-    marginVertical: 8,
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -92,12 +92,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.text,
   },
-  placeholderText:{
-    color:"#aaaaaa",
+  placeholderText: {
+    color: "#aaaaaa",
     fontSize: 16,
   },
-  selectedText:{
+  selectedText: {
     fontSize: 16,
-    color:Colors.text
+    color: Colors.text,
   }
 });

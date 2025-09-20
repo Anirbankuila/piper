@@ -60,7 +60,7 @@ const Styles = StyleSheet.create({
     color: Colors.text,
   },
   formWrap: {
-    marginTop: 0,
+    marginTop: 10,
   },
   uploadPhoto: {
     flexDirection: 'row',
@@ -120,6 +120,7 @@ const Styles = StyleSheet.create({
     fontFamily: FONTS.bold,
   },
   selectText: {
+    marginTop:10,
     fontSize: 16,
     color: '#141514',
     fontFamily: FONTS.bold,

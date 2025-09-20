@@ -20,6 +20,7 @@ import CustomRadio from '../../components/Radiobutton/Radiobutton';
 import { PlusCircleIcon } from 'react-native-heroicons/outline';
 import Routes from '../../navigation/Routes';
 import LinearGradient from 'react-native-linear-gradient';
+import CustomSelect from '../../components/GenderSelect/GenderSelect';
 
 const ChildTeam = () => {
   const navigation = useNavigation();
@@ -119,29 +120,19 @@ const ChildTeam = () => {
             </Text>
           </View>
           <View style={Styles.contentTopImg}>
-            <View style={Styles.glassWrapper}>
-              {/* Blur Effect */}
-              <BlurView
-                style={Styles.blurLayer}
-                blurType="light"
-                blurAmount={15}
-              />
-
-              {/* Gradient Fade (white → transparent) */}
-              <LinearGradient
-                colors={['rgba(255,255,255,0.6)', 'rgba(255,255,255,0.1)']}
-                style={Styles.gradientLayer}
-                start={{ x: 0, y: 1 }}
-                end={{ x: 0, y: 0 }}
-              />
-            </View>
             <Image
-              source={require('../../../assets/images/young-girl.png')}
+              source={require('../../../assets/images/new.png')}
               style={Styles.topImg}
             />
           </View>
         </View>
-
+        <View style={Styles.addChild}>
+          <Text style={Styles.addtitle}>Add your child’s team</Text>
+          <Image
+            source={require('../../../assets/icons/contact.png')}
+            style={{ width: 24, height: 24, resizeMode: 'contain' }}
+          />
+        </View>
         {childForms.map(child => (
           <View key={child.id} style={Styles.formWrap}>
             {child.imageUri && (
@@ -158,45 +149,34 @@ const ChildTeam = () => {
                   style={Styles.uploadIcon} // new style for icon
                 />
               </View>
-              <Text style={Styles.uploadText}>Upload Child’s Photo</Text>
+              <Text style={Styles.uploadText}>Upload Photo</Text>
             </TouchableOpacity>
 
             <CommonInput
-              placeholder={'Child’s name*'}
+              placeholder={'Full Name'}
               style={Styles.eachInput}
               value={child.name}
               onChangeText={text => updateChildForm(child.id, 'name', text)}
             />
-
-            <MyDatePicker
-              value={child.dob}
-              onChange={date => updateChildForm(child.id, 'dob', date)}
-            />
-
-            <GenderSelect
-              value={child.gender}
-              onChange={val => updateChildForm(child.id, 'gender', val)}
-            />
-
-            <View style={Styles.selectWrapper}>
-              <Text style={Styles.selectText}>
-                What is the medical diagnosis of {'\n'}your child? (Choose one)
-              </Text>
-              <CustomRadio
-                optionStyle={Styles.selectBox}
-                options={options}
-                selectedValue={child.diagnosis}
-                onSelect={val => updateChildForm(child.id, 'diagnosis', val)}
-              />
-            </View>
-
             <CommonInput
-              placeholder={"What is your child's superpower?"}
+              placeholder={'Email'}
               style={Styles.eachInput}
-              value={child.superpower}
-              onChangeText={text =>
-                updateChildForm(child.id, 'superpower', text)
-              }
+              value={child.email}
+              onChangeText={text => updateChildForm(child.id, 'email', text)}
+            />
+            <CommonInput
+              placeholder={'Mobile phone (for sharing via text)'}
+              style={Styles.eachInput}
+              value={child.phone}
+              onChangeText={text => updateChildForm(child.id, 'phone', text)}
+            />
+
+            <CustomSelect
+              value={child.gender}
+              options={['Mother', 'Father', 'Teacher', 'Doctor', 'Other']}
+              title="Choose Role"
+              placeholder="Role in your child's life"
+              onChange={val => updateChildForm(child.id, 'gender', val)}
             />
           </View>
         ))}
@@ -211,20 +191,20 @@ const ChildTeam = () => {
               height={42}
               style={Styles.addIcon}
             />
-            <Text style={Styles.addAnotherText}>Add Another Child</Text>
+            <Text style={Styles.addAnotherText}>Add another member</Text>
           </TouchableOpacity>
-        </View>
-        <View style={Styles.bottomButton}>
-          <CommonButton
-            title="Continue"
-            textStyle={Styles.buttonText}
-            style={Styles.button}
-            onPress={() => navigation.navigate(Routes.DOCUMENTSCREEN)}
-          />
         </View>
       </View>
 
       {/* Bottom Continue Button */}
+      <View style={Styles.bottomButton}>
+        <CommonButton
+          title="Continue"
+          textStyle={Styles.buttonText}
+          style={Styles.button}
+          onPress={() => navigation.navigate(Routes.ONBOARDING)}
+        />
+      </View>
     </ScrollView>
   );
 };

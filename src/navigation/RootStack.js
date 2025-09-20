@@ -18,6 +18,7 @@ export default function RootStack() {
     <Stack.Navigator
       initialRouteName={Routes.SPLASH}
       screenOptions={{
+        animation:'fade',
         headerShown: false, // default hidden
       }}
     >
@@ -71,7 +72,7 @@ export default function RootStack() {
       <Stack.Screen
         name={Routes.CHILDTEAM}
         component={ChildTeam}
-        options={{ headerShown: false }}
+        options={{ headerShown: false , animation:'fade'}}
       />
     </Stack.Navigator>
   );
