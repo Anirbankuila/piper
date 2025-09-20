@@ -11,6 +11,6 @@ const Colors = {
   strokeColor:'#C1C1C1',
   bg:'#fff',
   blue_link:'#0F62FE',
-  black:'#000',
+  black:'#141514',
 };
 export default Colors;

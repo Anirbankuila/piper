@@ -7,7 +7,7 @@ import {
   ScrollView,
   TextInput,
 } from 'react-native';
-import Styles from './AboutScreenCss';
+import Styles from './ChildTeamCss';
 import CommonButton from '../../components/CommonButton/CommonButton';
 import { useNavigation } from '@react-navigation/native';
 import Colors from '../../constants/colors';
@@ -20,7 +20,7 @@ import CustomRadio from '../../components/Radiobutton/Radiobutton';
 import { PlusCircleIcon } from 'react-native-heroicons/outline';
 import Routes from '../../navigation/Routes';
 
-const AboutScreen = () => {
+const ChildTeam = () => {
   const navigation = useNavigation();
   const [imageUri, setImageUri] = useState(null);
   const [gender, setGender] = useState('');
@@ -208,4 +208,4 @@ const AboutScreen = () => {
   );
 };
 
-export default AboutScreen;
+export default ChildTeam;

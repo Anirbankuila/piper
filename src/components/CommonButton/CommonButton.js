@@ -14,7 +14,7 @@ const CommonButton = ({
     <TouchableOpacity
       style={[styles.button, { backgroundColor }, style]}
       onPress={onPress}
-      activeOpacity={0.8}
+      
     >
       <Text style={[styles.text, { color, fontFamily: FONTS.semiBold }, textStyle]}>
         {title}

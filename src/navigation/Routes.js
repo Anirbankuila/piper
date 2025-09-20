@@ -4,7 +4,9 @@ const Routes = {
   PROFILE:'Profile',
   PRIVACY: 'Privacy',
   OTPSCREEN:'Otpscreen',
-  ABOUTSCREEN:'AboutScreen'
+  ABOUTSCREEN:'AboutScreen',
+  DOCUMENTSCREEN:'Document',
+  CHILDTEAM:'ChildTeam'
 
 };
 

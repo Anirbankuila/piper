@@ -4,9 +4,10 @@ import FONTS from '../../constants/fonts';
 
 const Styles = StyleSheet.create({
   container: {
-   flexGrow: 1,
+    flexGrow: 1,
     backgroundColor: Colors.bg,
     padding: 24,
+    paddingBottom:60
   },
   title: {
     fontSize: 24,
@@ -37,22 +38,27 @@ const Styles = StyleSheet.create({
   boldText: {
     fontFamily: FONTS.bold,
   },
+
   button: {
     backgroundColor: Colors.black,
+    width:'100%'
   },
   buttonText: {
     color: Colors.surface,
   },
-  backButton: {
+  bottomButton: {
     position: 'absolute',
-    top: 50,
-    left: 20,
-    zIndex: 10,
-    display: 'flex',
-    gap: 20,
+    width:'100%',
+    right:0,
+    bottom: 0,
+    zIndex: 9,
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: 'white', // optional (for visibility)
+    padding: 24,
+    paddingTop:0
   },
+
   backButtonText: {
     fontSize: 16,
     color: Colors.text,
@@ -60,7 +66,7 @@ const Styles = StyleSheet.create({
   },
   content: {
     // flex: 1,
-    paddingTop: 90, // space for back button
+    paddingTop: 0, // space for back button
     paddingBottom: 20,
   },
 });

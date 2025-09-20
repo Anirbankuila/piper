@@ -11,7 +11,7 @@ const Styles = StyleSheet.create({
   topImageContainer: {
     position: 'relative',
     width: '100%',
-    height: 250, // adjust as needed
+    height: 275, // adjust as needed
   },
   topImage: {
     width: '100%',
@@ -19,28 +19,12 @@ const Styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   content: {
-    backgroundColor: 'rgba(255,255,255,0,4)', // less white
+    backgroundColor: Colors.surface, // less white
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 24,
     position: 'relative',
     zIndex: 1, // make sure it's above blur if needed
-    paddingTop:0
-  },
-  glassWrapper: {
-    position: 'absolute',
-    top: -35,
-    left: 0,
-    right: 0,
-    height: 50,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    overflow: 'hidden',
-    zIndex: 0,
-  },
-  glassEffect: {
-    flex: 1,
-    backgroundColor: 'rgba(255,255,255,0.5)', // lighter white
   },
 
   title: {
@@ -50,7 +34,6 @@ const Styles = StyleSheet.create({
     fontWeight: 'bold',
     color: Colors.primary,
     marginBottom: 28,
-    marginTop: -10,
   },
   subtitle: {
     fontSize: 17,
@@ -62,44 +45,10 @@ const Styles = StyleSheet.create({
   formWrap: {
     marginTop: 0,
   },
-  uploadPhoto: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  uploadPhoto: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 15,
-  },
-  uploadIconWrap: {
-    marginRight: 8,
-    borderWidth: 1,
-    borderColor: '#66A2E4',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#E6F0FB',
-    width: 32,
-    height: 32,
-    borderRadius: '50%',
-  },
-  uploadIcon: {
-    width: 18,
-    height: 18,
-    resizeMode: 'contain',
-  },
 
-  uploadText: {
-    fontSize: 16,
-    fontFamily: FONTS.bold,
-    color: Colors.text,
-  },
-  eachInput: {
-    padding: 16,
-    marginTop: 0,
-  },
   button: {
-    backgroundColor: Colors.black,
+    backgroundColor: '#000',
+    marginTop:20
   },
   buttonText: {
     color: Colors.surface,
@@ -124,38 +73,56 @@ const Styles = StyleSheet.create({
     color: '#141514',
     fontFamily: FONTS.bold,
   },
+
+  optionWrap: {
+    backgroundColor: '#F2F2F7',
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 8,
+  },
   selectBox: {
     backgroundColor: '#F2F2F7',
     padding: 16,
     borderRadius: 12,
-    marginBottom: 12,
+    marginBottom: 8,
   },
-  addAnotherWrap: {
-    padding: 12,
-    backgroundColor: '#F3F5F7',
-    borderRadius: 20,
-    alignItems: 'center',
-    height: 66,
-    justifyContent: 'center',
-    flexDirection: 'row',
-    gap: 12,
+
+  reminderDropdown: {
+    paddingHorizontal: 16,
+    height: 47,
+    borderRadius: 12,
+    backgroundColor: '#fff',
     borderWidth: 1,
-    borderColor: '#C1C1C1',
-    borderStyle: 'dashed',
-    marginTop: 18,
-    marginBottom: 10,
+    borderColor: Colors.strokeColor,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   },
-  addAnotherText: {
-    fontFamily: FONTS.bold,
+  inputBoxIcon: {
+    fontSize: 16,
     color: Colors.text,
+  },
+  sheetContent: {
+    padding: 20,
+  },
+  sheetTitle: {
+    fontSize: 18,
     fontWeight: '600',
+    marginBottom: 15,
   },
-  addIcon: {
-    color: Colors.blue_link,
-    fontSize: 42,
-    width: 42,
-    height: 42,
+  option: {
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
   },
+  textUnselected:{
+    fontSize: 16,
+    color:Colors.text
+  },
+  textSelected:{
+    fontSize: 16,
+    color:Colors.text
+  }
 });
 
 export default Styles;
