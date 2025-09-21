@@ -30,6 +30,7 @@ const CustomSelect = ({
       {/* Bottom Sheet */}
       <RBSheet
         ref={refRBSheet}
+        draggable={true}
         closeOnDragDown={true}
         closeOnPressMask={true}
         height={300}

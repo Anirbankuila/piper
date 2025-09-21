@@ -1,8 +1,9 @@
-import { StyleSheet } from "react-native";
-import FONTS from "../../constants/fonts";
+import { StyleSheet } from 'react-native';
+import FONTS from '../../constants/fonts';
 const Styles = StyleSheet.create({
   background: {
     flex: 1,
+    width: '100%',
   },
   container: {
     flex: 1,
@@ -12,18 +13,21 @@ const Styles = StyleSheet.create({
   onboardWrapper: {
     height: '60%',
     justifyContent: 'flex-end',
-    padding: 20,
+    // padding: 20,
     width: '100%',
+  },
+  wrapper: {
+    padding: 20,
   },
   title: {
     fontSize: 32,
-    fontFamily:FONTS.semiBold,
+    fontFamily: FONTS.semiBold,
     marginBottom: 10,
     color: '#fff', // text stands out on background
   },
   subtitle: {
     fontSize: 15,
-    fontFamily:FONTS.medium,
+    fontFamily: FONTS.medium,
     color: '#fff',
     marginBottom: 30,
   },

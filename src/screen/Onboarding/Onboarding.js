@@ -21,12 +21,19 @@ const Onboarding = () => {
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
         >
-          <Text style={Styles.title}>Hi, I’m Piper!</Text>
-          <Text style={Styles.subtitle}>
-            I am the health and care concierge for parents of neurodiverse kids
-            and teens, powered by AI.
-          </Text>
-          <CommonButton title="Let’s get started!" onPress={() => {navigation.navigate(Routes.PROFILE)}} />
+          <View style={Styles.wrapper}>
+            <Text style={Styles.title}>Hi, I’m Piper!</Text>
+            <Text style={Styles.subtitle}>
+              I am the health and care concierge for parents of neurodiverse
+              kids and teens, powered by AI.
+            </Text>
+            <CommonButton
+              title="Let’s get started!"
+              onPress={() => {
+                navigation.navigate(Routes.PROFILE);
+              }}
+            />
+          </View>
         </LinearGradient>
       </View>
     </ImageBackground>
