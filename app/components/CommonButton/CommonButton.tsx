@@ -31,7 +31,7 @@ const CommonButton: React.FC<CommonButtonProps> = ({
       onPress={onPress}
     >
       <Text
-        style={[styles.text, { color, fontFamily: Fonts.semiBold }, textStyle]}
+        style={[styles.text, { color, fontFamily: Fonts.Medium }, textStyle]}
       >
         {title}
       </Text>
@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    fontFamily: Fonts.semiBold,
+    fontFamily: Fonts.SemiBold,
   },
 });

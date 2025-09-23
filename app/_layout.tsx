@@ -1,5 +1,13 @@
+import {
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_600SemiBold,
+  Inter_700Bold,
+  useFonts,
+} from "@expo-google-fonts/inter";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { ActivityIndicator } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Routes from "./common/Routes";
 const screens = [
@@ -69,6 +77,33 @@ const screens = [
       },
     },
   },
+  {
+    name: Routes.LOGSUCCESS,
+    options: {
+      headerShown: false,
+
+    },
+  },
+  {
+    name: Routes.ALLLOGS,
+    options: {
+      headerShown: true,
+      title: "Logs", // Title in header
+      headerBackTitle: "Back", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+    },
+  },
+  {
+    name: Routes.LOGSUMMARY,
+    options: {
+      headerShown: true,
+      title: "Logs", // Title in header
+      headerBackTitle: "Back", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+    },
+  },
   // {
   //   name: Routes.TABS,
   //   options: {
@@ -78,6 +113,15 @@ const screens = [
 ];
 
 export default function RootLayout() {
+  const [fontsLoaded] = useFonts({
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
+  });
+  if (!fontsLoaded) {
+    return <ActivityIndicator size="large" style={{ flex: 1 }} />;
+  }
   return (
     <SafeAreaProvider>
       <SafeAreaView
@@ -99,7 +143,7 @@ export default function RootLayout() {
             }}
           />
         </Stack>
-        <StatusBar style="dark" />
+        <StatusBar style="light" />
       </SafeAreaView>
     </SafeAreaProvider>
   );
