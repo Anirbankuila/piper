@@ -27,7 +27,7 @@ const ProfileTab = () => {
         <View style={styles.profileSection}>
           <View style={styles.profileImageContainer}>
             <Image
-              source={require("../../assets/icons/profile.png")}
+              source={require("../../assets/images/profile.png")}
               style={styles.profileImage}
               contentFit="contain"
             />

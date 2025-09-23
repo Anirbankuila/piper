@@ -42,7 +42,21 @@ const screens = [
       },
     },
   },
-  { name: Routes.PRIVACY, options: { headerShown: false } },
+  {
+    name: Routes.PRIVACY,
+    options: {
+      headerShown: true,
+      title: "Privacy", // Title in header
+      headerBackTitle: "Back", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "#fff", // Optional: header background
+        elevation: 0, // For Android shadow removal
+        shadowOpacity: 0, // For iOS shadow removal
+      },
+    },
+  },
   {
     name: Routes.ABOUT,
     options: {
@@ -81,7 +95,6 @@ const screens = [
     name: Routes.LOGSUCCESS,
     options: {
       headerShown: false,
-
     },
   },
   {

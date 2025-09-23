@@ -1,25 +1,42 @@
-import { StyleSheet } from "react-native";
-
-const Styles = StyleSheet.create({
+import { Colors, Fonts } from "@/constants/theme";
+import { Dimensions, StyleSheet } from "react-native";
+const { width } = Dimensions.get("window");
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E8F4FD",
+    backgroundColor: Colors.bg,
+  },
+  headerWrapper: {
+    flex: 1,
+    backgroundColor: Colors["secondary-100"],
   },
   header: {
+    backgroundColor: "#CBF2F6",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 20,
     paddingTop: 10,
-    paddingBottom: 5,
+    paddingBottom: 20,
   },
   headerLeft: {
     flex: 1,
   },
-  logoIcon: {
-    width: 24,
-    height: 24,
-    tintColor: "#FF6B35",
+  starContainer: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: "#FF6B35",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  starIcon: {
+    fontSize: 16,
+    color: "white",
+  },
+  headerRightIcon: {
+    height: 25,
+    width: 25,
   },
   headerRight: {
     flexDirection: "row",
@@ -29,68 +46,71 @@ const Styles = StyleSheet.create({
     marginLeft: 15,
   },
   headerIcon: {
-    width: 20,
-    height: 20,
-    tintColor: "#666",
+    width: 30,
+    height: 30,
   },
   userInfo: {
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 20,
     paddingBottom: 15,
+    backgroundColor: "#CBF2F6",
   },
   profilePhoto: {
-    width: 32,
-    height: 32,
+    width: 34,
+    height: 34,
     borderRadius: 16,
+    backgroundColor: "#E0E0E0",
+    alignItems: "center",
+    justifyContent: "center",
     marginRight: 10,
   },
+  profileEmoji: {
+    fontSize: 18,
+  },
   userDetails: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
   },
   userName: {
     fontSize: 18,
     fontWeight: "600",
-    color: "#000",
+    color: Colors.text,
     marginRight: 5,
   },
   dropdownIcon: {
-    width: 12,
-    height: 12,
-    tintColor: "#666",
+    marginTop: 5,
+    fontWeight: "600",
   },
   content: {
     flex: 1,
     paddingHorizontal: 20,
   },
-  searchContainer: {
+  piperIntroContainer: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#F2F2F7",
-    borderRadius: 25,
-    paddingHorizontal: 15,
-    paddingVertical: 12,
-    marginBottom: 20,
+    justifyContent: "center",
+    gap: 1,
+    width: width,
+    paddingHorizontal: 30,
   },
-  searchIcon: {
-    width: 16,
-    height: 16,
-    tintColor: "#8E8E93",
-    marginRight: 10,
+  alexPersonalImg: {
+    width: 126,
+    height: 180,
+    resizeMode: "contain",
   },
-  searchInput: {
-    flex: 1,
-    fontSize: 16,
-    color: "#000",
-  },
-  voiceButton: {
-    padding: 5,
-  },
-  micIcon: {
-    width: 18,
-    height: 18,
-    tintColor: "#8E8E93",
+  piperDetailsCard: {
+    backgroundColor: "#FFF3E9",
+    borderRadius: 15,
+    padding: 12,
+    shadowColor: Colors.black,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+    boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+    textAlign: "center",
   },
   piperCard: {
     borderRadius: 20,
@@ -129,13 +149,20 @@ const Styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
   },
-  piperCharacter: {
+  piperCharacterContainer: {
     width: 120,
     height: 120,
+    backgroundColor: "rgba(255,255,255,0.3)",
+    borderRadius: 60,
+    alignItems: "center",
+    justifyContent: "center",
     marginLeft: 10,
   },
+  piperCharacterEmoji: {
+    fontSize: 60,
+  },
   sectionContainer: {
-    marginBottom: 30,
+    paddingHorizontal: 22,
   },
   sectionTitle: {
     fontSize: 20,
@@ -145,8 +172,8 @@ const Styles = StyleSheet.create({
     textAlign: "center",
   },
   progressCard: {
-    backgroundColor: "white",
-    borderRadius: 15,
+    backgroundColor: "#FFF3E9",
+    borderRadius: 12,
     padding: 20,
     shadowColor: "#000",
     shadowOffset: {
@@ -156,6 +183,8 @@ const Styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 8,
     elevation: 3,
+    borderBlockColor: Colors.black,
+    borderWidth: 1,
   },
   progressHeader: {
     flexDirection: "row",
@@ -185,13 +214,14 @@ const Styles = StyleSheet.create({
     marginRight: 5,
   },
   chevronRight: {
-    width: 12,
-    height: 12,
-    tintColor: "#C7C7CC",
+    fontSize: 16,
+    color: "#C7C7CC",
+    fontWeight: "bold",
   },
   chartContainer: {
     flexDirection: "row",
-    alignItems: "end",
+    // alignItems: "end",
+
     justifyContent: "space-between",
     height: 100,
   },
@@ -211,9 +241,77 @@ const Styles = StyleSheet.create({
     minHeight: 8,
   },
   dayLabel: {
-    fontSize: 12,
+    fontSize: 14,
     color: "#8E8E93",
     fontWeight: "500",
   },
+  cardDetailsContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
+  cardView: {
+    backgroundColor: "#F2F2F7",
+    justifyContent: "space-between",
+  },
+  careTeamContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    marginHorizontal: 10,
+    columnGap: 30,
+    rowGap: 20,
+  },
+  careTeamMember: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: "#D8DFF7",
+    marginBottom: 15,
+    alignItems: "center",
+  },
+  memberText: {
+    color: "#3B3D3B",
+    fontFamily: Fonts.Medium,
+    fontSize: 13,
+    fontWeight: "600",
+    lineHeight: 16,
+    textAlign: "center",
+  },
+
+  careTeamMemberImg: {
+    height: 70,
+    width: 70,
+    resizeMode: "cover",
+    marginBottom: 5,
+    paddingHorizontal: 24,
+  },
+  summarySection: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 15,
+    marginBottom: 15,
+    columnGap: 1,
+  },
+  summaryDetails: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 15,
+    borderRadius: 20,
+    backgroundColor: "#F2F2F7",
+    width: width / 2.25,
+  },
+  summaryText: {
+    fontFamily: Fonts.SemiBold,
+    color: Colors.primary,
+    width: "70%",
+    fontSize: 14,
+  },
+  summaryImg: {
+    height: 45,
+    width: 45,
+    resizeMode: "contain",
+  },
 });
-export default Styles;
+export default styles;

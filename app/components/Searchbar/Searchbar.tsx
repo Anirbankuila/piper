@@ -1,24 +1,32 @@
-import { Colors } from "@/constants/theme";
+import { Colors, Fonts } from "@/constants/theme";
+import { Image } from "expo-image";
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
+interface searchBarInputProps {
+  onMicPress?: () => void;
+}
 
-const Searchbar = () => {
+const Searchbar: React.FC<searchBarInputProps> = ({
+  onMicPress,
+  ...searchBarInputProps
+}) => {
   return (
     <View style={styles.searchContainer}>
-      <Text style={styles.searchIcon}>🔍</Text>
+      <Image
+        source={require("../../../assets/icons/search.png")}
+        style={styles.searchIcon}
+      />
+
       <TextInput
         style={styles.searchInput}
         placeholder="Ask me anything!"
-        placeholderTextColor="#8E8E93"
+        placeholderTextColor="#AAAAAA"
       />
-      <TouchableOpacity style={styles.voiceButton}>
-        <Text style={styles.micIcon}>🎤</Text>
+      <TouchableOpacity style={styles.voiceButton} onPress={onMicPress}>
+        <Image
+          source={require("../../../assets/icons/mic.png")}
+          style={styles.micIcon}
+        />
       </TouchableOpacity>
     </View>
   );
@@ -30,7 +38,7 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#F2F2F7",
+    backgroundColor: Colors.bg,
     borderRadius: 10,
     paddingHorizontal: 15,
     paddingVertical: 5,
@@ -39,18 +47,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   searchIcon: {
-    fontSize: 16,
-    marginRight: 10,
+    width: 20,
+    height: 20,
+    marginEnd: 10,
   },
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: "#000",
+    fontFamily: Fonts.Regular,
   },
   voiceButton: {
     padding: 5,
   },
   micIcon: {
-    fontSize: 16,
+    width: 23,
+    height: 23,
+    tintColor: Colors.black,
   },
 });

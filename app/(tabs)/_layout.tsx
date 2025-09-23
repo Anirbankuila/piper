@@ -124,7 +124,7 @@ export default function TabLayout() {
           ),
           tabBarIcon: ({ focused }) => (
             <Image
-              source={require("../../assets/icons/profile.png")} // Add your profile icon here
+              source={require("../../assets/images/profile.png")} // Add your profile icon here
               style={[styles.tabIcon, focused && styles.profileIconActive]}
             />
           ),
