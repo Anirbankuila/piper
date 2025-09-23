@@ -5,7 +5,7 @@ const Styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: Colors.bg,
-    // padding: 24,
+    paddingTop: 24,
   },
   topImageContainer: {
     position: "relative",

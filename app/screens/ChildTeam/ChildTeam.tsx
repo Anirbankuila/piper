@@ -71,7 +71,10 @@ const ChildTeam: React.FC = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={Styles.container}>
+    <ScrollView
+      contentContainerStyle={Styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <View style={Styles.content}>
         {/* Top */}
         <View style={Styles.contentTop}>
@@ -103,12 +106,7 @@ const ChildTeam: React.FC = () => {
         {/* Child Forms */}
         {childForms.map((child) => (
           <View key={child.id} style={Styles.formWrap}>
-            {child.imageUri && (
-              <Image
-                source={{ uri: child.imageUri }}
-                style={Styles.childImage}
-              />
-            )}
+            {child.imageUri && <Image source={{ uri: child.imageUri }} />}
 
             <TouchableOpacity
               style={Styles.uploadPhoto}
@@ -139,6 +137,7 @@ const ChildTeam: React.FC = () => {
               placeholder="Mobile phone (for sharing via text)"
               style={Styles.eachInput}
               value={child.phone || ""}
+              keyboardType="phone-pad"
               onChangeText={(text) => updateChildForm(child.id, "phone", text)}
             />
 
@@ -155,7 +154,7 @@ const ChildTeam: React.FC = () => {
         ))}
 
         {/* Add another member */}
-        <View style={Styles.addAnotherWrapper}>
+        <View>
           <TouchableOpacity
             style={Styles.addAnotherWrap}
             onPress={addChildForm}

@@ -18,9 +18,9 @@ const Profile = () => {
 
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1 }}
+      contentContainerStyle={Styles.keyboardAvoiding}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 64}
     >
       <ScrollView
         contentContainerStyle={Styles.container}
@@ -82,7 +82,7 @@ const Profile = () => {
         </View>
 
         {/* Bottom Continue Button */}
-        <View>
+        <View style={Styles.bottomButton}>
           <CommonButton
             title="Continue"
             textStyle={Styles.buttonText}

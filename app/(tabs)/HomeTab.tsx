@@ -1,4 +1,5 @@
 import { Colors } from "@/constants/theme";
+import { Image, ImageBackground } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import {
@@ -7,10 +8,10 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
+import Searchbar from "../components/Searchbar/Searchbar";
 
 const { width } = Dimensions.get("window");
 
@@ -27,50 +28,162 @@ export default function HomeTab() {
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <StatusBar barStyle="dark-content" backgroundColor="#CBF2F6" />
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={Colors["secondary-100"]}
+      />
 
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.headerLeft}>
-          <View style={styles.starContainer}>
-            <Text style={styles.starIcon}>⭐</Text>
+      <View style={styles.headerWrapper}>
+        <View style={styles.header}>
+          <View style={styles.headerLeft}>
+            <Image
+              source={require("../../assets/icons/star-icon.png")}
+              style={styles.headerIcon}
+              contentFit="contain"
+            />
+          </View>
+
+          <View style={styles.headerRight}>
+            <TouchableOpacity style={styles.headerButton}>
+              <Image
+                source={require("../../assets/icons/dna-icon.png")}
+                style={styles.headerRightIcon}
+                contentFit="contain"
+              />
+              {/* <Text style={styles.hourglassIcon}>⏳</Text> */}
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.headerButton}>
+              <Image
+                source={require("../../assets/icons/bell-icon.png")}
+                style={styles.headerRightIcon}
+                contentFit="contain"
+              />
+            </TouchableOpacity>
           </View>
         </View>
 
-        <View style={styles.headerRight}>
-          <TouchableOpacity style={styles.headerButton}>
-            <Text style={styles.hourglassIcon}>⏳</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.headerButton}>
-            <Text style={styles.bellIcon}>🔔</Text>
-          </TouchableOpacity>
+        {/* User Info */}
+        <View style={styles.userInfo}>
+          <Image
+            source={require("../../assets/icons/profile.png")}
+            style={styles.profilePhoto}
+            contentFit="contain"
+          />
+          <View style={styles.userDetails}>
+            <Text style={styles.userName}>Johnny</Text>
+            <Text style={styles.dropdownIcon}>▼</Text>
+          </View>
+        </View>
+        <View style={{ paddingHorizontal: 20 }}>
+          <Searchbar />
+        </View>
+        <ImageBackground
+          source={require("../../assets/images/home-piper-bg.png")}
+          style={{
+            height: 180,
+
+            position: "relative",
+            width: width,
+          }}
+          contentFit="cover"
+        >
+          <View style={{}}>
+            <Image
+              source={require("../../assets/images/Alex-personal 1.png")}
+              style={{
+                width: 250,
+                height: 180,
+                resizeMode: "contain",
+                bottom: 0,
+                left: -40,
+              }}
+            />
+          </View>
+          <View
+            style={{
+              backgroundColor: "#fff",
+              borderRadius: 15,
+              padding: 10,
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.1,
+              shadowRadius: 4,
+              elevation: 3,
+              boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+              position: "absolute",
+            }}
+          >
+            <Text
+              style={{ fontSize: 18, fontWeight: "bold", color: "#0064D2" }}
+            >
+              Hi, I’m Piper!
+            </Text>
+            <Text
+              style={{
+                fontSize: 14,
+                color: "#333",
+                marginVertical: 8,
+              }}
+            >
+              Your organized bestie{"\n"}and personal assistant.
+            </Text>
+
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#0064D2",
+                paddingVertical: 10,
+                borderRadius: 8,
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ color: "#fff", fontWeight: "600" }}>
+                Let’s take a tour
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </ImageBackground>
+      </View>
+      <View style={styles.sectionContainer}>
+        <Text style={styles.sectionTitle}>
+          Everything You Need In One Place
+        </Text>
+
+        {/* Progress Tracking Card */}
+        <View style={styles.progressCard}>
+          <View style={styles.progressHeader}>
+            <Text style={styles.progressTitle}>Progress Tracking</Text>
+            <View style={styles.progressStatus}>
+              <View style={styles.statusDot} />
+              <Text style={styles.statusText}>Moderate</Text>
+              <Text style={styles.chevronRight}>›</Text>
+            </View>
+          </View>
+
+          {/* Progress Chart */}
+          <View style={styles.chartContainer}>
+            {progressData.map((item, index) => (
+              <View key={index} style={styles.chartItem}>
+                <View style={styles.barContainer}>
+                  <View
+                    style={[
+                      styles.progressBar,
+                      {
+                        height: item.height,
+                        backgroundColor: item.color,
+                      },
+                    ]}
+                  />
+                </View>
+                <Text style={styles.dayLabel}>{item.day}</Text>
+              </View>
+            ))}
+          </View>
         </View>
       </View>
 
-      {/* User Info */}
-      <View style={styles.userInfo}>
-        <View style={styles.profilePhoto}>
-          <Text style={styles.profileEmoji}>👤</Text>
-        </View>
-        <View style={styles.userDetails}>
-          <Text style={styles.userName}>Johnny</Text>
-          <Text style={styles.dropdownIcon}>▼</Text>
-        </View>
-      </View>
-
+      {/* Header */}
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {/* Search Bar */}
-        <View style={styles.searchContainer}>
-          <Text style={styles.searchIcon}>🔍</Text>
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Ask me anything!"
-            placeholderTextColor="#8E8E93"
-          />
-          <TouchableOpacity style={styles.voiceButton}>
-            <Text style={styles.micIcon}>🎤</Text>
-          </TouchableOpacity>
-        </View>
 
         {/* Piper Introduction Card */}
         <LinearGradient
@@ -96,43 +209,6 @@ export default function HomeTab() {
         </LinearGradient>
 
         {/* Everything You Need Section */}
-        <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>
-            Everything You Need In One Place
-          </Text>
-
-          {/* Progress Tracking Card */}
-          <View style={styles.progressCard}>
-            <View style={styles.progressHeader}>
-              <Text style={styles.progressTitle}>Progress Tracking</Text>
-              <View style={styles.progressStatus}>
-                <View style={styles.statusDot} />
-                <Text style={styles.statusText}>Moderate</Text>
-                <Text style={styles.chevronRight}>›</Text>
-              </View>
-            </View>
-
-            {/* Progress Chart */}
-            <View style={styles.chartContainer}>
-              {progressData.map((item, index) => (
-                <View key={index} style={styles.chartItem}>
-                  <View style={styles.barContainer}>
-                    <View
-                      style={[
-                        styles.progressBar,
-                        {
-                          height: item.height,
-                          backgroundColor: item.color,
-                        },
-                      ]}
-                    />
-                  </View>
-                  <Text style={styles.dayLabel}>{item.day}</Text>
-                </View>
-              ))}
-            </View>
-          </View>
-        </View>
       </ScrollView>
     </ScrollView>
   );
@@ -143,6 +219,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.bg,
   },
+  headerWrapper: {
+    flex: 1,
+    backgroundColor: Colors["secondary-100"],
+  },
   header: {
     backgroundColor: "#CBF2F6",
     flexDirection: "row",
@@ -150,7 +230,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
     paddingTop: 10,
-    paddingBottom: 5,
+    paddingBottom: 20,
   },
   headerLeft: {
     flex: 1,
@@ -167,11 +247,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "white",
   },
-  hourglassIcon: {
-    fontSize: 18,
-  },
-  bellIcon: {
-    fontSize: 18,
+  headerRightIcon: {
+    height: 25,
+    width: 25,
   },
   headerRight: {
     flexDirection: "row",
@@ -181,8 +259,8 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   headerIcon: {
-    width: 20,
-    height: 20,
+    width: 30,
+    height: 30,
   },
   userInfo: {
     flexDirection: "row",
@@ -222,30 +300,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
   },
-  searchContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#F2F2F7",
-    borderRadius: 25,
-    paddingHorizontal: 15,
-    paddingVertical: 12,
-    marginBottom: 20,
-  },
-  searchIcon: {
-    fontSize: 16,
-    marginRight: 10,
-  },
-  searchInput: {
-    flex: 1,
-    fontSize: 16,
-    color: "#000",
-  },
-  voiceButton: {
-    padding: 5,
-  },
-  micIcon: {
-    fontSize: 16,
-  },
+
   piperCard: {
     borderRadius: 20,
     marginBottom: 25,
