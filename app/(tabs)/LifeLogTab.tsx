@@ -1,5 +1,6 @@
 import { Colors, Fonts } from "@/constants/theme";
 import * as ImagePicker from "expo-image-picker";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { Image, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import AskPiperInput from "../components/AskPiperInput/AskPiperInput";
@@ -91,12 +92,10 @@ const LifeLogTab = () => {
             onSelect={(val: string | number) => setSelectLog(val)} // type match korbe
             optionStyle={styles.selectBox}
           />
-
         </View>
         <CommonButton
           onPress={() => {
-            // function body, e.g. save entry
-            console.log("Button pressed");
+            router.push("/screens/LogSuccess/LogSuccess")
           }}
           backgroundColor="#000"
           color="#fff"
@@ -105,7 +104,7 @@ const LifeLogTab = () => {
         <CommonButton onPress={() => {
           // function body, e.g. save entry
           console.log("Button pressed");
-        }} style={styles.pastLogBtn} backgroundColor="#fff" color="#000" title="Save Entry" />
+        }} style={styles.pastLogBtn} backgroundColor="#fff" color="#000" title="View Past Logs" />
       </View>
     </ScrollView>
   );
@@ -197,6 +196,5 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderWidth: 1,
     borderColor: '#000'
-
   }
 });

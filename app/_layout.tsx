@@ -77,6 +77,33 @@ const screens = [
       },
     },
   },
+  {
+    name: Routes.LOGSUCCESS,
+    options: {
+      headerShown: false,
+
+    },
+  },
+  {
+    name: Routes.ALLLOGS,
+    options: {
+      headerShown: true,
+      title: "Logs", // Title in header
+      headerBackTitle: "Back", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+    },
+  },
+  {
+    name: Routes.LOGSUMMARY,
+    options: {
+      headerShown: true,
+      title: "Logs", // Title in header
+      headerBackTitle: "Back", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+    },
+  },
   // {
   //   name: Routes.TABS,
   //   options: {
@@ -92,7 +119,7 @@ export default function RootLayout() {
     Inter_600SemiBold,
     Inter_700Bold,
   });
-if (!fontsLoaded) {
+  if (!fontsLoaded) {
     return <ActivityIndicator size="large" style={{ flex: 1 }} />;
   }
   return (

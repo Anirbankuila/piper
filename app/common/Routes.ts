@@ -6,7 +6,10 @@ const Routes = {
   ABOUT: "screens/AboutScreen/AboutScreen",
   DOCUMENT: "screens/DocumentScreen/DocumentScreen",
   CHILDTEAM: "screens/ChildTeam/ChildTeam",
+  LOGSUCCESS: "screens/LogSuccess/LogSuccess",
+  ALLLOGS: "screens/AllLogs/AllLogs",
+  LOGSUMMARY: "screens/LogSummary/LogSummary",
   TABS: "(tabs)",
-};
+} as const;
 
 export default Routes;
