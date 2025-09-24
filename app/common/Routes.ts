@@ -8,7 +8,8 @@ const Routes = {
   CHILDTEAM: "screens/ChildTeam/ChildTeam",
   LOGSUCCESS: "screens/LogSuccess/LogSuccess",
   ALLLOGS: "screens/AllLogs/AllLogs",
-  LOGSUMMARY: "screens/LogSummary/LogSummary",
+  LOGSUMMARY: "screens/LogSummary/[id]",
+  MOMENTLOG:"screens/MomentLog/MomentLog",
   TABS: "(tabs)",
 } as const;
 

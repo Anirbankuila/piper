@@ -3,8 +3,9 @@ import { Colors, Fonts } from "../../../constants/theme";
 
 const Styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: Colors.bg
+    flexGrow: 1,
+    backgroundColor: Colors.bg,
+    paddingBottom:20
   },
   content: {
     position: 'relative',
@@ -42,92 +43,84 @@ const Styles = StyleSheet.create({
     color: Colors.text,
     marginTop: 5
   },
-  logWrapper: {
+  logSummaryWrap: {
     position: 'relative',
     marginTop: 20,
     padding: 24
   },
-  dateTime: {
-    fontSize: 8,
-    color: Colors.textLight,
-    fontFamily: Fonts.Medium
-  },
-  logTitle: {
-    fontSize: 16,
-    color: '#141514',
-    fontFamily: Fonts.Medium
-  },
-  eachLogTop: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginTop: 10
-  },
-  eachLogTopLeft: {
+  logSummary: {
     position: 'relative',
-  },
-  eachLogTopRight: {
-    position: 'relative',
-  },
-  eachLog: {
-    position: 'relative',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
     backgroundColor: '#F2F2F7',
-    borderRadius: 8,
+    padding: 12,
+    borderRadius: 12
+  },
+  summaryTitle: {
+    fontSize: 16,
+    marginBottom: 5,
+    color: Colors.text,
+    fontFamily: Fonts.SemiBold
+  },
+  summaryDesc: {
+    fontSize: 14,
+    color: Colors.text,
+    fontFamily: Fonts.Regular
+  },
+  modeWrap: {
+    position: 'relative',
+    backgroundColor: '#FFE7ED',
+    padding: 12,
+    borderRadius: 12,
+    textAlign: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 5
   },
-  logStatus: {
-    backgroundColor: '#fff',
-    borderRadius: 4,
-    padding: 4,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5,
-    width: 75,
-    marginTop: 10
-  },
-  logStatusIndicator: {
-    width: 11,
-    height: 11,
-    backgroundColor: '#FA1911',
-    borderRadius: '50%',
-  },
-  success: {
-    backgroundColor: '#01BA38',
-  },
-  status: {
-    fontSize: 10,
-    color: Colors.text,
-    fontFamily: Fonts.Medium
-  },
-  mode: {
+  modeImg: {
     width: 56,
     height: 56,
-    borderRadius: 8
+    marginBottom: 8
   },
-  shareBtn: {
-    flexDirection: 'row',
+  modeTitle: {
+    textAlign: 'center',
+    color: '#940027',
+    fontFamily: Fonts.SemiBold,
+    fontSize: 20
+  },
+  addItem: {
+    position: 'relative',
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: 'center',
-    gap: 5,
-    width: 70,
-    height: 30,
-    justifyContent: 'center'
+    marginTop: 10,
+    marginBottom:20
   },
-  modeShare: {
-    width: 16,
-    height: 16
+  eachItem: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: Colors.strokeColor,
+    borderRadius: 12,
+    paddingVertical: 12,
+    width: '48%'
   },
-  shareTitle: {
-    fontSize: 10,
-    color: Colors.text,
-    fontFamily: Fonts.Medium
+  icon: {
+    width: 24,
+    height: 24
   },
-  shareText: {
-    fontSize: 10,
-    color: Colors.blue_link,
-    fontFamily: Fonts.Medium
+  eachItemTitle: {
+    fontSize: 12,
+    fontFamily: Fonts.Medium,
+    color: '#141514',
+    marginTop: 5
+  },
+  addWrap: {
+    position: 'relative',
+    paddingHorizontal: 24,
+    marginBottom:10
   }
+
 });
 
 export default Styles;

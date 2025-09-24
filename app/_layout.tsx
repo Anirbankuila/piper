@@ -92,18 +92,30 @@ const screens = [
       headerBackTitle: "Back", // Back button text
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "#FFF3E9", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
     },
   },
   {
     name: Routes.LOGSUMMARY,
     options: {
       headerShown: true,
-      title: "Logs", // Title in header
-      headerBackTitle: "Back", // Back button text
-      headerBackTitleVisible: true, // Make sure it's visible
-      headerShadowVisible: false, // Remove bottom shadow
+      headerBackTitle: "Back",
+      headerBackTitleVisible: true,
+      headerShadowVisible: false,
+      headerStyle: {
+        backgroundColor: "#FFF3E9", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
     },
   },
+  {
+    name: Routes.MOMENTLOG,
+    options: { headerShown: false }
+  }
+
   // {
   //   name: Routes.TABS,
   //   options: {

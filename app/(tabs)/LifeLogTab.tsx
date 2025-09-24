@@ -103,7 +103,7 @@ const LifeLogTab = () => {
         />
         <CommonButton onPress={() => {
           // function body, e.g. save entry
-          console.log("Button pressed");
+          router.push("/screens/AllLogs/AllLogs")
         }} style={styles.pastLogBtn} backgroundColor="#fff" color="#000" title="View Past Logs" />
       </View>
     </ScrollView>
