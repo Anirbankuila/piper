@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.bg,
   },
   headerWrapper: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: Colors["secondary-100"],
   },
   header: {

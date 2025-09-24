@@ -20,7 +20,11 @@ const ProfileTab = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor={Colors.bg} />
+      <StatusBar
+        barStyle="dark-content"
+        translucent
+        backgroundColor={Colors.bg}
+      />
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {/* Profile Section */}
@@ -32,9 +36,9 @@ const ProfileTab = () => {
               contentFit="contain"
             />
           </View>
-          <View style={styles.profileNameContainer}>
-            <Text style={styles.profileName}>Johnny</Text>
-          </View>
+          <Text style={styles.profileName}>Johnny</Text>
+          {/* <View style={styles.profileNameContainer}>
+          </View> */}
         </View>
         <MenuItem
           icon={<UserIcon size={24} color={Colors.text} />}

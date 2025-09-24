@@ -15,13 +15,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingVertical: 30,
+    alignContent: "center",
   },
   profileImageContainer: {
     marginBottom: 15,
   },
   profileNameContainer: {
-    flex: 1,
     marginLeft: 15,
     textAlign: "center",
   },
@@ -33,7 +32,7 @@ const styles = StyleSheet.create({
   profileImageText: {
     fontSize: 24,
     color: Colors.text,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
     fontWeight: "bold",
   },
   profileName: {

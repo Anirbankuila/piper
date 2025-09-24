@@ -9,8 +9,9 @@ const Routes = {
   LOGSUCCESS: "screens/LogSuccess/LogSuccess",
   ALLLOGS: "screens/AllLogs/AllLogs",
   LOGSUMMARY: "screens/LogSummary/[id]",
-  MOMENTLOG:"screens/MomentLog/MomentLog",
+  MOMENTLOG: "screens/MomentLog/MomentLog",
   TABS: "(tabs)",
+  NOTIFICATION: "screens/Notification/Notification",
 } as const;
 
 export default Routes;

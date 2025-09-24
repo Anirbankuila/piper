@@ -3,7 +3,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { Image, ImageBackground } from "expo-image";
 import React, { useState } from "react";
 import {
-  Dimensions,
   ScrollView,
   StatusBar,
   Text,
@@ -11,33 +10,40 @@ import {
   View,
 } from "react-native";
 import { ChevronDownIcon, PlusIcon } from "react-native-heroicons/outline";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Header from "../components/Header/Header";
 import Divider from "../components/HomePageDivider/Divider";
 import PiperModal from "../components/PiperModal/PiperModal";
 import Searchbar from "../components/Searchbar/Searchbar";
 import styles from "../tabStyles/HomeTabStyle";
-const { width } = Dimensions.get("window");
 
 export default function HomeTab() {
   const [visible, setVisible] = useState(false);
+  const insets = useSafeAreaInsets();
   const progressData = [
     { day: "M", height: 40, color: "#FF9500", isActive: false },
     { day: "T", height: 60, color: "#FF9500", isActive: false },
     { day: "W", height: 30, color: "#34C759", isActive: false },
     { day: "T", height: 80, color: "#FF3B30", isActive: false },
     { day: "F", height: 50, color: "#FF9500", isActive: true },
-    { day: "S", height: 0, color: "#E5E5EA", isActive: false },
-    { day: "S", height: 0, color: "#E5E5EA", isActive: false },
+    { day: "S", height: 80, color: "#E5E5EA", isActive: false },
+    { day: "S", height: 80, color: "#E5E5EA", isActive: false },
   ];
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor={Colors["secondary-100"]}
-      />
-
-      <View style={styles.headerWrapper}>
+      <StatusBar backgroundColor={Colors["secondary-100"]} translucent={true} />
+      {/* <View style={{ paddingTop: insets.top - 10, backgroundColor: "#FFF3E9" }}>
+        <Header backgroundColor="#FFF3E9" />
+      </View> */}
+      <View
+        style={[
+          styles.headerWrapper,
+          {
+            paddingTop: insets.top - 10,
+          },
+        ]}
+      >
         <Header backgroundColor={Colors["secondary-100"]} />
 
         {/* User Info */}

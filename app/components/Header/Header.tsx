@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -25,7 +26,10 @@ const Header: React.FC<HeaderProps> = ({ backgroundColor = "#FFF3E9" }) => {
           />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.iconBtn}>
+        <TouchableOpacity
+          style={styles.iconBtn}
+          onPress={() => router.push("/screens/Notification/Notification")}
+        >
           <Image
             source={require("../../../assets/icons/notification.png")}
             style={styles.eachIcon}
