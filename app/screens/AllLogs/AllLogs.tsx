@@ -57,7 +57,7 @@ const AllLogs = () => {
             </Text>
           </View>
           <Image
-            source={require("../../../assets/images/topBg.png")}
+            source={require("../../../assets/images/newlogbg.png")}
             style={Styles.topBg}
             resizeMode="contain"
           />

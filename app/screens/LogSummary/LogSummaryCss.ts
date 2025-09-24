@@ -14,7 +14,7 @@ const Styles = StyleSheet.create({
     position: 'relative',
     marginTop: -5,
     width: '100%',
-    backgroundColor: '#FFF3E9',
+    backgroundColor: '#D2FFF6',
     zIndex: 9
   },
   topSecLeft: {

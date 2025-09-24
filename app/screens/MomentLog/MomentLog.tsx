@@ -9,8 +9,10 @@ import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import { Image, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const MomentLog = () => {
+    const insets = useSafeAreaInsets();
     const [visible, setVisible] = useState(false);
     const [selectLog, setSelectLog] = useState<string | number>('');
 
@@ -50,7 +52,9 @@ const MomentLog = () => {
                 barStyle="dark-content"   // text/icons will be dark (black/gray)
                 backgroundColor="#FFF3E9" // same as your top background
             />
-            <Header backgroundColor="#fff" />
+            <View style={{ paddingTop: insets.top - 10, backgroundColor: "#fff" }}>
+                <Header backgroundColor="#fff" />
+            </View>
             <MomentTracker />
             <View style={styles.askPiperWrap}>
                 <AskPiperInput onMicPress={() => setVisible(true)} />

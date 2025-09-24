@@ -84,7 +84,7 @@ export default function LogDetails() {
             </Text>
           </View>
           <Image
-            source={require("../../../assets/images/topBg.png")}
+            source={require("../../../assets/images/newlogbg.png")}
             style={Styles.topBg}
             resizeMode="contain"
           />

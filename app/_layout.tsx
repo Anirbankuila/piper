@@ -6,7 +6,6 @@ import {
   useFonts,
 } from "@expo-google-fonts/inter";
 import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { ActivityIndicator } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Routes from "./common/Routes";
@@ -25,6 +24,7 @@ const screens = [
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
+      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -40,9 +40,22 @@ const screens = [
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
+      statusBarStyle: "dark" as const,
     },
   },
-  { name: Routes.PRIVACY, options: { headerShown: false } },
+  {
+    name: Routes.PRIVACY, 
+    options: {
+      headerShown: true,
+      title: "Privacy", // Title in header
+      headerBackTitle: "Back", // Back button text 
+      headerStyle: {
+        elevation: 0, // For Android shadow removal
+        shadowOpacity: 0, // For iOS shadow removal
+      },
+      headerShadowVisible: false,
+    }
+  },
   {
     name: Routes.ABOUT,
     options: {
@@ -52,6 +65,7 @@ const screens = [
       headerTintColor: "#000", // back button color
       headerShadowVisible: false,
     },
+    statusBarStyle: "dark" as const,
   },
   {
     name: Routes.DOCUMENT,
@@ -62,6 +76,7 @@ const screens = [
       headerTintColor: "#000", // back button color
       headerShadowVisible: false,
     },
+    statusBarStyle: "dark" as const,
   },
   {
     name: Routes.CHILDTEAM,
@@ -75,6 +90,7 @@ const screens = [
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
+      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -93,9 +109,10 @@ const screens = [
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow
       headerStyle: {
-        backgroundColor: "#FFF3E9", // 👈 header er background color
+        backgroundColor: "#D2FFF6", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -105,8 +122,10 @@ const screens = [
       headerBackTitle: "Back",
       headerBackTitleVisible: true,
       headerShadowVisible: false,
+      statusBarStyle: "dark" as const,           // 👈 fix
+      statusBarBackgroundColor: "#D2FFF6",
       headerStyle: {
-        backgroundColor: "#FFF3E9", // 👈 header er background color
+        backgroundColor: "#D2FFF6", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
     },
@@ -138,7 +157,7 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <SafeAreaView
         style={{ flex: 1 }}
-        edges={["left", "right", "bottom", "top"]}
+        edges={["left", "right", "bottom",]}
       >
         <Stack initialRouteName="index">
           {screens.map((screen) => (
@@ -155,7 +174,7 @@ export default function RootLayout() {
             }}
           />
         </Stack>
-        <StatusBar style="light" />
+        {/* <StatusBar style="light" /> */}
       </SafeAreaView>
     </SafeAreaProvider>
   );

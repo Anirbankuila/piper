@@ -1,13 +1,14 @@
 import { router } from "expo-router";
 import React from "react";
 import { ScrollView, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CommonButton from "../../components/CommonButton/CommonButton";
 import Styles from "./PrivacyCss";
 
 const Privacy = () => {
+  const insets = useSafeAreaInsets();
   return (
     <View style={{ flex: 1 }}>
-      {" "}
       <ScrollView
         contentContainerStyle={Styles.container}
         showsVerticalScrollIndicator={false}
