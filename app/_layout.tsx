@@ -6,7 +6,6 @@ import {
   useFonts,
 } from "@expo-google-fonts/inter";
 import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { ActivityIndicator } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Routes from "./common/Routes";
@@ -25,6 +24,7 @@ const screens = [
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
+      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -40,6 +40,7 @@ const screens = [
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
+      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -48,13 +49,11 @@ const screens = [
       headerShown: true,
       title: "Privacy", // Title in header
       headerBackTitle: "Back", // Back button text
-      headerBackTitleVisible: true, // Make sure it's visible
-      headerShadowVisible: false, // Remove bottom shadow
       headerStyle: {
-        backgroundColor: "#fff", // Optional: header background
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
+      headerShadowVisible: false,
     },
   },
   {
@@ -66,6 +65,7 @@ const screens = [
       headerTintColor: "#000", // back button color
       headerShadowVisible: false,
     },
+    statusBarStyle: "dark" as const,
   },
   {
     name: Routes.DOCUMENT,
@@ -76,6 +76,7 @@ const screens = [
       headerTintColor: "#000", // back button color
       headerShadowVisible: false,
     },
+    statusBarStyle: "dark" as const,
   },
   {
     name: Routes.CHILDTEAM,
@@ -89,6 +90,7 @@ const screens = [
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
+      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -105,24 +107,46 @@ const screens = [
       headerBackTitle: "Back", // Back button text
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "#D2FFF6", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
     },
   },
   {
     name: Routes.LOGSUMMARY,
     options: {
       headerShown: true,
-      title: "Logs", // Title in header
-      headerBackTitle: "Back", // Back button text
-      headerBackTitleVisible: true, // Make sure it's visible
-      headerShadowVisible: false, // Remove bottom shadow
+      headerBackTitle: "Back",
+      headerBackTitleVisible: true,
+      headerShadowVisible: false,
+      statusBarStyle: "dark" as const, // 👈 fix
+      statusBarBackgroundColor: "#D2FFF6",
+      headerStyle: {
+        backgroundColor: "#D2FFF6", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
     },
   },
-  // {
-  //   name: Routes.TABS,
-  //   options: {
-  //     headerShown: false,
-  //   },
-  // },
+  {
+    name: Routes.MOMENTLOG,
+    options: { headerShown: false },
+  },
+
+  {
+    name: Routes.NOTIFICATION,
+    options: {
+      headerShown: true,
+      title: "Piper's Notification", // Title in header
+      headerBackTitle: "Back", // Back button text
+      headerStyle: {
+        elevation: 0, // For Android shadow removal
+        shadowOpacity: 0, // For iOS shadow removal
+      },
+      headerShadowVisible: false,
+    },
+  },
 ];
 
 export default function RootLayout() {
@@ -137,10 +161,7 @@ export default function RootLayout() {
   }
   return (
     <SafeAreaProvider>
-      <SafeAreaView
-        style={{ flex: 1 }}
-        edges={["left", "right", "bottom", "top"]}
-      >
+      <SafeAreaView style={{ flex: 1 }} edges={["left", "right", "bottom"]}>
         <Stack initialRouteName="index">
           {screens.map((screen) => (
             <Stack.Screen
@@ -156,7 +177,7 @@ export default function RootLayout() {
             }}
           />
         </Stack>
-        <StatusBar style="light" />
+        {/* <StatusBar style="light" /> */}
       </SafeAreaView>
     </SafeAreaProvider>
   );

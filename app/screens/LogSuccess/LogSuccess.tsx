@@ -33,7 +33,7 @@ const LogSuccess = () => {
             title="Back to Home"
           />
           <CommonButton onPress={() => {
-            router.push("/screens/AllLogs/AllLogs")
+            router.replace("/screens/AllLogs/AllLogs")
           }} backgroundColor="#000" color="#fff"  title="View Past Logs" />
         </View>
       </View>

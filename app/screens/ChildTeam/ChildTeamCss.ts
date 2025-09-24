@@ -62,7 +62,7 @@ const Styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 40,
+    paddingVertical:30
   },
   contentTopText: {
     position: "relative",
@@ -82,7 +82,7 @@ const Styles = StyleSheet.create({
   title: {
     fontSize: 20,
     lineHeight: 25,
-    fontFamily: Fonts.semiBold,
+    fontFamily: Fonts.SemiBold,
     fontWeight: "bold",
     color: Colors.primary,
     marginBottom: 0,
@@ -92,7 +92,7 @@ const Styles = StyleSheet.create({
     fontSize: 12,
     textAlign: "left",
     marginVertical: 0,
-    fontFamily: Fonts.medium,
+    fontFamily: Fonts.Medium,
     color: Colors.text,
   },
   formWrap: {
@@ -126,7 +126,7 @@ const Styles = StyleSheet.create({
 
   uploadText: {
     fontSize: 16,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
     color: Colors.text,
   },
   addChild: {
@@ -138,7 +138,7 @@ const Styles = StyleSheet.create({
   addtitle: {
     fontSize: 20,
     lineHeight: 25,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
     fontWeight: "bold",
     color: Colors.primary,
     marginBottom: 0,
@@ -167,12 +167,12 @@ const Styles = StyleSheet.create({
   backButtonText: {
     fontSize: 16,
     color: Colors.text,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
   },
   selectText: {
     fontSize: 16,
     color: "#141514",
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
   },
   selectBox: {
     backgroundColor: "#F2F2F7",
@@ -196,7 +196,7 @@ const Styles = StyleSheet.create({
     marginBottom: 20,
   },
   addAnotherText: {
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
     color: Colors.text,
     fontWeight: "600",
   },
