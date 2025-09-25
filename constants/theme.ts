@@ -39,6 +39,7 @@ export const Colors = {
   bg: "#fff",
   blue_link: "#0F62FE",
   black: "#141514",
+  surface_bg:'#F2F2F7'
 };
 
 export const Fonts = Platform.select({

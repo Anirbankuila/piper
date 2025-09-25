@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/theme";
 import {
   Inter_400Regular,
   Inter_500Medium,
@@ -146,6 +147,43 @@ const screens = [
       },
       headerShadowVisible: false,
     },
+  },
+  {
+    name: Routes.CHATLIST,
+    options: {
+      headerShown: true,
+      title: "Chat History", // Title in header
+      headerBackTitle: "Back", // Back button text
+      statusBarBackgroundColor: "#D2FFF6",
+      headerStyle: {
+
+        backgroundColor: Colors.surface_bg, // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      headerShadowVisible: true,
+      statusBarStyle: "dark" as const,
+    },
+
+  },
+  {
+    name: Routes.CHATDETAILS,
+    options: {
+      headerShown: true,
+      title: "Chat History", // Title in header
+      headerBackTitle: "Back", // Back button text
+      statusBarBackgroundColor: "#D2FFF6",
+      headerStyle: {
+        backgroundColor: Colors.surface_bg, // header background
+        borderBottomWidth: 1,              // 👈 border thickness
+        borderBottomColor: "#E5E7EB",      // 👈 border color
+        elevation: 0,                      // Android shadow remove
+        shadowOpacity: 0,                  // iOS shadow remove
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      headerShadowVisible: false,
+      statusBarStyle: "dark" as const,
+    },
+
   },
 ];
 
