@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
     paddingVertical: 16,
     borderBottomWidth: 0.5,
     borderBottomColor: Colors.strokeColor,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   menuItemText: {
     fontSize: 18,
     color: Colors.text,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
     flex: 1,
   },
   arrowButton: {

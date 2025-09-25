@@ -40,5 +40,9 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#000",
   },
+  icon: {
+    height: 25,
+    width: 25,
+  },
 });
 export default styles;
