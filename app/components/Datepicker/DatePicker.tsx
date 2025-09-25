@@ -1,17 +1,16 @@
+import { Colors } from "@/constants/theme";
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
 import React, { useState } from "react";
 import {
   Platform,
-  StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import { ChevronDownIcon } from "react-native-heroicons/outline";
-import { Colors, Fonts } from "../../../constants/theme";
-
+import styles from "./DatePickerCss";
 interface DatePickerProps {
   value?: Date;
   onChange?: (date: Date) => void;
@@ -35,7 +34,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
         <Text style={{ color: "#000" }}>
           {date ? date.toDateString() : "Date of birth*"}
         </Text>
-        <ChevronDownIcon style={styles.inputBoxIcon} />
+        <ChevronDownIcon fontSize={16} color={Colors.text} />
       </TouchableOpacity>
 
       {/* Show picker when pressed */}
@@ -53,29 +52,3 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
 
 export default DatePicker;
 
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  dropdown: {
-    height: 50,
-    width: "100%",
-    borderWidth: 1,
-    borderColor: Colors.strokeColor,
-    borderRadius: 12,
-    paddingHorizontal: 12,
-    fontSize: 16,
-    fontFamily: Fonts.bold,
-    color: Colors.text,
-    marginVertical: 8,
-    alignItems: "center",
-    justifyContent: "space-between",
-    flexDirection: "row",
-  },
-  inputBoxIcon: {
-    fontSize: 16,
-    color: Colors.text,
-  },
-});

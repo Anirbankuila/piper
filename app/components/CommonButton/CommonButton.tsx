@@ -1,13 +1,13 @@
 import React from "react";
 import {
   StyleProp,
-  StyleSheet,
   Text,
   TextStyle,
   TouchableOpacity,
-  ViewStyle,
+  ViewStyle
 } from "react-native";
 import { Fonts } from "../../../constants/theme";
+import styles from "./CommonButtonCss";
 type CommonButtonProps = {
   title: string;
   onPress: () => void;
@@ -41,16 +41,4 @@ const CommonButton: React.FC<CommonButtonProps> = ({
 
 export default CommonButton;
 
-const styles = StyleSheet.create({
-  button: {
-    paddingVertical: 14,
-    paddingHorizontal: 24,
-    borderRadius: 12,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 16,
-    fontFamily: Fonts.SemiBold,
-  },
-});
+
