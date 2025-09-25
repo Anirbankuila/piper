@@ -4,16 +4,17 @@ import { Colors, Fonts } from "../../../constants/theme";
 const Styles = StyleSheet.create({
   keyboardAvoiding: {
     flex: 1,
+    flexWrap: "wrap-reverse",
     backgroundColor: "#fff", // full white background
   },
   container: {
     backgroundColor: Colors.bg,
-    flexGrow: 1,
+    height: "100%",
   },
   title: {
     fontSize: 24,
     lineHeight: 28,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
     fontWeight: "bold",
     color: Colors.primary,
     maxWidth: "80%",
@@ -31,7 +32,7 @@ const Styles = StyleSheet.create({
     fontSize: 13,
     color: Colors.text,
     lineHeight: 18,
-    fontFamily: Fonts.medium,
+    fontFamily: Fonts.Medium,
   },
   link: {
     color: Colors.blue_link,
@@ -63,6 +64,7 @@ const Styles = StyleSheet.create({
   bottomButton: {
     flex: 1,
     padding: 24,
+    justifyContent: "flex-end",
   },
 });
 

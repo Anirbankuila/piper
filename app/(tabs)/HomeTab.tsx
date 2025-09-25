@@ -29,13 +29,19 @@ export default function HomeTab() {
     { day: "S", height: 80, color: "#E5E5EA", isActive: false },
     { day: "S", height: 80, color: "#E5E5EA", isActive: false },
   ];
-
+  const cardDetails = [
+    {
+      id: 1,
+      title: "Documents",
+      subTitle: "Last Update 23 Sep",
+      routingLink: "",
+      icon: "../../assets/icons/folder.png",
+      btnIcon: "chevron-forward",
+    },
+  ];
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <StatusBar backgroundColor={Colors["secondary-100"]} translucent={true} />
-      {/* <View style={{ paddingTop: insets.top - 10, backgroundColor: "#FFF3E9" }}>
-        <Header backgroundColor="#FFF3E9" />
-      </View> */}
       <View
         style={[
           styles.headerWrapper,
@@ -121,9 +127,18 @@ export default function HomeTab() {
           <View style={styles.progressHeader}>
             <Text style={styles.progressTitle}>Progress Tracking</Text>
             <View style={styles.progressStatus}>
-              <View style={styles.statusDot} />
-              <Text style={styles.statusText}>Moderate</Text>
-              <Text style={styles.chevronRight}>›</Text>
+              <Ionicons
+                name="information-circle-outline"
+                size={17}
+                color="#999"
+              />
+              <View style={styles.statusTextChip}>
+                <View style={styles.statusDot} />
+                <Text style={styles.statusText}>Moderate</Text>
+              </View>
+              <TouchableOpacity style={styles.navigateIconSection}>
+                <Ionicons name="chevron-forward" size={17} color="#000" />
+              </TouchableOpacity>
             </View>
           </View>
 
@@ -156,46 +171,15 @@ export default function HomeTab() {
         </View>
 
         <View style={styles.cardDetailsContainer}>
-          {/* <View style={styles.cardView}>
-            <View style={styles.cardViewTop}>
-
-            </View>
-            <View style={styles.cardViewBottom}></View>
-            <View></View>
-          </View> */}
-          <View
-            style={{
-              backgroundColor: "#F8F8FC",
-              borderRadius: 16,
-              padding: 12,
-              shadowColor: "#000",
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.1,
-              shadowRadius: 4,
-              elevation: 3,
-              marginVertical: 10,
-            }}
-          >
+          <View style={styles.cardContainer}>
             {/* Top Row */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
+            <View style={styles.cardContent}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Ionicons name="folder" size={22} color="#0064D2" />
-                <Text
-                  style={{
-                    fontSize: 16,
-                    fontWeight: "600",
-                    marginLeft: 8,
-                    color: "#0064D2",
-                  }}
-                >
-                  Documents
-                </Text>
+                <Image
+                  source={require("../../assets/icons/folder.png")}
+                  style={styles.cardIcon}
+                />
+                <Text style={styles.cardTitle}>Documents</Text>
               </View>
               <Ionicons
                 name="information-circle-outline"
@@ -205,36 +189,19 @@ export default function HomeTab() {
             </View>
 
             {/* Subtitle */}
-            <Text
-              style={{
-                fontSize: 13,
-                color: "#555",
-                marginTop: 4,
-              }}
-            >
-              Last Update: 23 Sep
-            </Text>
+            <Text style={styles.cardSubTitle}>Last Update: 23 Sep</Text>
 
             {/* Bottom Row */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                marginTop: 16,
-              }}
-            >
+            <View style={styles.cardCountContent}>
               {/* Count */}
-              <View
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 12,
-                  paddingVertical: 8,
-                  paddingHorizontal: 12,
-                }}
-              >
+              <View style={styles.cardCountSection}>
                 <Text
-                  style={{ fontSize: 20, fontWeight: "700", color: "#000" }}
+                  style={{
+                    fontSize: 20,
+                    fontWeight: "700",
+                    color: "#000",
+                    fontFamily: Fonts.Bold,
+                  }}
                 >
                   21{" "}
                   <Text
@@ -246,53 +213,20 @@ export default function HomeTab() {
               </View>
 
               {/* Arrow Button */}
-              <TouchableOpacity
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 25,
-                  width: 36,
-                  height: 36,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
+              <TouchableOpacity style={styles.navigateIconSection}>
                 <Ionicons name="chevron-forward" size={20} color="#000" />
               </TouchableOpacity>
             </View>
           </View>
-          <View
-            style={{
-              backgroundColor: "#F8F8FC",
-              borderRadius: 16,
-              padding: 12,
-              shadowColor: "#000",
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.1,
-              shadowRadius: 4,
-              elevation: 3,
-              marginVertical: 10,
-            }}
-          >
+          <View style={styles.cardContainer}>
             {/* Top Row */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
+            <View style={styles.cardContent}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Ionicons name="folder" size={22} color="#0064D2" />
-                <Text
-                  style={{
-                    fontSize: 16,
-                    fontWeight: "600",
-                    marginLeft: 8,
-                    color: "#0064D2",
-                  }}
-                >
-                  Documents
-                </Text>
+                <Image
+                  source={require("../../assets/icons/book.png")}
+                  style={styles.cardIcon}
+                />
+                <Text style={styles.cardTitle}>Life Logs</Text>
               </View>
               <Ionicons
                 name="information-circle-outline"
@@ -302,94 +236,92 @@ export default function HomeTab() {
             </View>
 
             {/* Subtitle */}
-            <Text
-              style={{
-                fontSize: 13,
-                color: "#555",
-                marginTop: 4,
-              }}
-            >
-              Last Update: 23 Sep
-            </Text>
+            <Text style={styles.cardSubTitle}>Last Update: 19 Sep</Text>
 
             {/* Bottom Row */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                marginTop: 16,
-              }}
-            >
+            <View style={styles.cardCountContent}>
               {/* Count */}
-              <View
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 12,
-                  paddingVertical: 8,
-                  paddingHorizontal: 12,
-                }}
-              >
+              <View style={styles.cardCountSection}>
                 <Text
-                  style={{ fontSize: 20, fontWeight: "700", color: "#000" }}
+                  style={{
+                    fontSize: 20,
+                    fontWeight: "700",
+                    color: "#000",
+                    fontFamily: Fonts.Bold,
+                  }}
                 >
-                  21{" "}
+                  10{" "}
                   <Text
                     style={{ fontSize: 14, fontWeight: "500", color: "#666" }}
                   >
-                    Docs
+                    Logs
                   </Text>
                 </Text>
               </View>
 
               {/* Arrow Button */}
-              <TouchableOpacity
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 25,
-                  width: 36,
-                  height: 36,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
+              <TouchableOpacity style={styles.navigateIconSection}>
+                <Ionicons
+                  name="add"
+                  size={22}
+                  color="#000"
+                  style={{ fontWeight: "600" }}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.cardContainer}>
+            {/* Top Row */}
+            <View style={styles.cardContent}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Image
+                  source={require("../../assets/icons/buy-crypto.png")}
+                  style={{ height: 30, width: 30 }}
+                />
+                <Text style={styles.cardTitle}>Medication</Text>
+              </View>
+              <Ionicons
+                name="information-circle-outline"
+                size={18}
+                color="#999"
+              />
+            </View>
+
+            {/* Bottom Row */}
+            <View style={styles.cardCountContent}>
+              {/* Count */}
+              <View style={styles.cardCountSection}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: "700",
+                    color: "#000",
+                    fontFamily: Fonts.Bold,
+                  }}
+                >
+                  3/
+                  <Text
+                    style={{ fontSize: 14, fontWeight: "500", color: "#666" }}
+                  >
+                    12
+                  </Text>
+                </Text>
+              </View>
+
+              {/* Arrow Button */}
+              <TouchableOpacity style={styles.navigateIconSection}>
                 <Ionicons name="chevron-forward" size={20} color="#000" />
               </TouchableOpacity>
             </View>
           </View>
-          <View
-            style={{
-              backgroundColor: "#F8F8FC",
-              borderRadius: 16,
-              padding: 12,
-              shadowColor: "#000",
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.1,
-              shadowRadius: 4,
-              elevation: 3,
-              marginVertical: 10,
-            }}
-          >
+          <View style={styles.cardContainer}>
             {/* Top Row */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
+            <View style={styles.cardContent}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Ionicons name="folder" size={22} color="#0064D2" />
-                <Text
-                  style={{
-                    fontSize: 16,
-                    fontWeight: "600",
-                    marginLeft: 8,
-                    color: "#0064D2",
-                  }}
-                >
-                  Documents
-                </Text>
+                <Image
+                  source={require("../../assets/icons/messages-2.png")}
+                  style={[styles.cardIcon, { width: 50, height: 50 }]}
+                />
               </View>
               <Ionicons
                 name="information-circle-outline"
@@ -398,155 +330,24 @@ export default function HomeTab() {
               />
             </View>
 
-            {/* Subtitle */}
-            <Text
-              style={{
-                fontSize: 13,
-                color: "#555",
-                marginTop: 4,
-              }}
-            >
-              Last Update: 23 Sep
-            </Text>
-
             {/* Bottom Row */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                marginTop: 16,
-              }}
-            >
+            <View style={styles.cardCountContent}>
               {/* Count */}
-              <View
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 12,
-                  paddingVertical: 8,
-                  paddingHorizontal: 12,
-                }}
-              >
-                <Text
-                  style={{ fontSize: 20, fontWeight: "700", color: "#000" }}
-                >
-                  21{" "}
-                  <Text
-                    style={{ fontSize: 14, fontWeight: "500", color: "#666" }}
-                  >
-                    Docs
-                  </Text>
-                </Text>
-              </View>
-
-              {/* Arrow Button */}
-              <TouchableOpacity
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 25,
-                  width: 36,
-                  height: 36,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Ionicons name="chevron-forward" size={20} color="#000" />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View
-            style={{
-              backgroundColor: "#F8F8FC",
-              borderRadius: 16,
-              padding: 12,
-              shadowColor: "#000",
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.1,
-              shadowRadius: 4,
-              elevation: 3,
-              marginVertical: 10,
-            }}
-          >
-            {/* Top Row */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Ionicons name="folder" size={22} color="#0064D2" />
+              <View style={{ maxWidth: "650%", flexShrink: 1 }}>
                 <Text
                   style={{
-                    fontSize: 16,
-                    fontWeight: "600",
-                    marginLeft: 8,
-                    color: "#0064D2",
+                    fontWeight: "700",
+                    color: "#003269",
+                    fontFamily: Fonts.Bold,
+                    fontSize: 17,
                   }}
                 >
-                  Documents
-                </Text>
-              </View>
-              <Ionicons
-                name="information-circle-outline"
-                size={18}
-                color="#999"
-              />
-            </View>
-
-            {/* Subtitle */}
-            <Text
-              style={{
-                fontSize: 13,
-                color: "#555",
-                marginTop: 4,
-              }}
-            >
-              Last Update: 23 Sep
-            </Text>
-
-            {/* Bottom Row */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                marginTop: 16,
-              }}
-            >
-              {/* Count */}
-              <View
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 12,
-                  paddingVertical: 8,
-                  paddingHorizontal: 12,
-                }}
-              >
-                <Text
-                  style={{ fontSize: 20, fontWeight: "700", color: "#000" }}
-                >
-                  21{" "}
-                  <Text
-                    style={{ fontSize: 14, fontWeight: "500", color: "#666" }}
-                  >
-                    Docs
-                  </Text>
+                  Talk to Document
                 </Text>
               </View>
 
               {/* Arrow Button */}
-              <TouchableOpacity
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 25,
-                  width: 36,
-                  height: 36,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
+              <TouchableOpacity style={styles.navigateIconSection}>
                 <Ionicons name="chevron-forward" size={20} color="#000" />
               </TouchableOpacity>
             </View>
@@ -592,15 +393,6 @@ export default function HomeTab() {
         </View>
 
         <View>
-          {/* <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              padding: 18,
-            }}
-          >
-            <PlusIcon size={40} style={styles.careTeamMemberImg} />
-          </View> */}
           <TouchableOpacity
             style={{
               backgroundColor: "#D8DFF7",

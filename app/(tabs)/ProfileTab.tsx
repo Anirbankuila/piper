@@ -1,12 +1,6 @@
 import { Image } from "expo-image";
 import React from "react";
 import { ScrollView, StatusBar, Text, View } from "react-native";
-import {
-  ArrowRightOnRectangleIcon,
-  ClipboardDocumentListIcon,
-  ShoppingCartIcon,
-  UserIcon,
-} from "react-native-heroicons/outline";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "../../constants/theme";
 import MenuItem from "../components/MenuItem/MenuItem";
@@ -41,22 +35,42 @@ const ProfileTab = () => {
           </View> */}
         </View>
         <MenuItem
-          icon={<UserIcon size={24} color={Colors.text} />}
+          icon={
+            <Image
+              source={require("../../assets/icons/profile.png")}
+              style={styles.icon}
+            />
+          }
           title="Profile"
           onPress={() => handleMenuPress("Profile")}
         />
         <MenuItem
-          icon={<ClipboardDocumentListIcon size={24} color={Colors.text} />}
+          icon={
+            <Image
+              source={require("../../assets/icons/notification-icon.png")}
+              style={styles.icon}
+            />
+          }
           title="Status of Genetic test"
           onPress={() => handleMenuPress("Status of Genetic test")}
         />
         <MenuItem
-          icon={<ShoppingCartIcon size={24} color={Colors.text} />}
+          icon={
+            <Image
+              source={require("../../assets/icons/bag-tick.png")}
+              style={styles.icon}
+            />
+          }
           title="Order Genetic test"
           onPress={() => handleMenuPress("Order Genetic test")}
         />
         <MenuItem
-          icon={<ArrowRightOnRectangleIcon size={24} color={Colors.text} />}
+          icon={
+            <Image
+              source={require("../../assets/icons/logout.png")}
+              style={styles.icon}
+            />
+          }
           title="Log Out"
           onPress={() => handleMenuPress("Log Out")}
         />

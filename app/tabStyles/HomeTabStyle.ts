@@ -174,7 +174,8 @@ const styles = StyleSheet.create({
   progressCard: {
     backgroundColor: "#FFF3E9",
     borderRadius: 12,
-    padding: 20,
+    // padding: 15,
+    paddingVertical: 12,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -190,6 +191,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    gap: 10,
+    paddingLeft: 10,
     marginBottom: 20,
   },
   progressTitle: {
@@ -200,28 +203,31 @@ const styles = StyleSheet.create({
   progressStatus: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
+    gap: 3,
   },
   statusDot: {
     width: 8,
     height: 8,
     borderRadius: 4,
     backgroundColor: "#FF9500",
-    marginRight: 5,
+    marginLeft: 5,
   },
   statusText: {
-    fontSize: 14,
+    fontSize: 12,
     color: "#666",
-    marginRight: 5,
+    margin: 5,
   },
-  chevronRight: {
-    fontSize: 16,
-    color: "#C7C7CC",
-    fontWeight: "bold",
+  statusTextChip: {
+    backgroundColor: Colors.bg,
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: 15,
   },
+
   chartContainer: {
     flexDirection: "row",
-    // alignItems: "end",
-
     justifyContent: "space-between",
     height: 100,
   },
@@ -249,6 +255,62 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
+  },
+  cardContainer: {
+    backgroundColor: "#F8F8FC",
+    width: "48%",
+    borderRadius: 16,
+    padding: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+    marginVertical: 10,
+    minHeight: 125,
+    justifyContent: "space-between",
+  },
+  cardContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    // paddingVertical: 10,
+  },
+  cardIcon: {
+    width: 18,
+    height: 18,
+  },
+  cardTitle: {
+    fontSize: 14,
+    fontWeight: "600",
+    marginLeft: 3,
+    color: "#0064D2",
+    fontFamily: Fonts.SemiBold,
+  },
+  cardSubTitle: {
+    fontSize: 13,
+    color: "#555",
+    marginTop: 4,
+  },
+  cardCountContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: 16,
+  },
+  cardCountSection: {
+    backgroundColor: Colors.bg,
+    borderRadius: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+  },
+  navigateIconSection: {
+    backgroundColor: "#fff",
+    borderRadius: 25,
+    width: 32,
+    height: 32,
+    justifyContent: "center",
+    alignItems: "center",
   },
   cardView: {
     backgroundColor: "#F2F2F7",
