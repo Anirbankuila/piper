@@ -3,6 +3,7 @@ import GenderSelect from "@/app/components/GenderSelect/GenderSelect";
 import { BlurView } from "expo-blur";
 import * as ImagePicker from "expo-image-picker";
 import { router, useNavigation } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
   Image,
@@ -56,17 +57,6 @@ const AboutScreen: React.FC = () => {
     { id: "anxiety", label: "Anxiety" },
   ];
 
-  // const pickImage = (childId: number) => {
-  //   launchImageLibrary(
-  //     { mediaType: "photo", quality: 1 },
-  //     (response: ImagePickerResponse) => {
-  //       if (response.didCancel) return;
-  //       if (response.errorCode) return console.log(response.errorMessage);
-  //       const uri = response.assets?.[0]?.uri;
-  //       if (uri) updateChildForm(childId, "imageUri", uri);
-  //     }
-  //   );
-  // };
   const pickImage = async (childId: number) => {
     // Ask for permission
     const permissionResult =
@@ -126,6 +116,7 @@ const AboutScreen: React.FC = () => {
       onScroll={handleScroll}
       scrollEventThrottle={16}
     >
+      <StatusBar style="auto" backgroundColor="transparent" />
       <View style={Styles.topImageContainer}>
         <Image
           source={require("../../../assets/images/aboutimg.png")}
@@ -210,7 +201,7 @@ const AboutScreen: React.FC = () => {
           </View>
         ))}
 
-        <View style={Styles.addAnotherWrapper}>
+        <View>
           <TouchableOpacity
             style={Styles.addAnotherWrap}
             onPress={addChildForm}

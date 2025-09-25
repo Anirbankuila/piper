@@ -1,380 +1,648 @@
-import { Colors } from "@/constants/theme";
-import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
+import { Colors, Fonts } from "@/constants/theme";
+import { Ionicons } from "@expo/vector-icons";
+import { Image, ImageBackground } from "expo-image";
+import React, { useState } from "react";
 import {
-  Dimensions,
   ScrollView,
   StatusBar,
-  StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-
-const { width } = Dimensions.get("window");
+import { ChevronDownIcon, PlusIcon } from "react-native-heroicons/outline";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Header from "../components/Header/Header";
+import Divider from "../components/HomePageDivider/Divider";
+import PiperModal from "../components/PiperModal/PiperModal";
+import Searchbar from "../components/Searchbar/Searchbar";
+import styles from "../tabStyles/HomeTabStyle";
 
 export default function HomeTab() {
+  const [visible, setVisible] = useState(false);
+  const insets = useSafeAreaInsets();
   const progressData = [
-    { day: "M", height: 40, color: "#FF9500" },
-    { day: "T", height: 60, color: "#FF9500" },
-    { day: "W", height: 30, color: "#34C759" },
-    { day: "T", height: 80, color: "#FF3B30" },
-    { day: "F", height: 50, color: "#FF9500" },
-    { day: "S", height: 0, color: "#E5E5EA" },
-    { day: "S", height: 0, color: "#E5E5EA" },
+    { day: "M", height: 40, color: "#FF9500", isActive: false },
+    { day: "T", height: 60, color: "#FF9500", isActive: false },
+    { day: "W", height: 30, color: "#34C759", isActive: false },
+    { day: "T", height: 80, color: "#FF3B30", isActive: false },
+    { day: "F", height: 50, color: "#FF9500", isActive: true },
+    { day: "S", height: 80, color: "#E5E5EA", isActive: false },
+    { day: "S", height: 80, color: "#E5E5EA", isActive: false },
   ];
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <StatusBar barStyle="dark-content" backgroundColor="#CBF2F6" />
+      <StatusBar backgroundColor={Colors["secondary-100"]} translucent={true} />
+      {/* <View style={{ paddingTop: insets.top - 10, backgroundColor: "#FFF3E9" }}>
+        <Header backgroundColor="#FFF3E9" />
+      </View> */}
+      <View
+        style={[
+          styles.headerWrapper,
+          {
+            paddingTop: insets.top - 10,
+          },
+        ]}
+      >
+        <Header backgroundColor={Colors["secondary-100"]} />
 
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.headerLeft}>
-          <View style={styles.starContainer}>
-            <Text style={styles.starIcon}>⭐</Text>
+        {/* User Info */}
+        <View style={styles.userInfo}>
+          <Image
+            source={require("../../assets/images/profile.png")}
+            style={styles.profilePhoto}
+            contentFit="contain"
+          />
+          <View style={styles.userDetails}>
+            <Text style={styles.userName}>Johnny</Text>
+            <ChevronDownIcon
+              size={20}
+              color={Colors.text}
+              style={styles.dropdownIcon}
+            />
+          </View>
+        </View>
+        <View style={{ paddingHorizontal: 20 }}>
+          <Searchbar onMicPress={() => setVisible(true)} />
+          <PiperModal visible={visible} onClose={() => setVisible(false)} />
+        </View>
+        <ImageBackground
+          source={require("../../assets/images/home-piper-bg.png")}
+          style={styles.piperIntroContainer}
+          contentFit="cover"
+        >
+          <Image
+            source={require("../../assets/images/Alex-personal 1.png")}
+            style={styles.alexPersonalImg}
+          />
+
+          <View style={styles.piperDetailsCard}>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+                color: "#004693",
+                fontFamily: Fonts.Bold,
+                lineHeight: 25,
+              }}
+            >
+              Hi, I’m Piper!
+            </Text>
+            <Text
+              style={{
+                fontSize: 14,
+                color: Colors.text,
+                marginVertical: 8,
+                fontFamily: Fonts.Regular,
+              }}
+            >
+              Your organized bestie{"\n"}and personal assistant.
+            </Text>
+
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#0064D2",
+                paddingVertical: 10,
+                borderRadius: 8,
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ color: "#fff", fontWeight: "600" }}>
+                Let’s take a tour
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </ImageBackground>
+      </View>
+      <Divider text={"Everything You Need In One Place"} />
+      <View style={styles.sectionContainer}>
+        {/* Progress Tracking Card */}
+        <View style={styles.progressCard}>
+          <View style={styles.progressHeader}>
+            <Text style={styles.progressTitle}>Progress Tracking</Text>
+            <View style={styles.progressStatus}>
+              <View style={styles.statusDot} />
+              <Text style={styles.statusText}>Moderate</Text>
+              <Text style={styles.chevronRight}>›</Text>
+            </View>
+          </View>
+
+          {/* Progress Chart */}
+          <View style={styles.chartContainer}>
+            {progressData.map((item, index) => (
+              <View key={index} style={styles.chartItem}>
+                <View style={styles.barContainer}>
+                  <View
+                    style={[
+                      styles.progressBar,
+                      {
+                        height: item.height,
+                        backgroundColor: item.color,
+                      },
+                    ]}
+                  />
+                </View>
+                <Text
+                  style={[
+                    styles.dayLabel,
+                    { color: item.isActive ? Colors.black : "#8E8E93" },
+                  ]}
+                >
+                  {item.day}
+                </Text>
+              </View>
+            ))}
           </View>
         </View>
 
-        <View style={styles.headerRight}>
-          <TouchableOpacity style={styles.headerButton}>
-            <Text style={styles.hourglassIcon}>⏳</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.headerButton}>
-            <Text style={styles.bellIcon}>🔔</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+        <View style={styles.cardDetailsContainer}>
+          {/* <View style={styles.cardView}>
+            <View style={styles.cardViewTop}>
 
-      {/* User Info */}
-      <View style={styles.userInfo}>
-        <View style={styles.profilePhoto}>
-          <Text style={styles.profileEmoji}>👤</Text>
-        </View>
-        <View style={styles.userDetails}>
-          <Text style={styles.userName}>Johnny</Text>
-          <Text style={styles.dropdownIcon}>▼</Text>
-        </View>
-      </View>
+            </View>
+            <View style={styles.cardViewBottom}></View>
+            <View></View>
+          </View> */}
+          <View
+            style={{
+              backgroundColor: "#F8F8FC",
+              borderRadius: 16,
+              padding: 12,
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.1,
+              shadowRadius: 4,
+              elevation: 3,
+              marginVertical: 10,
+            }}
+          >
+            {/* Top Row */}
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Ionicons name="folder" size={22} color="#0064D2" />
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontWeight: "600",
+                    marginLeft: 8,
+                    color: "#0064D2",
+                  }}
+                >
+                  Documents
+                </Text>
+              </View>
+              <Ionicons
+                name="information-circle-outline"
+                size={18}
+                color="#999"
+              />
+            </View>
 
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        {/* Search Bar */}
-        <View style={styles.searchContainer}>
-          <Text style={styles.searchIcon}>🔍</Text>
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Ask me anything!"
-            placeholderTextColor="#8E8E93"
-          />
-          <TouchableOpacity style={styles.voiceButton}>
-            <Text style={styles.micIcon}>🎤</Text>
-          </TouchableOpacity>
-        </View>
+            {/* Subtitle */}
+            <Text
+              style={{
+                fontSize: 13,
+                color: "#555",
+                marginTop: 4,
+              }}
+            >
+              Last Update: 23 Sep
+            </Text>
 
-        {/* Piper Introduction Card */}
-        <LinearGradient
-          colors={["#E8F4FD", "#F0E6FF"]}
-          style={styles.piperCard}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-        >
-          <View style={styles.piperContent}>
-            <View style={styles.piperTextContainer}>
-              <Text style={styles.piperGreeting}>Hi, I'm Piper!</Text>
-              <Text style={styles.piperDescription}>
-                Your organized bestie{"\n"}and personal assistant.
-              </Text>
-              <TouchableOpacity style={styles.tourButton}>
-                <Text style={styles.tourButtonText}>Let's take a tour</Text>
+            {/* Bottom Row */}
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginTop: 16,
+              }}
+            >
+              {/* Count */}
+              <View
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: 12,
+                  paddingVertical: 8,
+                  paddingHorizontal: 12,
+                }}
+              >
+                <Text
+                  style={{ fontSize: 20, fontWeight: "700", color: "#000" }}
+                >
+                  21{" "}
+                  <Text
+                    style={{ fontSize: 14, fontWeight: "500", color: "#666" }}
+                  >
+                    Docs
+                  </Text>
+                </Text>
+              </View>
+
+              {/* Arrow Button */}
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: 25,
+                  width: 36,
+                  height: 36,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Ionicons name="chevron-forward" size={20} color="#000" />
               </TouchableOpacity>
             </View>
-            <View style={styles.piperCharacterContainer}>
-              <Text style={styles.piperCharacterEmoji}>👩‍💼</Text>
+          </View>
+          <View
+            style={{
+              backgroundColor: "#F8F8FC",
+              borderRadius: 16,
+              padding: 12,
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.1,
+              shadowRadius: 4,
+              elevation: 3,
+              marginVertical: 10,
+            }}
+          >
+            {/* Top Row */}
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Ionicons name="folder" size={22} color="#0064D2" />
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontWeight: "600",
+                    marginLeft: 8,
+                    color: "#0064D2",
+                  }}
+                >
+                  Documents
+                </Text>
+              </View>
+              <Ionicons
+                name="information-circle-outline"
+                size={18}
+                color="#999"
+              />
+            </View>
+
+            {/* Subtitle */}
+            <Text
+              style={{
+                fontSize: 13,
+                color: "#555",
+                marginTop: 4,
+              }}
+            >
+              Last Update: 23 Sep
+            </Text>
+
+            {/* Bottom Row */}
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginTop: 16,
+              }}
+            >
+              {/* Count */}
+              <View
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: 12,
+                  paddingVertical: 8,
+                  paddingHorizontal: 12,
+                }}
+              >
+                <Text
+                  style={{ fontSize: 20, fontWeight: "700", color: "#000" }}
+                >
+                  21{" "}
+                  <Text
+                    style={{ fontSize: 14, fontWeight: "500", color: "#666" }}
+                  >
+                    Docs
+                  </Text>
+                </Text>
+              </View>
+
+              {/* Arrow Button */}
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: 25,
+                  width: 36,
+                  height: 36,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Ionicons name="chevron-forward" size={20} color="#000" />
+              </TouchableOpacity>
             </View>
           </View>
-        </LinearGradient>
-
-        {/* Everything You Need Section */}
-        <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>
-            Everything You Need In One Place
-          </Text>
-
-          {/* Progress Tracking Card */}
-          <View style={styles.progressCard}>
-            <View style={styles.progressHeader}>
-              <Text style={styles.progressTitle}>Progress Tracking</Text>
-              <View style={styles.progressStatus}>
-                <View style={styles.statusDot} />
-                <Text style={styles.statusText}>Moderate</Text>
-                <Text style={styles.chevronRight}>›</Text>
+          <View
+            style={{
+              backgroundColor: "#F8F8FC",
+              borderRadius: 16,
+              padding: 12,
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.1,
+              shadowRadius: 4,
+              elevation: 3,
+              marginVertical: 10,
+            }}
+          >
+            {/* Top Row */}
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Ionicons name="folder" size={22} color="#0064D2" />
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontWeight: "600",
+                    marginLeft: 8,
+                    color: "#0064D2",
+                  }}
+                >
+                  Documents
+                </Text>
               </View>
+              <Ionicons
+                name="information-circle-outline"
+                size={18}
+                color="#999"
+              />
             </View>
 
-            {/* Progress Chart */}
-            <View style={styles.chartContainer}>
-              {progressData.map((item, index) => (
-                <View key={index} style={styles.chartItem}>
-                  <View style={styles.barContainer}>
-                    <View
-                      style={[
-                        styles.progressBar,
-                        {
-                          height: item.height,
-                          backgroundColor: item.color,
-                        },
-                      ]}
-                    />
-                  </View>
-                  <Text style={styles.dayLabel}>{item.day}</Text>
-                </View>
-              ))}
+            {/* Subtitle */}
+            <Text
+              style={{
+                fontSize: 13,
+                color: "#555",
+                marginTop: 4,
+              }}
+            >
+              Last Update: 23 Sep
+            </Text>
+
+            {/* Bottom Row */}
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginTop: 16,
+              }}
+            >
+              {/* Count */}
+              <View
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: 12,
+                  paddingVertical: 8,
+                  paddingHorizontal: 12,
+                }}
+              >
+                <Text
+                  style={{ fontSize: 20, fontWeight: "700", color: "#000" }}
+                >
+                  21{" "}
+                  <Text
+                    style={{ fontSize: 14, fontWeight: "500", color: "#666" }}
+                  >
+                    Docs
+                  </Text>
+                </Text>
+              </View>
+
+              {/* Arrow Button */}
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: 25,
+                  width: 36,
+                  height: 36,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Ionicons name="chevron-forward" size={20} color="#000" />
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View
+            style={{
+              backgroundColor: "#F8F8FC",
+              borderRadius: 16,
+              padding: 12,
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.1,
+              shadowRadius: 4,
+              elevation: 3,
+              marginVertical: 10,
+            }}
+          >
+            {/* Top Row */}
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Ionicons name="folder" size={22} color="#0064D2" />
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontWeight: "600",
+                    marginLeft: 8,
+                    color: "#0064D2",
+                  }}
+                >
+                  Documents
+                </Text>
+              </View>
+              <Ionicons
+                name="information-circle-outline"
+                size={18}
+                color="#999"
+              />
+            </View>
+
+            {/* Subtitle */}
+            <Text
+              style={{
+                fontSize: 13,
+                color: "#555",
+                marginTop: 4,
+              }}
+            >
+              Last Update: 23 Sep
+            </Text>
+
+            {/* Bottom Row */}
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginTop: 16,
+              }}
+            >
+              {/* Count */}
+              <View
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: 12,
+                  paddingVertical: 8,
+                  paddingHorizontal: 12,
+                }}
+              >
+                <Text
+                  style={{ fontSize: 20, fontWeight: "700", color: "#000" }}
+                >
+                  21{" "}
+                  <Text
+                    style={{ fontSize: 14, fontWeight: "500", color: "#666" }}
+                  >
+                    Docs
+                  </Text>
+                </Text>
+              </View>
+
+              {/* Arrow Button */}
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: 25,
+                  width: 36,
+                  height: 36,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Ionicons name="chevron-forward" size={20} color="#000" />
+              </TouchableOpacity>
             </View>
           </View>
         </View>
-      </ScrollView>
+      </View>
+      <Divider text={"Johnny's Care Team"} />
+      <View style={[styles.sectionContainer, styles.careTeamContainer]}>
+        <View style={styles.careTeamMember}>
+          <Image
+            source={require("../../assets/images/doctor-care.png")}
+            style={styles.careTeamMemberImg}
+          />
+          <Text style={styles.memberText}>Doctor</Text>
+        </View>
+        <View style={styles.careTeamMember}>
+          <Image
+            source={require("../../assets/images/therapist.png")}
+            style={styles.careTeamMemberImg}
+          />
+          <Text style={styles.memberText}>Therapist</Text>
+        </View>
+        <View style={styles.careTeamMember}>
+          <Image
+            source={require("../../assets/images/nurse.png")}
+            style={styles.careTeamMemberImg}
+          />
+          <Text style={styles.memberText}>Nurse</Text>
+        </View>
+        <View style={styles.careTeamMember}>
+          <Image
+            source={require("../../assets/images/educator.png")}
+            style={styles.careTeamMemberImg}
+          />
+          <Text style={styles.memberText}>Educator</Text>
+        </View>
+        <View style={styles.careTeamMember}>
+          <Image
+            source={require("../../assets/images/friend.png")}
+            style={styles.careTeamMemberImg}
+          />
+          <Text style={styles.memberText}>Friend</Text>
+        </View>
+
+        <View>
+          {/* <View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 18,
+            }}
+          >
+            <PlusIcon size={40} style={styles.careTeamMemberImg} />
+          </View> */}
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#D8DFF7",
+              borderRadius: 35,
+              width: 70,
+              height: 70,
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom: 5,
+            }}
+          >
+            <PlusIcon size={30} color={Colors.black} />
+          </TouchableOpacity>
+          <Text style={styles.memberText}>Add</Text>
+        </View>
+      </View>
+      <Divider text={"Shareable Summaries"} />
+      <View style={[styles.summarySection]}>
+        <View style={styles.summaryDetails}>
+          <Text style={styles.summaryText}>For Medical Team</Text>
+          <View
+            style={{
+              justifyContent: "center",
+              alignContent: "center",
+              flex: 1,
+              flexDirection: "row",
+            }}
+          >
+            <Image
+              source={require("../../assets/images/medical-team.png")}
+              style={styles.summaryImg}
+            />
+          </View>
+        </View>
+        <View style={styles.summaryDetails}>
+          <Text style={styles.summaryText}>For Education Team</Text>
+          <Image
+            source={require("../../assets/images/education-team.png")}
+            style={styles.summaryImg}
+          />
+        </View>
+      </View>
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.bg,
-  },
-  header: {
-    backgroundColor: "#CBF2F6",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 5,
-  },
-  headerLeft: {
-    flex: 1,
-  },
-  starContainer: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: "#FF6B35",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  starIcon: {
-    fontSize: 16,
-    color: "white",
-  },
-  hourglassIcon: {
-    fontSize: 18,
-  },
-  bellIcon: {
-    fontSize: 18,
-  },
-  headerRight: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  headerButton: {
-    marginLeft: 15,
-  },
-  headerIcon: {
-    width: 20,
-    height: 20,
-  },
-  userInfo: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 20,
-    paddingBottom: 15,
-    backgroundColor: "#CBF2F6",
-  },
-  profilePhoto: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: "#E0E0E0",
-    alignItems: "center",
-    justifyContent: "center",
-    marginRight: 10,
-  },
-  profileEmoji: {
-    fontSize: 18,
-  },
-  userDetails: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  userName: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: "#000",
-    marginRight: 5,
-  },
-  dropdownIcon: {
-    fontSize: 10,
-    color: "#666",
-    marginLeft: 5,
-  },
-  content: {
-    flex: 1,
-    paddingHorizontal: 20,
-  },
-  searchContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#F2F2F7",
-    borderRadius: 25,
-    paddingHorizontal: 15,
-    paddingVertical: 12,
-    marginBottom: 20,
-  },
-  searchIcon: {
-    fontSize: 16,
-    marginRight: 10,
-  },
-  searchInput: {
-    flex: 1,
-    fontSize: 16,
-    color: "#000",
-  },
-  voiceButton: {
-    padding: 5,
-  },
-  micIcon: {
-    fontSize: 16,
-  },
-  piperCard: {
-    borderRadius: 20,
-    marginBottom: 25,
-    overflow: "hidden",
-  },
-  piperContent: {
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 20,
-  },
-  piperTextContainer: {
-    flex: 1,
-  },
-  piperGreeting: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#007AFF",
-    marginBottom: 5,
-  },
-  piperDescription: {
-    fontSize: 14,
-    color: "#666",
-    lineHeight: 18,
-    marginBottom: 15,
-  },
-  tourButton: {
-    backgroundColor: "#007AFF",
-    borderRadius: 20,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    alignSelf: "flex-start",
-  },
-  tourButtonText: {
-    color: "white",
-    fontSize: 14,
-    fontWeight: "600",
-  },
-  piperCharacterContainer: {
-    width: 120,
-    height: 120,
-    backgroundColor: "rgba(255,255,255,0.3)",
-    borderRadius: 60,
-    alignItems: "center",
-    justifyContent: "center",
-    marginLeft: 10,
-  },
-  piperCharacterEmoji: {
-    fontSize: 60,
-  },
-  sectionContainer: {
-    marginBottom: 30,
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#000",
-    marginBottom: 15,
-    textAlign: "center",
-  },
-  progressCard: {
-    backgroundColor: "#FFF3E9",
-    borderRadius: 15,
-    padding: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 3,
-  },
-  progressHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  progressTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#000",
-  },
-  progressStatus: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  statusDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: "#FF9500",
-    marginRight: 5,
-  },
-  statusText: {
-    fontSize: 14,
-    color: "#666",
-    marginRight: 5,
-  },
-  chevronRight: {
-    fontSize: 16,
-    color: "#C7C7CC",
-    fontWeight: "bold",
-  },
-  chartContainer: {
-    flexDirection: "row",
-    // alignItems: "end",
-
-    justifyContent: "space-between",
-    height: 100,
-  },
-  chartItem: {
-    alignItems: "center",
-    flex: 1,
-  },
-  barContainer: {
-    height: 80,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    marginBottom: 10,
-  },
-  progressBar: {
-    width: 8,
-    borderRadius: 4,
-    minHeight: 8,
-  },
-  dayLabel: {
-    fontSize: 12,
-    color: "#8E8E93",
-    fontWeight: "500",
-  },
-});

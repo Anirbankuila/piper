@@ -44,17 +44,17 @@ const screens = [
     },
   },
   {
-    name: Routes.PRIVACY, 
+    name: Routes.PRIVACY,
     options: {
       headerShown: true,
       title: "Privacy", // Title in header
-      headerBackTitle: "Back", // Back button text 
+      headerBackTitle: "Back", // Back button text
       headerStyle: {
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
       headerShadowVisible: false,
-    }
+    },
   },
   {
     name: Routes.ABOUT,
@@ -97,7 +97,6 @@ const screens = [
     name: Routes.LOGSUCCESS,
     options: {
       headerShown: false,
-
     },
   },
   {
@@ -122,7 +121,7 @@ const screens = [
       headerBackTitle: "Back",
       headerBackTitleVisible: true,
       headerShadowVisible: false,
-      statusBarStyle: "dark" as const,           // 👈 fix
+      statusBarStyle: "dark" as const, // 👈 fix
       statusBarBackgroundColor: "#D2FFF6",
       headerStyle: {
         backgroundColor: "#D2FFF6", // 👈 header er background color
@@ -132,15 +131,22 @@ const screens = [
   },
   {
     name: Routes.MOMENTLOG,
-    options: { headerShown: false }
-  }
+    options: { headerShown: false },
+  },
 
-  // {
-  //   name: Routes.TABS,
-  //   options: {
-  //     headerShown: false,
-  //   },
-  // },
+  {
+    name: Routes.NOTIFICATION,
+    options: {
+      headerShown: true,
+      title: "Piper's Notification", // Title in header
+      headerBackTitle: "Back", // Back button text
+      headerStyle: {
+        elevation: 0, // For Android shadow removal
+        shadowOpacity: 0, // For iOS shadow removal
+      },
+      headerShadowVisible: false,
+    },
+  },
 ];
 
 export default function RootLayout() {
@@ -155,10 +161,7 @@ export default function RootLayout() {
   }
   return (
     <SafeAreaProvider>
-      <SafeAreaView
-        style={{ flex: 1 }}
-        edges={["left", "right", "bottom",]}
-      >
+      <SafeAreaView style={{ flex: 1 }} edges={["left", "right", "bottom"]}>
         <Stack initialRouteName="index">
           {screens.map((screen) => (
             <Stack.Screen

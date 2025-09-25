@@ -2,10 +2,13 @@ import { StyleSheet } from "react-native";
 import { Colors, Fonts } from "../../../constants/theme";
 
 const Styles = StyleSheet.create({
+  keyboardAvoiding: {
+    flex: 1,
+    backgroundColor: "#fff", // full white background
+  },
   container: {
-    flexGrow: 1,
     backgroundColor: Colors.bg,
-    padding: 24,
+    flexGrow: 1,
   },
   title: {
     fontSize: 24,
@@ -40,25 +43,9 @@ const Styles = StyleSheet.create({
   buttonText: {
     color: Colors.surface,
   },
-  backButton: {
-    position: "absolute",
-    top: 50,
-    left: 20,
-    zIndex: 10,
-    display: "flex",
-    gap: 20,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  backButtonText: {
-    fontSize: 16,
-    color: Colors.text,
-    fontFamily: Fonts.bold,
-  },
   content: {
     flex: 1,
-    paddingTop: 20,
-    paddingBottom: 20,
+    padding: 24,
   },
   passwordWrapper: {
     position: "relative",
@@ -72,6 +59,10 @@ const Styles = StyleSheet.create({
   },
   eyeIcon: {
     color: "#0064D2",
+  },
+  bottomButton: {
+    flex: 1,
+    padding: 24,
   },
 });
 

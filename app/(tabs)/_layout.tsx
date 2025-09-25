@@ -1,11 +1,9 @@
 import { Colors } from "@/constants/theme";
 import { Tabs } from "expo-router";
 import React from "react";
-import { Image, StyleSheet, useColorScheme } from "react-native";
-
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { XMarkIcon } from "react-native-heroicons/outline";
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       initialRouteName="HomeTab"
@@ -100,9 +98,33 @@ export default function TabLayout() {
         name="ProfileTab"
         options={{
           title: "Profile",
+          headerShown: true,
+          headerTitle: "",
+          headerStyle: {
+            backgroundColor: Colors.bg,
+          },
+          headerShadowVisible: false,
+          headerTitleStyle: {
+            fontSize: 18,
+            fontWeight: "600",
+            color: Colors.text,
+          },
+          headerLeft: () => (
+            <TouchableOpacity style={styles.headerButton}>
+              <Image
+                source={require("../../assets/icons/star-icon.png")}
+                style={styles.headerIcon}
+              />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <TouchableOpacity style={[styles.headerButton, styles.closeButton]}>
+              <XMarkIcon size={20} color={Colors.text} />
+            </TouchableOpacity>
+          ),
           tabBarIcon: ({ focused }) => (
             <Image
-              source={require("../../assets/icons/profile.png")} // Add your profile icon here
+              source={require("../../assets/images/profile.png")} // Add your profile icon here
               style={[styles.tabIcon, focused && styles.profileIconActive]}
             />
           ),
@@ -124,5 +146,19 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     borderWidth: 2,
     borderColor: "#007AFF", // or Colors[colorScheme ?? "light"].tint
+  },
+  headerButton: {
+    padding: 8,
+    marginHorizontal: 8,
+  },
+  headerIcon: {
+    width: 24,
+    height: 24,
+  },
+  closeButton: {
+    borderWidth: 1,
+    borderColor: Colors.black,
+    borderRadius: 20,
+    padding: 4,
   },
 });
