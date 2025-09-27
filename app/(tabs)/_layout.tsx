@@ -1,27 +1,28 @@
-import { Colors } from "@/constants/theme";
-import { Tabs } from "expo-router";
+import { Colors, Fonts } from "@/constants/theme";
+import { Tabs, useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { XMarkIcon } from "react-native-heroicons/outline";
 export default function TabLayout() {
+  const router = useRouter();
   return (
     <Tabs
       initialRouteName="HomeTab"
       screenOptions={{
         tabBarActiveTintColor: Colors.primary,
-        tabBarInactiveTintColor: "#8E8E93",
+        tabBarInactiveTintColor: "#616161",
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: Colors.background,
           borderTopWidth: 1,
           borderTopColor: Colors.background,
           height: 84,
           paddingBottom: 20,
           paddingTop: 8,
+          elevation:0
         },
         tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: "500",
+          fontSize: 10,
+          fontFamily:Fonts.Medium,
           marginTop: 4,
         },
       }}
@@ -32,13 +33,12 @@ export default function TabLayout() {
           title: "Home",
           tabBarIcon: ({ focused }) => (
             <Image
-              source={require("../../assets/icons/home.png")} // Add your home icon here
-              style={[
-                styles.tabIcon,
-                {
-                  tintColor: focused ? Colors.primary : "#8E8E93",
-                },
-              ]}
+              source={
+                focused
+                  ? require("../../assets/icons/homeActive.png") // focused image
+                  : require("../../assets/icons/home.png") // normal image
+              }
+              style={styles.tabIcon}
             />
           ),
         }}
@@ -49,12 +49,15 @@ export default function TabLayout() {
           title: "Life Log",
           tabBarIcon: ({ focused }) => (
             <Image
-              source={require("../../assets/icons/lifelog.png")} // Add your life log icon here
+            source={
+                focused
+                  ? require("../../assets/icons/bookactive.png") // focused image
+                  : require("../../assets/icons/booknew.png") // normal image
+              }
+              
               style={[
                 styles.tabIcon,
-                {
-                  tintColor: focused ? Colors.primary : "#8E8E93",
-                },
+                
               ]}
             />
           ),
@@ -64,14 +67,18 @@ export default function TabLayout() {
         name="PiperTab"
         options={{
           title: "Piper",
+          tabBarActiveTintColor: "#F36F3B",
           tabBarIcon: ({ focused }) => (
-            <Image
-              source={require("../../assets/icons/piper.png")} // Add your piper icon here
+             <Image
+            source={
+                focused
+                  ? require("../../assets/icons/pipertab.png") // focused image
+                  : require("../../assets/icons/pipertabicon.png") // normal image
+              }
+              
               style={[
                 styles.tabIcon,
-                {
-                  tintColor: focused ? Colors.primary : "#8E8E93",
-                },
+                
               ]}
             />
           ),
@@ -83,12 +90,15 @@ export default function TabLayout() {
           title: "Calendar",
           tabBarIcon: ({ focused }) => (
             <Image
-              source={require("../../assets/icons/calendar.png")} // Add your calendar icon here
+            source={
+                focused
+                  ? require("../../assets/icons/calenderActive.png") // focused image
+                  : require("../../assets/icons/calendartab.png") // normal image
+              }
+              
               style={[
                 styles.tabIcon,
-                {
-                  tintColor: focused ? Colors.primary : "#8E8E93",
-                },
+                
               ]}
             />
           ),
@@ -103,6 +113,7 @@ export default function TabLayout() {
           headerStyle: {
             backgroundColor: Colors.bg,
           },
+          animation:'shift',
           headerShadowVisible: false,
           headerTitleStyle: {
             fontSize: 18,
@@ -112,13 +123,13 @@ export default function TabLayout() {
           headerLeft: () => (
             <TouchableOpacity style={styles.headerButton}>
               <Image
-                source={require("../../assets/icons/star-icon.png")}
+                source={require("../../assets/icons/logo.png")}
                 style={styles.headerIcon}
               />
             </TouchableOpacity>
           ),
           headerRight: () => (
-            <TouchableOpacity style={[styles.headerButton, styles.closeButton]}>
+            <TouchableOpacity onPress={() => router.replace("/(tabs)/HomeTab")} style={[styles.headerButton, styles.closeButton]}>
               <XMarkIcon size={20} color={Colors.text} />
             </TouchableOpacity>
           ),
@@ -149,11 +160,11 @@ const styles = StyleSheet.create({
   },
   headerButton: {
     padding: 8,
-    marginHorizontal: 8,
+    marginHorizontal: 16,
   },
   headerIcon: {
-    width: 24,
-    height: 24,
+    width: 26,
+    height: 26,
   },
   closeButton: {
     borderWidth: 1,

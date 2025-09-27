@@ -25,8 +25,8 @@ export default function Divider({ text }: DividerProps) {
       {/* Center Text */}
       <Text
         style={{
-          marginHorizontal: 10,
-          fontSize: 17,
+          marginHorizontal: 20,
+          fontSize: 16,
           fontWeight: "600",
           color: Colors.black,
           fontFamily: Fonts.Bold,

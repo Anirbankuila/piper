@@ -5,20 +5,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.bg,
+    paddingTop:0
   },
 
   content: {
     flex: 1,
-    paddingHorizontal: 20,
   },
   profileSection: {
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
     alignContent: "center",
+    paddingHorizontal: 20,
+    paddingBottom:20
+  },
+  menuList:{
+    paddingVertical:20
   },
   profileImageContainer: {
-    marginBottom: 15,
+    marginBottom: 0,
   },
   profileNameContainer: {
     marginLeft: 15,
@@ -37,12 +42,13 @@ const styles = StyleSheet.create({
   },
   profileName: {
     fontSize: 20,
+    marginLeft:20,
     fontWeight: "600",
     color: "#000",
   },
   icon: {
-    height: 25,
-    width: 25,
+    height: 24,
+    width: 24,
   },
 });
 export default styles;

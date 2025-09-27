@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 15,
+    paddingHorizontal: 25,
     paddingVertical: 16,
     borderBottomWidth: 0.5,
     borderBottomColor: Colors.strokeColor,
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   menuItemLast: {
     borderBottomWidth: 0,
     borderBottomColor: "#F3F5F7",
+    paddingHorizontal:24
   },
   menuItemLeft: {
     flexDirection: "row",
@@ -50,9 +51,9 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   menuItemText: {
-    fontSize: 18,
-    color: Colors.text,
-    fontFamily: Fonts.Bold,
+    fontSize: 14,
+    color: '#141514',
+    fontFamily: Fonts.Medium,
     flex: 1,
   },
   arrowButton: {

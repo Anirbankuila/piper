@@ -12,6 +12,8 @@ const Routes = {
   MOMENTLOG: "screens/MomentLog/MomentLog",
   TABS: "(tabs)",
   NOTIFICATION: "screens/Notification/Notification",
+  CHATLIST: "screens/ChatHistory/ChatHistory",
+  CHATDETAILS: "screens/ChatDetails/ChatDetails",
 } as const;
 
 export default Routes;
