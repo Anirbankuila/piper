@@ -1,5 +1,4 @@
-import { Notification } from "@/app/common/Interface/Notification";
-import { useNavigation } from "expo-router";
+import Notification from "@/app/common/Interface/Notification";
 import React from "react";
 import {
   FlatList,
@@ -12,7 +11,6 @@ import styles from "./NotificationCss";
 
 const PipersNotificationScreen = () => {
   // Sample notification data - replace with your actual data source
-  const navigation = useNavigation();
   const notifications: Notification[] = [
     {
       id: "1",

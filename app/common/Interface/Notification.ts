@@ -1,4 +1,4 @@
-export interface Notification {
+interface Notification {
   id: string;
   title: string;
   subTitle: string;
@@ -6,3 +6,4 @@ export interface Notification {
   type: string;
   isRead: boolean;
 }
+export default Notification;
