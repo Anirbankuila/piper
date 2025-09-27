@@ -20,11 +20,11 @@ const Searchbar: React.FC<searchBarInputProps> = ({
       <TextInput
         style={styles.searchInput}
         placeholder="Ask me anything!"
-        placeholderTextColor="#AAAAAA"
+        placeholderTextColor={Colors.textLight}
       />
       <TouchableOpacity style={styles.voiceButton} onPress={onMicPress}>
         <Image
-          source={require("../../../assets/icons/mic.png")}
+          source={require("../../../assets/icons/microphone.png")}
           style={styles.micIcon}
         />
       </TouchableOpacity>
@@ -53,11 +53,13 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: Fonts.Regular,
   },
   voiceButton: {
     padding: 5,
+    borderLeftWidth:1,
+    borderLeftColor:Colors.strokeColor
   },
   micIcon: {
     width: 23,

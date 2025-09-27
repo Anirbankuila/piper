@@ -1,4 +1,4 @@
-import { Colors } from "@/constants/theme";
+import { Colors, Fonts } from "@/constants/theme";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listContentContainer: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 24,
     paddingVertical: 20,
   },
   listHeader: {
@@ -34,53 +34,48 @@ const styles = StyleSheet.create({
   notificationCard: {
     backgroundColor: "#F2F2F7",
     borderRadius: 12,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
     paddingVertical: 8,
     gap: 5,
+    paddingHorizontal:8
   },
   notificationContent: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 15,
+    // padding: 15,
   },
   notificationTextPart: {
     width: "72%",
     flexDirection: "row",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     alignItems: "center",
   },
   notificationHeader: {
     alignItems: "flex-start",
   },
   redDot: {
-    width: 8,
-    height: 8,
+    width: 4,
+    height: 4,
     borderRadius: 4,
-    backgroundColor: "#dc3545",
+    backgroundColor: "#FA1911",
     marginTop: 6,
     marginRight: 5,
   },
   notificationTitle: {
-    fontSize: 16,
-    fontWeight: "500",
-    color: "#333",
-    lineHeight: 20,
+    fontSize: 12,
+    fontFamily: Fonts.Medium,
     marginRight: 8,
   },
   timestamp: {
-    fontSize: 12,
-    color: "#6c757d",
+    fontSize: 8,
+    color: Colors.textLight,
     marginTop: 2,
-    width: "40%",
+    width: "28%",
+    textAlign:'right'
   },
   notificationSubtitle: {
-    fontSize: 14,
-    color: "#6c757d",
+    fontSize: 10,
+    color: Colors.text,
     lineHeight: 18,
     flexShrink: 1,
     flexWrap: "wrap",

@@ -1,3 +1,4 @@
+import CustomMultiSelect from "@/app/components/CustomCheckbox/CustomCheckbox";
 import DatePicker from "@/app/components/Datepicker/DatePicker";
 import GenderSelect from "@/app/components/GenderSelect/GenderSelect";
 import { BlurView } from "expo-blur";
@@ -17,7 +18,6 @@ import {
 import { PlusCircleIcon } from "react-native-heroicons/outline";
 import CommonButton from "../../components/CommonButton/CommonButton";
 import CommonInput from "../../components/CommonInput/CommonInput";
-import CustomRadio from "../../components/Radiobutton/Radiobutton";
 import Styles from "./AboutScreenCss";
 
 type ChildForm = {
@@ -25,7 +25,7 @@ type ChildForm = {
   name: string;
   dob: Date;
   gender: string;
-  diagnosis: string;
+  diagnosis: string[];
   superpower?: string;
   imageUri?: string;
 };
@@ -47,7 +47,7 @@ const AboutScreen: React.FC = () => {
     });
   }, [navigation, showBack]);
   const [childForms, setChildForms] = useState<ChildForm[]>([
-    { id: 1, name: "", dob: new Date(), gender: "", diagnosis: "" },
+    { id: 1, name: "", dob: new Date(), gender: "", diagnosis: [] }, // ✅ empty array
   ]);
 
   const options = [
@@ -92,21 +92,19 @@ const AboutScreen: React.FC = () => {
     const newId = childForms.length + 1;
     setChildForms([
       ...childForms,
-      { id: newId, name: "", dob: new Date(), gender: "", diagnosis: "" },
+      { id: newId, name: "", dob: new Date(), gender: "", diagnosis: [] }, // ✅ empty array
     ]);
   };
 
-  const updateChildForm = (
-    id: number,
-    key: keyof ChildForm,
-    value: string | Date
-  ) => {
-    setChildForms(
-      childForms.map((child) =>
-        child.id === id ? { ...child, [key]: value } : child
+
+  const updateChildForm = (childId: number, field: keyof ChildForm, value: any) => {
+    setChildForms((prevForms) =>
+      prevForms.map((child) =>
+        child.id === childId ? { ...child, [field]: value } : child
       )
     );
   };
+
 
   return (
     <ScrollView
@@ -180,14 +178,15 @@ const AboutScreen: React.FC = () => {
               <Text style={Styles.selectText}>
                 What is the medical diagnosis of {"\n"}your child? (Choose one)
               </Text>
-              <CustomRadio
+              <CustomMultiSelect
                 optionStyle={Styles.selectBox}
                 options={options}
-                selectedValue={child.diagnosis}
-                onSelect={(val: string) =>
-                  updateChildForm(child.id, "diagnosis", val)
+                selectedValues={child.diagnosis}   // must be an array
+                onSelect={(vals: (string | number)[]) =>
+                  updateChildForm(child.id, "diagnosis", vals)  // pass array back
                 }
               />
+
             </View>
 
             <CommonInput

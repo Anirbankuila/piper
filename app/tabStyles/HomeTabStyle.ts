@@ -1,6 +1,7 @@
 import { Colors, Fonts } from "@/constants/theme";
 import { Dimensions, StyleSheet } from "react-native";
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -57,8 +58,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#CBF2F6",
   },
   profilePhoto: {
-    width: 34,
-    height: 34,
+    width: 32,
+    height: 32,
     borderRadius: 16,
     backgroundColor: "#E0E0E0",
     alignItems: "center",
@@ -74,14 +75,65 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   userName: {
-    fontSize: 18,
-    fontWeight: "600",
+    fontSize: 16,
+    fontFamily: Fonts.SemiBold,
     color: Colors.text,
     marginRight: 5,
   },
   dropdownIcon: {
     marginTop: 5,
     fontWeight: "600",
+  },
+
+  dropdown: {
+    position: "absolute",
+    width: '80%',
+    top: 40, // adjust depending on header height
+    left: 50,
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    elevation: 5, // for shadow on Android
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    zIndex: 999,
+  },
+  dropdownItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 12,
+    borderBottomColor: '#D9D9DC',
+    borderBottomWidth: 1,
+    flex: 1
+  },
+  dropdownPhoto: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+  },
+  dropdownName: {
+    marginLeft: 10,
+    fontSize: 15,
+    fontFamily: Fonts.Bold,
+    color: Colors.text,
+  },
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width,
+    height,
+    backgroundColor: "rgba(0,0,0,0.3)", // semi-transparent
+    zIndex: 999,
+    justifyContent: "flex-start",
+    paddingTop: 60, // adjust depending on header
+  },
+  addProfileButton: {
+    flexDirection: "row",        // horizontal layout
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 12,
   },
   content: {
     flex: 1,
@@ -104,12 +156,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF3E9",
     borderRadius: 15,
     padding: 12,
-    shadowColor: Colors.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-    boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
     textAlign: "center",
   },
   piperCard: {
@@ -121,6 +167,32 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     padding: 20,
+  },
+  mainText: {
+    fontSize: 16,
+    color: "#004693",
+    fontFamily: Fonts.Bold,
+    lineHeight: 20,
+  },
+  subText: {
+    fontSize: 10,
+    color: '#141514',
+    marginVertical: 2,
+    fontFamily: Fonts.Regular,
+  },
+  cardBtn: {
+    backgroundColor: "#0F62FE",
+    paddingVertical: 4,
+    paddingHorizontal: 4,
+    borderRadius: 6,
+    alignItems: "center",
+    marginTop: 8
+  },
+  btnText: {
+    fontSize: 10,
+    fontFamily: Fonts.Medium,
+    lineHeight: 16,
+    color: '#fff'
   },
   piperTextContainer: {
     flex: 1,
@@ -192,7 +264,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     gap: 10,
-    paddingLeft: 10,
+    paddingHorizontal: 10,
     marginBottom: 20,
   },
   progressTitle: {
@@ -229,7 +301,7 @@ const styles = StyleSheet.create({
   chartContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    height: 100,
+    height: 110,
   },
   chartItem: {
     alignItems: "center",
@@ -242,14 +314,15 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   progressBar: {
-    width: 8,
-    borderRadius: 4,
+    width: 16,
+    borderRadius: 13,
     minHeight: 8,
   },
   dayLabel: {
-    fontSize: 14,
-    color: "#8E8E93",
-    fontWeight: "500",
+    fontSize: 12,
+    color: "#141514",
+    opacity: 0.5,
+    fontFamily: Fonts.Medium
   },
   cardDetailsContainer: {
     flexDirection: "row",
@@ -260,12 +333,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8F8FC",
     width: "48%",
     borderRadius: 16,
-    padding: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    padding: 12,
     marginVertical: 10,
     minHeight: 125,
     justifyContent: "space-between",
@@ -277,20 +345,30 @@ const styles = StyleSheet.create({
     // paddingVertical: 10,
   },
   cardIcon: {
-    width: 18,
-    height: 18,
+    width: 16,
+    height: 16,
   },
   cardTitle: {
-    fontSize: 14,
-    fontWeight: "600",
+    fontSize: 10,
     marginLeft: 3,
-    color: "#0064D2",
+    color: "#004693",
     fontFamily: Fonts.SemiBold,
   },
   cardSubTitle: {
-    fontSize: 13,
-    color: "#555",
+    fontSize: 8,
+    color: Colors.text,
+    fontFamily: Fonts.Medium,
     marginTop: 4,
+  },
+  cardBtnHeading: {
+    fontSize: 24,
+    fontFamily: Fonts.Bold,
+    color: '#141514'
+  },
+  cardSubText: {
+    fontSize: 10,
+    color: Colors.textLight,
+    fontFamily: Fonts.Medium
   },
   cardCountContent: {
     flexDirection: "row",
@@ -300,15 +378,15 @@ const styles = StyleSheet.create({
   },
   cardCountSection: {
     backgroundColor: Colors.bg,
-    borderRadius: 12,
+    borderRadius: 7,
     paddingVertical: 8,
-    paddingHorizontal: 12,
+    paddingHorizontal: 8,
   },
   navigateIconSection: {
     backgroundColor: "#fff",
-    borderRadius: 25,
-    width: 32,
-    height: 32,
+    borderRadius: 12,
+    width: 24,
+    height: 24,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -320,33 +398,34 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    marginHorizontal: 10,
-    columnGap: 30,
-    rowGap: 20,
+    padding: 0
+
+  },
+  eachTeamMember: {
+    width: "30%",
+    alignItems: "center",
+    marginBottom: 15,
+
   },
   careTeamMember: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    width: 52,
+    height: 52,
+    borderRadius: 26,
     backgroundColor: "#D8DFF7",
-    marginBottom: 15,
     alignItems: "center",
   },
   memberText: {
-    color: "#3B3D3B",
+    color: Colors.text,
     fontFamily: Fonts.Medium,
-    fontSize: 13,
-    fontWeight: "600",
+    fontSize: 12,
     lineHeight: 16,
     textAlign: "center",
   },
 
   careTeamMemberImg: {
-    height: 70,
-    width: 70,
+    height: 52,
+    width: 52,
     resizeMode: "cover",
-    marginBottom: 5,
-    paddingHorizontal: 24,
   },
   summarySection: {
     flexDirection: "row",
@@ -359,8 +438,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 15,
-    borderRadius: 20,
+    padding: 8,
+    borderRadius: 12,
     backgroundColor: "#F2F2F7",
     width: width / 2.25,
   },
@@ -368,11 +447,11 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.SemiBold,
     color: Colors.primary,
     width: "70%",
-    fontSize: 14,
+    fontSize: 12,
   },
   summaryImg: {
-    height: 45,
-    width: 45,
+    height: 52,
+    width: 65,
     resizeMode: "contain",
   },
 });

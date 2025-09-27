@@ -1,5 +1,5 @@
 import { Colors, Fonts } from "@/constants/theme";
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { Image, ImageBackground } from "expo-image";
 import React, { useState } from "react";
 import {
@@ -7,7 +7,8 @@ import {
   StatusBar,
   Text,
   TouchableOpacity,
-  View,
+  TouchableWithoutFeedback,
+  View
 } from "react-native";
 import { ChevronDownIcon, PlusIcon } from "react-native-heroicons/outline";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -19,6 +20,7 @@ import styles from "../tabStyles/HomeTabStyle";
 
 export default function HomeTab() {
   const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
   const insets = useSafeAreaInsets();
   const progressData = [
     { day: "M", height: 40, color: "#FF9500", isActive: false },
@@ -53,20 +55,61 @@ export default function HomeTab() {
         <Header backgroundColor={Colors["secondary-100"]} />
 
         {/* User Info */}
-        <View style={styles.userInfo}>
-          <Image
-            source={require("../../assets/images/profile.png")}
-            style={styles.profilePhoto}
-            contentFit="contain"
-          />
-          <View style={styles.userDetails}>
-            <Text style={styles.userName}>Johnny</Text>
-            <ChevronDownIcon
-              size={20}
-              color={Colors.text}
-              style={styles.dropdownIcon}
+        <View>
+          <TouchableOpacity style={styles.userInfo} onPress={() => setOpen(!open)}>
+            <Image
+              source={require("../../assets/images/profile.png")}
+              style={styles.profilePhoto}
+              contentFit="contain"
             />
-          </View>
+            <View style={styles.userDetails}>
+              <Text style={styles.userName}>Johnny</Text>
+              <ChevronDownIcon
+                size={20}
+                color={Colors.text}
+                style={styles.dropdownIcon}
+              />
+            </View>
+          </TouchableOpacity>
+          {open && (
+            <TouchableWithoutFeedback onPress={() => setOpen(false)}>
+              <View style={styles.overlay}>
+                <TouchableWithoutFeedback>
+                  <View style={styles.dropdown}>
+                    <View style={styles.dropdownItem}>
+                      <Image
+                        source={require("../../assets/images/Sarah.png")}
+                        style={styles.dropdownPhoto}
+                      />
+                      <Text style={styles.dropdownName}>Sarah</Text>
+                    </View>
+                    <View style={styles.dropdownItem}>
+                      <Image
+                        source={require("../../assets/images/Miley.png")}
+                        style={styles.dropdownPhoto}
+                      />
+                      <Text style={styles.dropdownName}>Miley</Text>
+                    </View>
+                    <View style={styles.dropdownItem}>
+                      <Image
+                        source={require("../../assets/images/Dennis.png")}
+                        style={styles.dropdownPhoto}
+                      />
+                      <Text style={styles.dropdownName}>Dennis</Text>
+                    </View>
+                    <TouchableOpacity
+                      style={styles.addProfileButton}
+                      onPress={() => console.log("Add Profile pressed")}
+                    >
+                      <Text style={styles.dropdownName}>Add Profile</Text>
+                      <AntDesign name="plus-circle" size={20} color="#000" />
+                    </TouchableOpacity>
+
+                  </View>
+                </TouchableWithoutFeedback>
+              </View>
+            </TouchableWithoutFeedback>
+          )}
         </View>
         <View style={{ paddingHorizontal: 20 }}>
           <Searchbar onMicPress={() => setVisible(true)} />
@@ -84,36 +127,22 @@ export default function HomeTab() {
 
           <View style={styles.piperDetailsCard}>
             <Text
-              style={{
-                fontSize: 20,
-                fontWeight: "bold",
-                color: "#004693",
-                fontFamily: Fonts.Bold,
-                lineHeight: 25,
-              }}
+              style={styles.mainText}
             >
               Hi, I’m Piper!
             </Text>
             <Text
-              style={{
-                fontSize: 14,
-                color: Colors.text,
-                marginVertical: 8,
-                fontFamily: Fonts.Regular,
-              }}
+              style={styles.subText}
             >
               Your organized bestie{"\n"}and personal assistant.
             </Text>
 
             <TouchableOpacity
-              style={{
-                backgroundColor: "#0064D2",
-                paddingVertical: 10,
-                borderRadius: 8,
-                alignItems: "center",
-              }}
+              style={
+                styles.cardBtn
+              }
             >
-              <Text style={{ color: "#fff", fontWeight: "600" }}>
+              <Text style={styles.btnText}>
                 Let’s take a tour
               </Text>
             </TouchableOpacity>
@@ -183,7 +212,7 @@ export default function HomeTab() {
               </View>
               <Ionicons
                 name="information-circle-outline"
-                size={18}
+                size={12}
                 color="#999"
               />
             </View>
@@ -196,16 +225,11 @@ export default function HomeTab() {
               {/* Count */}
               <View style={styles.cardCountSection}>
                 <Text
-                  style={{
-                    fontSize: 20,
-                    fontWeight: "700",
-                    color: "#000",
-                    fontFamily: Fonts.Bold,
-                  }}
+                  style={styles.cardBtnHeading}
                 >
-                  21{" "}
+                  21
                   <Text
-                    style={{ fontSize: 14, fontWeight: "500", color: "#666" }}
+                    style={styles.cardSubText}
                   >
                     Docs
                   </Text>
@@ -214,7 +238,7 @@ export default function HomeTab() {
 
               {/* Arrow Button */}
               <TouchableOpacity style={styles.navigateIconSection}>
-                <Ionicons name="chevron-forward" size={20} color="#000" />
+                <Ionicons name="chevron-forward" size={12} color="#000" />
               </TouchableOpacity>
             </View>
           </View>
@@ -230,7 +254,7 @@ export default function HomeTab() {
               </View>
               <Ionicons
                 name="information-circle-outline"
-                size={18}
+                size={12}
                 color="#999"
               />
             </View>
@@ -243,16 +267,11 @@ export default function HomeTab() {
               {/* Count */}
               <View style={styles.cardCountSection}>
                 <Text
-                  style={{
-                    fontSize: 20,
-                    fontWeight: "700",
-                    color: "#000",
-                    fontFamily: Fonts.Bold,
-                  }}
+                  style={styles.cardBtnHeading}
                 >
-                  10{" "}
+                  10
                   <Text
-                    style={{ fontSize: 14, fontWeight: "500", color: "#666" }}
+                    style={styles.cardSubText}
                   >
                     Logs
                   </Text>
@@ -263,7 +282,7 @@ export default function HomeTab() {
               <TouchableOpacity style={styles.navigateIconSection}>
                 <Ionicons
                   name="add"
-                  size={22}
+                  size={12}
                   color="#000"
                   style={{ fontWeight: "600" }}
                 />
@@ -276,13 +295,13 @@ export default function HomeTab() {
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Image
                   source={require("../../assets/icons/buy-crypto.png")}
-                  style={{ height: 30, width: 30 }}
+                  style={styles.cardIcon}
                 />
                 <Text style={styles.cardTitle}>Medication</Text>
               </View>
               <Ionicons
                 name="information-circle-outline"
-                size={18}
+                size={12}
                 color="#999"
               />
             </View>
@@ -292,16 +311,11 @@ export default function HomeTab() {
               {/* Count */}
               <View style={styles.cardCountSection}>
                 <Text
-                  style={{
-                    fontSize: 20,
-                    fontWeight: "700",
-                    color: "#000",
-                    fontFamily: Fonts.Bold,
-                  }}
+                  style={styles.cardBtnHeading}
                 >
                   3/
                   <Text
-                    style={{ fontSize: 14, fontWeight: "500", color: "#666" }}
+                    style={styles.cardSubText}
                   >
                     12
                   </Text>
@@ -310,7 +324,7 @@ export default function HomeTab() {
 
               {/* Arrow Button */}
               <TouchableOpacity style={styles.navigateIconSection}>
-                <Ionicons name="chevron-forward" size={20} color="#000" />
+                <Ionicons name="chevron-forward" size={12} color="#000" />
               </TouchableOpacity>
             </View>
           </View>
@@ -320,12 +334,12 @@ export default function HomeTab() {
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Image
                   source={require("../../assets/icons/messages-2.png")}
-                  style={[styles.cardIcon, { width: 50, height: 50 }]}
+                  style={[styles.cardIcon, { width: 32, height: 32 }]}
                 />
               </View>
               <Ionicons
                 name="information-circle-outline"
-                size={18}
+                size={12}
                 color="#999"
               />
             </View>
@@ -336,19 +350,18 @@ export default function HomeTab() {
               <View style={{ maxWidth: "650%", flexShrink: 1 }}>
                 <Text
                   style={{
-                    fontWeight: "700",
                     color: "#003269",
                     fontFamily: Fonts.Bold,
-                    fontSize: 17,
+                    fontSize: 14,
                   }}
                 >
-                  Talk to Document
+                  Talk to {'\n'}Document
                 </Text>
               </View>
 
               {/* Arrow Button */}
               <TouchableOpacity style={styles.navigateIconSection}>
-                <Ionicons name="chevron-forward" size={20} color="#000" />
+                <Ionicons name="chevron-forward" size={12} color="#000" />
               </TouchableOpacity>
             </View>
           </View>
@@ -356,63 +369,80 @@ export default function HomeTab() {
       </View>
       <Divider text={"Johnny's Care Team"} />
       <View style={[styles.sectionContainer, styles.careTeamContainer]}>
-        <View style={styles.careTeamMember}>
-          <Image
-            source={require("../../assets/images/doctor-care.png")}
-            style={styles.careTeamMemberImg}
-          />
+        <View style={styles.eachTeamMember}>
+          <View style={styles.careTeamMember}>
+            <Image
+              source={require("../../assets/images/doctor-care.png")}
+              style={styles.careTeamMemberImg}
+            />
+          </View>
           <Text style={styles.memberText}>Doctor</Text>
-        </View>
-        <View style={styles.careTeamMember}>
-          <Image
-            source={require("../../assets/images/therapist.png")}
-            style={styles.careTeamMemberImg}
-          />
-          <Text style={styles.memberText}>Therapist</Text>
-        </View>
-        <View style={styles.careTeamMember}>
-          <Image
-            source={require("../../assets/images/nurse.png")}
-            style={styles.careTeamMemberImg}
-          />
-          <Text style={styles.memberText}>Nurse</Text>
-        </View>
-        <View style={styles.careTeamMember}>
-          <Image
-            source={require("../../assets/images/educator.png")}
-            style={styles.careTeamMemberImg}
-          />
-          <Text style={styles.memberText}>Educator</Text>
-        </View>
-        <View style={styles.careTeamMember}>
-          <Image
-            source={require("../../assets/images/friend.png")}
-            style={styles.careTeamMemberImg}
-          />
-          <Text style={styles.memberText}>Friend</Text>
-        </View>
 
-        <View>
-          <TouchableOpacity
-            style={{
-              backgroundColor: "#D8DFF7",
-              borderRadius: 35,
-              width: 70,
-              height: 70,
-              justifyContent: "center",
-              alignItems: "center",
-              marginBottom: 5,
-            }}
-          >
-            <PlusIcon size={30} color={Colors.black} />
-          </TouchableOpacity>
+        </View>
+        <View style={styles.eachTeamMember}>
+          <View style={styles.careTeamMember}>
+            <Image
+              source={require("../../assets/images/therapist.png")}
+              style={styles.careTeamMemberImg}
+            />
+          </View>
+          <Text style={styles.memberText}>Therapist</Text>
+
+        </View>
+        <View style={styles.eachTeamMember}>
+          <View style={styles.careTeamMember}>
+            <Image
+              source={require("../../assets/images/nurse.png")}
+              style={styles.careTeamMemberImg}
+            />
+          </View>
+          <Text style={styles.memberText}>Nurse</Text>
+
+        </View>
+        <View style={styles.eachTeamMember}>
+          <View style={styles.careTeamMember}>
+            <Image
+              source={require("../../assets/images/educator.png")}
+              style={styles.careTeamMemberImg}
+            />
+          </View>
+          <Text style={styles.memberText}>Educator</Text>
+
+        </View>
+        <View style={styles.eachTeamMember}>
+          <View style={styles.careTeamMember}>
+            <Image
+              source={require("../../assets/images/friend.png")}
+              style={styles.careTeamMemberImg}
+            />
+          </View>
+          <Text style={styles.memberText}>Friend</Text>
+
+        </View>
+        <View style={styles.eachTeamMember}>
+          <View>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#F2F2F7",
+                borderRadius: 26,
+                width: 52,
+                height: 52,
+                justifyContent: "center",
+                alignItems: "center",
+                marginBottom: 5,
+              }}
+            >
+              <PlusIcon size={24} color={Colors.black} />
+            </TouchableOpacity>
+          </View>
           <Text style={styles.memberText}>Add</Text>
+
         </View>
       </View>
       <Divider text={"Shareable Summaries"} />
       <View style={[styles.summarySection]}>
         <View style={styles.summaryDetails}>
-          <Text style={styles.summaryText}>For Medical Team</Text>
+          <Text style={styles.summaryText}>For Medical {'\n'}Team</Text>
           <View
             style={{
               justifyContent: "center",
@@ -428,7 +458,7 @@ export default function HomeTab() {
           </View>
         </View>
         <View style={styles.summaryDetails}>
-          <Text style={styles.summaryText}>For Education Team</Text>
+          <Text style={styles.summaryText}>For Education {'\n'}Team</Text>
           <Image
             source={require("../../assets/images/education-team.png")}
             style={styles.summaryImg}
