@@ -71,5 +71,9 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     marginRight: 5,
   },
+  calendarView: {
+    marginVertical: 15,
+    paddingHorizontal: 12,
+  },
 });
 export default styles;

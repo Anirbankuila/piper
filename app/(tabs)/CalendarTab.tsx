@@ -7,6 +7,7 @@ import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import styles from "..//tabStyles/CalendarTabStyle";
 import IAppointment from "../common/Interface/Calendar";
+import Calendar from "../components/Calendar/CustomizeCalendar";
 import Header from "../components/Header/Header";
 const CalendarTab = () => {
   const insets = useSafeAreaInsets();
@@ -149,7 +150,9 @@ const CalendarTab = () => {
           </View>
         )}
         {activeTab === "calendar" && (
-          <View style={styles.appointmentContainer}></View>
+          <View style={styles.calendarView}>
+            <Calendar />
+          </View>
         )}
       </View>
     </View>
