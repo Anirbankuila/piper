@@ -75,5 +75,35 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     paddingHorizontal: 12,
   },
+  treatMentBooking: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: Colors.surface_bg,
+    borderRadius: 12,
+    alignItems: "center",
+    padding: 10,
+    marginVertical: 10,
+    marginInline: 8,
+  },
+  statusDot: {
+    height: 8,
+    width: 8,
+    borderRadius: 4,
+    backgroundColor: Colors.blue_link,
+    marginBottom: 3,
+  },
+  doctorNameText: {
+    fontSize: 16,
+    fontFamily: Fonts.Bold,
+    color: Colors.text,
+    lineHeight: 19,
+    marginBottom: 3,
+  },
+  treatmentNameText: {
+    fontSize: 14,
+    fontFamily: Fonts.Regular,
+    color: Colors.grey,
+    letterSpacing: 0.75,
+  },
 });
 export default styles;

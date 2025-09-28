@@ -14,6 +14,8 @@ const Routes = {
   NOTIFICATION: "screens/Notification/Notification",
   CHATLIST: "screens/ChatHistory/ChatHistory",
   CHATDETAILS: "screens/ChatDetails/ChatDetails",
+  NEWAPPOINTMENT: "screens/AddNewAppointment/NewAppointment",
+  PATIENTDETAILS: "screens/EnterPatientDetails/PatientDetails",
 } as const;
 
 export default Routes;

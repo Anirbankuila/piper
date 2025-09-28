@@ -1,4 +1,5 @@
 import { Image } from "expo-image";
+import { router } from "expo-router";
 import React from "react";
 import { ScrollView, StatusBar, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -53,7 +54,9 @@ const ProfileTab = () => {
               />
             }
             title="Status of Genetic test"
-            onPress={() => handleMenuPress("Status of Genetic test")}
+            onPress={() =>
+              router.push("/screens/EnterPatientDetails/PatientDetails")
+            }
           />
           <MenuItem
             icon={

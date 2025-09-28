@@ -15,14 +15,14 @@ export default function TabLayout() {
         tabBarStyle: {
           borderTopWidth: 1,
           borderTopColor: Colors.background,
-          height: 84,
+          height: 70,
           paddingBottom: 20,
           paddingTop: 8,
-          elevation:0
+          elevation: 0,
         },
         tabBarLabelStyle: {
           fontSize: 10,
-          fontFamily:Fonts.Medium,
+          fontFamily: Fonts.Medium,
           marginTop: 4,
         },
       }}
@@ -49,16 +49,12 @@ export default function TabLayout() {
           title: "Life Log",
           tabBarIcon: ({ focused }) => (
             <Image
-            source={
+              source={
                 focused
                   ? require("../../assets/icons/bookactive.png") // focused image
                   : require("../../assets/icons/booknew.png") // normal image
               }
-              
-              style={[
-                styles.tabIcon,
-                
-              ]}
+              style={[styles.tabIcon]}
             />
           ),
         }}
@@ -69,17 +65,13 @@ export default function TabLayout() {
           title: "Piper",
           tabBarActiveTintColor: "#F36F3B",
           tabBarIcon: ({ focused }) => (
-             <Image
-            source={
+            <Image
+              source={
                 focused
                   ? require("../../assets/icons/pipertab.png") // focused image
                   : require("../../assets/icons/pipertabicon.png") // normal image
               }
-              
-              style={[
-                styles.tabIcon,
-                
-              ]}
+              style={[styles.tabIcon]}
             />
           ),
         }}
@@ -90,16 +82,12 @@ export default function TabLayout() {
           title: "Calendar",
           tabBarIcon: ({ focused }) => (
             <Image
-            source={
+              source={
                 focused
                   ? require("../../assets/icons/calenderActive.png") // focused image
                   : require("../../assets/icons/calendartab.png") // normal image
               }
-              
-              style={[
-                styles.tabIcon,
-                
-              ]}
+              style={[styles.tabIcon]}
             />
           ),
         }}
@@ -113,7 +101,7 @@ export default function TabLayout() {
           headerStyle: {
             backgroundColor: Colors.bg,
           },
-          animation:'shift',
+          animation: "shift",
           headerShadowVisible: false,
           headerTitleStyle: {
             fontSize: 18,
@@ -129,7 +117,10 @@ export default function TabLayout() {
             </TouchableOpacity>
           ),
           headerRight: () => (
-            <TouchableOpacity onPress={() => router.replace("/(tabs)/HomeTab")} style={[styles.headerButton, styles.closeButton]}>
+            <TouchableOpacity
+              onPress={() => router.replace("/(tabs)/HomeTab")}
+              style={[styles.headerButton, styles.closeButton]}
+            >
               <XMarkIcon size={20} color={Colors.text} />
             </TouchableOpacity>
           ),

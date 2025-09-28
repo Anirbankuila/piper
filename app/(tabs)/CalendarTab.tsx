@@ -1,9 +1,16 @@
 import { Colors } from "@/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
+import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useMemo, useState } from "react";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import styles from "..//tabStyles/CalendarTabStyle";
 import IAppointment from "../common/Interface/Calendar";
@@ -136,7 +143,13 @@ const CalendarTab = () => {
               </View>
             </TouchableOpacity>
           </View>
-          <Ionicons name="add-circle-outline" size={24} color={"#3B3D3B"} />
+          <TouchableOpacity
+            onPress={() =>
+              router.push("/screens/AddNewAppointment/NewAppointment")
+            }
+          >
+            <Ionicons name="add-circle-outline" size={26} color={"#3B3D3B"} />
+          </TouchableOpacity>
         </View>
         {activeTab === "upcoming" && (
           <View style={styles.appointmentContainer}>
@@ -150,9 +163,22 @@ const CalendarTab = () => {
           </View>
         )}
         {activeTab === "calendar" && (
-          <View style={styles.calendarView}>
+          <ScrollView style={styles.calendarView}>
             <Calendar />
-          </View>
+            <View style={styles.treatMentBooking}>
+              <View>
+                <View style={styles.statusDot}></View>
+                <Text style={styles.doctorNameText}>Dr. Karnik</Text>
+                <Text style={styles.treatmentNameText}>
+                  For Anxiety treatment
+                </Text>
+              </View>
+              <Image
+                source={require("../../assets/images/doctor-care.png")}
+                style={[styles.doctorImg, { backgroundColor: Colors.bg }]}
+              />
+            </View>
+          </ScrollView>
         )}
       </View>
     </View>

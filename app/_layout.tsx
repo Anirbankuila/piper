@@ -156,14 +156,12 @@ const screens = [
       headerBackTitle: "Back", // Back button text
       statusBarBackgroundColor: "#D2FFF6",
       headerStyle: {
-
         backgroundColor: Colors.surface_bg, // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
       headerShadowVisible: true,
       statusBarStyle: "dark" as const,
     },
-
   },
   {
     name: Routes.CHATDETAILS,
@@ -174,16 +172,45 @@ const screens = [
       statusBarBackgroundColor: "#D2FFF6",
       headerStyle: {
         backgroundColor: Colors.surface_bg, // header background
-        borderBottomWidth: 1,              // 👈 border thickness
-        borderBottomColor: "#E5E7EB",      // 👈 border color
-        elevation: 0,                      // Android shadow remove
-        shadowOpacity: 0,                  // iOS shadow remove
+        borderBottomWidth: 1, // 👈 border thickness
+        borderBottomColor: "#E5E7EB", // 👈 border color
+        elevation: 0, // Android shadow remove
+        shadowOpacity: 0, // iOS shadow remove
       },
       headerTintColor: "#000", // 👈 text & back button color
       headerShadowVisible: false,
       statusBarStyle: "dark" as const,
     },
-
+  },
+  {
+    name: Routes.NEWAPPOINTMENT,
+    options: {
+      headerShown: true,
+      title: "Add new appointment", // Title in header
+      headerBackTitle: "Back", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        elevation: 0, // For Android shadow removal
+        shadowOpacity: 0, // For iOS shadow removal
+      },
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.PATIENTDETAILS,
+    options: {
+      headerShown: true,
+      title: "Enter Patient Details", // Title in header
+      headerBackTitle: "Back", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        elevation: 0, // For Android shadow removal
+        shadowOpacity: 0, // For iOS shadow removal
+      },
+      statusBarStyle: "dark" as const,
+    },
   },
 ];
 

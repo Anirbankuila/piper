@@ -13,13 +13,12 @@ const CustomizeCalendar = () => {
   const [current, setCurrent] = useState(dayjs().format("YYYY-MM-DD"));
   return (
     <Calendar
+      key={current}
       onDayPress={(day) => {
         setSelected(day.dateString);
       }}
       current={current}
-      // markedDates={{
-      //   "2025-09-02": { marked: true },
-      // }}
+      style={{ height: 356 }}
       markedDates={{
         [selected]: {
           selected: true,
@@ -32,18 +31,17 @@ const CustomizeCalendar = () => {
       firstDay={1}
       hideArrows
       renderHeader={(date) => {
-        const month = date.toString("MMMM"); // Full month name
-        const year = date.toString("yyyy");
-
+        const month = date.toString("MMMM"); // works with XDate
+        const year = date.getFullYear();
         return (
           <View style={styles.monthHeaderView}>
             {/* Left arrow */}
             <TouchableOpacity
-              onPress={() =>
+              onPress={() => {
                 setCurrent(
                   dayjs(current).subtract(1, "month").format("YYYY-MM-DD")
-                )
-              }
+                );
+              }}
               style={styles.arrowBtn}
             >
               <ChevronLeftIcon size={22} color={Colors.primary} />
