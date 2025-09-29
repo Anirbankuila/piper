@@ -1,6 +1,5 @@
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
-import CommonInput from "@/app/components/CommonInput/CommonInput";
 import CustomRadio from "@/app/components/Radiobutton/Radiobutton";
 import { Colors, Fonts } from "@/constants/theme";
 import { useRouter } from "expo-router";
@@ -34,10 +33,10 @@ const DocumentDetails = () => {
   ];
 
   const saveDocument = () => {
-    if (!docName || selectedCategory === null) {
-      alert("Please enter document name and select category");
-      return;
-    }
+    // if (!docName || selectedCategory === null) {
+    //   alert("Please enter document name and select category");
+    //   return;
+    // }
 
     const categoryLabel = categories.find(
       (cat) => cat.id === selectedCategory
@@ -53,16 +52,6 @@ const DocumentDetails = () => {
       keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
     >
       <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.eachInputWrap}>
-          <Text style={styles.labelText}>Enter Document Details</Text>
-          <CommonInput
-            placeholder="Document Name"
-            onChangeText={setDocName}
-            value={docName}
-            keyboardType="default"
-          />
-        </View>
-
         <View style={styles.eachInputWrap}>
           <Text style={styles.labelText}>Select Category</Text>
           <CustomRadio

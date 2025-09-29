@@ -25,6 +25,11 @@ const Routes = {
   uploadDoc: "screens/DocumentUpload/DocumentUpload",
   documentScan: "screens/DocumentScanner/DocumentScanner",
   docDetails: "screens/DocumentDetails/DocumentDetails",
+  documentSuccess: "screens/DocumentSuccess/DocumentSuccess",
+  documentUpload: "screens/UploadDocuments/UploadDocuments",
+  documentCategory:"screens/DocumentCategory/DocumentCategory",
+  schoolDocumments:"screens/SchoolDocuments/SchoolDocuments",
+  shareSuccess:"screens/ShareSuccess/ShareSuccess",
 };
 
 export function navigateScreen(

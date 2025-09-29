@@ -271,6 +271,67 @@ const screens = [
       statusBarStyle: "dark" as const,
     },
   },
+  {
+    name: Routes.documentSuccess,
+    options: {
+      headerShown: false,
+      title: "Document Details", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: false, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.documentUpload,
+    options: {
+      headerShown: true,
+      title: "Document Upload", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.schoolDocumments,
+    options: {
+      headerShown: true,
+      title: "School Documents", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.shareSuccess,
+    options: {
+      headerShown: false,
+      title: "School Documents", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: false, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
+  
 ];
 
 export default function RootLayout() {
