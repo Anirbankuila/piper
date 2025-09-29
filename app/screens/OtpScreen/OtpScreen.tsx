@@ -1,4 +1,4 @@
-import { router } from "expo-router";
+import Routes, { navigateScreen } from "@/app/common/Routes";
 import React, { useRef, useState } from "react";
 import { ScrollView, Text, TextInput, View } from "react-native";
 import { Colors } from "../../../constants/theme";
@@ -59,7 +59,7 @@ const OtpScreen = () => {
             title="Continue"
             textStyle={Styles.buttonText}
             style={Styles.button}
-            onPress={() => router.push("/screens/AboutScreen/AboutScreen")}
+            onPress={() => navigateScreen(Routes.about)}
           />
         </View>
       </View>

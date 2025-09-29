@@ -1,7 +1,8 @@
+import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import MoodChart from "@/app/components/ModeChart/ModeChart";
 import * as ImagePicker from "expo-image-picker";
-import { router, useLocalSearchParams, useNavigation } from "expo-router";
+import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Styles from "./LogSummaryCss"; // 👈 external css import
@@ -30,7 +31,7 @@ export default function LogDetails() {
   const navigation = useNavigation();
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: 'images',
+      mediaTypes: "images",
       allowsEditing: true,
       quality: 1,
     });
@@ -42,7 +43,7 @@ export default function LogDetails() {
   };
   const pickVideo = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: 'videos',
+      mediaTypes: "videos",
       allowsEditing: true,
       quality: 1,
     });
@@ -77,10 +78,11 @@ export default function LogDetails() {
         <View style={Styles.topSec}>
           <View style={Styles.topSecLeft}>
             <Text style={Styles.topSecHeading}>
-              Morning meds didn’t {'\n'}go as planned.
+              Morning meds didn’t {"\n"}go as planned.
             </Text>
             <Text style={Styles.para}>
-              That sounds like a hard start to  {"\n"}the day. I’ve got it logged.
+              That sounds like a hard start to {"\n"}the day. I’ve got it
+              logged.
             </Text>
           </View>
           <Image
@@ -89,16 +91,14 @@ export default function LogDetails() {
             resizeMode="contain"
           />
         </View>
-        <View style={Styles.logSummaryWrap}>
-          <View style={Styles.logSummary}>
-            <Text style={Styles.summaryTitle}>
-              Log Summary
-            </Text>
+        <View style={Styles.logsSummaryWrap}>
+          <View style={Styles.logsSummary}>
+            <Text style={Styles.summaryTitle}>Log Summary</Text>
             <Text style={Styles.summaryDesc}>
-              You shared that Johnny refused to take his medication this morning.
-              It took multiple reminders, and even then, they stayed upset for the
-              rest of the morning. You tried to stay calm, but it left you both
-              frustrated and late to school.
+              You shared that Johnny refused to take his medication this
+              morning. It took multiple reminders, and even then, they stayed
+              upset for the rest of the morning. You tried to stay calm, but it
+              left you both frustrated and late to school.
             </Text>
           </View>
           <View style={Styles.modeWrap}>
@@ -107,9 +107,7 @@ export default function LogDetails() {
               style={Styles.modeImg}
               resizeMode="contain"
             />
-            <Text style={Styles.modeTitle}>
-              Sounds like a tough moment!
-            </Text>
+            <Text style={Styles.modeTitle}>Sounds like a tough moment!</Text>
           </View>
         </View>
         <MoodChart />
@@ -117,31 +115,28 @@ export default function LogDetails() {
           <View style={Styles.addItem}>
             <TouchableOpacity style={Styles.eachItem} onPress={pickImage}>
               <Image
-                source={require('../../../assets/icons/gallery.png')} // put your logo inside assets folder
+                source={require("../../../assets/icons/gallery.png")} // put your logo inside assets folder
                 style={Styles.icon}
-                resizeMode='cover'
+                resizeMode="cover"
               />
               <Text style={Styles.eachItemTitle}>Add Photo</Text>
             </TouchableOpacity>
             <TouchableOpacity style={Styles.eachItem} onPress={pickVideo}>
               <Image
-                source={require('../../../assets/icons/camera.png')} // put your logo inside assets folder
+                source={require("../../../assets/icons/camera.png")} // put your logo inside assets folder
                 style={Styles.icon}
-                resizeMode='cover'
+                resizeMode="cover"
               />
               <Text style={Styles.eachItemTitle}>Add Video</Text>
             </TouchableOpacity>
           </View>
           <CommonButton
-          onPress={() => {
-            router.push("/screens/MomentLog/MomentLog")
-          }}
-          backgroundColor="#000"
-          color="#fff"
-          title="Edit Entry"
-        />
+            onPress={() => navigateScreen(Routes.momentLog)}
+            backgroundColor="#000"
+            color="#fff"
+            title="Edit Entry"
+          />
         </View>
-
       </View>
     </ScrollView>
   );

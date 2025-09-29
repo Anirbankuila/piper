@@ -1,7 +1,6 @@
 import { Colors } from "@/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useMemo, useState } from "react";
 import {
@@ -14,6 +13,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import styles from "..//tabStyles/CalendarTabStyle";
 import IAppointment from "../common/Interface/Calendar";
+import Routes, { navigateScreen } from "../common/Routes";
 import Calendar from "../components/Calendar/CustomizeCalendar";
 import Header from "../components/Header/Header";
 const CalendarTab = () => {
@@ -144,9 +144,7 @@ const CalendarTab = () => {
             </TouchableOpacity>
           </View>
           <TouchableOpacity
-            onPress={() =>
-              router.push("/screens/AddNewAppointment/NewAppointment")
-            }
+            onPress={() => navigateScreen(Routes.newAppointment)}
           >
             <Ionicons name="add-circle-outline" size={26} color={"#3B3D3B"} />
           </TouchableOpacity>

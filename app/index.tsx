@@ -1,10 +1,11 @@
 import { ImageBackground } from "expo-image";
-import { router, useNavigation } from "expo-router";
+import { useNavigation } from "expo-router";
 import { useEffect } from "react";
 import { Text, View } from "react-native";
 // import Styles from "./SplashCss";
 import { LinearGradient } from "expo-linear-gradient";
 import * as SplashScreen from "expo-splash-screen";
+import Routes, { navigateScreen } from "./common/Routes";
 import CommonButton from "./components/CommonButton/CommonButton";
 import Styles from "./screens/onboarding/onBoardingCss";
 export default function Index() {
@@ -55,7 +56,7 @@ export default function Index() {
 
           <CommonButton
             title="Let’s get started!"
-            onPress={() => router.push("/screens/Profile/Profile")} // ✅ works
+            onPress={() => navigateScreen(Routes.profile)} // ✅ works
           />
         </LinearGradient>
       </View>

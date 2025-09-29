@@ -1,4 +1,4 @@
-import { router } from "expo-router";
+import Routes, { navigateScreen } from "@/app/common/Routes";
 import React from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Styles from "./AllLogsCss";
@@ -27,18 +27,16 @@ const logs = [
 
 const AllLogs = () => {
   const handleLogPress = (log: any) => {
-    router.push({
-      pathname: "/screens/LogSummary/[id]",
+    navigateScreen({
+      pathname: `/${Routes.logsSummary}`,
       params: {
-        id: log.id,         // must pass id here
+        id: log.id, // must pass id here
         title: log.title,
         date: log.date,
         status: log.status,
       },
     });
   };
-
-
 
   return (
     <ScrollView
@@ -53,7 +51,8 @@ const AllLogs = () => {
               Real life, logged by you, {"\n"}remembered by me.
             </Text>
             <Text style={Styles.para}>
-              Click any life log below to edit or {"\n"}share with your care team.
+              Click any life log below to edit or {"\n"}share with your care
+              team.
             </Text>
           </View>
           <Image
@@ -81,7 +80,11 @@ const AllLogs = () => {
                   </View>
                 </View>
                 <View style={Styles.eachLogTopRight}>
-                  <Image source={log.icon} style={Styles.mode} resizeMode="contain" />
+                  <Image
+                    source={log.icon}
+                    style={Styles.mode}
+                    resizeMode="contain"
+                  />
                 </View>
               </View>
 

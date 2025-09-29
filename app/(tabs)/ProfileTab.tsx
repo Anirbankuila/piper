@@ -1,9 +1,9 @@
 import { Image } from "expo-image";
-import { router } from "expo-router";
 import React from "react";
 import { ScrollView, StatusBar, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "../../constants/theme";
+import Routes, { navigateScreen } from "../common/Routes";
 import MenuItem from "../components/MenuItem/MenuItem";
 import styles from "../tabStyles/ProfileTabStyle";
 
@@ -32,8 +32,6 @@ const ProfileTab = () => {
             />
           </View>
           <Text style={styles.profileName}>Johnny</Text>
-          {/* <View style={styles.profileNameContainer}>
-          </View> */}
         </View>
         <View style={styles.menuList}>
           <MenuItem
@@ -44,7 +42,7 @@ const ProfileTab = () => {
               />
             }
             title="Profile"
-            onPress={() => handleMenuPress("Profile")}
+            onPress={() => navigateScreen(Routes.updateProfile)}
           />
           <MenuItem
             icon={
@@ -54,9 +52,7 @@ const ProfileTab = () => {
               />
             }
             title="Status of Genetic test"
-            onPress={() =>
-              router.push("/screens/EnterPatientDetails/PatientDetails")
-            }
+            onPress={() => navigateScreen(Routes.patientDetails)}
           />
           <MenuItem
             icon={

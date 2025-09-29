@@ -84,10 +84,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
               : date.toDateString()
             : placeHolderText}
         </Text>
-        <ChevronDownIcon
-          fontSize={16}
-          color={date ? Colors.black : Colors.grey}
-        />
+        <ChevronDownIcon size={16} color={date ? Colors.black : Colors.grey} />
       </TouchableOpacity>
 
       {/* Show picker when pressed */}

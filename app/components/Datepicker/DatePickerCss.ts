@@ -17,11 +17,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: Fonts.Bold,
     color: Colors.text,
-    marginVertical: 8,
+    marginVertical: 5,
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "row",
   },
- 
 });
 export default styles;

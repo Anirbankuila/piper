@@ -12,9 +12,9 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Routes from "./common/Routes";
 const screens = [
   { name: "index", options: { headerShown: false } },
-  { name: Routes.ONBOARDING, options: { headerShown: false } },
+  { name: Routes.onBoarding, options: { headerShown: false } },
   {
-    name: Routes.PROFILE,
+    name: Routes.profile,
     options: {
       headerShown: true,
       title: "Your Profile", // Title in header
@@ -29,7 +29,7 @@ const screens = [
     },
   },
   {
-    name: Routes.OTP,
+    name: Routes.otp,
     options: {
       headerShown: true,
       title: "", // Title in header
@@ -45,7 +45,7 @@ const screens = [
     },
   },
   {
-    name: Routes.PRIVACY,
+    name: Routes.privacy,
     options: {
       headerShown: true,
       title: "Privacy", // Title in header
@@ -58,7 +58,7 @@ const screens = [
     },
   },
   {
-    name: Routes.ABOUT,
+    name: Routes.about,
     options: {
       headerShown: true,
       title: "",
@@ -69,7 +69,7 @@ const screens = [
     statusBarStyle: "dark" as const,
   },
   {
-    name: Routes.DOCUMENT,
+    name: Routes.document,
     options: {
       headerShown: true,
       title: "",
@@ -80,7 +80,7 @@ const screens = [
     statusBarStyle: "dark" as const,
   },
   {
-    name: Routes.CHILDTEAM,
+    name: Routes.childTeam,
     options: {
       headerShown: true,
       title: "Let’s build your team!", // Title in header
@@ -95,13 +95,13 @@ const screens = [
     },
   },
   {
-    name: Routes.LOGSUCCESS,
+    name: Routes.logSuccess,
     options: {
       headerShown: false,
     },
   },
   {
-    name: Routes.ALLLOGS,
+    name: Routes.allLogs,
     options: {
       headerShown: true,
       title: "Logs", // Title in header
@@ -116,7 +116,7 @@ const screens = [
     },
   },
   {
-    name: Routes.LOGSUMMARY,
+    name: Routes.logsSummary,
     options: {
       headerShown: true,
       headerBackTitle: "Back",
@@ -131,12 +131,12 @@ const screens = [
     },
   },
   {
-    name: Routes.MOMENTLOG,
+    name: Routes.momentLog,
     options: { headerShown: false },
   },
 
   {
-    name: Routes.NOTIFICATION,
+    name: Routes.notification,
     options: {
       headerShown: true,
       title: "Piper's Notification", // Title in header
@@ -149,7 +149,7 @@ const screens = [
     },
   },
   {
-    name: Routes.CHATLIST,
+    name: Routes.chatList,
     options: {
       headerShown: true,
       title: "Chat History", // Title in header
@@ -164,7 +164,7 @@ const screens = [
     },
   },
   {
-    name: Routes.CHATDETAILS,
+    name: Routes.chatDetails,
     options: {
       headerShown: true,
       title: "Chat History", // Title in header
@@ -183,7 +183,7 @@ const screens = [
     },
   },
   {
-    name: Routes.NEWAPPOINTMENT,
+    name: Routes.newAppointment,
     options: {
       headerShown: true,
       title: "Add new appointment", // Title in header
@@ -198,10 +198,25 @@ const screens = [
     },
   },
   {
-    name: Routes.PATIENTDETAILS,
+    name: Routes.patientDetails,
     options: {
       headerShown: true,
       title: "Enter Patient Details", // Title in header
+      headerBackTitle: "Back", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        elevation: 0, // For Android shadow removal
+        shadowOpacity: 0, // For iOS shadow removal
+      },
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.updateProfile,
+    options: {
+      headerShown: true,
+      title: "Update Profile", // Title in header
       headerBackTitle: "Back", // Back button text
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow

@@ -1,7 +1,7 @@
+import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import { ImageBackground } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
-import { router } from "expo-router";
 import React from "react";
 import { Text, View } from "react-native";
 import Styles from "./onBoardingCss";
@@ -29,7 +29,7 @@ const onBoarding = () => {
 
           <CommonButton
             title="Let’s get started!"
-            onPress={() => router.push("/screens/Profile/Profile")} // ✅ works
+            onPress={() => navigateScreen(Routes.profile)} // ✅ works
           />
         </LinearGradient>
       </View>

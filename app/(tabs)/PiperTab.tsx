@@ -1,9 +1,17 @@
 import { Colors, Fonts } from "@/constants/theme";
 import { LinearGradient } from "expo-linear-gradient";
-import { router } from "expo-router";
 import React, { useState } from "react";
-import { Image, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { navigateScreen } from "../common/Routes";
 import Header from "../components/Header/Header";
 import PiperModal from "../components/PiperModal/PiperModal";
 import PiperSearch from "../components/PiperSearch/PiperSearch";
@@ -17,33 +25,42 @@ const PiperTab = () => {
     "You mentioned meltdowns last week. I’ve pulled a few tips to try, ready when you are.",
   ];
   return (
-
-    <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{ flexGrow: 1 }}
+      showsVerticalScrollIndicator={false}
+    >
       <StatusBar
-        barStyle="dark-content"   // text/icons will be dark (black/gray)
+        barStyle="dark-content" // text/icons will be dark (black/gray)
         backgroundColor="#FFF3E9" // same as your top background
       />
-      <View style={{ paddingTop: insets.top - 10, backgroundColor: Colors.surface_bg }}>
+      <View
+        style={{
+          paddingTop: insets.top - 10,
+          backgroundColor: Colors.surface_bg,
+        }}
+      >
         <Header backgroundColor={Colors.surface_bg} />
       </View>
       <View style={styles.chatHistory}>
-        <TouchableOpacity onPress={() => {
-          router.push("/screens/ChatHistory/ChatHistory")
-        }}>
+        <TouchableOpacity onPress={() => navigateScreen(Routes.chatHistory)}>
           <Text style={styles.chatHistoryTitle}>Chat History</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.chartTop}>
         <Image
-          source={require('../../assets/images/piper.png')} // put your logo inside assets folder
+          source={require("../../assets/images/piper.png")} // put your logo inside assets folder
           style={styles.piperImg}
-          resizeMode='cover'
+          resizeMode="cover"
         />
         <View style={styles.chatDirect}>
           <Text style={styles.chartTitle}>
-            I have gathered this from Johnny’s {'\n'}info and life log, hope this helps !
+            I have gathered this from Johnny’s {"\n"}info and life log, hope
+            this helps !
           </Text>
-          <Text style={styles.chatLink}>Click on any you'd like my help with!</Text>
+          <Text style={styles.chatLink}>
+            Click on any you&apos;d like my help with!
+          </Text>
           <View style={styles.chartSuggestion}>
             {chats.map((chat, index) => (
               <LinearGradient
@@ -79,49 +96,48 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.surface_bg,
   },
   chatHistory: {
-    position: 'relative',
-    textAlign: 'right',
+    position: "relative",
+    textAlign: "right",
     padding: 24,
     borderBottomWidth: 1,
-    borderBottomColor: Colors.strokeColor
+    borderBottomColor: Colors.strokeColor,
   },
   chatHistoryTitle: {
-    textAlign: 'right',
+    textAlign: "right",
   },
   chartTop: {
-    position: 'relative',
-    textAlign: 'center',
+    position: "relative",
+    textAlign: "center",
     paddingHorizontal: 24,
-    flex: 1
+    flex: 1,
   },
   piperImg: {
     width: 133,
     height: 133,
-    marginHorizontal: 'auto',
+    marginHorizontal: "auto",
   },
   chatDirect: {
-    position: 'relative',
-
+    position: "relative",
   },
   chartTitle: {
     fontSize: 16,
     fontFamily: Fonts.SemiBold,
-    color: '#141514',
-    textAlign: 'center'
+    color: "#141514",
+    textAlign: "center",
   },
   chatLink: {
     fontSize: 14,
     fontFamily: Fonts.Medium,
-    fontStyle: 'italic',
+    fontStyle: "italic",
     color: Colors.blue_link,
-    textAlign: 'center'
+    textAlign: "center",
   },
   chartSuggestion: {
-    paddingTop: 24
+    paddingTop: 24,
   },
   eachChat: {
     paddingHorizontal: 12,
-    paddingVertical: 16
+    paddingVertical: 16,
   },
   gradientBorder: {
     padding: 1, // border thickness
@@ -134,9 +150,8 @@ const styles = StyleSheet.create({
   },
   chatSearchWrap: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
     paddingHorizontal: 24,
-    paddingVertical: 10
-  }
-
+    paddingVertical: 10,
+  },
 });

@@ -1,3 +1,4 @@
+import Routes, { navigateScreen } from "@/app/common/Routes";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -72,7 +73,7 @@ const Profile = () => {
               By proceeding, you agree with our{" "}
               <Text
                 style={Styles.link}
-                onPress={() => router.push("/screens/Privacy/Privacy")}
+                onPress={() => navigateScreen(Routes.privacy)}
               >
                 Terms of use & Legal Notice
               </Text>

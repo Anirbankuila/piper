@@ -10,7 +10,7 @@ import { Colors } from "../../../constants/theme";
 
 interface CommonInputProps {
   value?: string;
-  onChangeText: (text: string) => void;
+  onChangeText: (value: any) => void;
   placeholder?: string;
   secureTextEntry?: boolean;
   keyboardType?: TextInputProps["keyboardType"];
@@ -44,7 +44,6 @@ export default CommonInput;
 
 const styles = StyleSheet.create({
   input: {
-    // height: 50,
     borderWidth: 1,
     borderColor: Colors.strokeColor,
     borderRadius: 12,
