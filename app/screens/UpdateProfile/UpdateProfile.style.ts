@@ -61,7 +61,7 @@ const Styles = StyleSheet.create({
     color: Colors.surface,
   },
   selectText: {
-    fontSize: 16,
+    fontSize: 14,
     color: Colors.black,
     fontFamily: Fonts.Bold,
   },

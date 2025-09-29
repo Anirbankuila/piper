@@ -271,6 +271,18 @@ const screens = [
       statusBarStyle: "dark" as const,
     },
   },
+  {
+    name: Routes.orderGeneticTest,
+    options: {
+      headerShown: true,
+      title: "Order Details",
+      headerTransparent: true,
+      headerBackTitle: "Profile",
+      headerBackTitleVisible: true,
+      headerShadowVisible: false,
+      headerTintColor: Colors.bg, // 👈 text & back button color
+    },
+  },
 ];
 
 export default function RootLayout() {

@@ -3,13 +3,13 @@ import CommonInput from "@/app/components/CommonInput/CommonInput";
 import CustomMultiSelect from "@/app/components/CustomCheckbox/CustomCheckbox";
 import DatePicker from "@/app/components/Datepicker/DatePicker";
 import GenderSelect from "@/app/components/GenderSelect/GenderSelect";
-import { Colors } from "@/constants/theme";
+import { Colors, Fonts } from "@/constants/theme";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { PlusCircleIcon } from "react-native-heroicons/outline";
-import { launchCamera, launchImageLibrary } from "react-native-image-picker";
+import { launchImageLibrary } from "react-native-image-picker";
 import Styles from "./UpdateProfile.style";
 interface childForm {
   id: number;
@@ -56,14 +56,6 @@ const UpdateProfile = () => {
     }
   };
 
-  const takePhoto = async (childId: number) => {
-    const result = await launchCamera({ mediaType: "photo", quality: 1 });
-
-    if (result.assets?.[0]?.uri) {
-      updateChildForm(childId, "imageUri", result.assets[0].uri);
-    }
-  };
-
   // -------------------------
   // Add new member
   // -------------------------
@@ -104,8 +96,6 @@ const UpdateProfile = () => {
       contentContainerStyle={Styles.container}
       showsVerticalScrollIndicator={false}
     >
-      {/* <View style={Styles.content}> */}
-      {/* Child Forms */}
       {childForms.map((child) => (
         <View key={child.id} style={Styles.formWrap}>
           {child.imageUri && <Image source={{ uri: child.imageUri }} />}
@@ -144,7 +134,8 @@ const UpdateProfile = () => {
           />
 
           <Text style={Styles.selectText}>
-            What is the medical diagnosis of {"\n"}your child? (Choose one)
+            What is the medical diagnosis of {"\n"}your child? (Choose all that
+            apply)
           </Text>
           <CustomMultiSelect
             optionStyle={Styles.selectBox}
@@ -159,7 +150,7 @@ const UpdateProfile = () => {
           <GenderSelect
             value={child.gender || ""}
             placeHolderText="Child's Gender"
-            style={Styles.eachInput}
+            style={{ fontSize: 14, fontFamily: Fonts.Regular }}
             onChange={(val: string) => updateChildForm(child.id, "gender", val)}
           />
           <CommonInput
@@ -171,7 +162,6 @@ const UpdateProfile = () => {
         </View>
       ))}
 
-      {/* Add another member */}
       <TouchableOpacity style={Styles.addAnotherWrap} onPress={addChildForm}>
         <PlusCircleIcon size={42} color={Colors.blue_link} />
         <Text style={Styles.addAnotherText}>Add Another Child</Text>
@@ -182,9 +172,6 @@ const UpdateProfile = () => {
         style={Styles.button}
         onPress={() => router.back()}
       />
-      {/* </View> */}
-
-      {/* Bottom Continue Button */}
     </ScrollView>
   );
 };

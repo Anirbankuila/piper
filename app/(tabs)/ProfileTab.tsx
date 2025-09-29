@@ -52,7 +52,7 @@ const ProfileTab = () => {
               />
             }
             title="Status of Genetic test"
-            onPress={() => navigateScreen(Routes.patientDetails)}
+            onPress={() => navigateScreen(Routes.orderGeneticTest)}
           />
           <MenuItem
             icon={
@@ -62,7 +62,7 @@ const ProfileTab = () => {
               />
             }
             title="Order Genetic test"
-            onPress={() => handleMenuPress("Order Genetic test")}
+            onPress={() => navigateScreen(Routes.patientDetails)}
           />
           <MenuItem
             icon={

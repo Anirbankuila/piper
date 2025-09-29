@@ -8,7 +8,7 @@ import {
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  View
+  View,
 } from "react-native";
 import { ChevronDownIcon, PlusIcon } from "react-native-heroicons/outline";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -32,16 +32,6 @@ export default function HomeTab() {
     { day: "S", height: 80, color: "#E5E5EA", isActive: false },
     { day: "S", height: 80, color: "#E5E5EA", isActive: false },
   ];
-  const cardDetails = [
-    {
-      id: 1,
-      title: "Documents",
-      subTitle: "Last Update 23 Sep",
-      routingLink: "",
-      icon: "../../assets/icons/folder.png",
-      btnIcon: "chevron-forward",
-    },
-  ];
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <StatusBar backgroundColor={Colors["secondary-100"]} translucent={true} />
@@ -57,7 +47,10 @@ export default function HomeTab() {
 
         {/* User Info */}
         <View>
-          <TouchableOpacity style={styles.userInfo} onPress={() => setOpen(!open)}>
+          <TouchableOpacity
+            style={styles.userInfo}
+            onPress={() => setOpen(!open)}
+          >
             <Image
               source={require("../../assets/images/profile.png")}
               style={styles.profilePhoto}
@@ -105,7 +98,6 @@ export default function HomeTab() {
                       <Text style={styles.dropdownName}>Add Profile</Text>
                       <AntDesign name="plus-circle" size={20} color="#000" />
                     </TouchableOpacity>
-
                   </View>
                 </TouchableWithoutFeedback>
               </View>
@@ -127,25 +119,13 @@ export default function HomeTab() {
           />
 
           <View style={styles.piperDetailsCard}>
-            <Text
-              style={styles.mainText}
-            >
-              Hi, I’m Piper!
-            </Text>
-            <Text
-              style={styles.subText}
-            >
+            <Text style={styles.mainText}>Hi, I’m Piper!</Text>
+            <Text style={styles.subText}>
               Your organized bestie{"\n"}and personal assistant.
             </Text>
 
-            <TouchableOpacity
-              style={
-                styles.cardBtn
-              }
-            >
-              <Text style={styles.btnText}>
-                Let’s take a tour
-              </Text>
+            <TouchableOpacity style={styles.cardBtn}>
+              <Text style={styles.btnText}>Let’s take a tour</Text>
             </TouchableOpacity>
           </View>
         </ImageBackground>
@@ -225,15 +205,9 @@ export default function HomeTab() {
             <View style={styles.cardCountContent}>
               {/* Count */}
               <View style={styles.cardCountSection}>
-                <Text
-                  style={styles.cardBtnHeading}
-                >
+                <Text style={styles.cardBtnHeading}>
                   21
-                  <Text
-                    style={styles.cardSubText}
-                  >
-                    Docs
-                  </Text>
+                  <Text style={styles.cardSubText}>Docs</Text>
                 </Text>
               </View>
 
@@ -244,7 +218,6 @@ export default function HomeTab() {
               >
                 <Ionicons name="chevron-forward" size={12} color="#000" />
               </TouchableOpacity>
-
             </View>
           </View>
           <View style={styles.cardContainer}>
@@ -271,15 +244,9 @@ export default function HomeTab() {
             <View style={styles.cardCountContent}>
               {/* Count */}
               <View style={styles.cardCountSection}>
-                <Text
-                  style={styles.cardBtnHeading}
-                >
+                <Text style={styles.cardBtnHeading}>
                   10
-                  <Text
-                    style={styles.cardSubText}
-                  >
-                    Logs
-                  </Text>
+                  <Text style={styles.cardSubText}>Logs</Text>
                 </Text>
               </View>
 
@@ -315,15 +282,9 @@ export default function HomeTab() {
             <View style={styles.cardCountContent}>
               {/* Count */}
               <View style={styles.cardCountSection}>
-                <Text
-                  style={styles.cardBtnHeading}
-                >
+                <Text style={styles.cardBtnHeading}>
                   3/
-                  <Text
-                    style={styles.cardSubText}
-                  >
-                    12
-                  </Text>
+                  <Text style={styles.cardSubText}>12</Text>
                 </Text>
               </View>
 
@@ -360,7 +321,7 @@ export default function HomeTab() {
                     fontSize: 14,
                   }}
                 >
-                  Talk to {'\n'}Document
+                  Talk to {"\n"}Document
                 </Text>
               </View>
 
@@ -382,7 +343,6 @@ export default function HomeTab() {
             />
           </View>
           <Text style={styles.memberText}>Doctor</Text>
-
         </View>
         <View style={styles.eachTeamMember}>
           <View style={styles.careTeamMember}>
@@ -392,7 +352,6 @@ export default function HomeTab() {
             />
           </View>
           <Text style={styles.memberText}>Therapist</Text>
-
         </View>
         <View style={styles.eachTeamMember}>
           <View style={styles.careTeamMember}>
@@ -402,7 +361,6 @@ export default function HomeTab() {
             />
           </View>
           <Text style={styles.memberText}>Nurse</Text>
-
         </View>
         <View style={styles.eachTeamMember}>
           <View style={styles.careTeamMember}>
@@ -412,7 +370,6 @@ export default function HomeTab() {
             />
           </View>
           <Text style={styles.memberText}>Educator</Text>
-
         </View>
         <View style={styles.eachTeamMember}>
           <View style={styles.careTeamMember}>
@@ -422,7 +379,6 @@ export default function HomeTab() {
             />
           </View>
           <Text style={styles.memberText}>Friend</Text>
-
         </View>
         <View style={styles.eachTeamMember}>
           <View>
@@ -441,13 +397,12 @@ export default function HomeTab() {
             </TouchableOpacity>
           </View>
           <Text style={styles.memberText}>Add</Text>
-
         </View>
       </View>
       <Divider text={"Shareable Summaries"} />
       <View style={[styles.summarySection]}>
         <View style={styles.summaryDetails}>
-          <Text style={styles.summaryText}>For Medical {'\n'}Team</Text>
+          <Text style={styles.summaryText}>For Medical {"\n"}Team</Text>
           <View
             style={{
               justifyContent: "center",
@@ -463,7 +418,7 @@ export default function HomeTab() {
           </View>
         </View>
         <View style={styles.summaryDetails}>
-          <Text style={styles.summaryText}>For Education {'\n'}Team</Text>
+          <Text style={styles.summaryText}>For Education {"\n"}Team</Text>
           <Image
             source={require("../../assets/images/education-team.png")}
             style={styles.summaryImg}

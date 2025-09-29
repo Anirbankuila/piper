@@ -40,7 +40,10 @@ const GenderSelect: React.FC<GenderSelectProps> = ({
         onPress={() => refRBSheet?.current?.open()}
       >
         <Text
-          style={[selectedValue ? styles.selectedText : styles.placeholderText]}
+          style={[
+            selectedValue ? styles.selectedText : styles.placeholderText,
+            style,
+          ]}
         >
           {selectedValue ?? placeHolderText}
         </Text>
