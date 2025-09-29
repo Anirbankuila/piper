@@ -35,20 +35,20 @@ const UploadDocs = () => {
   ];
 
   const saveDocument = () => {
-    // if (!docName || selectedCategory === null || !fileUri) {
-    //   alert("Please choose a file, enter document name and select category");
-    //   return;
-    // }
-
     const categoryLabel = categories.find(
       (cat) => cat.id === selectedCategory
     )?.label;
-    console.log("Document saved:", { docName, category: categoryLabel, fileUri });
+    console.log("Document saved:", {
+      docName,
+      category: categoryLabel,
+      fileUri,
+    });
     navigateScreen(Routes.documentCategory);
   };
 
   const addFile = async () => {
-    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    const permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!permissionResult.granted) {
       alert("Permission to access gallery is required!");
       return;
@@ -166,7 +166,6 @@ const styles = StyleSheet.create({
     borderStyle: "dashed",
     marginTop: 18,
     marginBottom: 10,
-
   },
   addIcon: {
     color: Colors.blue_link,
@@ -178,7 +177,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: Fonts.Bold,
     color: Colors.text,
-    marginTop:10
+    marginTop: 10,
   },
   previewWrap: {
     marginTop: 10,

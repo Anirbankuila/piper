@@ -2,7 +2,6 @@ import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import CustomRadio from "@/app/components/Radiobutton/Radiobutton";
 import { Colors, Fonts } from "@/constants/theme";
-import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   KeyboardAvoidingView,
@@ -10,12 +9,10 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  View
+  View,
 } from "react-native";
 
 const DocumentDetails = () => {
-  const router = useRouter();
-
   const [docName, setDocName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<
     string | number | null
@@ -33,16 +30,11 @@ const DocumentDetails = () => {
   ];
 
   const saveDocument = () => {
-    // if (!docName || selectedCategory === null) {
-    //   alert("Please enter document name and select category");
-    //   return;
-    // }
-
     const categoryLabel = categories.find(
       (cat) => cat.id === selectedCategory
     )?.label;
     console.log("Document saved:", { docName, category: categoryLabel });
-    navigateScreen(Routes.documentSuccess)
+    navigateScreen(Routes.documentSuccess);
   };
 
   return (
@@ -62,8 +54,12 @@ const DocumentDetails = () => {
           />
         </View>
 
-       
-        <CommonButton title="Save Document" textStyle={styles.saveText} style={styles.saveBtn} onPress={saveDocument}/>
+        <CommonButton
+          title="Save Document"
+          textStyle={styles.saveText}
+          style={styles.saveBtn}
+          onPress={saveDocument}
+        />
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -93,12 +89,12 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   saveBtn: {
-        backgroundColor: Colors.black,
-        color: '#fff'
-    },
-    saveText: {
-        color: '#fff'
-    },
+    backgroundColor: Colors.black,
+    color: "#fff",
+  },
+  saveText: {
+    color: "#fff",
+  },
   btnText: {
     color: "#fff",
     fontWeight: "600",

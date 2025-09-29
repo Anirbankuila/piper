@@ -63,7 +63,10 @@ const UploadDoc = () => {
             />
             <Text style={Styles.uploadHeading}>Scan Document</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={Styles.eachUpload} onPress={() => navigateScreen(Routes.documentUpload)}>
+          <TouchableOpacity
+            style={Styles.eachUpload}
+            onPress={() => navigateScreen(Routes.documentUpload)}
+          >
             <Image
               source={require("../../../assets/icons/send.png")}
               style={Styles.eachIcon}
@@ -85,7 +88,10 @@ const UploadDoc = () => {
               </View>
               <Text style={Styles.catTitle}>Medical</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={Styles.eachDoc} onPress={() => navigateScreen(Routes.schoolDocumments)}>
+            <TouchableOpacity
+              style={Styles.eachDoc}
+              onPress={() => navigateScreen(Routes.schoolDocuments)}
+            >
               <View style={Styles.eachDocIcon}>
                 <Image
                   source={require("../../../assets/icons/briefcase.png")}
@@ -107,7 +113,7 @@ const UploadDoc = () => {
           imageStyle={{ borderRadius: 12 }}
           source={require("../../../assets/images/background.png")} // ✅ your background image
           style={Styles.background}
-          resizeMode="cover" // or "contain", "stretch", "repeat", "center"
+          resizeMode="cover"
         >
           <View style={Styles.leftContent}>
             <Image
@@ -144,11 +150,9 @@ const Styles = StyleSheet.create({
   },
   topSec: {
     position: "relative",
-    // marginTop: -15,
     width: "100%",
     backgroundColor: "#D2FFF6",
     zIndex: 9,
-    // paddingBottom:100
   },
   topSecLeft: {
     padding: 24,

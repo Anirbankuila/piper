@@ -18,9 +18,12 @@ interface ReminderOption {
   id: string;
   label: string;
 }
-
+interface RBSheetRef {
+  close: () => void;
+  open: () => void;
+}
 const DocumentScreen: React.FC = () => {
-  const rbSheetRef = useRef<typeof RBSheet>(null);
+  const rbSheetRef = useRef<RBSheetRef>(null);
 
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [selectedReminder, setSelectedReminder] =
@@ -124,7 +127,6 @@ const DocumentScreen: React.FC = () => {
           ref={rbSheetRef}
           height={250}
           openDuration={250}
-          closeOnDragDown={true}
           customStyles={{
             container: {
               borderTopLeftRadius: 20,

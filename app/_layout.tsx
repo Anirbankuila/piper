@@ -343,6 +343,21 @@ const screens = [
       statusBarStyle: "dark" as const,
     },
   },
+  {
+    name: Routes.documentCategory,
+    options: {
+      headerShown: true,
+      title: "Document Details",
+      headerBackTitle: "",
+      headerBackTitleVisible: false,
+      headerShadowVisible: false,
+      headerStyle: {
+        backgroundColor: "transparent",
+      },
+      headerTintColor: "#000",
+      statusBarStyle: "dark" as const,
+    },
+  },
 ];
 
 export default function RootLayout() {
