@@ -17,6 +17,8 @@ const Routes = {
   NEWAPPOINTMENT: "screens/AddNewAppointment/NewAppointment",
   PATIENTDETAILS: "screens/EnterPatientDetails/PatientDetails",
   UPLOADDOCS: "screens/DocumentUpload/DocumentUpload",
+  DOCSCAN: "screens/DocumentScanner/DocumentScanner",
+  DOCDETAILS: "screens/DocumentDetails/DocumentDetails",
 
 } as const;
 

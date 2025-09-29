@@ -7,40 +7,9 @@ import { router } from "expo-router";
 import React, { useState } from "react";
 import { Image, ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const logs = [
-  {
-    id: 1,
-    title: "Refused to take meds",
-    date: "23 Sep 2025 • 09:23 AM",
-    status: "Meltdown",
-    savedTo: "Medical Summary",
-    icon: require("../../../assets/images/sadmode.png"),
-    type: "danger", // 🔴 red indicator
-  },
-  {
-    id: 2,
-    title: "Self initiated play date",
-    date: "23 Sep 2025 • 09:23 AM",
-    status: "Social Win",
-    savedTo: "Education Summary",
-    icon: require("../../../assets/images/play.png"),
-    type: "success", // 🟢 green indicator
-  },
-];
 
 const UploadDoc = () => {
   const [visible, setVisible] = useState(false);
-  const handleLogPress = (log: any) => {
-    router.push({
-      pathname: "/screens/LogSummary/[id]",
-      params: {
-        id: log.id,
-        title: log.title,
-        date: log.date,
-        status: log.status,
-      },
-    });
-  };
 
   return (
     <ScrollView
@@ -72,7 +41,7 @@ const UploadDoc = () => {
 
         {/* Logs List */}
         <View style={Styles.uploadSec}>
-          <TouchableOpacity style={Styles.eachUpload}>
+          <TouchableOpacity style={Styles.eachUpload} onPress={() => router.push("/screens/DocumentScanner/DocumentScanner")}>
             <Image
               source={require("../../../assets/icons/scan.png")}
               style={Styles.eachIcon}
@@ -153,7 +122,6 @@ const UploadDoc = () => {
     </ScrollView>
   );
 };
-
 export default UploadDoc;
 
 const Styles = StyleSheet.create({
