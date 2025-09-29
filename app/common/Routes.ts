@@ -26,6 +26,11 @@ const Routes = {
   documentScan: "screens/DocumentScanner/DocumentScanner",
   docDetails: "screens/DocumentDetails/DocumentDetails",
   orderGeneticTest: "screens/OrderGeneticTest/OrderGeneticTest",
+  documentSuccess: "screens/DocumentSuccess/DocumentSuccess",
+  documentUpload: "screens/UploadDocuments/UploadDocuments",
+  documentCategory: "screens/DocumentCategory/DocumentCategory",
+  schoolDocuments: "screens/SchoolDocuments/SchoolDocuments",
+  shareSuccess: "screens/ShareSuccess/ShareSuccess",
 };
 
 export function navigateScreen(

@@ -63,7 +63,7 @@ const UploadDoc = () => {
             />
             <Text style={Styles.uploadHeading}>Scan Document</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={Styles.eachUpload}>
+          <TouchableOpacity style={Styles.eachUpload} onPress={() => navigateScreen(Routes.documentUpload)}>
             <Image
               source={require("../../../assets/icons/send.png")}
               style={Styles.eachIcon}
@@ -85,7 +85,7 @@ const UploadDoc = () => {
               </View>
               <Text style={Styles.catTitle}>Medical</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={Styles.eachDoc}>
+            <TouchableOpacity style={Styles.eachDoc} onPress={() => navigateScreen(Routes.schoolDocumments)}>
               <View style={Styles.eachDocIcon}>
                 <Image
                   source={require("../../../assets/icons/briefcase.png")}

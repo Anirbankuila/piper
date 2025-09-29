@@ -13,7 +13,7 @@ export default StyleSheet.create({
   radioCircle: {
     height: 16,
     width: 16,
-    borderRadius: "50%",
+    borderRadius: 8,
     borderWidth: 1,
     borderColor: "#757575",
     alignItems: "center",

@@ -53,7 +53,7 @@ const DocumentScanner = () => {
                 <View style={{ width: "100%", alignItems: "center" }}>
                     <Image source={{ uri: capturedImage }} style={styles.preview} resizeMode="contain" />
                     <View style={styles.buttonRow}>
-                        <CommonButton title="Save" style={styles.saveBtn} onPress={saveImage} />
+                        <CommonButton title="Save" textStyle={styles.saveText} style={styles.saveBtn} onPress={saveImage} />
                         <CommonButton title="Retake" style={styles.retakeBtn} onPress={retakeImage} />
                     </View>
                 </View>
@@ -96,6 +96,9 @@ const styles = StyleSheet.create({
     },
     saveBtn: {
         backgroundColor: Colors.black,
+        color: '#fff'
+    },
+    saveText: {
         color: '#fff'
     },
     btnText: {
