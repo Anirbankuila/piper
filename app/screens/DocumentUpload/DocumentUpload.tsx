@@ -1,12 +1,19 @@
+import Routes, { navigateScreen } from "@/app/common/Routes";
 import Divider from "@/app/components/HomePageDivider/Divider";
 import PiperModal from "@/app/components/PiperModal/PiperModal";
 import Searchbar from "@/app/components/Searchbar/Searchbar";
 import { Colors, Fonts } from "@/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
 import React, { useState } from "react";
-import { Image, ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
+import {
+  Image,
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 const UploadDoc = () => {
   const [visible, setVisible] = useState(false);
@@ -20,15 +27,19 @@ const UploadDoc = () => {
         {/* Top Section */}
         <View style={Styles.topSec}>
           <View style={Styles.topSecLeft}>
-            <Searchbar onMicPress={() => setVisible(true)} containerStyle={Styles.docContainer} placeholderText="Search documents" />
+            <Searchbar
+              onMicPress={() => setVisible(true)}
+              containerStyle={Styles.docContainer}
+              placeholderText="Search documents"
+            />
             <PiperModal visible={visible} onClose={() => setVisible(false)} />
             <View style={Styles.headingRow}>
               <View style={Styles.chatTriangle} />
               <Text style={Styles.topSecHeading}>
-                From Health reports to IEP's, if it matters, it belongs here!
+                From Health reports to IEP&apos;s, if it matters, it belongs
+                here!
               </Text>
             </View>
-
           </View>
           <View style={Styles.bgImage}>
             <Image
@@ -41,15 +52,16 @@ const UploadDoc = () => {
 
         {/* Logs List */}
         <View style={Styles.uploadSec}>
-          <TouchableOpacity style={Styles.eachUpload} onPress={() => router.push("/screens/DocumentScanner/DocumentScanner")}>
+          <TouchableOpacity
+            style={Styles.eachUpload}
+            onPress={() => navigateScreen(Routes.documentScan)}
+          >
             <Image
               source={require("../../../assets/icons/scan.png")}
               style={Styles.eachIcon}
               resizeMode="cover"
             />
-            <Text style={Styles.uploadHeading}>
-              Scan Document
-            </Text>
+            <Text style={Styles.uploadHeading}>Scan Document</Text>
           </TouchableOpacity>
           <TouchableOpacity style={Styles.eachUpload}>
             <Image
@@ -57,9 +69,7 @@ const UploadDoc = () => {
               style={Styles.eachIcon}
               resizeMode="cover"
             />
-            <Text style={Styles.uploadHeading}>
-              Upload Document
-            </Text>
+            <Text style={Styles.uploadHeading}>Upload Document</Text>
           </TouchableOpacity>
         </View>
         <View style={Styles.viewDocuments}>
@@ -72,7 +82,6 @@ const UploadDoc = () => {
                   style={Styles.icon}
                   resizeMode="cover"
                 />
-
               </View>
               <Text style={Styles.catTitle}>Medical</Text>
             </TouchableOpacity>
@@ -106,7 +115,9 @@ const UploadDoc = () => {
               style={Styles.athenaLogo}
               resizeMode="cover"
             />
-            <Text style={Styles.adText}>For those who have an {'\n'}athenahealth account</Text>
+            <Text style={Styles.adText}>
+              For those who have an {"\n"}athenahealth account
+            </Text>
             <TouchableOpacity style={Styles.addBtn}>
               <Text style={Styles.addBtnText}>Synch your records now!</Text>
             </TouchableOpacity>
@@ -116,7 +127,6 @@ const UploadDoc = () => {
             style={Styles.addPiper}
             resizeMode="cover"
           />
-
         </ImageBackground>
       </View>
     </ScrollView>
@@ -145,25 +155,25 @@ const Styles = StyleSheet.create({
     zIndex: 9,
   },
   docContainer: {
-    borderColor: Colors.strokeColor
+    borderColor: Colors.strokeColor,
   },
   bgImage: {
-    justifyContent: 'flex-end',
-    textAlign: 'right',
-    marginTop: -90
+    justifyContent: "flex-end",
+    textAlign: "right",
+    marginTop: -90,
   },
   topBg: {
     // position: "absolute",
     width: 260,
-    marginLeft: 'auto',
+    marginLeft: "auto",
     height: 170,
     zIndex: 0,
-    justifyContent: 'flex-end'
+    justifyContent: "flex-end",
   },
   headingRow: {
     flexDirection: "row",
     alignItems: "center",
-    width: '71%'
+    width: "71%",
     // keep the same left padding as topSecLeft if needed
   },
 
@@ -174,15 +184,14 @@ const Styles = StyleSheet.create({
     borderTopWidth: 8,
     borderBottomWidth: 6,
     borderRadius: 8,
-    borderLeftWidth: 18,             // length of the triangle
+    borderLeftWidth: 18, // length of the triangle
     borderTopColor: "transparent",
     borderBottomColor: "transparent",
     borderLeftColor: Colors.bg, // triangle color (matches heading color)
-    position: 'absolute',
+    position: "absolute",
     right: -10,
     transform: [{ rotate: "20deg" }],
-    bottom: -3
-
+    bottom: -3,
   },
 
   topSecHeading: {
@@ -193,60 +202,59 @@ const Styles = StyleSheet.create({
     color: Colors.primary,
     backgroundColor: Colors.bg,
     borderRadius: 12,
-    width: '100%'
+    width: "100%",
   },
   uploadSec: {
-    position: 'relative',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    position: "relative",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     paddingHorizontal: 24,
     paddingTop: 28,
-    gap: 8
+    gap: 8,
   },
   eachUpload: {
     width: 160,
     height: 160,
     borderRadius: 10,
     backgroundColor: Colors.surface_bg,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center'
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
   eachIcon: {
     width: 42,
-    height: 42
+    height: 42,
   },
   uploadHeading: {
-    color: '#1E1E1E',
+    color: "#1E1E1E",
     fontSize: 14,
     fontFamily: Fonts.Medium,
-    marginTop: 10
+    marginTop: 10,
   },
   viewDocuments: {
-    position: 'relative'
+    position: "relative",
   },
   viewDocumentsWrap: {
-    position: 'relative',
+    position: "relative",
     paddingHorizontal: 24,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    paddingBottom:10
-
+    justifyContent: "space-between",
+    flexDirection: "row",
+    paddingBottom: 10,
   },
   eachDoc: {
-    width: 'auto',
-    justifyContent: 'center',
-    alignItems: 'center'
+    width: "auto",
+    justifyContent: "center",
+    alignItems: "center",
   },
   eachDocIcon: {
     width: 52,
     height: 52,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: Colors.surface_bg,
-    borderRadius: 26
+    borderRadius: 26,
   },
   icon: {
     width: 28,
@@ -256,28 +264,28 @@ const Styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: Fonts.Medium,
     color: Colors.text,
-    marginTop: 5
+    marginTop: 5,
   },
   background: {
     flex: 1,
     paddingHorizontal: 19,
     paddingVertical: 23,
     margin: 16,
-    borderRadius: 12
+    borderRadius: 12,
   },
   leftContent: {
-    position: 'relative'
+    position: "relative",
   },
   athenaLogo: {
     width: 126,
     height: 14,
-    marginBottom: 8
+    marginBottom: 8,
   },
   adText: {
     fontSize: 14,
     fontFamily: Fonts.SemiBold,
     color: Colors.bg,
-    lineHeight: 19
+    lineHeight: 19,
   },
   addBtn: {
     paddingHorizontal: 8,
@@ -285,7 +293,7 @@ const Styles = StyleSheet.create({
     borderRadius: 6,
     backgroundColor: Colors.bg,
     width: 140,
-    marginTop: 10
+    marginTop: 10,
   },
   addBtnText: {
     fontSize: 10,
@@ -293,12 +301,10 @@ const Styles = StyleSheet.create({
     color: Colors.primary,
   },
   addPiper: {
-    position: 'absolute',
+    position: "absolute",
     width: 100,
     height: 132,
     right: 40,
-    bottom: 0
-  }
-
-
+    bottom: 0,
+  },
 });
