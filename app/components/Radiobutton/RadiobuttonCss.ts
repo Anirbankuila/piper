@@ -28,7 +28,7 @@ export default StyleSheet.create({
   optionText: {
     fontSize: 16,
     marginLeft: 12,
-    fontFamily: Fonts.medium,
+    fontFamily: Fonts.Medium,
     color: "#1E1E1E",
     margin: 0,
     paddingRight: 16,
