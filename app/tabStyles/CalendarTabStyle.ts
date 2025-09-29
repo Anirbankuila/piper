@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   rowLeft: {
     flex: 1,
   },
-  dateText: { fontSize: 16, fontFamily: Fonts.Bold },
+  dateText: { fontSize: 14, fontFamily: Fonts.Bold },
   detailsRow: {
     marginTop: 5,
     flexDirection: "row",
@@ -93,14 +93,14 @@ const styles = StyleSheet.create({
     marginBottom: 3,
   },
   doctorNameText: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: Fonts.Bold,
     color: Colors.text,
     lineHeight: 19,
     marginBottom: 3,
   },
   treatmentNameText: {
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: Fonts.Regular,
     color: Colors.grey,
     letterSpacing: 0.75,

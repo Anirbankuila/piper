@@ -1,9 +1,10 @@
+import Routes, { navigateScreen } from "@/app/common/Routes";
 import CustomMultiSelect from "@/app/components/CustomCheckbox/CustomCheckbox";
 import DatePicker from "@/app/components/Datepicker/DatePicker";
 import GenderSelect from "@/app/components/GenderSelect/GenderSelect";
 import { BlurView } from "expo-blur";
 import * as ImagePicker from "expo-image-picker";
-import { router, useNavigation } from "expo-router";
+import { useNavigation } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
@@ -96,15 +97,17 @@ const AboutScreen: React.FC = () => {
     ]);
   };
 
-
-  const updateChildForm = (childId: number, field: keyof ChildForm, value: any) => {
+  const updateChildForm = (
+    childId: number,
+    field: keyof ChildForm,
+    value: any
+  ) => {
     setChildForms((prevForms) =>
       prevForms.map((child) =>
         child.id === childId ? { ...child, [field]: value } : child
       )
     );
   };
-
 
   return (
     <ScrollView
@@ -181,12 +184,12 @@ const AboutScreen: React.FC = () => {
               <CustomMultiSelect
                 optionStyle={Styles.selectBox}
                 options={options}
-                selectedValues={child.diagnosis}   // must be an array
-                onSelect={(vals: (string | number)[]) =>
-                  updateChildForm(child.id, "diagnosis", vals)  // pass array back
+                selectedValues={child.diagnosis} // must be an array
+                onSelect={
+                  (vals: (string | number)[]) =>
+                    updateChildForm(child.id, "diagnosis", vals) // pass array back
                 }
               />
-
             </View>
 
             <CommonInput
@@ -215,9 +218,7 @@ const AboutScreen: React.FC = () => {
             title="Continue"
             textStyle={Styles.buttonText}
             style={Styles.button}
-            onPress={() =>
-              router.push("/screens/DocumentScreen/DocumentScreen")
-            }
+            onPress={() => navigateScreen(Routes.document)}
           />
         </View>
       </View>

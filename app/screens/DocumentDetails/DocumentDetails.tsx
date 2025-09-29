@@ -4,20 +4,22 @@ import { Colors, Fonts } from "@/constants/theme";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    KeyboardAvoidingView,
-    Platform,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 const DocumentDetails = () => {
   const router = useRouter();
 
   const [docName, setDocName] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string | number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<
+    string | number | null
+  >(null);
 
   const categories = [
     { id: 1, label: "Medical" },
@@ -31,11 +33,10 @@ const DocumentDetails = () => {
       return;
     }
 
-    const categoryLabel = categories.find(cat => cat.id === selectedCategory)?.label;
+    const categoryLabel = categories.find(
+      (cat) => cat.id === selectedCategory
+    )?.label;
     console.log("Document saved:", { docName, category: categoryLabel });
-
-    // Navigate to next screen
-    // router.push("/screens/NextScreen");
   };
 
   return (

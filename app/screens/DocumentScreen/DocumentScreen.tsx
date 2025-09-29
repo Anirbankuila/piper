@@ -1,4 +1,4 @@
-import { router } from "expo-router";
+import Routes, { navigateScreen } from "@/app/common/Routes";
 import React, { useRef, useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { ChevronDownIcon } from "react-native-heroicons/outline";
@@ -152,7 +152,7 @@ const DocumentScreen: React.FC = () => {
             title="Continue"
             textStyle={Styles.buttonText}
             style={Styles.button}
-            onPress={() => router.push("/screens/ChildTeam/ChildTeam")}
+            onPress={() => navigateScreen(Routes.childTeam)}
           />
         </View>
       </View>

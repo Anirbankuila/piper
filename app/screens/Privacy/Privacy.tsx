@@ -1,4 +1,4 @@
-import { router } from "expo-router";
+import Routes, { navigateScreen } from "@/app/common/Routes";
 import React from "react";
 import { ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -80,8 +80,8 @@ const Privacy = () => {
           <Text style={Styles.paragraph}>
             By proceeding, you certify to POD Health that you have the legal
             authority as parent or legal guardian to submit the information you
-            enter into POD Health's website or application on behalf of your
-            child.
+            enter into POD Health&apos;s website or application on behalf of
+            your child.
           </Text>
           <Text style={Styles.paragraph}>
             By proceeding, you acknowledge that POD Health is not responsible
@@ -97,7 +97,7 @@ const Privacy = () => {
           title="Agree"
           textStyle={Styles.buttonText}
           style={Styles.button}
-          onPress={() => router.push("/screens/AboutScreen/AboutScreen")}
+          onPress={() => navigateScreen(Routes.about)}
         />
       </View>
     </View>

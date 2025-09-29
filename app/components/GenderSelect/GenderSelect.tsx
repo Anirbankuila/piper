@@ -1,34 +1,58 @@
-import React, { useRef } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useRef, useState } from "react";
+import {
+  StyleProp,
+  Text,
+  TextStyle,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { ChevronDownIcon } from "react-native-heroicons/outline";
 import RBSheet from "react-native-raw-bottom-sheet";
-import { Colors, Fonts } from "../../../constants/theme";
-
-const GenderSelect = ({ value, onChange }) => {
-  const refRBSheet = useRef();
-  const options = ["Male", "Female", "Other"];
-
+import { Colors } from "../../../constants/theme";
+import styles from "./GenderSelect.style";
+interface GenderSelectProps {
+  value?: string;
+  onChange: (value: string) => void;
+  placeHolderText?: string;
+  style?: StyleProp<TextStyle>;
+  options?: string[];
+}
+interface RBSheetRef {
+  open: () => void;
+  close: () => void;
+}
+const GenderSelect: React.FC<GenderSelectProps> = ({
+  value,
+  onChange,
+  placeHolderText = "Select Gender",
+  style,
+  options = ["Male", "Female", "Other"],
+}) => {
+  const refRBSheet = useRef<RBSheetRef>(null);
+  const [selectedValue, setSelectedValue] = useState<string | undefined>(
+    value === "" ? undefined : value
+  );
   return (
     <View>
       {/* Selected Value */}
       <TouchableOpacity
         style={styles.inputBox}
-        onPress={() => refRBSheet.current.open()}
+        onPress={() => refRBSheet?.current?.open()}
       >
         <Text
-          style={[
-            value ? styles.selectedText : styles.placeholderText, // ✅ conditional style
-          ]}
+          style={[selectedValue ? styles.selectedText : styles.placeholderText]}
         >
-          {value || "Select Gender"}
+          {selectedValue ?? placeHolderText}
         </Text>
-        <ChevronDownIcon style={styles.inputBoxIcon} />
+        <ChevronDownIcon
+          size={16}
+          color={selectedValue ? Colors.black : Colors.grey}
+        />
       </TouchableOpacity>
 
       {/* Bottom Sheet */}
       <RBSheet
         ref={refRBSheet}
-        closeOnDragDown={true}
         closeOnPressMask={true}
         height={250}
         customStyles={{
@@ -37,14 +61,15 @@ const GenderSelect = ({ value, onChange }) => {
         }}
       >
         <View style={styles.sheetContent}>
-          <Text style={styles.sheetTitle}>Choose Gender</Text>
+          <Text style={[styles.sheetTitle, style]}>Choose Gender</Text>
           {options.map((opt, index) => (
             <TouchableOpacity
               key={index}
               style={styles.option}
               onPress={() => {
                 onChange(opt);
-                refRBSheet.current.close();
+                setSelectedValue(opt);
+                refRBSheet?.current?.close();
               }}
             >
               <Text style={{ fontSize: 16 }}>{opt}</Text>
@@ -57,46 +82,3 @@ const GenderSelect = ({ value, onChange }) => {
 };
 
 export default GenderSelect;
-
-const styles = StyleSheet.create({
-  inputBox: {
-    height: 50,
-    width: "100%",
-    borderWidth: 1,
-    borderColor: Colors.strokeColor,
-    borderRadius: 12,
-    paddingHorizontal: 12,
-    fontSize: 16,
-    fontFamily: Fonts.bold,
-    color: Colors.text,
-    marginVertical: 8,
-    alignItems: "center",
-    justifyContent: "space-between",
-    flexDirection: "row",
-  },
-  sheetContent: {
-    padding: 20,
-  },
-  sheetTitle: {
-    fontSize: 18,
-    fontWeight: "600",
-    marginBottom: 15,
-  },
-  option: {
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: "#eee",
-  },
-  inputBoxIcon: {
-    fontSize: 16,
-    color: Colors.text,
-  },
-  placeholderText: {
-    color: "#aaaaaa",
-    fontSize: 16,
-  },
-  selectedText: {
-    fontSize: 16,
-    color: Colors.text,
-  },
-});

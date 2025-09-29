@@ -1,7 +1,6 @@
 import { Colors, Fonts } from "@/constants/theme";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { Image, ImageBackground } from "expo-image";
-import { router } from "expo-router";
 import React, { useState } from "react";
 import {
   ScrollView,
@@ -13,6 +12,7 @@ import {
 } from "react-native";
 import { ChevronDownIcon, PlusIcon } from "react-native-heroicons/outline";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Routes, { navigateScreen } from "../common/Routes";
 import Header from "../components/Header/Header";
 import Divider from "../components/HomePageDivider/Divider";
 import PiperModal from "../components/PiperModal/PiperModal";
@@ -239,7 +239,7 @@ export default function HomeTab() {
 
               {/* Arrow Button */}
               <TouchableOpacity
-                onPress={() => router.push('/screens/DocumentUpload/DocumentUpload')}
+                onPress={() => navigateScreen(Routes.uploadDoc)}
                 style={styles.navigateIconSection}
               >
                 <Ionicons name="chevron-forward" size={12} color="#000" />

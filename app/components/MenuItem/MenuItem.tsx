@@ -6,23 +6,15 @@ interface MenuItemProps {
   icon: React.ReactNode;
   title: string;
   onPress: () => void;
-  isLast?: boolean;
 }
-const MenuItem: React.FC<MenuItemProps> = ({
-  icon,
-  title,
-  onPress,
-  isLast = false,
-}) => (
-  <View style={[styles.menuItem, isLast && styles.menuItemLast]}>
+const MenuItem: React.FC<MenuItemProps> = ({ icon, title, onPress }) => (
+  <TouchableOpacity style={[styles.menuItem]} onPress={onPress}>
     <View style={styles.menuItemLeft}>
       <View style={styles.iconContainer}>{icon}</View>
       <Text style={styles.menuItemText}>{title}</Text>
     </View>
-    <TouchableOpacity style={styles.arrowButton} onPress={onPress}>
-      <ChevronRightIcon size={26} color={Colors.blue_link} />
-    </TouchableOpacity>
-  </View>
+    <ChevronRightIcon size={26} color={Colors.blue_link} />
+  </TouchableOpacity>
 );
 
 export default MenuItem;
@@ -40,7 +32,7 @@ const styles = StyleSheet.create({
   menuItemLast: {
     borderBottomWidth: 0,
     borderBottomColor: "#F3F5F7",
-    paddingHorizontal:24
+    paddingHorizontal: 24,
   },
   menuItemLeft: {
     flexDirection: "row",
@@ -52,7 +44,7 @@ const styles = StyleSheet.create({
   },
   menuItemText: {
     fontSize: 14,
-    color: '#141514',
+    color: Colors.black,
     fontFamily: Fonts.Medium,
     flex: 1,
   },
