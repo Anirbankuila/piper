@@ -4,12 +4,12 @@ import { Colors, Fonts } from "../../../constants/theme";
 const Styles = StyleSheet.create({
   keyboardAvoiding: {
     flex: 1,
-    flexWrap: "wrap-reverse",
     backgroundColor: "#fff", // full white background
   },
   container: {
     backgroundColor: Colors.bg,
-    height: "100%",
+    justifyContent:'space-between',
+    flexGrow:1
   },
   title: {
     fontSize: 24,

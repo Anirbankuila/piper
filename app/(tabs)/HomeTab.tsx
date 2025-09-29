@@ -1,6 +1,7 @@
 import { Colors, Fonts } from "@/constants/theme";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { Image, ImageBackground } from "expo-image";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import {
   ScrollView,
@@ -237,9 +238,13 @@ export default function HomeTab() {
               </View>
 
               {/* Arrow Button */}
-              <TouchableOpacity style={styles.navigateIconSection}>
+              <TouchableOpacity
+                onPress={() => router.push('/screens/DocumentUpload/DocumentUpload')}
+                style={styles.navigateIconSection}
+              >
                 <Ionicons name="chevron-forward" size={12} color="#000" />
               </TouchableOpacity>
+
             </View>
           </View>
           <View style={styles.cardContainer}>

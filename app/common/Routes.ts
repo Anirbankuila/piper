@@ -16,6 +16,8 @@ const Routes = {
   CHATDETAILS: "screens/ChatDetails/ChatDetails",
   NEWAPPOINTMENT: "screens/AddNewAppointment/NewAppointment",
   PATIENTDETAILS: "screens/EnterPatientDetails/PatientDetails",
+  UPLOADDOCS: "screens/DocumentUpload/DocumentUpload",
+
 } as const;
 
 export default Routes;

@@ -1,25 +1,31 @@
 import { Colors, Fonts } from "@/constants/theme";
 import { Image } from "expo-image";
 import React from "react";
-import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
-interface searchBarInputProps {
+import { StyleSheet, TextInput, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native";
+
+interface SearchBarInputProps {
   onMicPress?: () => void;
+  placeholderText?: string; // placeholder prop
+  inputStyle?: TextStyle;   // custom style prop
+  containerStyle?: ViewStyle; // optional container style
 }
 
-const Searchbar: React.FC<searchBarInputProps> = ({
+const Searchbar: React.FC<SearchBarInputProps> = ({
   onMicPress,
-  ...searchBarInputProps
+  placeholderText = "Ask me anything!", // default placeholder
+  inputStyle,
+  containerStyle,
 }) => {
   return (
-    <View style={styles.searchContainer}>
+    <View style={[styles.searchContainer, containerStyle]}>
       <Image
         source={require("../../../assets/icons/search.png")}
         style={styles.searchIcon}
       />
 
       <TextInput
-        style={styles.searchInput}
-        placeholder="Ask me anything!"
+        style={[styles.searchInput, inputStyle]}
+        placeholder={placeholderText}
         placeholderTextColor={Colors.textLight}
       />
       <TouchableOpacity style={styles.voiceButton} onPress={onMicPress}>
@@ -43,7 +49,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 5,
     marginBottom: 20,
-    borderBlockColor: Colors.black,
+    borderColor: Colors.black,
     borderWidth: 1,
   },
   searchIcon: {
@@ -58,8 +64,8 @@ const styles = StyleSheet.create({
   },
   voiceButton: {
     padding: 5,
-    borderLeftWidth:1,
-    borderLeftColor:Colors.strokeColor
+    borderLeftWidth: 1,
+    borderLeftColor: Colors.strokeColor,
   },
   micIcon: {
     width: 23,

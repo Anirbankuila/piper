@@ -212,7 +212,23 @@ const screens = [
       statusBarStyle: "dark" as const,
     },
   },
+  {
+    name: Routes.UPLOADDOCS,
+    options: {
+      headerShown: true,
+      title: "Document Upload", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "#D2FFF6", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
 ];
+
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -225,8 +241,8 @@ export default function RootLayout() {
     return <ActivityIndicator size="large" style={{ flex: 1 }} />;
   }
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1 }} edges={["left", "right", "bottom"]}>
+    <SafeAreaProvider style={{backgroundColor:'#fff'}}>
+      <SafeAreaView style={{ flex: 1 , backgroundColor:'#fff' }} edges={["left", "right", "bottom"]}>
         <Stack initialRouteName="index">
           {screens.map((screen) => (
             <Stack.Screen
