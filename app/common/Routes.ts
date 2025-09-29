@@ -22,6 +22,9 @@ const Routes = {
   patientDetails: "screens/EnterPatientDetails/PatientDetails",
   updateProfile: "screens/UpdateProfile/UpdateProfile",
   OrderGeneticTest: "screens/OrderGeneticTest/OrderGeneticTest",
+  uploadDoc: "screens/DocumentUpload/DocumentUpload",
+  documentScan: "screens/DocumentScanner/DocumentScanner",
+  docDetails: "screens/DocumentDetails/DocumentDetails",
 };
 
 export function navigateScreen(
