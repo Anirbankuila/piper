@@ -326,7 +326,7 @@ export default function HomeTab() {
               </View>
 
               {/* Arrow Button */}
-              <TouchableOpacity style={styles.navigateIconSection}>
+              <TouchableOpacity style={styles.navigateIconSection} onPress={() => navigateScreen(Routes.talkToDoctor)}>
                 <Ionicons name="chevron-forward" size={12} color="#000" />
               </TouchableOpacity>
             </View>

@@ -31,6 +31,7 @@ const Routes = {
   documentCategory: "screens/DocumentCategory/DocumentCategory",
   schoolDocuments: "screens/SchoolDocuments/SchoolDocuments",
   shareSuccess: "screens/ShareSuccess/ShareSuccess",
+  talkToDoctor: "screens/TalkToDoctor/TalkToDoctor",
 };
 
 export function navigateScreen(
