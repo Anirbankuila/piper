@@ -11,7 +11,7 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { navigateScreen } from "../common/Routes";
+import Routes, { navigateScreen } from "../common/Routes";
 import Header from "../components/Header/Header";
 import PiperModal from "../components/PiperModal/PiperModal";
 import PiperSearch from "../components/PiperSearch/PiperSearch";

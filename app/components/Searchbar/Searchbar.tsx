@@ -1,13 +1,22 @@
 import { Colors, Fonts } from "@/constants/theme";
 import { Image } from "expo-image";
 import React from "react";
-import { StyleSheet, TextInput, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native";
+import {
+  StyleSheet,
+  TextInput,
+  TextStyle,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
 
 interface SearchBarInputProps {
   onMicPress?: () => void;
   placeholderText?: string; // placeholder prop
-  inputStyle?: TextStyle;   // custom style prop
+  inputStyle?: TextStyle; // custom style prop
   containerStyle?: ViewStyle; // optional container style
+  iconTintColor?: string;
+  showMicIcon?: boolean;
 }
 
 const Searchbar: React.FC<SearchBarInputProps> = ({
@@ -15,12 +24,15 @@ const Searchbar: React.FC<SearchBarInputProps> = ({
   placeholderText = "Ask me anything!", // default placeholder
   inputStyle,
   containerStyle,
+  iconTintColor,
+  showMicIcon = true,
 }) => {
   return (
     <View style={[styles.searchContainer, containerStyle]}>
       <Image
         source={require("../../../assets/icons/search.png")}
         style={styles.searchIcon}
+        tintColor={iconTintColor}
       />
 
       <TextInput
@@ -28,12 +40,14 @@ const Searchbar: React.FC<SearchBarInputProps> = ({
         placeholder={placeholderText}
         placeholderTextColor={Colors.textLight}
       />
-      <TouchableOpacity style={styles.voiceButton} onPress={onMicPress}>
-        <Image
-          source={require("../../../assets/icons/microphone.png")}
-          style={styles.micIcon}
-        />
-      </TouchableOpacity>
+      {showMicIcon && (
+        <TouchableOpacity style={styles.voiceButton} onPress={onMicPress}>
+          <Image
+            source={require("../../../assets/icons/microphone.png")}
+            style={styles.micIcon}
+          />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

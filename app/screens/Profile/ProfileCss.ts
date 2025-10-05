@@ -2,14 +2,11 @@ import { StyleSheet } from "react-native";
 import { Colors, Fonts } from "../../../constants/theme";
 
 const Styles = StyleSheet.create({
-  keyboardAvoiding: {
-    flex: 1,
-    backgroundColor: "#fff", // full white background
-  },
   container: {
     backgroundColor: Colors.bg,
-    justifyContent:'space-between',
-    flexGrow:1
+    justifyContent: "space-between",
+    flexGrow: 1,
+    gap: 10,
   },
   title: {
     fontSize: 24,
@@ -45,12 +42,11 @@ const Styles = StyleSheet.create({
     color: Colors.surface,
   },
   content: {
-    flex: 1,
     padding: 24,
   },
   passwordWrapper: {
     position: "relative",
-    marginVertical: 10,
+    marginBottom: 10,
   },
   iconWrapper: {
     position: "absolute",

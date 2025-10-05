@@ -7,7 +7,14 @@ import { Colors, Fonts } from "@/constants/theme";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import React, { useState } from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { PlusCircleIcon } from "react-native-heroicons/outline";
 import { launchImageLibrary } from "react-native-image-picker";
 import Styles from "./UpdateProfile.style";
@@ -92,87 +99,94 @@ const UpdateProfile = () => {
   };
 
   return (
-    <ScrollView
-      contentContainerStyle={Styles.container}
-      showsVerticalScrollIndicator={false}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1 }}
     >
-      {childForms.map((child) => (
-        <View key={child.id} style={Styles.formWrap}>
-          {child.imageUri && <Image source={{ uri: child.imageUri }} />}
+      <ScrollView
+        contentContainerStyle={Styles.container}
+        showsVerticalScrollIndicator={false}
+      >
+        {childForms.map((child) => (
+          <View key={child.id} style={Styles.formWrap}>
+            {child.imageUri && <Image source={{ uri: child.imageUri }} />}
 
-          <TouchableOpacity
-            style={Styles.uploadPhoto}
-            onPress={() => pickImage(child.id)}
-          >
-            <View style={Styles.uploadIconWrap}>
-              <Image
-                source={require("../../../assets/icons/send-square.png")}
-                style={Styles.uploadIcon}
-              />
-            </View>
-            <Text style={Styles.uploadText}>Update Photo</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={Styles.uploadPhoto}
+              onPress={() => pickImage(child.id)}
+            >
+              <View style={Styles.uploadIconWrap}>
+                <Image
+                  source={require("../../../assets/icons/send-square.png")}
+                  style={Styles.uploadIcon}
+                />
+              </View>
+              <Text style={Styles.uploadText}>Update Photo</Text>
+            </TouchableOpacity>
 
-          <CommonInput
-            placeholder="Child's Name"
-            style={Styles.eachInput}
-            value={child.name}
-            onChangeText={(text) => updateChildForm(child.id, "name", text)}
-          />
-          <CommonInput
-            placeholder="Email"
-            style={Styles.eachInput}
-            value={child.email || ""}
-            onChangeText={(text) => updateChildForm(child.id, "email", text)}
-          />
-          <CommonInput
-            placeholder="Mobile Number"
-            style={Styles.eachInput}
-            value={child.phone || ""}
-            keyboardType="phone-pad"
-            onChangeText={(text) => updateChildForm(child.id, "phone", text)}
-          />
+            <CommonInput
+              placeholder="Child's Name"
+              style={Styles.eachInput}
+              value={child.name}
+              onChangeText={(text) => updateChildForm(child.id, "name", text)}
+            />
+            <CommonInput
+              placeholder="Email"
+              style={Styles.eachInput}
+              value={child.email || ""}
+              onChangeText={(text) => updateChildForm(child.id, "email", text)}
+            />
+            <CommonInput
+              placeholder="Mobile Number"
+              style={Styles.eachInput}
+              value={child.phone || ""}
+              keyboardType="phone-pad"
+              onChangeText={(text) => updateChildForm(child.id, "phone", text)}
+            />
 
-          <Text style={Styles.selectText}>
-            What is the medical diagnosis of {"\n"}your child? (Choose all that
-            apply)
-          </Text>
-          <CustomMultiSelect
-            optionStyle={Styles.selectBox}
-            options={options}
-            selectedValues={child.diagnosis} // must be an array
-            onSelect={
-              (vals: (string | number)[]) =>
-                updateChildForm(child.id, "diagnosis", vals as string[]) // pass array back
-            }
-          />
-          <DatePicker placeHolderText="Date of Birth" />
-          <GenderSelect
-            value={child.gender || ""}
-            placeHolderText="Child's Gender"
-            style={{ fontSize: 14, fontFamily: Fonts.Regular }}
-            onChange={(val: string) => updateChildForm(child.id, "gender", val)}
-          />
-          <CommonInput
-            placeholder="What is your child's superpower?"
-            style={Styles.eachInput}
-            value={child.name}
-            onChangeText={(text) => updateChildForm(child.id, "name", text)}
-          />
-        </View>
-      ))}
+            <Text style={Styles.selectText}>
+              What is the medical diagnosis of {"\n"}your child? (Choose all
+              that apply)
+            </Text>
+            <CustomMultiSelect
+              optionStyle={Styles.selectBox}
+              options={options}
+              selectedValues={child.diagnosis} // must be an array
+              onSelect={
+                (vals: (string | number)[]) =>
+                  updateChildForm(child.id, "diagnosis", vals as string[]) // pass array back
+              }
+            />
+            <DatePicker placeHolderText="Date of Birth" />
+            <GenderSelect
+              value={child.gender || ""}
+              placeHolderText="Child's Gender"
+              style={{ fontSize: 14, fontFamily: Fonts.Regular }}
+              onChange={(val: string) =>
+                updateChildForm(child.id, "gender", val)
+              }
+            />
+            <CommonInput
+              placeholder="What is your child's superpower?"
+              style={Styles.eachInput}
+              value={child.name}
+              onChangeText={(text) => updateChildForm(child.id, "name", text)}
+            />
+          </View>
+        ))}
 
-      <TouchableOpacity style={Styles.addAnotherWrap} onPress={addChildForm}>
-        <PlusCircleIcon size={42} color={Colors.blue_link} />
-        <Text style={Styles.addAnotherText}>Add Another Child</Text>
-      </TouchableOpacity>
-      <CommonButton
-        title="Save Details"
-        textStyle={Styles.buttonText}
-        style={Styles.button}
-        onPress={() => router.back()}
-      />
-    </ScrollView>
+        <TouchableOpacity style={Styles.addAnotherWrap} onPress={addChildForm}>
+          <PlusCircleIcon size={42} color={Colors.blue_link} />
+          <Text style={Styles.addAnotherText}>Add Another Child</Text>
+        </TouchableOpacity>
+        <CommonButton
+          title="Save Details"
+          textStyle={Styles.buttonText}
+          style={Styles.button}
+          onPress={() => router.back()}
+        />
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 

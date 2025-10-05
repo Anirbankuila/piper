@@ -15,6 +15,10 @@ const Routes = {
   momentLog: "screens/MomentLog/MomentLog",
   tabs: "(tabs)",
   homeTab: "(tabs)/HomeTab",
+  lifeLogTab: "(tabs)/LifeLogTab",
+  piperTab: "(tabs)/PiperTab",
+  profileTab: "(tabs)/ProfileTab",
+  calendarTab: "(tabs)/CalendarTab",
   notification: "screens/Notification/Notification",
   chatList: "screens/ChatHistory/ChatHistory",
   chatDetails: "screens/ChatDetails/ChatDetails",
@@ -32,6 +36,7 @@ const Routes = {
   schoolDocuments: "screens/SchoolDocuments/SchoolDocuments",
   shareSuccess: "screens/ShareSuccess/ShareSuccess",
   talkToDoctor: "screens/TalkToDoctor/TalkToDoctor",
+  medicine: "screens/Medicine/Medicine",
 };
 
 export function navigateScreen(

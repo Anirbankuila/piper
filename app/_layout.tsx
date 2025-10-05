@@ -372,6 +372,13 @@ const screens = [
       statusBarStyle: "dark" as const,
     },
   },
+  {
+    name: Routes.medicine,
+    options: {
+      headerShown: false,
+      statusBarStyle: "dark" as const,
+    },
+  },
 ];
 
 export default function RootLayout() {

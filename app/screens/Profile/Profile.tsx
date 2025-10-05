@@ -19,9 +19,8 @@ const Profile = () => {
 
   return (
     <KeyboardAvoidingView
-      contentContainerStyle={Styles.keyboardAvoiding}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 64}
+      style={{ flex: 1 }}
     >
       <ScrollView
         contentContainerStyle={Styles.container}

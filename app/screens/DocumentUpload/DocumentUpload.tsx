@@ -81,7 +81,7 @@ const UploadDoc = () => {
             <TouchableOpacity style={Styles.eachDoc}>
               <View style={Styles.eachDocIcon}>
                 <Image
-                  source={require("../../../assets/icons/finger-cricle.png")}
+                  source={require("../../../assets/icons/finger-circle.png")}
                   style={Styles.icon}
                   resizeMode="cover"
                 />

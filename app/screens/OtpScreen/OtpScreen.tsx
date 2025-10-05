@@ -22,17 +22,6 @@ const OtpScreen = () => {
 
   return (
     <ScrollView contentContainerStyle={Styles.container}>
-      {/* Top Back Button */}
-      {/* <TouchableOpacity
-        style={Styles.backButton}
-        onPress={() => navigation.goBack()}
-      >
-        <Image
-          source={require("../../../assets/icons/back.png")}
-          style={{ width: 16, height: 16, resizeMode: "contain" }}
-        />
-      </TouchableOpacity> */}
-
       {/* Content */}
       <View style={Styles.content}>
         <Text style={Styles.title}>
