@@ -1,12 +1,16 @@
 import PiperModal from "@/app/components/PiperModal/PiperModal";
-import PiperSearch from "@/app/components/PiperSearch/PiperSearch";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useRef, useState } from "react";
 import { FlatList, Image, Share, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 // import Styles from "./TalkToDoctorCss";
+import { CountryPickerRef } from "@/app/components/CountryPickerBottomSheet/CountryPickerBottomSheet";
+import DocumentInput from "@/app/components/DocumentInput/DocumentInput";
 import { Colors, Fonts } from "@/constants/theme";
 import moment from "moment";
-
+interface Country {
+  name: string;
+  code: string;
+}
 interface ChatMessage {
   id: string;
   message: string;
@@ -35,6 +39,8 @@ const TalkToDoctor = () => {
   const [visible, setVisible] = useState(false);
   const [feedback, setFeedback] = useState<{ [key: string]: "like" | "dislike" | null }>({});
   const flatListRef = useRef<FlatList<ChatMessage>>(null);
+  const pickerRef = useRef<CountryPickerRef>(null);
+  const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
 
   const dummyDocs = [
     { id: "1", name: "Report Cards", desc: "This document contains school info.", uri: "https://example.com/report.pdf" },
@@ -137,10 +143,10 @@ const TalkToDoctor = () => {
         }
         onContentSizeChange={() => flatListRef.current?.scrollToEnd({ animated: true })}
       />
-
+     
       {/* Fixed search/mic input */}
       <View style={Styles.chatSearchWrap}>
-        <PiperSearch onMicPress={() => setVisible(true)} />
+        <DocumentInput onMicPress={() => setVisible(true)} />
         <PiperModal visible={visible} onClose={() => setVisible(false)} />
       </View>
     </View>
@@ -215,11 +221,11 @@ const Styles = StyleSheet.create({
   chatList: {
     flex: 1,
   },
-  chatDate:{
+  chatDate: {
     fontSize: 12,
     color: Colors.text,
-    paddingVertical:4,
-    paddingHorizontal:16,
+    paddingVertical: 4,
+    paddingHorizontal: 16,
     backgroundColor: Colors.surface_bg,
     borderRadius: 8,
     marginBottom: 8,
