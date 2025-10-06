@@ -37,6 +37,7 @@ const Routes = {
   shareSuccess: "screens/ShareSuccess/ShareSuccess",
   talkToDoctor: "screens/TalkToDoctor/TalkToDoctor",
   medicine: "screens/Medicine/Medicine",
+  medicineDetails: "screens/AddMedicineDetails/MedicineDetails",
 };
 
 export function navigateScreen(
