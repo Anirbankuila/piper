@@ -43,7 +43,7 @@ const PiperTab = () => {
         <Header backgroundColor={Colors.surface_bg} />
       </View>
       <View style={styles.chatHistory}>
-        <TouchableOpacity onPress={() => navigateScreen(Routes.chatHistory)}>
+        <TouchableOpacity onPress={() => navigateScreen(Routes.chatList)}>
           <Text style={styles.chatHistoryTitle}>Chat History</Text>
         </TouchableOpacity>
       </View>

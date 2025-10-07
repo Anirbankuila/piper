@@ -1,4 +1,5 @@
 import Routes, { navigateScreen } from "@/app/common/Routes";
+import AskPiper from "@/app/components/AskPiper/AskPiper";
 import CustomBottomTab from "@/app/components/CustomBottomTab/CustomBottomTab";
 import Header from "@/app/components/Header/Header";
 import MyReport from "@/app/components/MyReport/MyReport";
@@ -57,7 +58,7 @@ const MedicationNudge = () => {
             case "pgxReport":
                 return <PgxReport />;
             case "askPiper":
-                return <MyReport />;
+                return <AskPiper />;
             default:
                 return null;
         }

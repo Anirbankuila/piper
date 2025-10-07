@@ -25,6 +25,7 @@ const PiperSearch: React.FC<PiperSearch> = ({ onMicPress, ...textInputProps }) =
                 multiline={true}
                 onChangeText={setText}
                 placeholderTextColor={Colors.textLight}
+                returnKeyType="done"
                 {...textInputProps} // allow overriding props from parent
             />
             <TouchableOpacity style={styles.micBtn} onPress={onMicPress}>

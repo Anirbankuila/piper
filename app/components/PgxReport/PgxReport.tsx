@@ -1,10 +1,12 @@
 import { Colors, Fonts } from "@/constants/theme";
+import { Ionicons } from "@expo/vector-icons";
 import * as FileSystem from "expo-file-system/legacy";
 import { useRouter } from "expo-router";
 import * as Sharing from "expo-sharing";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
     Alert,
+    Dimensions,
     FlatList,
     Image,
     KeyboardAvoidingView,
@@ -14,6 +16,8 @@ import {
     TouchableOpacity,
     View
 } from "react-native";
+import RBSheet from "react-native-raw-bottom-sheet";
+
 const dummyDocs = [
     { id: "1", name: "Report Cards", desc: "This document contains school info.", uri: "https://example.com/report.pdf" },
     { id: "2", name: "IEP/School Testing", desc: "This document contains school info.", uri: "https://example.com/iep.pdf" },
@@ -23,10 +27,39 @@ const dummyDocs = [
     { id: "6", name: "Neuropsychological Reports", desc: "This document contains school info.", uri: "https://example.com/neuro.pdf" },
 ];
 
+type PgxTab = "Antipsychotics" | "SSRIs" | "Antidepressants";
+
+const pgxData: Record<PgxTab, { id: string; name: string; pmid: string; geneType: string; geneDesc: string; response: string; status: boolean }[]> = {
+    Antipsychotics: [
+        {
+            id: "1",
+            name: "Risperidone",
+            pmid: "19997080",
+            geneType: "Genotype",
+            geneDesc: "DRD3 (RS6280) C>T (CT)",
+            response: "Improved Clinical outcome",
+            status: true
+
+        },
+        { id: "2", name: "Olanzapine", pmid: "19997081", geneType: "Genotype", geneDesc: "DRD3 (RS6280) C>T (CT)", response: "Significant Interaction", status: false },
+    ],
+    SSRIs: [
+        { id: "3", name: "Fluoxetine", pmid: "19997082", geneType: "Genotype", geneDesc: "DRD3 (RS6280) C>T (CT)", response: "Improved Clinical outcome", status: true },
+        { id: "4", name: "Sertraline", pmid: "19997083", geneType: "Genotype", geneDesc: "DRD3 (RS6280) C>T (CT)", response: "Significant Interaction", status: true },
+    ],
+    Antidepressants: [
+        { id: "5", name: "Duloxetine", pmid: "19997084", geneType: "Genotype", geneDesc: "DRD3 (RS6280) C>T (CT)", response: "Improved Clinical outcome", status: true },
+        { id: "6", name: "Venlafaxine", pmid: "19997085", geneType: "Genotype", geneDesc: "DRD3 (RS6280) C>T (CT)", response: "Significant Interaction", status: true },
+    ],
+};
+
 const PgxReport = () => {
     const router = useRouter();
     const [searchText, setSearchText] = useState("");
     const [docs] = useState(dummyDocs);
+    const [activeTab, setActiveTab] = useState<PgxTab>("Antipsychotics");
+    const [selectedItem, setSelectedItem] = useState<any>(null);
+    const rbSheetRef = useRef<RBSheet | null>(null);
 
     const filteredDocs = docs.filter((doc) =>
         doc.name.toLowerCase().includes(searchText.toLowerCase())
@@ -37,7 +70,6 @@ const PgxReport = () => {
             const fileUri = FileSystem.cacheDirectory + reportName;
 
             const { uri } = await FileSystem.downloadAsync(reportUrl, fileUri);
-
             Alert.alert("Download Complete", `Report saved at: ${uri}`);
 
             if (await Sharing.isAvailableAsync()) {
@@ -48,9 +80,10 @@ const PgxReport = () => {
             Alert.alert("Download Failed", "Unable to download the report.");
         }
     };
-
-
-
+    const openSheet = (item: any) => {
+        setSelectedItem(item);
+        rbSheetRef.current?.open();
+    };
     return (
         <KeyboardAvoidingView
             style={{ flex: 1 }}
@@ -61,14 +94,18 @@ const PgxReport = () => {
                 <View style={styles.overviewWrapper}>
                     <Image source={require("../../../assets/icons/pipersmall.png")} style={styles.piperImg} />
                     <Text style={styles.topSecTitle}>Here is an overview</Text>
-                    <Text style={styles.overviewDesc}>David’s results show that there is an increase in hyperactivity since his last assessment. Next time you visit his doctor you may like to mention these results.</Text>
+                    <Text style={styles.overviewDesc}>
+                        David’s results show that there is an increase in hyperactivity since his last assessment.
+                        Next time you visit his doctor you may like to mention these results.
+                    </Text>
                 </View>
-
-
-                {/* Document List */}
                 <FlatList
-                    data={filteredDocs}
+                    data={pgxData[activeTab]}
                     keyExtractor={(item) => item.id}
+                    scrollEnabled={true}
+                    scrollToOverflowEnabled={true}
+                    screenReaderFocusable={true}
+                    showsVerticalScrollIndicator={false}
                     ListHeaderComponent={
                         <View style={styles.reportWrapper}>
                             <View style={styles.reportHeader}>
@@ -83,26 +120,107 @@ const PgxReport = () => {
                                 </TouchableOpacity>
                             </View>
 
+                            {/* Tabs */}
+                            <View style={styles.pgxTab}>
+                                {["Antipsychotics", "SSRIs", "Antidepressants"].map((tab) => (
+                                    <TouchableOpacity
+                                        key={tab}
+                                        onPress={() => setActiveTab(tab as PgxTab)}
+                                        style={[
+                                            styles.tabButton,
+                                            activeTab === tab && styles.activeTabButton,
+                                        ]}
+                                    >
+                                        <Text
+                                            style={[
+                                                styles.tabText,
+                                                activeTab === tab && styles.activeTabText,
+                                            ]}
+                                        >
+                                            {tab}
+                                        </Text>
+                                    </TouchableOpacity>
+                                ))}
+                            </View>
                         </View>
                     }
                     renderItem={({ item }) => (
-                        <View style={styles.docItem}>
-                            <View style={styles.docItemLeft}>
-                                <Image
-                                    source={require("../../../assets/icons/pdf.png")}
-                                    style={styles.pdfIcon}
-                                    resizeMode="contain"
-                                />
-                                <View style={styles.docItemContent}>
-                                    <Text style={styles.docName}>{item.name}</Text>
-                                    <Text style={styles.docDesc}>{item.desc}</Text>
+                        <TouchableOpacity style={styles.itemWrapper} onPress={() => openSheet(item)}>
+                            <View style={styles.itemTop}>
+                                <Text style={styles.itemTitle}>{item.name}</Text>
+                                <Text style={styles.pmid}>PMID: {item.pmid}</Text>
+                            </View>
+                            <View style={styles.itemMiddle}>
+                                <Text style={styles.itemText}>Gene - {item.geneType}</Text>
+                                <Text style={styles.itemDesc}>{item.geneDesc}</Text>
+                            </View>
+                            <View style={styles.itemBottom}>
+                                <Text style={styles.itemText}>PGx Response</Text>
+                                <View style={styles.statusWrapper}>
+                                    <View style={item.status === true ? styles.itemSignGreen : styles.itemSignRed} />
+                                    <Text style={styles.itemDesc}>    {item.response}</Text>
                                 </View>
                             </View>
+                        </TouchableOpacity>
+                    )}
+                    ListEmptyComponent={
+                        <Text style={styles.emptyText}>No data found for this category</Text>
+                    }
+                />
 
+                <RBSheet
+                    ref={rbSheetRef}
+                    height={Dimensions.get("window").height}
+                    openDuration={200}
+                    customStyles={{
+                        wrapper: { backgroundColor: "rgba(0,0,0,0.5)" },
+                        container: {
+                            borderTopLeftRadius: 0,
+                            borderTopRightRadius: 0,
+                            padding: 24,
+
+                            backgroundColor: "#fff",
+                        },
+                    }}
+                >
+                    {selectedItem && (
+                        <View>
+                            <TouchableOpacity style={styles.closeButton} onPress={() => rbSheetRef.current.close()}>
+                                <Ionicons name="close-circle-outline" size={28} color={Colors.black} />
+                            </TouchableOpacity>
+                            <View style={styles.sheetContent}>
+                                <Text style={styles.sheetTitle}>{selectedItem.name}</Text>
+                                <View style={styles.statusWrapper}>
+                                    <View style={selectedItem.status === true ? styles.itemSignGreen : styles.itemSignRed} />
+                                    <Text style={styles.sheetResponse}>    {selectedItem.response}</Text>
+                                </View>
+
+                                <View style={styles.eachWrap}>
+                                    <Text style={styles.sheetText}>Gene - {selectedItem.geneType}</Text>
+                                    <Text style={styles.sheetDesc}>{selectedItem.geneDesc}</Text>
+                                </View>
+
+                                <View style={[
+                                    styles.eachWrap, styles.midSheetDesc
+                                ]}>
+                                    <Text style={styles.sheetText}>Clinical Impact</Text>
+                                    <Text
+                                        style={[
+                                            styles.sheetDesc
+                                        ]}
+                                    >
+                                        This patient's CT genotypes enhance risperidone action
+                                        in children with Autistic Disorder.
+                                    </Text>
+                                </View>
+                                <View style={styles.eachWrap}>
+                                    <Text style={styles.sheetText}>Citations</Text>
+                                    <Text style={styles.sheetDesc}>PMID: {selectedItem.pmid}</Text>
+                                </View>
+                            </View>
                         </View>
                     )}
-                    ListEmptyComponent={<Text style={styles.emptyText}>No documents found</Text>}
-                />
+                </RBSheet>
             </View>
         </KeyboardAvoidingView>
     );
@@ -165,6 +283,111 @@ const styles = StyleSheet.create({
     },
     downIcon: {
         width: 24,
-        height: 24
+        height: 24,
+        tintColor: Colors.black,
+    },
+    pgxTab: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginTop: 5,
+    },
+    tabButton: {
+        paddingVertical: 8,
+        paddingHorizontal: 16,
+        borderRadius: 8,
+        backgroundColor: Colors.surface_bg,
+    },
+    activeTabButton: {
+        backgroundColor: Colors.black,
+    },
+    tabText: {
+        fontSize: 12,
+        color: Colors.black,
+        fontFamily: Fonts.Medium,
+    },
+    activeTabText: {
+        color: Colors.bg,
+        fontFamily: Fonts.Medium,
+    },
+    itemWrapper: {
+        backgroundColor: "#f8f8f8",
+        marginHorizontal: 24,
+        marginVertical: 6,
+        borderRadius: 10,
+    },
+    itemTitle: {
+        fontSize: 14,
+        fontFamily: Fonts.Bold,
+        color: Colors.black,
+    },
+    itemTop: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+    },
+    itemMiddle: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 6,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        borderColor: Colors.strokeColor,
+    },
+    itemBottom: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 6,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+    },
+    pmid: {
+        fontSize: 10,
+        fontFamily: Fonts.Regular,
+        color: Colors.black,
+        backgroundColor: Colors.bg,
+        padding: 4,
+        borderRadius: 4
+    },
+    itemText: {
+        fontSize: 8,
+        fontFamily: Fonts.Bold,
+        color: Colors.text
+    },
+    itemDesc: {
+        fontSize: 8,
+        fontFamily: Fonts.Medium,
+        color: Colors.text,
+
+    },
+    statusWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    itemSignGreen: { width: 8, height: 8, backgroundColor: 'green', borderRadius: 4, marginRight: 0 },
+    itemSignRed: { width: 8, height: 8, backgroundColor: 'red', borderRadius: 4, marginRight: 0 },
+    sheetTitle: { fontSize: 20, fontFamily: Fonts.Bold, marginBottom: 4 },
+    sheetSub: { color: "#777", marginBottom: 10 },
+    sheetText: { fontSize: 14, fontFamily: Fonts.Bold, color: Colors.black },
+    sheetDesc: { fontSize: 12, fontFamily: Fonts.Medium, color: Colors.text, marginTop: 8, lineHeight: 18 },
+    sheetResponse: { fontSize: 12, fontFamily: Fonts.Medium },
+    sheetContent: {
+        marginTop: 52
+    },
+    closeButton: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        zIndex: 1,
+    },
+    eachWrap: {
+        paddingVertical: 15,
+    },
+    midSheetDesc: {
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        borderColor: Colors.strokeColor,
     }
 });
