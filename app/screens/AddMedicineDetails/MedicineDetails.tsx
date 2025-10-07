@@ -40,10 +40,10 @@ const MedicineDetails = () => {
           }}
           placeholder="Medicine Name"
           value={medicineDetailsForm.name}
-        />{" "}
+        />
         <DatePicker
           placeHolderText="Set Remainder"
-          isForDateTimeBoth
+          isForTimePicker
           value={medicineDetailsForm.remainder}
           onChange={(dateTime) => {
             onChangeField("remainder", dateTime);

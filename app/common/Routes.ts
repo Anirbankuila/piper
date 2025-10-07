@@ -39,6 +39,7 @@ const Routes = {
   medicine: "screens/Medicine/Medicine",
   medicineDetails: "screens/AddMedicineDetails/MedicineDetails",
   medicationNudge: "screens/MedicationNudge/MedicationNudge",
+  medicineSearch: "screens/Medicine/MedicineSearch",
 };
 
 export function navigateScreen(

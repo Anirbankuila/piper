@@ -9,16 +9,10 @@ import dayjs from "dayjs";
 import { Image, ImageBackground } from "expo-image";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import {
-  FlatList,
-  ScrollView,
-  Switch,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, Switch, Text, TouchableOpacity, View } from "react-native";
 
 import Routes, { navigateScreen } from "@/app/common/Routes";
+import MedicationListItem from "@/app/components/MedicationListItem/MedicationListItem";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Styles from "./Medicine.style";
 
@@ -83,34 +77,6 @@ const Medicine = () => {
     const matchFilter = selectedFilter === "All" || m.status === selectedFilter;
     return sameDay && matchFilter;
   });
-
-  const renderMedication = ({ item }: { item: Medication }) => (
-    <View style={Styles.card}>
-      <View style={Styles.leftContainer}>
-        <Text style={Styles.name}>{item.name}</Text>
-        <Text style={Styles.time}>{item.time}</Text>
-      </View>
-      <View style={Styles.divider}></View>
-      <View style={Styles.rightContainer}>
-        <Text style={Styles.details}>
-          {item.dosage} · {item.schedule}
-        </Text>
-
-        <View style={Styles.statusContainer}>
-          <View
-            style={[
-              Styles.statusDot,
-              {
-                backgroundColor:
-                  item.status === "Taken" ? "#01BA38" : "#FF5252",
-              },
-            ]}
-          />
-          <Text style={Styles.statusText}>{item.status}</Text>
-        </View>
-      </View>
-    </View>
-  );
   return (
     <>
       <ScrollView
@@ -155,7 +121,9 @@ const Medicine = () => {
             placeholderText="Search Medicine"
             iconTintColor={Colors.grey}
             containerStyle={Styles.searchInput}
+            inputStyle={{ color: Colors.text }}
             showMicIcon={false}
+            onFocusInput={() => navigateScreen(Routes.medicineSearch)}
           />
           <View style={Styles.btnSection}>
             <View style={Styles.pushNotification}>
@@ -266,16 +234,12 @@ const Medicine = () => {
               </TouchableOpacity>
             ))}
           </View>
-
-          {/* Medication List */}
           {filteredMedicines.length > 0 ? (
-            <FlatList
-              data={filteredMedicines}
-              keyExtractor={(item) => item.id}
-              renderItem={renderMedication}
-              contentContainerStyle={{ paddingVertical: 10 }}
-              showsVerticalScrollIndicator={false}
-            />
+            filteredMedicines.map((medicine, index) => (
+              <React.Fragment key={index}>
+                <MedicationListItem medication={medicine} showStatus />
+              </React.Fragment>
+            ))
           ) : (
             <Text style={Styles.noDataText}>No medications for this day.</Text>
           )}

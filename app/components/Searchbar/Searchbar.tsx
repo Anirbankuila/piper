@@ -1,4 +1,5 @@
 import { Colors, Fonts } from "@/constants/theme";
+import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import React from "react";
 import {
@@ -12,20 +13,26 @@ import {
 
 interface SearchBarInputProps {
   onMicPress?: () => void;
+  onFocusInput?: () => void;
+  onChangeText?: (value: string) => void;
   placeholderText?: string; // placeholder prop
   inputStyle?: TextStyle; // custom style prop
   containerStyle?: ViewStyle; // optional container style
   iconTintColor?: string;
   showMicIcon?: boolean;
+  showCrossIcon?: boolean;
 }
 
 const Searchbar: React.FC<SearchBarInputProps> = ({
   onMicPress,
+  onFocusInput,
+  onChangeText,
   placeholderText = "Ask me anything!", // default placeholder
   inputStyle,
   containerStyle,
   iconTintColor,
   showMicIcon = true,
+  showCrossIcon = false,
 }) => {
   return (
     <View style={[styles.searchContainer, containerStyle]}>
@@ -39,6 +46,9 @@ const Searchbar: React.FC<SearchBarInputProps> = ({
         style={[styles.searchInput, inputStyle]}
         placeholder={placeholderText}
         placeholderTextColor={Colors.textLight}
+        onFocus={onFocusInput}
+        onChangeText={onChangeText}
+        cursorColor={Colors.black}
       />
       {showMicIcon && (
         <TouchableOpacity style={styles.voiceButton} onPress={onMicPress}>
@@ -46,6 +56,11 @@ const Searchbar: React.FC<SearchBarInputProps> = ({
             source={require("../../../assets/icons/microphone.png")}
             style={styles.micIcon}
           />
+        </TouchableOpacity>
+      )}
+      {showCrossIcon && (
+        <TouchableOpacity onPress={onMicPress}>
+          <Ionicons name="close-circle-outline" size={25} color={Colors.grey} />
         </TouchableOpacity>
       )}
     </View>

@@ -407,6 +407,20 @@ const screens = [
       statusBarStyle: "dark" as const,
     },
   },
+  {
+    name: Routes.medicineSearch,
+    options: {
+      headerShown: true,
+      title: "Search", // Title in header
+      headerBackTitle: "Back", // Back button text
+      headerBackTitleVisible: false, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      statusBarStyle: "dark" as const,
+    },
+  },
 ];
 
 export default function RootLayout() {
