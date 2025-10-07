@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ backgroundColor = "#FFF3E9" }) => {
 
       {/* Right Side Icons */}
       <View style={styles.rightIcons}>
-        <TouchableOpacity style={styles.iconBtn}>
+        <TouchableOpacity style={styles.iconBtn} onPress={() => navigateScreen(Routes.medicationNudge)}>
           <Image
             source={require("../../../assets/icons/medical.png")}
             style={styles.eachIcon}

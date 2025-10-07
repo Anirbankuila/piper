@@ -38,6 +38,7 @@ const Routes = {
   talkToDoctor: "screens/TalkToDoctor/TalkToDoctor",
   medicine: "screens/Medicine/Medicine",
   medicineDetails: "screens/AddMedicineDetails/MedicineDetails",
+  medicationNudge: "screens/MedicationNudge/MedicationNudge",
 };
 
 export function navigateScreen(

@@ -10,7 +10,7 @@ const Styles = StyleSheet.create({
   title: {
     fontSize: 24,
     lineHeight: 28,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
     fontWeight: "bold",
     color: Colors.primary,
     textAlign: "center",
@@ -20,7 +20,7 @@ const Styles = StyleSheet.create({
     fontSize: 17,
     textAlign: "left",
     marginVertical: 10,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
     color: Colors.text,
   },
   formWrap: {
@@ -30,12 +30,12 @@ const Styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.text,
     // lineHeight: 18,
-    fontFamily: Fonts.medium,
+    fontFamily: Fonts.Medium,
     marginBottom: 15,
     lineHeight: 22,
   },
   boldText: {
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
   },
   button: {
     backgroundColor: Colors.black,
@@ -56,7 +56,7 @@ const Styles = StyleSheet.create({
   backButtonText: {
     fontSize: 16,
     color: Colors.text,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
   },
   content: {
     flex: 1,

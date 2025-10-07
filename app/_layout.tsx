@@ -367,7 +367,7 @@ const screens = [
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow
       headerStyle: {
-        backgroundColor: "#D2FFF6", // 👈 header er background color
+        backgroundColor: "transparent", // 👈 header er background color
       },
       statusBarStyle: "dark" as const,
     },
@@ -390,6 +390,19 @@ const screens = [
       headerStyle: {
         elevation: 0,
         shadowOpacity: 0,
+      },
+    },
+  },
+  {
+    name: Routes.medicationNudge,
+    options: {
+      headerShown: false,
+      title: "", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: false, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
       },
       statusBarStyle: "dark" as const,
     },
