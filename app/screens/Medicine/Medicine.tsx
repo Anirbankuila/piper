@@ -1,66 +1,82 @@
-import Routes, { navigateScreen } from "@/app/common/Routes";
+import { Medication } from "@/app/common/Interface/Medication";
+import { primaryTabs } from "@/app/common/primaryTabs";
 import CustomBottomTab from "@/app/components/CustomBottomTab/CustomBottomTab";
 import Header from "@/app/components/Header/Header";
 import Searchbar from "@/app/components/Searchbar/Searchbar";
-import { Colors, Fonts } from "@/constants/theme";
+import { Colors } from "@/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
+import dayjs from "dayjs";
 import { Image, ImageBackground } from "expo-image";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import {
-  Dimensions,
-  ScrollView,
-  StyleSheet,
-  Switch,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, Switch, Text, TouchableOpacity, View } from "react-native";
 
+import Routes, { navigateScreen } from "@/app/common/Routes";
+import MedicationListItem from "@/app/components/MedicationListItem/MedicationListItem";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-const { width } = Dimensions.get("window");
-const tabs = [
+import Styles from "./Medicine.style";
+
+const medications: Medication[] = [
   {
-    name: "Home",
-    iconPath: require("../../../assets/icons/home.png"),
-    onTabPress: () => {
-      navigateScreen(Routes.homeTab);
-    },
+    id: "1",
+    name: "Sertraline",
+    dosage: "50 MG",
+    schedule: "Daily",
+    time: "09:00 AM",
+    status: "Taken",
+    date: new Date(),
   },
   {
-    name: "LifeLog",
-    iconPath: require("../../../assets/icons/booknew.png"),
-    onTabPress: () => {
-      navigateScreen(Routes.lifeLogTab);
-    },
+    id: "2",
+    name: "Escitalopram",
+    dosage: "10 MG",
+    schedule: "Every 3 days",
+    time: "08:00 PM",
+    status: "Taken",
+    date: new Date(),
   },
   {
-    name: "Piper",
-    iconPath: require("../../../assets/icons/pipertabicon.png"),
-    onTabPress: () => {
-      navigateScreen(Routes.lifeLogTab);
-    },
+    id: "3",
+    name: "Fluoxetine",
+    dosage: "20 MG",
+    schedule: "Daily",
+    time: "07:30 AM",
+    status: "Taken",
+    date: new Date(),
   },
   {
-    name: "Calendar",
-    iconPath: require("../../../assets/icons/calendartab.png"),
-    onTabPress: () => {
-      navigateScreen(Routes.calendarTab);
-    },
-  },
-  {
-    name: "Profile",
-    iconPath: require("../../../assets/images/profile.png"),
-    onTabPress: () => {
-      navigateScreen(Routes.profileTab);
-    },
+    id: "4",
+    name: "Paracetamol",
+    dosage: "500 MG",
+    schedule: "Daily",
+    time: "07:00 AM",
+    status: "Missed",
+    date: new Date(),
   },
 ];
 const Medicine = () => {
   const [isEnabled, setIsEnabled] = useState(false);
-
+  const [selectedFilter, setSelectedFilter] = useState<
+    "All" | "Taken" | "Missed"
+  >("All");
+  const [selectedDate, setSelectedDate] = useState(dayjs());
+  const [currentWeekStart, setCurrentWeekStart] = useState(
+    dayjs().startOf("week").add(1, "day")
+  );
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const insets = useSafeAreaInsets();
+  const getWeekDays = () => {
+    const start = currentWeekStart;
+    return Array.from({ length: 7 }).map((_, i) => start.add(i, "day"));
+  };
+
+  const handlePrevWeek = () =>
+    setCurrentWeekStart(currentWeekStart.subtract(1, "day"));
+  const filteredMedicines = medications.filter((m) => {
+    const sameDay = dayjs(m.date).isSame(selectedDate, "day");
+    const matchFilter = selectedFilter === "All" || m.status === selectedFilter;
+    return sameDay && matchFilter;
+  });
   return (
     <>
       <ScrollView
@@ -105,7 +121,9 @@ const Medicine = () => {
             placeholderText="Search Medicine"
             iconTintColor={Colors.grey}
             containerStyle={Styles.searchInput}
+            inputStyle={{ color: Colors.text }}
             showMicIcon={false}
+            onFocusInput={() => navigateScreen(Routes.medicineSearch)}
           />
           <View style={Styles.btnSection}>
             <View style={Styles.pushNotification}>
@@ -122,13 +140,19 @@ const Medicine = () => {
             </View>
             <View style={Styles.medicineDetails}>
               <View style={Styles.medicineBtn}>
-                <TouchableOpacity style={Styles.circleBtn}>
+                <TouchableOpacity
+                  style={Styles.circleBtn}
+                  onPress={() => navigateScreen(Routes.medicineDetails)}
+                >
                   <Ionicons name="add" size={24} color={Colors.black} />
                 </TouchableOpacity>
                 <Text>Add Medicine</Text>
               </View>
               <View style={Styles.medicineBtn}>
-                <TouchableOpacity style={Styles.circleBtn}>
+                <TouchableOpacity
+                  style={Styles.circleBtn}
+                  onPress={() => navigateScreen(Routes.medicineDetails)}
+                >
                   <Image
                     source={require("../../../assets/icons/finger-circle.png")}
                     style={Styles.reminderIcon}
@@ -140,129 +164,90 @@ const Medicine = () => {
             </View>
           </View>
         </View>
+        <View style={Styles.medicineListContainer}>
+          {/* Month & Week Navigation */}
+          <View style={Styles.header}>
+            <Text style={Styles.monthText}>{selectedDate.format("MMMM")}</Text>
+          </View>
+
+          {/* Week Days Row */}
+          <View style={Styles.weekContainer}>
+            <TouchableOpacity onPress={handlePrevWeek}>
+              <Ionicons
+                name="chevron-back-outline"
+                size={20}
+                color={Colors.grey}
+              />
+            </TouchableOpacity>
+            {getWeekDays().map((day) => {
+              const isSelected = selectedDate.isSame(day, "day");
+              return (
+                <TouchableOpacity
+                  key={day.format("DD-MM-YYYY")}
+                  style={[
+                    Styles.dayContainer,
+                    isSelected && Styles.selectedDay,
+                  ]}
+                  onPress={() => setSelectedDate(day)}
+                >
+                  <Text
+                    style={[
+                      Styles.dayText,
+                      isSelected && Styles.selectedDayText,
+                    ]}
+                  >
+                    {day.format("dd")}
+                  </Text>
+                  <Text
+                    style={[
+                      Styles.dateText,
+                      isSelected && Styles.selectedDayText,
+                    ]}
+                  >
+                    {day.format("D")}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+
+          <Text style={Styles.heading}>Medications</Text>
+
+          <View style={Styles.filterContainer}>
+            {["All", "Taken", "Missed"].map((filter) => (
+              <TouchableOpacity
+                key={filter}
+                style={[
+                  Styles.filterButton,
+                  selectedFilter === filter && Styles.activeFilterButton,
+                ]}
+                onPress={() => setSelectedFilter(filter as any)}
+              >
+                <Text
+                  style={[
+                    Styles.filterText,
+                    selectedFilter === filter && Styles.activeFilterText,
+                  ]}
+                >
+                  {filter}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+          {filteredMedicines.length > 0 ? (
+            filteredMedicines.map((medicine, index) => (
+              <React.Fragment key={index}>
+                <MedicationListItem medication={medicine} showStatus />
+              </React.Fragment>
+            ))
+          ) : (
+            <Text style={Styles.noDataText}>No medications for this day.</Text>
+          )}
+        </View>
       </ScrollView>
-      <CustomBottomTab activeTab={""} tabs={tabs} />
+      <CustomBottomTab activeTab={""} tabs={primaryTabs} />
     </>
   );
 };
 
 export default Medicine;
-
-const Styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    backgroundColor: Colors.bg,
-  },
-  headerWrapper: {
-    backgroundColor: "#D2FFF6",
-  },
-  piperIntroContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    width: width,
-    paddingHorizontal: 22,
-  },
-  alexPersonalImg: {
-    width: 126,
-    height: 180,
-    resizeMode: "contain",
-  },
-  piperCard: {
-    borderRadius: 20,
-    marginBottom: 25,
-    overflow: "hidden",
-  },
-  piperContent: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  messageWrapper: {
-    flex: 1,
-    position: "relative",
-    flexShrink: 1,
-  },
-  messageBox: {
-    backgroundColor: "white",
-    padding: 12,
-    shadowColor: Colors.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    borderBottomEndRadius: 10,
-  },
-  pointer: {
-    position: "absolute",
-    bottom: -4,
-    width: 0,
-    left: -7,
-    height: 0,
-    borderLeftWidth: 10,
-    borderRightWidth: 10,
-    borderTopWidth: 10,
-    borderLeftColor: "transparent",
-    borderRightColor: "transparent",
-    borderTopColor: "white", // same as message box background
-    transform: [{ rotate: "160deg" }], // gives diagonal shape
-  },
-  title: {
-    fontSize: 14,
-    fontFamily: Fonts.SemiBold,
-    color: Colors.primary,
-    lineHeight: 16,
-    marginBottom: 6,
-  },
-  subtitle: {
-    fontSize: 10,
-    fontFamily: Fonts.Regular,
-    color: Colors.text,
-    lineHeight: 14,
-  },
-  mainContent: {
-    marginTop: 15,
-    paddingHorizontal: 22,
-  },
-  searchInput: {
-    backgroundColor: Colors.surface_bg,
-    borderWidth: 0,
-    borderRadius: 10,
-  },
-  btnSection: {
-    marginVertical: 10,
-  },
-  pushNotification: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  pushNotifyText: {
-    fontSize: 14,
-    color: Colors.black,
-    fontFamily: Fonts.SemiBold,
-  },
-  medicineDetails: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: "12%",
-  },
-  medicineBtn: {
-    justifyContent: "center",
-    marginTop: 15,
-    alignItems: "center",
-  },
-  circleBtn: {
-    backgroundColor: Colors.surface_bg,
-    borderRadius: "50%",
-    height: 52,
-    width: 52,
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 5,
-  },
-  reminderIcon: {
-    height: 26,
-    width: 26,
-  },
-});

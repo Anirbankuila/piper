@@ -380,11 +380,39 @@ const screens = [
     },
   },
   {
+    name: Routes.medicineDetails,
+    options: {
+      headerShown: true,
+      title: "Details",
+      headerBackTitle: "Back",
+      headerBackTitleVisible: true,
+      headerShadowVisible: false,
+      headerStyle: {
+        elevation: 0,
+        shadowOpacity: 0,
+      },
+    },
+  },
+  {
     name: Routes.medicationNudge,
     options: {
       headerShown: false,
       title: "", // Title in header
       headerBackTitle: "", // Back button text
+      headerBackTitleVisible: false, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.medicineSearch,
+    options: {
+      headerShown: true,
+      title: "Search", // Title in header
+      headerBackTitle: "Back", // Back button text
       headerBackTitleVisible: false, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow
       headerStyle: {

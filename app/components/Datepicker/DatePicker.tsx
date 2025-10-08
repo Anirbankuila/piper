@@ -11,6 +11,7 @@ interface DatePickerProps {
   onChange?: (date: Date) => void;
   placeHolderText?: string;
   isForDateTimeBoth?: boolean;
+  isForTimePicker?: boolean;
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({
@@ -18,6 +19,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
   onChange,
   placeHolderText = "Date of birth*",
   isForDateTimeBoth = false,
+  isForTimePicker = false,
 }) => {
   const [date, setDate] = useState<Date | undefined>(value);
   const [datePickerShow, setDatePickerShow] = useState<boolean>(false);
@@ -69,7 +71,13 @@ const DatePicker: React.FC<DatePickerProps> = ({
       {/* Dropdown style input */}
       <TouchableOpacity
         style={styles.dropdown}
-        onPress={() => setDatePickerShow(true)}
+        onPress={() => {
+          if (isForTimePicker) {
+            setTimePickerShow(true);
+          } else {
+            setDatePickerShow(true);
+          }
+        }}
       >
         <Text style={{ color: date ? Colors.black : Colors.grey }}>
           {date
