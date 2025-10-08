@@ -398,6 +398,7 @@ export default function HomeTab() {
                 alignItems: "center",
                 marginBottom: 5,
               }}
+              onPress={() => navigateScreen(Routes.surveyEntry)}
             >
               <PlusIcon size={24} color={Colors.black} />
             </TouchableOpacity>

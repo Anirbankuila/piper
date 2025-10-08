@@ -7,7 +7,7 @@ import {
   useFonts,
 } from "@expo-google-fonts/inter";
 import { Stack } from "expo-router";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, Image } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Routes from "./common/Routes";
 const screens = [
@@ -418,6 +418,27 @@ const screens = [
       headerStyle: {
         backgroundColor: "transparent", // 👈 header er background color
       },
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.surveyEntry,
+    options: {
+      headerShown: true,
+      title: "ADHD", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: false, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      // headerTransparent: true,
+      headerBackground: () => (
+       <Image
+          source={require("../assets/images/topblur.png")}
+          style={{ width: "100%", height: "100%" }}
+        />
+      ),
       statusBarStyle: "dark" as const,
     },
   },
