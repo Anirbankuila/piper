@@ -41,6 +41,8 @@ const Routes = {
   medicationNudge: "screens/MedicationNudge/MedicationNudge",
   medicineSearch: "screens/Medicine/MedicineSearch",
   surveyEntry: "screens/SurveyEntryScreen/SurveyEntryScreen",
+  surveyQuestionScreen: "screens/SurveyEntryScreen/SurveyQuestionScreen",
+  SurveyCompleteScreen: "screens/SurveyEntryScreen/SurveyCompleteScreen",
 };
 
 export function navigateScreen(

@@ -6,8 +6,9 @@ import {
   Inter_700Bold,
   useFonts,
 } from "@expo-google-fonts/inter";
-import { Stack } from "expo-router";
-import { ActivityIndicator, Image } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { router, Stack } from "expo-router";
+import { ActivityIndicator, Image, TouchableOpacity } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Routes from "./common/Routes";
 const screens = [
@@ -434,11 +435,40 @@ const screens = [
       },
       // headerTransparent: true,
       headerBackground: () => (
-       <Image
+        <Image
           source={require("../assets/images/topblur.png")}
           style={{ width: "100%", height: "100%" }}
         />
       ),
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.surveyQuestionScreen,
+    options: {
+      headerTitle: "ADHD",
+      headerTitleAlign: "center",
+      headerShadowVisible: false,
+      headerStyle: { backgroundColor: "#fff" },
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => router.back()}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </TouchableOpacity>
+      ),
+      headerRight: () => (
+        <TouchableOpacity onPress={() => router.back()}>
+          <Ionicons name="close-circle-outline" size={26} color="black" />
+        </TouchableOpacity>
+      ),
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.SurveyCompleteScreen,
+    options: {
+      headerTitle: "ADHD",
+      headerShadowVisible: false,
+      headerStyle: { backgroundColor: Colors.bg },
       statusBarStyle: "dark" as const,
     },
   },

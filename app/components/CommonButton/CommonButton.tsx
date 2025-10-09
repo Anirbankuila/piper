@@ -4,7 +4,7 @@ import {
   Text,
   TextStyle,
   TouchableOpacity,
-  ViewStyle
+  ViewStyle,
 } from "react-native";
 import { Fonts } from "../../../constants/theme";
 import styles from "./CommonButtonCss";
@@ -15,6 +15,7 @@ type CommonButtonProps = {
   color?: string;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
+  disabled?: boolean;
 };
 
 const CommonButton: React.FC<CommonButtonProps> = ({
@@ -24,11 +25,13 @@ const CommonButton: React.FC<CommonButtonProps> = ({
   color = "#000", // default text color
   style,
   textStyle,
+  disabled = false,
 }) => {
   return (
     <TouchableOpacity
       style={[styles.button, { backgroundColor }, style]}
       onPress={onPress}
+      disabled={disabled}
     >
       <Text
         style={[styles.text, { color, fontFamily: Fonts.Medium }, textStyle]}
@@ -40,5 +43,3 @@ const CommonButton: React.FC<CommonButtonProps> = ({
 };
 
 export default CommonButton;
-
-
