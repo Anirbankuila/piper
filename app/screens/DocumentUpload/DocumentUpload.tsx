@@ -1,4 +1,5 @@
 import Routes, { navigateScreen } from "@/app/common/Routes";
+import CustomBottomTab from "@/app/components/CustomBottomTab/CustomBottomTab";
 import Divider from "@/app/components/HomePageDivider/Divider";
 import PiperModal from "@/app/components/PiperModal/PiperModal";
 import Searchbar from "@/app/components/Searchbar/Searchbar";
@@ -7,135 +8,203 @@ import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
   Image,
-  ImageBackground,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 
 const UploadDoc = () => {
   const [visible, setVisible] = useState(false);
+  const tabs = [
+    {
+      name: "Home",
+      iconPath: require("../../../assets/icons/home.png"),
+      onTabPress: () => navigateScreen(Routes.homeTab),
+    },
+    {
+      name: "LifeLog",
+      iconPath: require("../../../assets/icons/booknew.png"),
+      onTabPress: () => navigateScreen(Routes.lifeLogTab),
+    },
+    {
+      name: "Piper",
+      iconPath: require("../../../assets/icons/pipertabicon.png"),
+      onTabPress: () => navigateScreen(Routes.lifeLogTab),
+    },
+    {
+      name: "Calendar",
+      iconPath: require("../../../assets/icons/calendartab.png"),
+      onTabPress: () => navigateScreen(Routes.calendarTab),
+    },
+    {
+      name: "Profile",
+      iconPath: require("../../../assets/images/profile.png"),
+      onTabPress: () => navigateScreen(Routes.profileTab),
+    },
+  ];
 
   return (
-    <ScrollView
-      contentContainerStyle={Styles.container}
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={Styles.content}>
-        {/* Top Section */}
-        <View style={Styles.topSec}>
-          <View style={Styles.topSecLeft}>
-            <Searchbar
-              onMicPress={() => setVisible(true)}
-              containerStyle={Styles.docContainer}
-              placeholderText="Search documents"
-            />
-            <PiperModal visible={visible} onClose={() => setVisible(false)} />
-            <View style={Styles.headingRow}>
-              <View style={Styles.chatTriangle} />
-              <Text style={Styles.topSecHeading}>
-                From Health reports to IEP&apos;s, if it matters, it belongs
-                here!
-              </Text>
+    <>
+      <ScrollView
+        contentContainerStyle={Styles.container}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={Styles.content}>
+          {/* Top Section */}
+          <View style={Styles.topSec}>
+            <View style={Styles.topSecLeft}>
+              <Searchbar
+                onMicPress={() => setVisible(true)}
+                containerStyle={Styles.docContainer}
+                placeholderText="Search documents"
+              />
+              <PiperModal visible={visible} onClose={() => setVisible(false)} />
+              <View style={Styles.headingRow}>
+                <View style={Styles.chatTriangle} />
+                <Text style={Styles.topSecHeading}>
+                  From Health reports to IEP&apos;s, if it matters, it belongs
+                  here!
+                </Text>
+              </View>
+            </View>
+            <View style={Styles.bgImage}>
+              <Image
+                source={require("../../../assets/images/doc-img.png")}
+                style={Styles.topBg}
+                resizeMode="cover"
+              />
             </View>
           </View>
-          <View style={Styles.bgImage}>
-            <Image
-              source={require("../../../assets/images/documentBg.png")}
-              style={Styles.topBg}
-              resizeMode="cover"
-            />
-          </View>
-        </View>
 
-        {/* Logs List */}
-        <View style={Styles.uploadSec}>
-          <TouchableOpacity
-            style={Styles.eachUpload}
-            onPress={() => navigateScreen(Routes.documentScan)}
-          >
-            <Image
-              source={require("../../../assets/icons/scan.png")}
-              style={Styles.eachIcon}
-              resizeMode="cover"
-            />
-            <Text style={Styles.uploadHeading}>Scan Document</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={Styles.eachUpload}
-            onPress={() => navigateScreen(Routes.documentUpload)}
-          >
-            <Image
-              source={require("../../../assets/icons/send.png")}
-              style={Styles.eachIcon}
-              resizeMode="cover"
-            />
-            <Text style={Styles.uploadHeading}>Upload Document</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={Styles.viewDocuments}>
-          <Divider text={"View Uploaded Documents"} />
-          <View style={Styles.viewDocumentsWrap}>
-            <TouchableOpacity style={Styles.eachDoc}>
-              <View style={Styles.eachDocIcon}>
-                <Image
-                  source={require("../../../assets/icons/finger-circle.png")}
-                  style={Styles.icon}
-                  resizeMode="cover"
-                />
-              </View>
-              <Text style={Styles.catTitle}>Medical</Text>
+          {/* Logs List */}
+          <View style={Styles.uploadSec}>
+            <TouchableOpacity
+              style={Styles.eachUpload}
+              onPress={() => navigateScreen(Routes.documentScan)}
+            >
+              <Image
+                source={require("../../../assets/icons/scan.png")}
+                style={Styles.eachIcon}
+                resizeMode="cover"
+              />
+              <Text style={Styles.uploadHeading}>Scan Document</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={Styles.eachDoc}
-              onPress={() => navigateScreen(Routes.schoolDocuments)}
+              style={Styles.eachUpload}
+              onPress={() => navigateScreen(Routes.documentUpload)}
             >
-              <View style={Styles.eachDocIcon}>
-                <Image
-                  source={require("../../../assets/icons/briefcase.png")}
-                  style={Styles.icon}
-                  resizeMode="cover"
-                />
-              </View>
-              <Text style={Styles.catTitle}>School</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={Styles.eachDoc}>
-              <View style={Styles.eachDocIcon}>
-                <Ionicons name="add" size={28} color="#000" />
-              </View>
-              <Text style={Styles.catTitle}>Add Category</Text>
+              <Image
+                source={require("../../../assets/icons/send.png")}
+                style={Styles.eachIcon}
+                resizeMode="cover"
+              />
+              <Text style={Styles.uploadHeading}>Upload Document</Text>
             </TouchableOpacity>
           </View>
-        </View>
-        <ImageBackground
-          imageStyle={{ borderRadius: 12 }}
-          source={require("../../../assets/images/background.png")} // ✅ your background image
-          style={Styles.background}
-          resizeMode="cover"
-        >
-          <View style={Styles.leftContent}>
+          <View style={Styles.viewDocuments}>
+            <Divider text={"View Uploaded Documents"} />
+            <View style={Styles.viewDocumentsWrap}>
+              <TouchableOpacity style={Styles.eachDoc} onPress={() => navigateScreen(Routes.medicalDocuments)}>
+                <View style={Styles.eachDocIcon}>
+                  <Image
+                    source={require("../../../assets/icons/finger-circle.png")}
+                    style={Styles.icon}
+                    resizeMode="cover"
+                  />
+                </View>
+                <Text style={Styles.catTitle}>Medical</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={Styles.eachDoc}
+                onPress={() => navigateScreen(Routes.schoolDocuments)}
+              >
+                <View style={Styles.eachDocIcon}>
+                  <Image
+                    source={require("../../../assets/icons/briefcase.png")}
+                    style={Styles.icon}
+                    resizeMode="cover"
+                  />
+                </View>
+                <Text style={Styles.catTitle}>School</Text>
+              </TouchableOpacity>
+               <TouchableOpacity
+                style={Styles.eachDoc}
+                onPress={() => navigateScreen(Routes.allergyDocuments)}
+              >
+                <View style={Styles.eachDocIcon}>
+                  <Image
+                    source={require("../../../assets/icons/profile-remove.png")}
+                    style={Styles.icon}
+                    resizeMode="cover"
+                  />
+                </View>
+                <Text style={Styles.catTitle}>Allergies</Text>
+              </TouchableOpacity>
+               <TouchableOpacity
+                style={Styles.eachDoc}
+                onPress={() => navigateScreen(Routes.immunizationDocuments)}
+              >
+                <View style={Styles.eachDocIcon}>
+                  <Image
+                    source={require("../../../assets/icons/shield.png")}
+                    style={Styles.icon}
+                    resizeMode="cover"
+                  />
+                </View>
+                <Text style={Styles.catTitle}>Immunization</Text>
+              </TouchableOpacity>
+               <TouchableOpacity
+                style={Styles.eachDoc}
+                onPress={() => navigateScreen(Routes.therapyDocumnets)}
+              >
+                <View style={Styles.eachDocIcon}>
+                  <Image
+                    source={require("../../../assets/icons/iconsax-hospital.png")}
+                    style={Styles.icon}
+                    resizeMode="cover"
+                  />
+                </View>
+                <Text style={Styles.catTitle}>Therapy</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={Styles.eachDoc}>
+                <View style={Styles.eachDocIcon}>
+                  <Ionicons name="add" size={28} color="#000" />
+                </View>
+                <Text style={Styles.catTitle}>Add Category</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          {/* <ImageBackground
+            imageStyle={{ borderRadius: 12 }}
+            source={require("../../../assets/images/background.png")} // ✅ your background image
+            style={Styles.background}
+            resizeMode="cover"
+          >
+            <View style={Styles.leftContent}>
+              <Image
+                source={require("../../../assets/images/athena.png")}
+                style={Styles.athenaLogo}
+                resizeMode="cover"
+              />
+              <Text style={Styles.adText}>
+                For those who have an {"\n"}athenahealth account
+              </Text>
+              <TouchableOpacity style={Styles.addBtn}>
+                <Text style={Styles.addBtnText}>Synch your records now!</Text>
+              </TouchableOpacity>
+            </View>
             <Image
-              source={require("../../../assets/images/athena.png")}
-              style={Styles.athenaLogo}
+              source={require("../../../assets/images/adImg.png")}
+              style={Styles.addPiper}
               resizeMode="cover"
             />
-            <Text style={Styles.adText}>
-              For those who have an {"\n"}athenahealth account
-            </Text>
-            <TouchableOpacity style={Styles.addBtn}>
-              <Text style={Styles.addBtnText}>Synch your records now!</Text>
-            </TouchableOpacity>
-          </View>
-          <Image
-            source={require("../../../assets/images/adImg.png")}
-            style={Styles.addPiper}
-            resizeMode="cover"
-          />
-        </ImageBackground>
-      </View>
-    </ScrollView>
+          </ImageBackground> */}
+        </View>
+      </ScrollView>
+      <CustomBottomTab activeTab="" tabs={tabs} />
+    </>
   );
 };
 export default UploadDoc;
@@ -151,7 +220,7 @@ const Styles = StyleSheet.create({
   topSec: {
     position: "relative",
     width: "100%",
-    backgroundColor: "#D2FFF6",
+    backgroundColor: Colors.warm,
     zIndex: 9,
   },
   topSecLeft: {
@@ -159,20 +228,20 @@ const Styles = StyleSheet.create({
     zIndex: 9,
   },
   docContainer: {
-    borderColor: Colors.strokeColor,
+    borderColor: Colors.primary_blue,
   },
   bgImage: {
     justifyContent: "flex-end",
     textAlign: "right",
-    marginTop: -90,
+    marginTop: -150,
   },
   topBg: {
     // position: "absolute",
-    width: 260,
+    width: "100%",
     marginLeft: "auto",
-    height: 170,
+    height: 224,
     zIndex: 0,
-    justifyContent: "flex-end",
+    // justifyContent: "flex-end",
   },
   headingRow: {
     flexDirection: "row",
@@ -229,6 +298,7 @@ const Styles = StyleSheet.create({
   eachIcon: {
     width: 42,
     height: 42,
+    tintColor:Colors.primary
   },
   uploadHeading: {
     color: "#1E1E1E",
@@ -241,15 +311,15 @@ const Styles = StyleSheet.create({
   },
   viewDocumentsWrap: {
     position: "relative",
-    paddingHorizontal: 24,
-    justifyContent: "space-between",
     flexDirection: "row",
-    paddingBottom: 10,
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    padding: 0
   },
   eachDoc: {
-    width: "auto",
-    justifyContent: "center",
+    width: "30%",
     alignItems: "center",
+    marginBottom: 15,
   },
   eachDocIcon: {
     width: 52,
@@ -263,6 +333,7 @@ const Styles = StyleSheet.create({
   icon: {
     width: 28,
     height: 28,
+    tintColor:Colors.primary
   },
   catTitle: {
     fontSize: 12,

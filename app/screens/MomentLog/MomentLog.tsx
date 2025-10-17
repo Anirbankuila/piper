@@ -70,7 +70,7 @@ const MomentLog = () => {
           <TouchableOpacity style={styles.eachItem} onPress={pickImage}>
             <Image
               source={require("../../../assets/icons/gallery.png")} // put your logo inside assets folder
-              style={styles.icon}
+              style={[styles.icon, { tintColor: Colors.primary }]}
               resizeMode="cover"
             />
             <Text style={styles.eachItemTitle}>Add Photo</Text>

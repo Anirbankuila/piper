@@ -62,23 +62,47 @@ const Styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical:30
+    justifyContent: "space-between",
+    paddingBottom: 30,
+    paddingRight: 0, // ✅ ensures space on right edge
+    overflow: "visible",
   },
+
   contentTopText: {
     position: "relative",
     width: "70%",
     zIndex: 9,
   },
+
   contentTopImg: {
-    position: "absolute",
-    width: "100%",
-    zIndex: 0,
+    width: "30%",
+    alignItems: "flex-end", // ✅ aligns image to right
+    zIndex: 5,
   },
-  topImg: {
+
+  blurView: {
+    position: "absolute",
+    bottom: 30,
+    left: 0,
+    right: 0,
+    height: 40,
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 99,
     width: "100%",
-    height: 300,
+  },
+  blurViewImg: {
+    width: "100%",
+    height: 40,
+  },
+
+  topImg: {
+    width: 140,
+    height: 120,
     resizeMode: "contain",
   },
+
+
   title: {
     fontSize: 20,
     lineHeight: 25,
@@ -108,19 +132,11 @@ const Styles = StyleSheet.create({
 
   uploadIconWrap: {
     marginRight: 8,
-    borderWidth: 1,
-    borderColor: "#66A2E4",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#E6F0FB",
-    width: 32,
-    height: 32,
-    borderRadius: "50%",
+    
   },
   uploadIcon: {
-    width: 18,
-    height: 18,
+    width: 32,
+    height: 32,
     resizeMode: "contain",
   },
 

@@ -72,7 +72,7 @@ const PiperTab = () => {
               >
                 <View style={styles.innerBox}>
                   <TouchableOpacity style={styles.eachChat}>
-                    <Text style={{ color: "#000" }}>{chat}</Text>
+                    <Text style={{ color: Colors.primary }}>{chat}</Text>
                   </TouchableOpacity>
                 </View>
               </LinearGradient>

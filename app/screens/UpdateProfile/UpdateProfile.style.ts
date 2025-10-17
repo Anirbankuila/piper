@@ -21,19 +21,10 @@ const Styles = StyleSheet.create({
 
   uploadIconWrap: {
     marginRight: 8,
-    borderWidth: 1,
-    borderColor: "#66A2E4",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#E6F0FB",
-    width: 32,
-    height: 32,
-    borderRadius: "50%",
   },
   uploadIcon: {
-    width: 18,
-    height: 18,
+    width: 32,
+    height: 32,
     resizeMode: "contain",
   },
 

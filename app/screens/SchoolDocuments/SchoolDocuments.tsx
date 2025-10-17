@@ -1,4 +1,5 @@
 import Routes, { navigateScreen } from "@/app/common/Routes";
+import CommonButton from "@/app/components/CommonButton/CommonButton";
 import { Colors, Fonts } from "@/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -98,6 +99,15 @@ const DocumentList = () => {
                     ListEmptyComponent={<Text style={styles.emptyText}>No documents found</Text>}
                 />
             </View>
+            <View style={styles.btnWrap}>
+                <CommonButton
+                    backgroundColor={Colors.black}
+                    title="Add Document"
+                    textStyle={styles.buttonText}
+                    style={styles.button}
+                    onPress={() => navigateScreen(Routes.AddSchoolDocument)}
+                />
+            </View>
         </KeyboardAvoidingView>
     );
 };
@@ -135,4 +145,14 @@ const styles = StyleSheet.create({
     docDesc: { fontSize: 10, fontFamily: Fonts.Regular, color: Colors.textLight, marginTop: 5 },
     pdfIcon: { width: 24, height: 24 },
     emptyText: { textAlign: "center", marginTop: 20, color: "#888" },
+    btnWrap:{
+        padding:24,
+        backgroundColor:Colors.bg
+    },
+    button:{
+        backgroundColor:Colors.black
+    },
+    buttonText: {
+        color:Colors.bg
+    }
 });

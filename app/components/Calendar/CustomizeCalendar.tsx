@@ -21,21 +21,28 @@ const CustomizeCalendar = () => {
       style={{ height: 356 }}
       markedDates={{
         [selected]: {
-          selected: true,
-          disableTouchEvent: true,
-          selectedColor: Colors.grey,
-          dotColor: Colors.blue_link,
+          customStyles: {
+            container: {
+              borderWidth: 1,
+              backgroundColor:Colors.surface_bg,
+              borderColor: Colors.strokeColor, // ✅ active border color
+              borderRadius: 10, // makes it circular
+            },
+            text: {
+              color: Colors.black, // date text color
+            },
+          },
         },
         "2025-09-02": { marked: true },
       }}
+      markingType="custom" // ✅ this enables customStyles
       firstDay={1}
       hideArrows
       renderHeader={(date) => {
-        const month = date.toString("MMMM"); // works with XDate
+        const month = date.toString("MMMM");
         const year = date.getFullYear();
         return (
           <View style={styles.monthHeaderView}>
-            {/* Left arrow */}
             <TouchableOpacity
               onPress={() => {
                 setCurrent(
@@ -47,13 +54,11 @@ const CustomizeCalendar = () => {
               <ChevronLeftIcon size={22} color={Colors.primary} />
             </TouchableOpacity>
 
-            {/* Center month + year */}
             <View style={{ alignItems: "center" }}>
               <Text style={styles.monthText}>{month}</Text>
               <Text style={styles.yearText}>{year}</Text>
             </View>
 
-            {/* Right arrow */}
             <TouchableOpacity
               onPress={() =>
                 setCurrent(dayjs(current).add(1, "month").format("YYYY-MM-DD"))
@@ -66,11 +71,12 @@ const CustomizeCalendar = () => {
         );
       }}
       theme={{
-        selectedDayBackgroundColor: Colors.grey,
+        selectedDayBackgroundColor: Colors.surface_bg,
         dotColor: Colors.blue_link,
         selectedDotColor: Colors.blue_link,
       }}
     />
+
   );
 };
 

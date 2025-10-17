@@ -14,27 +14,31 @@ const ShareSuccess = () => {
             {/* Content */}
             <View style={Styles.content}>
                 <View style={Styles.topWrap}>
-                    <Text style={Styles.title}>Document Saved!</Text>
+                    <Text style={Styles.title}>Document Shared!</Text>
                     <Image
-                        source={require("../../../assets/images/logbg.png")} // put your logo inside assets folder
+                        source={require("../../../assets/images/saveimg.png")} // put your logo inside assets folder
                         style={Styles.topBg}
                         resizeMode="cover"
                     />
-                    
-
 
                 </View>
                 <View style={Styles.btnWrap}>
                     <CommonButton
                         style={Styles.btn}
                         onPress={() => navigateScreen(Routes.uploadDoc)}
-                        backgroundColor="#000"
+                        backgroundColor={Colors.primary}
                         color="#fff"
                         title="Done"
                         textStyle={Styles.btnText}
                     />
                 </View>
-
+            </View>
+            <View style={Styles.piperStar}>
+                <Image
+                    source={require("../../../assets/images/PiperStar.png")} // put your logo inside assets folder
+                    style={Styles.piperStarImg}
+                    resizeMode="cover"
+                />
             </View>
         </ScrollView>
     );
@@ -46,7 +50,7 @@ const Styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#D8DFF7',
+        backgroundColor: Colors.warm,
         padding: 24,
     },
     title: {
@@ -71,14 +75,16 @@ const Styles = StyleSheet.create({
         borderRadius: 12,
         textAlign: 'center',
         borderWidth: 1,
-        borderColor: '#B3D1F2',
+        borderColor: '#F1ECF8',
         width: '100%',
-        paddingTop:20
+        paddingTop: 20
     },
     topWrap: {
         paddingTop: 15,
         textAlign: 'center',
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        borderBottomWidth: 1,
+        borderBottomColor: "#F1ECF8",
     },
 
     btnWrap: {
@@ -99,10 +105,19 @@ const Styles = StyleSheet.create({
         fontSize: 14,
     },
     topBg: {
-        marginTop: -30,
+        marginTop: 0,
         width: '100%',
         height: 200
     },
+    piperStar: {
+        position: 'absolute',
+        bottom: 50,
+        left: 40
+    },
+    piperStarImg: {
+        width: 120,
+        height: 120
+    }
 
 
 

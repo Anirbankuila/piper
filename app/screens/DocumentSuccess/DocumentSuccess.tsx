@@ -1,5 +1,6 @@
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
+import { Colors } from "@/constants/theme";
 import React from "react";
 import { Image, ScrollView, Text, View } from "react-native";
 import Styles from "./DocumentSuccessCss";
@@ -14,31 +15,31 @@ const DocumentSuccess = () => {
       {/* Content */}
       <View style={Styles.content}>
         <View style={Styles.topWrap}>
+
+          <Text style={Styles.title}>Document Saved!</Text>
           <Image
-            source={require("../../../assets/icons/saveddoc.png")} // put your logo inside assets folder
+            source={require("../../../assets/images/saveimg.png")} // put your logo inside assets folder
             style={Styles.topBg}
             resizeMode="cover"
           />
-          <Text style={Styles.title}>Document Saved!</Text>
         </View>
         <View style={Styles.btnWrap}>
           <CommonButton
-            style={[Styles.pastLogBtn, { width: "52%" }]} // same width add
-            onPress={() => navigateScreen(Routes.homeTab)}
-            backgroundColor="#fff"
-            color="#000"
-            title="Document List"
-            textStyle={Styles.btnText}
-          />
-          <CommonButton
-            style={[{ width: "45%" }]}
+            style={Styles.doneBtn}
             onPress={() => navigateScreen(Routes.uploadDoc)}
-            backgroundColor="#000"
+            backgroundColor={Colors.primary}
             color="#fff"
             title="Done"
             textStyle={Styles.btnText}
           />
         </View>
+      </View>
+      <View style={Styles.piperStar}>
+        <Image
+          source={require("../../../assets/images/PiperStar.png")} // put your logo inside assets folder
+          style={Styles.piperStarImg}
+          resizeMode="cover"
+        />
       </View>
     </ScrollView>
   );

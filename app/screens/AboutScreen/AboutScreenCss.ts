@@ -37,15 +37,15 @@ const Styles = StyleSheet.create({
     overflow: "hidden",
     zIndex: 0,
   },
-  glassEffect: {
+ glassEffect: {
     flex: 1,
-    backgroundColor: "rgba(255,255,255,0.5)", // lighter white
-  },
+    backgroundColor: "rgba(255,255,255,0.5)",
+ },
 
   title: {
     fontSize: 24,
     lineHeight: 28,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
     fontWeight: "bold",
     color: Colors.primary,
     marginBottom: 28,
@@ -55,7 +55,7 @@ const Styles = StyleSheet.create({
     fontSize: 17,
     textAlign: "left",
     marginVertical: 10,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
     color: Colors.text,
   },
   formWrap: {
@@ -86,7 +86,7 @@ const Styles = StyleSheet.create({
 
   uploadText: {
     fontSize: 16,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
     color: Colors.text,
   },
   eachInput: {
@@ -112,12 +112,12 @@ const Styles = StyleSheet.create({
   backButtonText: {
     fontSize: 16,
     color: Colors.text,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
   },
   selectText: {
     fontSize: 16,
     color: "#141514",
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
   },
   selectBox: {
     backgroundColor: "#F2F2F7",
@@ -141,7 +141,7 @@ const Styles = StyleSheet.create({
     marginBottom: 10,
   },
   addAnotherText: {
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
     color: Colors.text,
     fontWeight: "600",
   },

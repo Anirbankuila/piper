@@ -9,9 +9,10 @@ import dayjs from "dayjs";
 import { Image, ImageBackground } from "expo-image";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { ScrollView, Switch, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 import Routes, { navigateScreen } from "@/app/common/Routes";
+import CustomToggle from "@/app/components/CustomSwitch/CustomSwitch";
 import MedicationListItem from "@/app/components/MedicationListItem/MedicationListItem";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Styles from "./Medicine.style";
@@ -83,7 +84,7 @@ const Medicine = () => {
         contentContainerStyle={Styles.container}
         showsVerticalScrollIndicator={false}
       >
-        <StatusBar backgroundColor={"#D2FFF6"} translucent={true} />
+        <StatusBar backgroundColor={Colors.surface_light_pitch} translucent={true} />
         <View
           style={[
             Styles.headerWrapper,
@@ -92,14 +93,14 @@ const Medicine = () => {
             },
           ]}
         >
-          <Header backgroundColor={"#D2FFF6"} />
+          <Header backgroundColor={Colors.surface_light_pitch} />
           <ImageBackground
-            source={require("../../../assets/images/medicine-bg-header.png")}
+            source={require("../../../assets/images/medicationbg.png")}
             style={Styles.piperIntroContainer}
             contentFit="cover"
           >
             <Image
-              source={require("../../../assets/images/Alex-personal 1.png")}
+              source={require("../../../assets/images/alexa.png")}
               style={Styles.alexPersonalImg}
             />
             <View style={Styles.messageWrapper}>
@@ -130,13 +131,14 @@ const Medicine = () => {
               <Text style={Styles.pushNotifyText}>
                 Enable Push Notification
               </Text>
-              <Switch
+              <CustomToggle />
+              {/* <Switch
                 trackColor={{ false: "#d3d3d3", true: "#34C759" }}
                 thumbColor={isEnabled ? "#34C759" : "#f4f3f4"}
                 ios_backgroundColor="#d3d3d3"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
-              />
+              /> */}
             </View>
             <View style={Styles.medicineDetails}>
               <View style={Styles.medicineBtn}>

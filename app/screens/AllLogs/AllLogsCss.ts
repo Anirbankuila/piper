@@ -10,26 +10,27 @@ const Styles = StyleSheet.create({
     position: 'relative',
   },
   topSec: {
-    position: 'relative',
-    marginTop: -15,
-    width: '100%',
-    backgroundColor: '#D2FFF6',
-    zIndex: 9
+    backgroundColor:Colors.surface_light_pitch,
+    position: "relative",
+    marginTop: -5,
+    width: "100%",
+    flexDirection:'row',
+    alignItems:'center',
+    paddingVertical:25
   },
   topSecLeft: {
-    position: 'relative',
-    padding: 24,
-    // width: 250,
-    zIndex: 9
+    position: "relative",
+    paddingLeft: 24,
+    width: "80%",
   },
   topBg: {
-    position: 'absolute',
-    width: '100%',
-    left: 0,
-    top: 0,
-    right: 0,
-    height: 170,
-    zIndex: 0
+    width: 157,
+    height: 140,
+    textAlign:'center',
+    justifyContent:'center',
+    position:'absolute',
+    right:0,
+    bottom:0
   },
   topSecHeading: {
     fontSize: 20,
@@ -44,7 +45,7 @@ const Styles = StyleSheet.create({
   },
   logWrapper: {
     position: 'relative',
-    marginTop: 20,
+    marginTop: 10,
     padding: 24
   },
   dateTime: {

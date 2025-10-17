@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     chartCard: {
         paddingTop: 12,
         alignItems: 'center',
-        width: width - 24,
+        width: width ,
         borderRadius: 8
     },
     title: {
@@ -157,6 +157,6 @@ const styles = StyleSheet.create({
         color: '#003269'
     },
     chart: {
-        paddingHorizontal: 10
+        // paddingHorizontal: 10
     }
 });

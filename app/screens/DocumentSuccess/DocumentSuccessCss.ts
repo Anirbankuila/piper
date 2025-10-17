@@ -6,14 +6,14 @@ const Styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#D8DFF7",
+    backgroundColor: '#FFF9F2',
     padding: 24,
   },
   title: {
     fontSize: 20,
     lineHeight: 28,
     fontFamily: Fonts.SemiBold,
-    color: Colors.black,
+    color: Colors.primary,
     maxWidth: "100%",
     textAlign: "center",
     marginBottom: 10,
@@ -31,19 +31,20 @@ const Styles = StyleSheet.create({
     borderRadius: 12,
     textAlign: "center",
     borderWidth: 1,
-    borderColor: "#B3D1F2",
+    borderColor: "#F1ECF8",
     width: "100%",
   },
   topWrap: {
     paddingTop: 15,
     textAlign: "center",
     paddingHorizontal: 20,
+    borderBottomWidth:1,
+    borderBottomColor:"#F1ECF8",
   },
   topBg: {
-    width: 78,
-    height: 78,
+    width: '100%',
+    height: 200,
     marginHorizontal: "auto",
-    marginBottom: 10,
   },
   btnWrap: {
     flexDirection: "row",
@@ -52,14 +53,24 @@ const Styles = StyleSheet.create({
     padding: 12,
   },
 
-  pastLogBtn: {
+  doneBtn: {
     borderWidth: 1,
-    borderColor: "#000",
+    borderColor: Colors.primary,
     paddingHorizontal: 0,
+    width: "100%"
   },
   btnText: {
     fontSize: 14,
   },
+  piperStar: {
+    position: 'absolute',
+    bottom: 50,
+    left: 40
+  },
+  piperStarImg: {
+    width: 120,
+    height: 120
+  }
 });
 
 export default Styles;

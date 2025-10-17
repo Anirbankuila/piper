@@ -4,9 +4,9 @@ import { StyleSheet } from "react-native";
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundColor: '#D8DFF7',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.warm,
     padding: 24,
   },
   title: {
@@ -33,10 +33,10 @@ const Styles = StyleSheet.create({
   topWrap: {
     paddingTop: 15,
     textAlign: 'center',
-    paddingHorizontal:20
+    paddingHorizontal: 20
   },
   topBg: {
-    marginTop:-30,
+    marginTop: 0,
     width: '100%',
     height: 200
   },
@@ -51,6 +51,15 @@ const Styles = StyleSheet.create({
   pastLogBtn: {
     borderWidth: 1,
     borderColor: '#000'
+  },
+  piperStar: {
+    position: 'absolute',
+    bottom: 50,
+    left: 40
+  },
+  piperStarImg: {
+    width: 120,
+    height: 120
   }
 
 

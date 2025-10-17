@@ -1,5 +1,6 @@
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
+import { Colors } from "@/constants/theme";
 import { router } from "expo-router";
 import React from "react";
 import { Image, ScrollView, Text, View } from "react-native";
@@ -20,7 +21,7 @@ const LogSuccess = () => {
             My brain’s on it now, so yours can take a {"\n"} break. I got you!
           </Text>
           <Image
-            source={require("../../../assets/images/logbg.png")} // put your logo inside assets folder
+            source={require("../../../assets/images/saveimg.png")} // put your logo inside assets folder
             style={Styles.topBg}
             resizeMode="cover"
           />
@@ -30,18 +31,25 @@ const LogSuccess = () => {
             style={Styles.pastLogBtn}
             onPress={() => navigateScreen(Routes.homeTab)}
             backgroundColor="#fff"
-            color="#000"
+            color={Colors.primary}
             title="Back to Home"
           />
           <CommonButton
             onPress={() => {
               router.replace("/screens/AllLogs/AllLogs");
             }}
-            backgroundColor="#000"
+            backgroundColor={Colors.primary}
             color="#fff"
             title="View Past Logs"
           />
         </View>
+      </View>
+      <View style={Styles.piperStar}>
+        <Image
+          source={require("../../../assets/images/PiperStar.png")} // put your logo inside assets folder
+          style={Styles.piperStarImg}
+          resizeMode="cover"
+        />
       </View>
     </ScrollView>
   );

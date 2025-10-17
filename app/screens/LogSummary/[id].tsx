@@ -1,6 +1,7 @@
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import MoodChart from "@/app/components/ModeChart/ModeChart";
+import { Colors } from "@/constants/theme";
 import * as ImagePicker from "expo-image-picker";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect } from "react";
@@ -81,12 +82,12 @@ export default function LogDetails() {
               Morning meds didn’t {"\n"}go as planned.
             </Text>
             <Text style={Styles.para}>
-              That sounds like a hard start to {"\n"}the day. I’ve got it
+              That sounds like a hard start {"\n"}to the day. I’ve got it
               logged.
             </Text>
           </View>
           <Image
-            source={require("../../../assets/images/newlogbg.png")}
+            source={require("../../../assets/images/logsummarybg.png")}
             style={Styles.topBg}
             resizeMode="contain"
           />
@@ -116,7 +117,7 @@ export default function LogDetails() {
             <TouchableOpacity style={Styles.eachItem} onPress={pickImage}>
               <Image
                 source={require("../../../assets/icons/gallery.png")} // put your logo inside assets folder
-                style={Styles.icon}
+                style={[Styles.icon, { tintColor: Colors.primary }]}
                 resizeMode="cover"
               />
               <Text style={Styles.eachItemTitle}>Add Photo</Text>

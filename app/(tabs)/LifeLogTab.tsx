@@ -71,7 +71,7 @@ const LifeLogTab = () => {
           </Text>
         </View>
         <Image
-          source={require("../../assets/images/topBg.png")} // put your logo inside assets folder
+          source={require("../../assets/images/log-img.png")} // put your logo inside assets folder
           style={styles.topBg}
           resizeMode="cover"
         />
@@ -83,7 +83,7 @@ const LifeLogTab = () => {
           <TouchableOpacity style={styles.eachItem} onPress={pickImage}>
             <Image
               source={require("../../assets/icons/gallery.png")} // put your logo inside assets folder
-              style={styles.icon}
+              style={[styles.icon, { tintColor: Colors.primary }]}
               resizeMode="cover"
             />
             <Text style={styles.eachItemTitle}>Add Photo</Text>
@@ -134,23 +134,25 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.bg,
   },
   topSec: {
+    backgroundColor:"#FFF3E9",
     position: "relative",
     marginTop: -5,
     width: "100%",
+    flexDirection:'row',
+    alignItems:'center',
+    paddingRight:30
   },
   topSecLeft: {
     position: "relative",
     padding: 24,
-    width: 240,
+    width: "70%",
   },
   topBg: {
-    position: "absolute",
-    width: "100%",
-    left: 0,
-    top: 0,
-    right: 0,
+    width: "30%",
     height: 150,
-    zIndex: -1,
+    textAlign:'center',
+    justifyContent:'center',
+    marginRight:30
   },
   topSecHeading: {
     fontSize: 20,
@@ -186,6 +188,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 24,
     height: 24,
+    
   },
   eachItemTitle: {
     fontSize: 12,

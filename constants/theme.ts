@@ -41,7 +41,10 @@ export const Colors = {
   black: "#141514",
   surface_bg: "#F2F2F7",
   grey: "#AAAAAA",
-  violet_light:"#F1ECF8"
+  violet_light:"#F1ECF8",
+  surface_light_pitch:'#FFF3E9',
+  warm:"#FFF9F2",
+  primary_blue:"#B3D1F2"
 };
 
 export const Fonts = Platform.select({

@@ -71,7 +71,7 @@ export default function MomentTracker() {
                 end={{ x: 1, y: 1 }}
                 style={styles.chartCard}
             >
-                <Text style={styles.title}>Timeline</Text>
+                <Text style={styles.title}>Life Log Moment Tracker</Text>
                 <LineChart
                     data={data}
                     width={width + 40}

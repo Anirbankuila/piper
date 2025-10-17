@@ -110,7 +110,7 @@ const screens = [
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow
       headerStyle: {
-        backgroundColor: "#D2FFF6", // 👈 header er background color
+        backgroundColor: Colors.surface_light_pitch, // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
       statusBarStyle: "dark" as const,
@@ -124,9 +124,9 @@ const screens = [
       headerBackTitleVisible: true,
       headerShadowVisible: false,
       statusBarStyle: "dark" as const, // 👈 fix
-      statusBarBackgroundColor: "#D2FFF6",
+      statusBarBackgroundColor: Colors.surface_light_pitch,
       headerStyle: {
-        backgroundColor: "#D2FFF6", // 👈 header er background color
+        backgroundColor: Colors.surface_light_pitch, // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
     },
@@ -236,7 +236,7 @@ const screens = [
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow
       headerStyle: {
-        backgroundColor: "#D2FFF6", // 👈 header er background color
+        backgroundColor: Colors.warm, // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
       statusBarStyle: "dark" as const,
@@ -319,6 +319,141 @@ const screens = [
     options: {
       headerShown: true,
       title: "School Documents", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.AddSchoolDocument,
+    options: {
+      headerShown: true,
+      title: "Add Documents", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.medicalDocuments,
+    options: {
+      headerShown: true,
+      title: "Medical Documents", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.AddMedicalDocument,
+    options: {
+      headerShown: true,
+      title: "Add Documents", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.therapyDocumnets,
+    options: {
+      headerShown: true,
+      title: "Therapy Documents", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.AddTherapyDocument,
+    options: {
+      headerShown: true,
+      title: "Add Documents", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.allergyDocuments,
+    options: {
+      headerShown: true,
+      title: "Allergies", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.AddAllergyDocument,
+    options: {
+      headerShown: true,
+      title: "Add Documents", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.immunizationDocuments,
+    options: {
+      headerShown: true,
+      title: "Immunization", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.AddImmunizingDocument,
+    options: {
+      headerShown: true,
+      title: "Add Documents", // Title in header
       headerBackTitle: "", // Back button text
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow

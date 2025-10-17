@@ -7,7 +7,7 @@ const Styles = StyleSheet.create({
     backgroundColor: Colors.bg,
   },
   headerWrapper: {
-    backgroundColor: "#D2FFF6",
+    backgroundColor: Colors.surface_light_pitch,
   },
   piperIntroContainer: {
     flexDirection: "row",
@@ -15,11 +15,17 @@ const Styles = StyleSheet.create({
     justifyContent: "center",
     width: width,
     paddingHorizontal: 22,
+    paddingTop:50,
+    paddingBottom:60
   },
   alexPersonalImg: {
-    width: 126,
-    height: 180,
+    position:'absolute',
+    left:0,    
+    bottom:0,
+    width: 196,
+    height: 190,
     resizeMode: "contain",
+    zIndex:9
   },
   piperCard: {
     borderRadius: 20,
@@ -33,25 +39,26 @@ const Styles = StyleSheet.create({
   messageWrapper: {
     flex: 1,
     position: "relative",
-    flexShrink: 1,
+    width:'100%',
+    justifyContent:'flex-end',
+    marginLeft:'auto'
+
   },
   messageBox: {
     backgroundColor: "white",
     padding: 12,
-    shadowColor: Colors.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    paddingLeft:20,
+    marginLeft:'auto',
+    width:'60%',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     borderBottomEndRadius: 10,
   },
   pointer: {
     position: "absolute",
-    bottom: -4,
+    bottom: -8,
     width: 0,
-    left: -7,
+    left: 0,
     height: 0,
     borderLeftWidth: 10,
     borderRightWidth: 10,
@@ -154,21 +161,19 @@ const Styles = StyleSheet.create({
   },
   dayText: {
     fontSize: 11,
-    color: Colors.grey,
+    color: Colors.textLight,
     fontFamily: Fonts.Medium,
-    fontWeight: "500",
-    marginBottom: 20,
+    marginBottom: 10,
   },
   dateText: {
     fontSize: 12,
-    fontWeight: "700",
     fontFamily: Fonts.Bold,
-    color: Colors.grey,
+    color: Colors.textLight,
   },
   selectedDayText: { color: Colors.black },
   heading: {
     fontSize: 20,
-    fontWeight: "700",
+    fontFamily: Fonts.Bold,
     marginBottom: 10,
   },
   filterContainer: {
@@ -187,7 +192,7 @@ const Styles = StyleSheet.create({
     marginRight: 5,
   },
   activeFilterButton: { backgroundColor: Colors.black },
-  filterText: { fontWeight: "700", fontFamily: Fonts.Medium },
+  filterText: {  fontFamily: Fonts.Medium },
   activeFilterText: { color: Colors.bg },
   noDataText: {
     textAlign: "center",

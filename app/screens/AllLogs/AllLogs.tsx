@@ -1,4 +1,5 @@
 import Routes, { navigateScreen } from "@/app/common/Routes";
+import { Colors } from "@/constants/theme";
 import React from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Styles from "./AllLogsCss";
@@ -56,7 +57,7 @@ const AllLogs = () => {
             </Text>
           </View>
           <Image
-            source={require("../../../assets/images/newlogbg.png")}
+            source={require("../../../assets/images/alllogimg.png")}
             style={Styles.topBg}
             resizeMode="contain"
           />
@@ -93,7 +94,7 @@ const AllLogs = () => {
                 <View style={Styles.shareBtn}>
                   <Image
                     source={require("../../../assets/icons/share.png")}
-                    style={Styles.modeShare}
+                    style={[Styles.modeShare, { tintColor: Colors.primary }]}
                     resizeMode="contain"
                   />
                   <Text style={Styles.shareText}>Share</Text>
@@ -108,3 +109,5 @@ const AllLogs = () => {
 };
 
 export default AllLogs;
+
+

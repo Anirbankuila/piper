@@ -6,7 +6,7 @@ const Styles = StyleSheet.create({
     flex: 1,
     justifyContent:'center',
     alignItems:'center',
-    backgroundColor: '#D8DFF7',
+    backgroundColor: '#FFF9F2',
     padding: 24,
   },
   title: {
@@ -50,7 +50,16 @@ const Styles = StyleSheet.create({
   },
   pastLogBtn: {
     borderWidth: 1,
-    borderColor: '#000'
+    borderColor: Colors.primary
+  },
+  piperStar:{
+    position:'absolute',
+    bottom:50,
+    left:40
+  },
+  piperStarImg:{
+    width:120,
+    height:120
   }
 
 

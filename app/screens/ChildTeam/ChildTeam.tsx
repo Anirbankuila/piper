@@ -92,6 +92,12 @@ const ChildTeam: React.FC = () => {
               style={Styles.topImg}
             />
           </View>
+          <View style={Styles.blurView}>
+            <Image
+              source={require("../../../assets/images/blur-view.png")}
+              style={Styles.blurViewImg}
+            />
+          </View>
         </View>
 
         {/* Add Child Header */}
@@ -143,9 +149,8 @@ const ChildTeam: React.FC = () => {
 
             <CustomSelect
               value={child.gender || ""}
+              placeHolderText="Role in your child's life"
               options={["Mother", "Father", "Teacher", "Doctor", "Other"]}
-              title="Choose Role"
-              placeholder="Role in your child's life"
               onChange={(val: string) =>
                 updateChildForm(child.id, "gender", val)
               }

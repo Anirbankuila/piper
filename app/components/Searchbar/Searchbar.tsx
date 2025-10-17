@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 5,
     marginBottom: 20,
-    borderColor: Colors.black,
+    borderColor: Colors.primary_blue,
     borderWidth: 1,
   },
   searchIcon: {
@@ -97,8 +97,8 @@ const styles = StyleSheet.create({
     borderLeftColor: Colors.strokeColor,
   },
   micIcon: {
-    width: 23,
-    height: 23,
+    width: 16,
+    height: 16,
     tintColor: Colors.black,
   },
 });

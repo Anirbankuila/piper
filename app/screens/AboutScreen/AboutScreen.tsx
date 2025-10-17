@@ -128,7 +128,7 @@ const AboutScreen: React.FC = () => {
       {/* Content */}
       <View style={Styles.content}>
         <View style={Styles.glassWrapper}>
-          <BlurView style={Styles.glassEffect} intensity={50} tint="light" />
+          <BlurView style={Styles.glassEffect} experimentalBlurMethod="dimezisBlurView" intensity={100} tint="light" />
         </View>
         <Text style={Styles.title}>
           Tell me about your {"\n"}superstar child
