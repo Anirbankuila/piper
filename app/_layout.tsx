@@ -14,7 +14,7 @@ import Routes from "./common/Routes";
 const screens = [
   { name: "index", options: { headerShown: false } },
   {
-    name: Routes.onBoarding, 
+    name: Routes.onBoarding,
     options: {
       headerShown: false, headerStyle: {
         backgroundColor: "transparent", // 👈 header er background color
@@ -710,6 +710,57 @@ const screens = [
       statusBarStyle: "dark" as const,
     },
   },
+  {
+    name: Routes.medicalTeamReport,
+    options: {
+      headerShown: true,
+      headerTitle: "",
+      headerShadowVisible: false,
+      headerStyle: { backgroundColor: "#fff",  },
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => router.back()}>
+          <Image
+            source={require("../assets/icons/logo.png")}
+          />
+        </TouchableOpacity>
+      ),
+      headerRight: () => (
+        <TouchableOpacity onPress={() => router.back()}>
+          <Ionicons name="close-circle-outline" size={26} color="black" />
+        </TouchableOpacity>
+      ),
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.doctorList,
+    options: {
+      headerShown: true,
+      title: "", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: Colors.bg, // 👈 header er background color
+      },
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.reportShareSuccess,
+    options: {
+      headerShown: false,
+      title: "", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: false, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    },
+  },
 ];
 
 export default function RootLayout() {
@@ -733,7 +784,7 @@ export default function RootLayout() {
             <Stack.Screen
               key={screen.name}
               name={screen.name}
-              options={screen.options}
+              options={screen.options as any}
             />
           ))}
           <Stack.Screen

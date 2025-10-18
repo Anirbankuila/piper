@@ -57,7 +57,10 @@ const Routes = {
   SurveyCompleteScreen: "screens/SurveyEntryScreen/SurveyCompleteScreen",
   DeleteLog: "screens/DeleteLog/DeleteLog",
   AddChildTeam:"screens/AddChildTeam/AddChildTeam",
-  addChildSuccess:"screens/AddChildSuccess/AddChildSuccess"
+  addChildSuccess:"screens/AddChildSuccess/AddChildSuccess",
+  medicalTeamReport:"screens/MedicalTeamReport/MedicalTeamReport",
+  doctorList:"screens/DoctorList/DoctorList",
+  reportShareSuccess:"screens/ReportShareSuccess/ReportShareSuccess"
 };
 
 export function navigateScreen(

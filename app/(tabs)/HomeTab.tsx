@@ -362,7 +362,7 @@ export default function HomeTab() {
       </View>
       <Divider text={"Shareable Summaries"} />
       <View style={[styles.summarySection]}>
-        <View style={styles.summaryDetails}>
+        <TouchableOpacity style={styles.summaryDetails} onPress={() => navigateScreen(Routes.medicalTeamReport)}>
           <Text style={styles.summaryText}>For Medical {"\n"}Team</Text>
           <View
             style={{
@@ -377,7 +377,7 @@ export default function HomeTab() {
               style={styles.summaryImg}
             />
           </View>
-        </View>
+        </TouchableOpacity>
         <View style={styles.summaryDetails}>
           <Text style={styles.summaryText}>For Education {"\n"}Team</Text>
           <Image
