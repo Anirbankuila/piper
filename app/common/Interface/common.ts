@@ -1,4 +1,4 @@
-export interface ITab {
+export default interface ITab {
   name: string;
   iconPath: string;
   activeIconPath?: string;

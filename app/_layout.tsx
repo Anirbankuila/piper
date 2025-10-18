@@ -13,7 +13,16 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Routes from "./common/Routes";
 const screens = [
   { name: "index", options: { headerShown: false } },
-  { name: Routes.onBoarding, options: { headerShown: false } },
+  {
+    name: Routes.onBoarding, 
+    options: {
+      headerShown: false, headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
+      headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
+    }
+  },
   {
     name: Routes.logIn,
     options: {
@@ -25,6 +34,36 @@ const screens = [
       headerShadowVisible: false,
     },
     statusBarStyle: "dark" as const,
+  },
+  {
+    name: Routes.faceDetection,
+    options: {
+      headerShown: true,
+      title: "Face ID", // Title in header
+      headerBackTitle: "Back", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        elevation: 0, // For Android shadow removal
+        shadowOpacity: 0, // For iOS shadow removal
+      },
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.faceDetectionFrame,
+    options: {
+      headerShown: true,
+      title: "Face ID", // Title in header
+      headerBackTitle: "Back", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        elevation: 0, // For Android shadow removal
+        shadowOpacity: 0, // For iOS shadow removal
+      },
+      statusBarStyle: "dark" as const,
+    },
   },
   {
     name: Routes.profile,
@@ -143,7 +182,7 @@ const screens = [
       headerTintColor: "#000",
       headerRight: () => (
         <TouchableOpacity
-           onPress={() => navigation.navigate(Routes.DeleteLog)}
+          onPress={() => navigation.navigate(Routes.DeleteLog)}
           style={{ marginRight: 5 }}
         >
           <Ionicons name="trash-outline" size={24} color={Colors.black} />
@@ -643,7 +682,7 @@ const screens = [
       statusBarStyle: "dark" as const,
     },
   },
-   {
+  {
     name: Routes.AddChildTeam,
     options: {
       headerShown: true,

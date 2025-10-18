@@ -113,7 +113,7 @@ const Login: React.FC = () => {
                     </Text>
                 </View>
                 <Text style={Styles.orText}>Or</Text>
-                <TouchableOpacity style={Styles.faceIdBtn}>
+                <TouchableOpacity style={Styles.faceIdBtn} onPress={() => navigateScreen(Routes.faceDetection)}>
                     <Text style={Styles.faceText}>Use Face ID</Text>
                 </TouchableOpacity>
 
@@ -191,7 +191,7 @@ const Styles = StyleSheet.create({
         paddingLeft: 30
     },
     content: {
-        padding: 24
+        padding: 24,
     },
     subtitle: {
         fontSize: 17,

@@ -4,6 +4,8 @@ import { NavigationOptions } from "expo-router/build/global-state/routing";
 const Routes = {
   onBoarding: "screens/onboarding/onBoarding",
   logIn:"screens/Login/Login",
+  faceDetection:"screens/FaceDetection/FaceDetection",
+  faceDetectionFrame:"screens/FaceDetectionFeame/FaceDetectionFeame",
   profile: "screens/Profile/Profile",
   privacy: "screens/Privacy/Privacy",
   otp: "screens/OtpScreen/OtpScreen",
