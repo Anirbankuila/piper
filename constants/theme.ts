@@ -38,6 +38,7 @@ export const Colors = {
   strokeColor: "#C1C1C1",
   bg: "#fff",
   blue_link: "#7444BD",
+  main_purple:"#392365",
   black: "#141514",
   surface_bg: "#F2F2F7",
   grey: "#AAAAAA",

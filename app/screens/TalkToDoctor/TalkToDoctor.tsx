@@ -3,6 +3,7 @@ import DocumentInput from "@/app/components/DocumentInput/DocumentInput";
 import PiperModal from "@/app/components/PiperModal/PiperModal";
 import { Colors, Fonts } from "@/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
+import { ImageBackground } from "expo-image";
 import moment from "moment";
 import React, { useRef, useState } from "react";
 import {
@@ -99,22 +100,28 @@ const TalkToDoctor = () => {
         contentContainerStyle={Styles.chatHistoryWrap}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
-          <View style={Styles.topSec}>
-            <View style={Styles.topSecLeft}>
-              <Text style={Styles.topSecHeading}>
-                Uploading is {"\n"}just the start.
-              </Text>
-              <Text style={Styles.para}>
-                Tell me what you’re wondering about, {"\n"}and I’ll help
-                translate or simplify it.
-              </Text>
+          <ImageBackground
+            source={require("../../../assets/images/talktobg.png")}
+            style={Styles.piperIntroContainer}
+            contentFit="cover"
+          >
+            <View style={Styles.topSec}>
+              <View style={Styles.topSecLeft}>
+                <Text style={Styles.topSecHeading}>
+                  Uploading is {"\n"}just the start.
+                </Text>
+                <Text style={Styles.para}>
+                  Tell me what you’re wondering about, and I’ll help
+                  translate or simplify it.
+                </Text>
+              </View>
+              <Image
+                source={require("../../../assets/images/talktodocimg.png")}
+                style={Styles.topBg}
+                resizeMode="contain"
+              />
             </View>
-            <Image
-              source={require("../../../assets/images/docbg.png")}
-              style={Styles.topBg}
-              resizeMode="contain"
-            />
-          </View>
+          </ImageBackground>
         }
         renderItem={({ item }) => {
           const isPiper = item.sender === "piper";
@@ -212,41 +219,27 @@ const Styles = StyleSheet.create({
   content: {
     position: "relative",
   },
-  blurContainer: {
-    flex: 1,
-    padding: 20,
-    margin: 16,
-    textAlign: "center",
-    justifyContent: "center",
-    overflow: "hidden",
-    position: "absolute",
-    bottom: 10,
-    right: 10,
-    width: 100,
-    height: 100,
-    borderRadius: 20,
-  },
+
   topSec: {
     position: "relative",
-    marginTop: -15,
+    marginTop: -5,
     width: "100%",
-    backgroundColor: "#d2fff6ff",
-    zIndex: 9,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingBottom:5
   },
   topSecLeft: {
     position: "relative",
     padding: 24,
-    // width: 250,
-    zIndex: 9,
+    paddingBottom:0,
+    width: "70%",
   },
   topBg: {
-    position: "absolute",
-    width: "100%",
-    left: 0,
-    top: 0,
-    right: 0,
-    height: 170,
-    zIndex: 0,
+    position:'absolute',
+    right:0,
+    bottom:-22,
+    width: 166,
+    height: 180,
   },
   topSecHeading: {
     fontSize: 20,
@@ -259,12 +252,14 @@ const Styles = StyleSheet.create({
     color: Colors.text,
     marginTop: 5,
   },
+  piperIntroContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 1,
+  },
   chatHistoryWrap: {
     backgroundColor: Colors.bg,
-    // paddingTop: 24,
-    // paddingHorizontal: 12,
-    borderTopWidth: 1,
-    borderTopColor: Colors.strokeColor,
     paddingBottom: 100,
   },
   chatList: {

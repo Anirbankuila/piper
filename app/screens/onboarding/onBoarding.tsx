@@ -11,7 +11,7 @@ const onBoarding = () => {
     <ImageBackground
       source={require("../../../assets/images/ai_girl.png")}
       style={Styles.background}
-      resizeMode="cover"
+      contentFit="cover"
     >
       <View style={Styles.container}>
         <LinearGradient
@@ -29,7 +29,7 @@ const onBoarding = () => {
 
           <CommonButton
             title="Let’s get started!"
-            onPress={() => navigateScreen(Routes.profile)} // ✅ works
+            onPress={() => navigateScreen(Routes.logIn)} // ✅ works
           />
         </LinearGradient>
       </View>

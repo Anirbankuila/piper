@@ -133,52 +133,6 @@ export default function HomeTab() {
       <Divider text={"Everything You Need In One Place"} />
       <View style={styles.sectionContainer}>
         {/* Progress Tracking Card */}
-        <View style={styles.progressCard}>
-          <View style={styles.progressHeader}>
-            <Text style={styles.progressTitle}>Progress Tracking</Text>
-            <View style={styles.progressStatus}>
-              <Ionicons
-                name="information-circle-outline"
-                size={17}
-                color="#999"
-              />
-              <View style={styles.statusTextChip}>
-                <View style={styles.statusDot} />
-                <Text style={styles.statusText}>Moderate</Text>
-              </View>
-              <TouchableOpacity style={styles.navigateIconSection}>
-                <Ionicons name="chevron-forward" size={17} color="#000" />
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          {/* Progress Chart */}
-          <View style={styles.chartContainer}>
-            {progressData.map((item, index) => (
-              <View key={index} style={styles.chartItem}>
-                <View style={styles.barContainer}>
-                  <View
-                    style={[
-                      styles.progressBar,
-                      {
-                        height: item.height,
-                        backgroundColor: item.color,
-                      },
-                    ]}
-                  />
-                </View>
-                <Text
-                  style={[
-                    styles.dayLabel,
-                    { color: item.isActive ? Colors.black : "#8E8E93" },
-                  ]}
-                >
-                  {item.day}
-                </Text>
-              </View>
-            ))}
-          </View>
-        </View>
 
         <View style={styles.cardDetailsContainer}>
           <View style={styles.cardContainer}>
@@ -251,7 +205,7 @@ export default function HomeTab() {
               </View>
 
               {/* Arrow Button */}
-              <TouchableOpacity style={styles.navigateIconSection}>
+              <TouchableOpacity style={styles.navigateIconSection} onPress={() => navigateScreen(Routes.allLogs)}>
                 <Ionicons
                   name="add"
                   size={12}
@@ -398,7 +352,7 @@ export default function HomeTab() {
                 alignItems: "center",
                 marginBottom: 5,
               }}
-              onPress={() => navigateScreen(Routes.surveyEntry)}
+              onPress={() => navigateScreen(Routes.AddChildTeam)}
             >
               <PlusIcon size={24} color={Colors.black} />
             </TouchableOpacity>

@@ -15,6 +15,18 @@ const screens = [
   { name: "index", options: { headerShown: false } },
   { name: Routes.onBoarding, options: { headerShown: false } },
   {
+    name: Routes.logIn,
+    options: {
+      headerShown: false,
+      title: "",
+      headerBackTitleVisible: false,
+      headerTransparent: true, // header overlays the screen
+      headerTintColor: "#000", // back button color
+      headerShadowVisible: false,
+    },
+    statusBarStyle: "dark" as const,
+  },
+  {
     name: Routes.profile,
     options: {
       headerShown: true,
@@ -118,19 +130,43 @@ const screens = [
   },
   {
     name: Routes.logsSummary,
-    options: {
+    options: ({ navigation }: { navigation: any }) => ({
       headerShown: true,
       headerBackTitle: "Back",
       headerBackTitleVisible: true,
       headerShadowVisible: false,
-      statusBarStyle: "dark" as const, // 👈 fix
+      statusBarStyle: "dark" as const,
       statusBarBackgroundColor: Colors.surface_light_pitch,
+      headerStyle: {
+        backgroundColor: Colors.surface_light_pitch,
+      },
+      headerTintColor: "#000",
+      headerRight: () => (
+        <TouchableOpacity
+           onPress={() => navigation.navigate(Routes.DeleteLog)}
+          style={{ marginRight: 5 }}
+        >
+          <Ionicons name="trash-outline" size={24} color={Colors.black} />
+        </TouchableOpacity>
+      ),
+    }),
+  },
+  {
+    name: Routes.DeleteLog,
+    options: {
+      headerShown: true,
+      title: "Delete Life log", // Title in header
+      headerBackTitle: "Back", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
       headerStyle: {
         backgroundColor: Colors.surface_light_pitch, // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
+      statusBarStyle: "dark" as const,
     },
   },
+
   {
     name: Routes.momentLog,
     options: { headerShown: false },
@@ -503,7 +539,7 @@ const screens = [
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow
       headerStyle: {
-        backgroundColor: "transparent", // 👈 header er background color
+        backgroundColor: Colors.warm, // 👈 header er background color
       },
       statusBarStyle: "dark" as const,
     },
@@ -604,6 +640,34 @@ const screens = [
       headerTitle: "ADHD",
       headerShadowVisible: false,
       headerStyle: { backgroundColor: Colors.bg },
+      statusBarStyle: "dark" as const,
+    },
+  },
+   {
+    name: Routes.AddChildTeam,
+    options: {
+      headerShown: true,
+      title: "Care team contacts", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: Colors.bg, // 👈 header er background color
+      },
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.addChildSuccess,
+    options: {
+      headerShown: false,
+      title: "", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: true, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: Colors.warm, // 👈 header er background color
+      },
       statusBarStyle: "dark" as const,
     },
   },

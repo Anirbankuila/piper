@@ -3,6 +3,7 @@ import { NavigationOptions } from "expo-router/build/global-state/routing";
 
 const Routes = {
   onBoarding: "screens/onboarding/onBoarding",
+  logIn:"screens/Login/Login",
   profile: "screens/Profile/Profile",
   privacy: "screens/Privacy/Privacy",
   otp: "screens/OtpScreen/OtpScreen",
@@ -52,6 +53,9 @@ const Routes = {
   surveyEntry: "screens/SurveyEntryScreen/SurveyEntryScreen",
   surveyQuestionScreen: "screens/SurveyEntryScreen/SurveyQuestionScreen",
   SurveyCompleteScreen: "screens/SurveyEntryScreen/SurveyCompleteScreen",
+  DeleteLog: "screens/DeleteLog/DeleteLog",
+  AddChildTeam:"screens/AddChildTeam/AddChildTeam",
+  addChildSuccess:"screens/AddChildSuccess/AddChildSuccess"
 };
 
 export function navigateScreen(

@@ -56,7 +56,7 @@ export default function Index() {
 
           <CommonButton
             title="Let’s get started!"
-            onPress={() => navigateScreen(Routes.profile)} // ✅ works
+            onPress={() => navigateScreen(Routes.logIn)} // ✅ works
           />
         </LinearGradient>
       </View>

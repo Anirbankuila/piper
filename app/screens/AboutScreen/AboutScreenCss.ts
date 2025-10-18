@@ -17,6 +17,9 @@ const Styles = StyleSheet.create({
     height: "100%",
     resizeMode: "cover",
   },
+  childImage:{
+    position:"relative"
+  },
   content: {
     backgroundColor: "rgba(255,255,255,0,4)", // less white
     borderTopLeftRadius: 20,
