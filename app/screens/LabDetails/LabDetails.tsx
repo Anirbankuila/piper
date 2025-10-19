@@ -64,7 +64,7 @@ const LabDetailsScreen: React.FC = () => {
                     const value = parseFloat(item.result.replace(" mg/dL", ""));
                     const inRange = value >= min && value <= max;
 
-                    const barWidth = screenWidth - 32; // full bar width inside card
+                    const barWidth = screenWidth - 82; // full bar width inside card
 
                     // Green bar width proportional to min-max
                     const greenWidth = ((max - min) / (max + 20)) * barWidth; // +20 for extra space
@@ -81,8 +81,8 @@ const LabDetailsScreen: React.FC = () => {
                             <Text style={[styles.status, { color: inRange ? Colors.green : Colors.error }]}>
                                 {item.status}
                             </Text>
-                            <Text style={styles.result}>{item.result}</Text>
-                            <Text style={styles.reference}>Reference: {item.referenceRange}</Text>
+                            {/* <Text style={styles.result}>{item.result}</Text> */}
+                            {/* <Text style={styles.reference}>Reference: {item.referenceRange}</Text> */}
 
                             {/* Progress Bar */}
                             <View style={styles.progressContainer}>
@@ -99,7 +99,7 @@ const LabDetailsScreen: React.FC = () => {
                                         { left: dotPos - 10 }, // adjust to center text above dot
                                     ]}
                                 >
-                                    {value} {/* 19 or 256 */}
+                                    {item.result} {/* 19 or 256 */}
                                 </Text>
 
                                 {/* Dot */}
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     result: { fontSize: 14, fontFamily: Fonts.Regular, color: Colors.text, marginBottom: 4 },
     reference: { fontSize: 12, fontFamily: Fonts.Regular, color: Colors.textLight, marginBottom: 6 },
 
-    progressContainer: { height: 20, justifyContent: "center", marginTop: 8 },
+    progressContainer: { height: 20, justifyContent: "center", marginTop: 18 },
     progressBackground: {
         height: 12,
         backgroundColor: Colors.bg,
@@ -181,6 +181,7 @@ const styles = StyleSheet.create({
     dotValue: {
         position: "absolute",
         bottom: 20, // above the dot
+        left:-10,
         fontSize: 12,
         fontFamily: Fonts.SemiBold,
         color: Colors.black,
