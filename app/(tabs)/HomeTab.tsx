@@ -205,7 +205,10 @@ export default function HomeTab() {
               </View>
 
               {/* Arrow Button */}
-              <TouchableOpacity style={styles.navigateIconSection} onPress={() => navigateScreen(Routes.allLogs)}>
+              <TouchableOpacity
+                style={styles.navigateIconSection}
+                onPress={() => navigateScreen(Routes.progressTracking)}
+              >
                 <Ionicons
                   name="add"
                   size={12}
@@ -362,7 +365,10 @@ export default function HomeTab() {
       </View>
       <Divider text={"Shareable Summaries"} />
       <View style={[styles.summarySection]}>
-        <TouchableOpacity style={styles.summaryDetails} onPress={() => navigateScreen(Routes.medicalTeamReport)}>
+        <TouchableOpacity
+          style={styles.summaryDetails}
+          onPress={() => navigateScreen(Routes.medicalTeam)}
+        >
           <Text style={styles.summaryText}>For Medical {"\n"}Team</Text>
           <View
             style={{
@@ -378,13 +384,16 @@ export default function HomeTab() {
             />
           </View>
         </TouchableOpacity>
-        <View style={styles.summaryDetails}>
+        <TouchableOpacity
+          style={styles.summaryDetails}
+          onPress={() => navigateScreen(Routes.medicalTeamReport)}
+        >
           <Text style={styles.summaryText}>For Education {"\n"}Team</Text>
           <Image
             source={require("../../assets/images/education-team.png")}
             style={styles.summaryImg}
           />
-        </View>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

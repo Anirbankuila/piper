@@ -18,3 +18,15 @@ export interface IMedicineDetails {
   dateTime: undefined;
   notes?: string;
 }
+
+export interface SymptomItem {
+  id: string;
+  name: string;
+  icon: any; // Image source
+  obtainValue: number;
+  totalValue: number;
+  progress: number; // percentage 0-100
+  progressColor?: string;
+  status: string;
+  timeAgo: string;
+}

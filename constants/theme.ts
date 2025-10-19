@@ -38,14 +38,15 @@ export const Colors = {
   strokeColor: "#C1C1C1",
   bg: "#fff",
   blue_link: "#7444BD",
-  main_purple:"#392365",
+  main_purple: "#392365",
   black: "#141514",
   surface_bg: "#F2F2F7",
   grey: "#AAAAAA",
-  violet_light:"#F1ECF8",
-  surface_light_pitch:'#FFF3E9',
-  warm:"#FFF9F2",
-  primary_blue:"#B3D1F2"
+  violet_light: "#F1ECF8",
+  surface_light_pitch: "#FFF3E9",
+  warm: "#FFF9F2",
+  primary_blue: "#B3D1F2",
+  purple_text: "#563699",
 };
 
 export const Fonts = Platform.select({

@@ -1,42 +1,42 @@
 import { primaryTabs } from "@/app/common/primaryTabs";
-import AskPiper from "@/app/components/AskPiper/AskPiper";
 import CustomBottomTab from "@/app/components/CustomBottomTab/CustomBottomTab";
 import CustomTopTabbar from "@/app/components/CustomTopTab/CustomTopTabbar";
 import Header from "@/app/components/Header/Header";
-import MyReport from "@/app/components/MyReport/MyReport";
-import PgxReport from "@/app/components/PgxReport/PgxReport";
+import GrowthTracking from "@/app/components/ProgressTracking/GrowthTracking";
+import Progress from "@/app/components/ProgressTracking/Progress";
+import Questionnaires from "@/app/components/ProgressTracking/Questionnaires";
+import { Colors } from "@/constants/theme";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
 const topBarTabs = [
   {
-    id: "myReport",
-    label: "My Report",
-    icon: require("../../../assets/icons/document-text.png"),
-    content: <MyReport />,
+    id: "progress",
+    label: "Progress",
+    icon: require("../../../assets/icons/status-up.png"),
+    content: <Progress />,
   },
   {
-    id: "pgxReport",
-    label: "PGx Report",
+    id: "questionnaire",
+    label: "Questionnaire",
     icon: require("../../../assets/icons/note-2.png"),
-    content: <PgxReport />,
+    content: <Questionnaires />,
   },
   {
-    id: "askPiper",
-    label: "Ask Piper",
-    icon: require("../../../assets/icons/askpiper.png"),
-    content: <AskPiper />,
+    id: "growthTracking",
+    label: "Growth Tracking",
+    icon: require("../../../assets/icons/health.png"),
+    content: <GrowthTracking />,
   },
 ];
-const MedicationNudge = () => {
+const ProgressTracking = () => {
   const insets = useSafeAreaInsets();
-  const [activeTab, setActiveTab] = useState<string>("myReport");
+  const [activeTab, setActiveTab] = useState<string>("progress");
   const ActiveTabContent = topBarTabs.find((t) => t.id === activeTab)?.content;
   return (
     <View style={{ flex: 1 }}>
       {/* Header */}
-      <View style={[Styles.headerWrapper, { paddingTop: insets.top }]}>
+      <View style={[styles.headerWrapper, { paddingTop: insets.top }]}>
         <Header backgroundColor="#fff" />
       </View>
       {/* Sticky top tabs */}
@@ -45,8 +45,9 @@ const MedicationNudge = () => {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
+
       {/* Render content */}
-      <View style={Styles.mainContent}>{ActiveTabContent}</View>
+      <View style={styles.mainContent}>{ActiveTabContent}</View>
 
       {/* Bottom Tab */}
       <CustomBottomTab activeTab="" tabs={primaryTabs} />
@@ -54,14 +55,15 @@ const MedicationNudge = () => {
   );
 };
 
-export default MedicationNudge;
+export default ProgressTracking;
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
   headerWrapper: {
     backgroundColor: "#fff",
   },
   mainContent: {
     flex: 1,
+    backgroundColor: Colors.bg,
     // marginTop: 10,
   },
 });

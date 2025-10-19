@@ -3,9 +3,9 @@ import { NavigationOptions } from "expo-router/build/global-state/routing";
 
 const Routes = {
   onBoarding: "screens/onboarding/onBoarding",
-  logIn:"screens/Login/Login",
-  faceDetection:"screens/FaceDetection/FaceDetection",
-  faceDetectionFrame:"screens/FaceDetectionFeame/FaceDetectionFeame",
+  logIn: "screens/Login/Login",
+  faceDetection: "screens/FaceDetection/FaceDetection",
+  faceDetectionFrame: "screens/FaceDetectionFeame/FaceDetectionFeame",
   profile: "screens/Profile/Profile",
   privacy: "screens/Privacy/Privacy",
   otp: "screens/OtpScreen/OtpScreen",
@@ -56,11 +56,13 @@ const Routes = {
   surveyQuestionScreen: "screens/SurveyEntryScreen/SurveyQuestionScreen",
   SurveyCompleteScreen: "screens/SurveyEntryScreen/SurveyCompleteScreen",
   DeleteLog: "screens/DeleteLog/DeleteLog",
-  AddChildTeam:"screens/AddChildTeam/AddChildTeam",
-  addChildSuccess:"screens/AddChildSuccess/AddChildSuccess",
-  medicalTeamReport:"screens/MedicalTeamReport/MedicalTeamReport",
-  doctorList:"screens/DoctorList/DoctorList",
-  reportShareSuccess:"screens/ReportShareSuccess/ReportShareSuccess"
+  AddChildTeam: "screens/AddChildTeam/AddChildTeam",
+  addChildSuccess: "screens/AddChildSuccess/AddChildSuccess",
+  medicalTeamReport: "screens/MedicalTeamReport/MedicalTeamReport",
+  doctorList: "screens/DoctorList/DoctorList",
+  reportShareSuccess: "screens/ReportShareSuccess/ReportShareSuccess",
+  medicalTeam: "screens/MedicalTeam/MedicalTeam",
+  progressTracking: "screens/ProgressTracking/ProgressTracking",
 };
 
 export function navigateScreen(

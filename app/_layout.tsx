@@ -16,12 +16,13 @@ const screens = [
   {
     name: Routes.onBoarding,
     options: {
-      headerShown: false, headerStyle: {
+      headerShown: false,
+      headerStyle: {
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
       statusBarStyle: "dark" as const,
-    }
+    },
   },
   {
     name: Routes.logIn,
@@ -716,12 +717,10 @@ const screens = [
       headerShown: true,
       headerTitle: "",
       headerShadowVisible: false,
-      headerStyle: { backgroundColor: "#fff",  },
+      headerStyle: { backgroundColor: "#fff" },
       headerLeft: () => (
         <TouchableOpacity onPress={() => router.back()}>
-          <Image
-            source={require("../assets/icons/logo.png")}
-          />
+          <Image source={require("../assets/icons/logo.png")} />
         </TouchableOpacity>
       ),
       headerRight: () => (
@@ -758,6 +757,39 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
+    },
+  },
+  {
+    name: Routes.medicalTeam,
+    options: {
+      headerShown: true,
+      headerTitle: "",
+      headerShadowVisible: false,
+      headerStyle: { backgroundColor: "#fff", marginBottom: 0 },
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => router.back()}>
+          <Image source={require("../assets/icons/logo.png")} />
+        </TouchableOpacity>
+      ),
+      headerRight: () => (
+        <TouchableOpacity onPress={() => router.back()}>
+          <Ionicons name="close-circle-outline" size={26} color="black" />
+        </TouchableOpacity>
+      ),
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.progressTracking,
+    options: {
+      headerShown: false,
+      title: "", // Title in header
+      headerBackTitle: "", // Back button text
+      headerBackTitleVisible: false, // Make sure it's visible
+      headerShadowVisible: false, // Remove bottom shadow
+      headerStyle: {
+        backgroundColor: "transparent", // 👈 header er background color
+      },
       statusBarStyle: "dark" as const,
     },
   },
