@@ -793,6 +793,106 @@ const screens = [
       statusBarStyle: "dark" as const,
     },
   },
+  {
+    name: Routes.medicationHistory,
+    options: {
+      headerTitle: "Medications",
+      headerTitleAlign: "center",
+      headerShadowVisible: false,
+      headerStyle: { backgroundColor: "#fff" },
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => router.back()}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </TouchableOpacity>
+      ),
+      // headerRight: () => (
+      //   <TouchableOpacity onPress={() => router.back()}>
+      //     <Ionicons name="close-circle-outline" size={26} color="black" />
+      //   </TouchableOpacity>
+      // ),
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.allergyHistory,
+    options: {
+      headerTitle: "Allergies",
+      headerTitleAlign: "center",
+      headerShadowVisible: false,
+      headerStyle: { backgroundColor: "#fff" },
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => router.back()}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </TouchableOpacity>
+      ),
+      // headerRight: () => (
+      //   <TouchableOpacity onPress={() => router.back()}>
+      //     <Ionicons name="close-circle-outline" size={26} color="black" />
+      //   </TouchableOpacity>
+      // ),
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.immunizationHistory,
+    options: {
+      headerTitle: "Immunizations",
+      headerTitleAlign: "center",
+      headerShadowVisible: false,
+      headerStyle: { backgroundColor: "#fff" },
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => router.back()}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </TouchableOpacity>
+      ),
+      // headerRight: () => (
+      //   <TouchableOpacity onPress={() => router.back()}>
+      //     <Ionicons name="close-circle-outline" size={26} color="black" />
+      //   </TouchableOpacity>
+      // ),
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.labResult,
+    options: {
+      headerTitle: "Lab Results",
+      headerTitleAlign: "center",
+      headerShadowVisible: false,
+      headerStyle: { backgroundColor: "#fff" },
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => router.back()}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </TouchableOpacity>
+      ),
+      // headerRight: () => (
+      //   <TouchableOpacity onPress={() => router.back()}>
+      //     <Ionicons name="close-circle-outline" size={26} color="black" />
+      //   </TouchableOpacity>
+      // ),
+      statusBarStyle: "dark" as const,
+    },
+  },
+   {
+    name: Routes.labDetails,
+    options: {
+      headerTitle: "Lab Results",
+      headerTitleAlign: "center",
+      headerShadowVisible: false,
+      headerStyle: { backgroundColor: "#fff" },
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => router.back()}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </TouchableOpacity>
+      ),
+      // headerRight: () => (
+      //   <TouchableOpacity onPress={() => router.back()}>
+      //     <Ionicons name="close-circle-outline" size={26} color="black" />
+      //   </TouchableOpacity>
+      // ),
+      statusBarStyle: "dark" as const,
+    },
+  },
 ];
 
 export default function RootLayout() {

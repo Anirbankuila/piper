@@ -63,6 +63,11 @@ const Routes = {
   reportShareSuccess: "screens/ReportShareSuccess/ReportShareSuccess",
   medicalTeam: "screens/MedicalTeam/MedicalTeam",
   progressTracking: "screens/ProgressTracking/ProgressTracking",
+  medicationHistory:"screens/MedicationHistory/MedicationHistory",
+  allergyHistory:"screens/AllergyHistory/AllergyHistory",
+  immunizationHistory:"screens/ImmunizationScreen/ImmunizationScreen",
+  labResult:"screens/LabResult/LabResult",
+  labDetails:"screens/LabDetails/LabDetails"
 };
 
 export function navigateScreen(

@@ -4,7 +4,7 @@ import { BlurView } from "expo-blur";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   ScrollView,
   Text,
@@ -15,7 +15,9 @@ import {
 import { ChevronDownIcon, PlusIcon } from "react-native-heroicons/outline";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Routes, { navigateScreen } from "../common/Routes";
+import AthenaLoginContent from "../components/AthenaLogin/AthenaLoginContent";
 import CommonButton from "../components/CommonButton/CommonButton";
+import CustomRBSheet, { CustomRBSheetRef } from "../components/CustomBottomSheet/CustomRBSheet";
 import Header from "../components/Header/Header";
 import Divider from "../components/HomePageDivider/Divider";
 import PiperModal from "../components/PiperModal/PiperModal";
@@ -23,6 +25,7 @@ import Searchbar from "../components/Searchbar/Searchbar";
 import styles from "../tabStyles/HomeTabStyle";
 
 export default function HomeTab() {
+  const rbSheetRef = useRef<CustomRBSheetRef>(null);
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const insets = useSafeAreaInsets();
@@ -243,7 +246,10 @@ export default function HomeTab() {
             </TouchableOpacity>
           </LinearGradient>
         </View>
-        <CommonButton title="Sync your athenahealth records now!" style={styles.syncBtn}  textStyle={styles.syncText} onPress={() => navigateScreen(Routes.uploadDoc)}/>
+        <CommonButton title="Sync your athenahealth records now!" style={styles.syncBtn} textStyle={styles.syncText} onPress={() => rbSheetRef.current?.open()} />
+        <CustomRBSheet ref={rbSheetRef} title="athenahealth">
+         <AthenaLoginContent />
+        </CustomRBSheet>
       </View>
       <Divider text={"Johnny's Care Team"} />
       <View style={[styles.sectionContainer, styles.careTeamContainer]}>
@@ -329,7 +335,7 @@ export default function HomeTab() {
           >
             <Image
               source={require("../../assets/icons/medicalicon.png")}
-              style={[styles.summaryImg,{width:36, height:36}]}
+              style={[styles.summaryImg, { width: 36, height: 36 }]}
             />
           </View>
         </TouchableOpacity>
@@ -340,7 +346,7 @@ export default function HomeTab() {
           <Text style={styles.summaryText}>For Education {"\n"}Team</Text>
           <Image
             source={require("../../assets/icons/bag.png")}
-             style={[styles.summaryImg,{width:39, height:40}]}
+            style={[styles.summaryImg, { width: 39, height: 40 }]}
           />
         </TouchableOpacity>
       </View>
