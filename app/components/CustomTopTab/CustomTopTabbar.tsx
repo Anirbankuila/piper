@@ -9,7 +9,7 @@ import {
   ViewStyle,
 } from "react-native";
 interface CustomTopTabbarProps {
-  tabs: { id: string; label: string; icon: any; content: React.ReactNode }[];
+  tabs: { id: string; label: string; icon: any; content?: React.ReactNode }[];
   activeTab: string;
   setActiveTab: (tabId: string) => void;
   isOnlyLabel?: boolean;
