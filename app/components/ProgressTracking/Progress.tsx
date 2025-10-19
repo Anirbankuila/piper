@@ -1,7 +1,6 @@
 import { SymptomItem } from "@/app/common/Interface/Medication";
 import { Colors, Fonts } from "@/constants/theme";
 import { Image } from "expo-image";
-import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import {
   ScrollView,
@@ -73,7 +72,6 @@ const symptomData: SymptomItem[] = [
 const Progress = () => {
   const [activeTab, setActiveTab] = useState<string>("ADHD");
   const [activeDuration, setActiveDuration] = useState<string>("M");
-  const ActiveTabContent = topBarTabs.find((t) => t.id === activeTab)?.content;
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.tabBarContainer}></View>
@@ -87,15 +85,10 @@ const Progress = () => {
       <ScrollView contentContainerStyle={{ marginBottom: 10 }}>
         <View style={styles.progressBanner}>
           <View style={styles.heading}>
-            <LinearGradient
-              style={styles.imageWrapper}
-              colors={["#FA114F", "#FF6600"]}
-            >
-              <Image
-                source={require("../../../assets/images/adImg.png")}
-                style={styles.headingImg}
-              />
-            </LinearGradient>
+            <Image
+              source={require("../../../assets/icons/pipersmall.png")}
+              style={styles.headingImg}
+            />
             <Text style={styles.title}>How Johnny is doing</Text>
           </View>
           <View style={styles.contentWrapper}>
@@ -276,8 +269,8 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   headingImg: {
-    height: 24,
-    width: 24,
+    height: 28,
+    width: 28,
   },
   title: {
     color: Colors.purple_text,

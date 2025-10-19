@@ -64,6 +64,5 @@ const styles = StyleSheet.create({
   mainContent: {
     flex: 1,
     backgroundColor: Colors.bg,
-    // marginTop: 10,
   },
 });
