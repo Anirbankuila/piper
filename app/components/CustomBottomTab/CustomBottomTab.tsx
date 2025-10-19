@@ -1,4 +1,4 @@
-import { ITab } from "@/app/common/Interface/common";
+import type ITab from "@/app/common/Interface/common";
 import { Colors, Fonts } from "@/constants/theme";
 import { Image } from "expo-image";
 import React from "react";

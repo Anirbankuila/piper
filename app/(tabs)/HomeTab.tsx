@@ -1,18 +1,21 @@
-import { Colors, Fonts } from "@/constants/theme";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
-import { Image, ImageBackground } from "expo-image";
+import { Colors } from "@/constants/theme";
+import { AntDesign } from "@expo/vector-icons";
+import { BlurView } from "expo-blur";
+import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
+import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
   ScrollView,
-  StatusBar,
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  View,
+  View
 } from "react-native";
 import { ChevronDownIcon, PlusIcon } from "react-native-heroicons/outline";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Routes, { navigateScreen } from "../common/Routes";
+import CommonButton from "../components/CommonButton/CommonButton";
 import Header from "../components/Header/Header";
 import Divider from "../components/HomePageDivider/Divider";
 import PiperModal from "../components/PiperModal/PiperModal";
@@ -34,7 +37,7 @@ export default function HomeTab() {
   ];
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <StatusBar backgroundColor={Colors["secondary-100"]} translucent={true} />
+      <StatusBar backgroundColor="#FFF9F2" translucent={true} />
       <View
         style={[
           styles.headerWrapper,
@@ -43,258 +46,204 @@ export default function HomeTab() {
           },
         ]}
       >
-        <Header backgroundColor={Colors["secondary-100"]} />
-
+        <Header backgroundColor="#FFDFBD" />
         {/* User Info */}
-        <View>
-          <TouchableOpacity
-            style={styles.userInfo}
-            onPress={() => setOpen(!open)}
-          >
-            <Image
-              source={require("../../assets/images/profile.png")}
-              style={styles.profilePhoto}
-              contentFit="contain"
-            />
-            <View style={styles.userDetails}>
-              <Text style={styles.userName}>Johnny</Text>
-              <ChevronDownIcon
-                size={20}
-                color={Colors.text}
-                style={styles.dropdownIcon}
-              />
-            </View>
-          </TouchableOpacity>
-          {open && (
-            <TouchableWithoutFeedback onPress={() => setOpen(false)}>
-              <View style={styles.overlay}>
-                <TouchableWithoutFeedback>
-                  <View style={styles.dropdown}>
-                    <View style={styles.dropdownItem}>
-                      <Image
-                        source={require("../../assets/images/Sarah.png")}
-                        style={styles.dropdownPhoto}
-                      />
-                      <Text style={styles.dropdownName}>Sarah</Text>
-                    </View>
-                    <View style={styles.dropdownItem}>
-                      <Image
-                        source={require("../../assets/images/Miley.png")}
-                        style={styles.dropdownPhoto}
-                      />
-                      <Text style={styles.dropdownName}>Miley</Text>
-                    </View>
-                    <View style={styles.dropdownItem}>
-                      <Image
-                        source={require("../../assets/images/Dennis.png")}
-                        style={styles.dropdownPhoto}
-                      />
-                      <Text style={styles.dropdownName}>Dennis</Text>
-                    </View>
-                    <TouchableOpacity
-                      style={styles.addProfileButton}
-                      onPress={() => console.log("Add Profile pressed")}
-                    >
-                      <Text style={styles.dropdownName}>Add Profile</Text>
-                      <AntDesign name="plus-circle" size={20} color="#000" />
-                    </TouchableOpacity>
-                  </View>
-                </TouchableWithoutFeedback>
-              </View>
-            </TouchableWithoutFeedback>
-          )}
-        </View>
-        <View style={{ paddingHorizontal: 20 }}>
-          <Searchbar onMicPress={() => setVisible(true)} />
-          <PiperModal visible={visible} onClose={() => setVisible(false)} />
-        </View>
-        <ImageBackground
-          source={require("../../assets/images/home-piper-bg.png")}
-          style={styles.piperIntroContainer}
-          contentFit="cover"
+        <LinearGradient
+          colors={["#FFDFBD", "#FF8000"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0, y: 1 }}
+          style={styles.gradientContainer}
         >
-          <Image
-            source={require("../../assets/images/Alex-personal 1.png")}
-            style={styles.alexPersonalImg}
-          />
-
-          <View style={styles.piperDetailsCard}>
-            <Text style={styles.mainText}>Hi, I’m Piper!</Text>
-            <Text style={styles.subText}>
-              Your organized bestie{"\n"}and personal assistant.
-            </Text>
-
-            <TouchableOpacity style={styles.cardBtn}>
-              <Text style={styles.btnText}>Let’s take a tour</Text>
+          {/* USER INFO */}
+          <View>
+            <TouchableOpacity style={styles.userInfo} onPress={() => setOpen(!open)}>
+              <Image
+                source={require("../../assets/images/profile.png")}
+                style={styles.profilePhoto}
+                contentFit="contain"
+              />
+              <View style={styles.userDetails}>
+                <Text style={styles.userName}>Johnny</Text>
+                <ChevronDownIcon size={20} color={Colors.text} style={styles.dropdownIcon} />
+              </View>
             </TouchableOpacity>
+
+            {open && (
+              <TouchableWithoutFeedback onPress={() => setOpen(false)}>
+                <View style={styles.overlay}>
+                  <TouchableWithoutFeedback>
+                    <View style={styles.dropdown}>
+                      {["Sarah", "Miley", "Dennis"].map((name, index) => (
+                        <View key={index} style={styles.dropdownItem}>
+                          <Image
+                            source={
+                              name === "Sarah"
+                                ? require("../../assets/images/Sarah.png")
+                                : name === "Miley"
+                                  ? require("../../assets/images/Miley.png")
+                                  : require("../../assets/images/Dennis.png")
+                            }
+                            style={styles.dropdownPhoto}
+                          />
+                          <Text style={styles.dropdownName}>{name}</Text>
+                        </View>
+                      ))}
+
+                      <TouchableOpacity
+                        style={styles.addProfileButton}
+                        onPress={() => console.log("Add Profile pressed")}
+                      >
+                        <Text style={styles.dropdownName}>Add Profile</Text>
+                        <AntDesign name="plus-circle" size={20} color="#000" />
+                      </TouchableOpacity>
+                    </View>
+                  </TouchableWithoutFeedback>
+                </View>
+              </TouchableWithoutFeedback>
+            )}
           </View>
-        </ImageBackground>
+
+          {/* SEARCH */}
+          {/* PIPER INTRO SECTION */}
+          <View style={styles.piperIntroContainer}>
+            <Image
+              source={require("../../assets/images/piperHomeImg.png")}
+              style={styles.alexPersonalImg}
+            />
+            <BlurView intensity={60} tint="light" style={styles.piperDetailsCard}>
+              <Text style={styles.mainText}>Hi, I’m Piper!</Text>
+              <Text style={styles.subText}>
+                Your organized bestie{"\n"}and personal assistant.
+              </Text>
+
+              <TouchableOpacity style={styles.cardBtn}>
+                <Text style={styles.btnText}>Let’s take a tour</Text>
+              </TouchableOpacity>
+            </BlurView>
+          </View>
+          <View style={{ paddingHorizontal: 20 }}>
+            <Searchbar containerStyle={styles.homeSearch} onMicPress={() => setVisible(true)} />
+            <PiperModal visible={visible} onClose={() => setVisible(false)} />
+          </View>
+        </LinearGradient>
       </View>
       <Divider text={"Everything You Need In One Place"} />
       <View style={styles.sectionContainer}>
         {/* Progress Tracking Card */}
-
         <View style={styles.cardDetailsContainer}>
-          <View style={styles.cardContainer}>
-            {/* Top Row */}
-            <View style={styles.cardContent}>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Image
-                  source={require("../../assets/icons/folder.png")}
-                  style={styles.cardIcon}
-                />
-                <Text style={styles.cardTitle}>Documents</Text>
+          <LinearGradient
+            colors={['#7B3BD4', '#A35AED']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            locations={[0.39, 0.88]} // 👈 stops for 39% and 88%
+            style={styles.cardContainer}
+          >
+            <TouchableOpacity onPress={() => navigateScreen(Routes.uploadDoc)}>
+              {/* Top Row */}
+              <View style={styles.cardContent}>
+                <Text style={styles.cardTitle}>Upload Documents</Text>
+                <Text style={styles.cardSubTitle}>Last Update: 23 Sep</Text>
               </View>
-              <Ionicons
-                name="information-circle-outline"
-                size={12}
-                color="#999"
-              />
-            </View>
 
-            {/* Subtitle */}
-            <Text style={styles.cardSubTitle}>Last Update: 23 Sep</Text>
-
-            {/* Bottom Row */}
-            <View style={styles.cardCountContent}>
-              {/* Count */}
+              <View style={styles.cardIcon}>
+                <Image
+                  source={require("../../assets/images/uploadDoc.png")}
+                  style={{ width: 60, height: 42 }}
+                />
+              </View>
               <View style={styles.cardCountSection}>
                 <Text style={styles.cardBtnHeading}>
-                  21
-                  <Text style={styles.cardSubText}>Docs</Text>
+                  21<Text style={styles.cardSubText}> uploaded docs</Text>
                 </Text>
               </View>
 
-              {/* Arrow Button */}
-              <TouchableOpacity
-                onPress={() => navigateScreen(Routes.uploadDoc)}
-                style={styles.navigateIconSection}
-              >
-                <Ionicons name="chevron-forward" size={12} color="#000" />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.cardContainer}>
-            {/* Top Row */}
-            <View style={styles.cardContent}>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Image
-                  source={require("../../assets/icons/book.png")}
-                  style={styles.cardIcon}
-                />
-                <Text style={styles.cardTitle}>Life Logs</Text>
+            </TouchableOpacity>
+          </LinearGradient>
+
+          <LinearGradient
+            colors={['#7B3BD4', '#A35AED']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            locations={[0.39, 0.88]} // 👈 stops for 39% and 88%
+            style={[styles.evenContainer]}
+          >
+            <TouchableOpacity onPress={() => navigateScreen(Routes.progressTracking)}>
+              {/* Top Row */}
+              <View style={styles.cardContent}>
+                <Text style={styles.cardTitle}>Progress Tracking</Text>
+                <Text style={styles.cardSubTitle}>Last Update: 19 Sep</Text>
               </View>
-              <Ionicons
-                name="information-circle-outline"
-                size={12}
-                color="#999"
-              />
-            </View>
-
-            {/* Subtitle */}
-            <Text style={styles.cardSubTitle}>Last Update: 19 Sep</Text>
-
-            {/* Bottom Row */}
-            <View style={styles.cardCountContent}>
-              {/* Count */}
-              <View style={styles.cardCountSection}>
+              <View style={styles.cardIcon}>
+                <Image
+                  source={require("../../assets/images/growth.png")}
+                  style={{ width: 42, height: 42 }}
+                />
+              </View>
+              <View style={[styles.evencardCountSection]}>
                 <Text style={styles.cardBtnHeading}>
                   10
-                  <Text style={styles.cardSubText}>Logs</Text>
+                  <Text style={styles.cardSubText}> moments logged</Text>
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </LinearGradient>
+          <LinearGradient
+            colors={['#7B3BD4', '#A35AED']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            locations={[0.39, 0.88]} // 👈 stops for 39% and 88%
+            style={[styles.evenContainer]}
+          >
+            <TouchableOpacity onPress={() => navigateScreen(Routes.medicine)}>
+              <View style={styles.cardContent}>
+                <Text style={styles.cardTitle}>Medication</Text>
+                <Text style={styles.cardSubTitle}>Current and Past Meds</Text>
+              </View>
+              <View style={styles.cardIcon}>
+                <Image
+                  source={require("../../assets/images/medicine.png")}
+                  style={{ width: 32, height: 42 }}
+                />
+              </View>
+              <View style={[styles.evencardCountSection]}>
+                <Text style={styles.cardBtnHeading}>
+                  3
+                  <Text style={styles.cardSubText}> currently taking </Text>
                 </Text>
               </View>
 
               {/* Arrow Button */}
-              <TouchableOpacity
-                style={styles.navigateIconSection}
-                onPress={() => navigateScreen(Routes.progressTracking)}
-              >
-                <Ionicons
-                  name="add"
-                  size={12}
-                  color="#000"
-                  style={{ fontWeight: "600" }}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.cardContainer}>
-            {/* Top Row */}
-            <View style={styles.cardContent}>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Image
-                  source={require("../../assets/icons/buy-crypto.png")}
-                  style={styles.cardIcon}
-                />
-                <Text style={styles.cardTitle}>Medication</Text>
-              </View>
-              <Ionicons
-                name="information-circle-outline"
-                size={12}
-                color="#999"
-              />
-            </View>
 
-            {/* Bottom Row */}
-            <View style={styles.cardCountContent}>
-              {/* Count */}
+            </TouchableOpacity>
+          </LinearGradient>
+          <LinearGradient
+            colors={['#7B3BD4', '#A35AED']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            locations={[0.39, 0.88]} // 👈 stops for 39% and 88%
+            style={styles.cardContainer}
+          >
+            <TouchableOpacity onPress={() => navigateScreen(Routes.allLogs)}>
+              <View style={styles.cardContent}>
+                <Text style={styles.cardTitle}>Life Log</Text>
+                <Text style={styles.cardSubTitle}>Real moments as they happen</Text>
+              </View>
+
+              <View style={styles.cardIcon}>
+                <Image
+                  source={require("../../assets/images/log.png")}
+                  style={{ width: 41, height: 52 }}
+                />
+              </View>
               <View style={styles.cardCountSection}>
                 <Text style={styles.cardBtnHeading}>
-                  3/
-                  <Text style={styles.cardSubText}>12</Text>
+                  12<Text style={styles.cardSubText}> moments logged</Text>
                 </Text>
               </View>
-
-              {/* Arrow Button */}
-              <TouchableOpacity
-                style={styles.navigateIconSection}
-                onPress={() => navigateScreen(Routes.medicine)}
-              >
-                <Ionicons name="chevron-forward" size={12} color="#000" />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.cardContainer}>
-            {/* Top Row */}
-            <View style={styles.cardContent}>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Image
-                  source={require("../../assets/icons/messages-2.png")}
-                  style={[styles.cardIcon, { width: 32, height: 32 }]}
-                />
-              </View>
-              <Ionicons
-                name="information-circle-outline"
-                size={12}
-                color="#999"
-              />
-            </View>
-
-            {/* Bottom Row */}
-            <View style={styles.cardCountContent}>
-              {/* Count */}
-              <View style={{ maxWidth: "650%", flexShrink: 1 }}>
-                <Text
-                  style={{
-                    color: "#003269",
-                    fontFamily: Fonts.Bold,
-                    fontSize: 14,
-                  }}
-                >
-                  Talk to {"\n"}Document
-                </Text>
-              </View>
-
-              {/* Arrow Button */}
-              <TouchableOpacity
-                style={styles.navigateIconSection}
-                onPress={() => navigateScreen(Routes.talkToDoctor)}
-              >
-                <Ionicons name="chevron-forward" size={12} color="#000" />
-              </TouchableOpacity>
-            </View>
-          </View>
+            </TouchableOpacity>
+          </LinearGradient>
         </View>
+        <CommonButton title="Sync your athenahealth records now!" style={styles.syncBtn}  textStyle={styles.syncText} onPress={() => navigateScreen(Routes.uploadDoc)}/>
       </View>
       <Divider text={"Johnny's Care Team"} />
       <View style={[styles.sectionContainer, styles.careTeamContainer]}>
@@ -379,8 +328,8 @@ export default function HomeTab() {
             }}
           >
             <Image
-              source={require("../../assets/images/medical-team.png")}
-              style={styles.summaryImg}
+              source={require("../../assets/icons/medicalicon.png")}
+              style={[styles.summaryImg,{width:36, height:36}]}
             />
           </View>
         </TouchableOpacity>
@@ -390,8 +339,8 @@ export default function HomeTab() {
         >
           <Text style={styles.summaryText}>For Education {"\n"}Team</Text>
           <Image
-            source={require("../../assets/images/education-team.png")}
-            style={styles.summaryImg}
+            source={require("../../assets/icons/bag.png")}
+             style={[styles.summaryImg,{width:39, height:40}]}
           />
         </TouchableOpacity>
       </View>

@@ -25,7 +25,7 @@ const topBarTabs = [
   {
     id: "askPiper",
     label: "Ask Piper",
-    icon: require("../../../assets/icons/askpiper.png"),
+    icon: require("../../../assets/icons/askpiper2.png"),
     content: <AskPiper />,
   },
 ];

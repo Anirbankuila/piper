@@ -9,10 +9,12 @@ const styles = StyleSheet.create({
   },
   headerWrapper: {
     // flex: 1,
-    backgroundColor: Colors["secondary-100"],
+    backgroundColor: "#FFDEBD",
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   header: {
-    backgroundColor: "#CBF2F6",
+    backgroundColor: "#FFDEBD",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
     paddingBottom: 15,
-    backgroundColor: "#CBF2F6",
+    // backgroundColor: "#FFDEBD",
   },
   profilePhoto: {
     width: 32,
@@ -145,18 +147,30 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 1,
     width: width,
-    paddingHorizontal: 30,
+    // paddingHorizontal: 30,
+  },
+  gradientContainer: {
+    position: 'relative',
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    overflow: 'hidden'
   },
   alexPersonalImg: {
-    width: 126,
+    width: 240,
     height: 180,
     resizeMode: "contain",
   },
+
   piperDetailsCard: {
-    backgroundColor: "#FFF3E9",
+    // marginTop: 20,
+    marginRight: 20,
     borderRadius: 15,
     padding: 12,
     textAlign: "center",
+    overflow: "hidden", // important for BlurView radius
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.3)",
+    backgroundColor: "rgba(255, 255, 255, 0.37)", // fallback transparent layer
   },
   piperCard: {
     borderRadius: 20,
@@ -170,18 +184,20 @@ const styles = StyleSheet.create({
   },
   mainText: {
     fontSize: 16,
-    color: "#004693",
+    color: Colors.purple_text,
     fontFamily: Fonts.Bold,
     lineHeight: 20,
+    textAlign: 'center'
   },
   subText: {
     fontSize: 10,
     color: '#141514',
     marginVertical: 2,
     fontFamily: Fonts.Regular,
+    textAlign: 'center'
   },
   cardBtn: {
-    backgroundColor: "#0F62FE",
+    backgroundColor: "#9059ff",
     paddingVertical: 4,
     paddingHorizontal: 4,
     borderRadius: 6,
@@ -193,6 +209,9 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.Medium,
     lineHeight: 16,
     color: '#fff'
+  },
+  homeSearch: {
+    marginBottom: 10
   },
   piperTextContainer: {
     flex: 1,
@@ -330,57 +349,70 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   cardContainer: {
-    backgroundColor: "#F8F8FC",
-    width: "48%",
-    borderRadius: 16,
+    width: "49%",
+    borderTopRightRadius: 32,
+    borderBottomLeftRadius: 32,
     padding: 12,
-    marginVertical: 10,
-    minHeight: 125,
+    marginVertical: 4,
+    minHeight: 160,
+    justifyContent: "space-between",
+  },
+  evenContainer: {
+    width: "49%",
+    borderTopLeftRadius: 32,
+    borderBottomRightRadius: 32,
+    padding: 12,
+    marginVertical: 4,
+    minHeight: 160,
     justifyContent: "space-between",
   },
   cardContent: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    // paddingVertical: 10,
+    flexDirection: "column",
+    alignItems: "flex-start",
   },
   cardIcon: {
-    width: 16,
-    height: 16,
+    justifyContent: 'flex-end',
+    textAlign: 'center',
+    flexDirection: 'row',
+    marginVertical: 10
   },
   cardTitle: {
-    fontSize: 10,
-    marginLeft: 3,
-    color: "#004693",
-    fontFamily: Fonts.SemiBold,
+    fontSize: 14,
+    color: Colors.bg,
+    fontFamily: Fonts.Bold,
   },
   cardSubTitle: {
-    fontSize: 8,
-    color: Colors.text,
+    fontSize: 12,
+    color: Colors.bg,
     fontFamily: Fonts.Medium,
-    marginTop: 4,
+    marginTop: 2,
+    minHeight: 24,
+    height: 32
   },
   cardBtnHeading: {
-    fontSize: 24,
+    fontSize: 20,
     fontFamily: Fonts.Bold,
     color: '#141514'
   },
   cardSubText: {
-    fontSize: 10,
-    color: Colors.textLight,
+    fontSize: 11,
+    color: Colors.black,
     fontFamily: Fonts.Medium
   },
-  cardCountContent: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginTop: 16,
-  },
+
   cardCountSection: {
     backgroundColor: Colors.bg,
-    borderRadius: 7,
-    paddingVertical: 8,
-    paddingHorizontal: 8,
+    borderTopRightRadius: 16,
+    borderBottomLeftRadius: 16,
+    paddingVertical: 4,
+    paddingHorizontal: 4,
+  },
+  evencardCountSection: {
+    backgroundColor: Colors.bg,
+    borderTopLeftRadius: 16,
+    borderBottomRightRadius: 16,
+    paddingVertical: 4,
+    paddingHorizontal: 4,
   },
   navigateIconSection: {
     backgroundColor: "#fff",
@@ -440,8 +472,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 8,
     borderRadius: 12,
-    backgroundColor: "#F2F2F7",
+    backgroundColor: "#F3F5F7",
     width: width / 2.25,
+    borderWidth:1,
+    borderColor:'#E0D3F3'
   },
   summaryText: {
     fontFamily: Fonts.SemiBold,
@@ -450,9 +484,15 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   summaryImg: {
-    height: 52,
-    width: 65,
     resizeMode: "contain",
+    marginRight:5
   },
+  syncBtn: {
+    marginTop:8,
+    backgroundColor:"#7B3BD4"
+  },
+  syncText: {
+    color: Colors.bg
+  }
 });
 export default styles;

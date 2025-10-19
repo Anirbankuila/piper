@@ -40,7 +40,7 @@ const AskPiper = () => {
             {/* Top Section */}
             <View style={styles.chartTop}>
               <Image
-                source={require("../../../assets/images/piper.png")}
+                source={require("../../../assets/images/alexa-2.png")}
                 style={styles.piperImg}
                 resizeMode="cover"
               />
@@ -83,9 +83,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   piperImg: {
-    width: 133,
-    height: 133,
+    width: 134,
+    height: 134,
     alignSelf: "center",
+    borderRadius: 67,
+    shadowColor: "#6A1BE2",
+    shadowOffset: { width: 0, height: -0.63 },
+    shadowOpacity: 0.3, // 30%
+    shadowRadius: 15,
+    // Android Shadow
+    elevation: 10,
+    marginVertical:15
   },
   chatDirect: {
     position: "relative",

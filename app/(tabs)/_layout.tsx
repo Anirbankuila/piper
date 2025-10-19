@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     height: 26,
     borderRadius: 13,
     borderWidth: 2,
-    borderColor: "#007AFF", // or Colors[colorScheme ?? "light"].tint
+    borderColor: Colors.blue_link, // or Colors[colorScheme ?? "light"].tint
   },
   headerButton: {
     padding: 8,

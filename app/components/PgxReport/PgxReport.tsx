@@ -92,7 +92,7 @@ const PgxReport = () => {
         >
             <View style={styles.container}>
                 <View style={styles.overviewWrapper}>
-                    <Image source={require("../../../assets/icons/pipersmall.png")} style={styles.piperImg} />
+                    <Image source={require("../../../assets/icons/alexa-small.png")} style={styles.piperImg} />
                     <Text style={styles.topSecTitle}>Here is an overview</Text>
                     <Text style={styles.overviewDesc}>
                         David’s results show that there is an increase in hyperactivity since his last assessment.
@@ -232,7 +232,20 @@ const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: "#fff", paddingTop: 0 },
     overviewWrapper: { flexDirection: 'column', alignItems: 'center', padding: 24, backgroundColor: Colors.surface_bg, marginBottom: 12 },
     topSecTitle: { fontSize: 20, fontFamily: Fonts.SemiBold, color: Colors.black, textAlign: 'center', },
-    piperImg: { width: 32, height: 32, marginBottom: 12 },
+    piperImg: {
+        width: 42,
+        height: 42,
+        marginBottom: 12,
+        borderRadius: 21,
+        shadowColor: "#6A1BE2",
+        shadowOffset: { width: 0, height: -0.63 },
+        shadowOpacity: 0.3, // 30%
+        shadowRadius: 15,
+
+        // Android Shadow
+        elevation: 10,
+        backgroundColor: "#D8DFF7"
+    },
     overviewDesc: {
         fontSize: 12,
         fontFamily: Fonts.Regular,
