@@ -48,6 +48,7 @@ export const Colors = {
   primary_blue: "#B3D1F2",
   purple_text: "#563699",
   green:"#058922",
+  surface_light_purple:"#F1EBFF"
 };
 
 export const Fonts = Platform.select({
