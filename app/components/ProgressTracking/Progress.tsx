@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import CommonButton from "../CommonButton/CommonButton";
 import CustomTopTabbar from "../CustomTopTab/CustomTopTabbar";
+import ADHDTrackingChart from "../ProgressTrack/ProgressTrack";
 import GrowthTracking from "./GrowthTracking";
 import Questionnaires from "./Questionnaires";
 const topBarTabs = [
@@ -120,6 +121,7 @@ const Progress = () => {
             </TouchableOpacity>
           ))}
         </View>
+        <ADHDTrackingChart />
         <View style={styles.symptomSection}>
           <Text style={styles.breakDownText}>Symptom Breakdown</Text>
           {symptomData.map((item) => (
