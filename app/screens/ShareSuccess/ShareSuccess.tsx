@@ -33,13 +33,13 @@ const ShareSuccess = () => {
                     />
                 </View>
             </View>
-            <View style={Styles.piperStar}>
+            {/* <View style={Styles.piperStar}>
                 <Image
                     source={require("../../../assets/images/PiperStar.png")} // put your logo inside assets folder
                     style={Styles.piperStarImg}
                     resizeMode="cover"
                 />
-            </View>
+            </View> */}
         </ScrollView>
     );
 };
