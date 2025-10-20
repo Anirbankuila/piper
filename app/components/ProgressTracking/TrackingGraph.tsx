@@ -1,86 +1,113 @@
+import { Colors, Fonts } from "@/constants/theme";
+import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
-import { LineChart } from "react-native-chart-kit";
+import { BarChart } from "react-native-gifted-charts";
 
 const screenWidth = Dimensions.get("window").width;
-
-const TrustedChart = () => {
-  const months = ["Jan", "Feb", "Mar", "Apr", "May"];
-  const data = {
-    labels: months,
-    datasets: [
-      {
-        data: [20, 40, 35, 70, 90], // main curved line
-        color: (opacity = 1) => `rgba(249,178,51, ${opacity})`,
-        strokeWidth: 2,
-      },
-      {
-        data: [30, 30, 30, 30, 30], // medication horizontal line
-        color: (opacity = 1) => `rgba(0,0,255, ${opacity})`,
-        strokeWidth: 2,
-      },
-      {
-        data: [50, 50, 50, 50, 50], // therapy horizontal line
-        color: (opacity = 1) => `rgba(0,255,0, ${opacity})`,
-        strokeWidth: 2,
-      },
-    ],
-    legend: ["Severity", "Medication", "Therapies"],
-  };
-
+interface IGraphData {
+  value: number;
+  frontColor: string;
+}
+interface TrackingGraphProps {
+  title: string;
+  xAxisLabel: string[];
+  yAxisLabel: string[];
+  data: IGraphData[];
+}
+const TrackingGraph: React.FC<TrackingGraphProps> = ({
+  title,
+  xAxisLabel,
+  yAxisLabel,
+  data,
+}) => {
   return (
-    <View style={styles.container}>
-      {/* Custom month labels on top */}
-      <View style={styles.monthsRow}>
-        {months.map((month, index) => (
-          <Text key={index} style={styles.monthText}>
-            {month}
+    <LinearGradient
+      colors={["#E8DEFF", "#FFFFFF"]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      style={{
+        borderRadius: 20,
+        paddingVertical: 20,
+        paddingHorizontal: 10,
+        alignItems: "center",
+        width: screenWidth - 30,
+        alignSelf: "center",
+        overflow: "hidden",
+        marginTop: 15,
+        elevation: 2,
+      }}
+    >
+      <Text
+        style={{
+          fontSize: 14,
+          fontFamily: Fonts.SemiBold,
+          color: "#4A2E80",
+          marginBottom: 10,
+          paddingBottom: 50,
+        }}
+      >
+        {title}
+      </Text>
+      <BarChart
+        data={data}
+        width={screenWidth - 70}
+        height={260}
+        barWidth={12}
+        barBorderRadius={10}
+        roundedTop={true}
+        spacing={37}
+        yAxisLabelTexts={yAxisLabel}
+        yAxisTextStyle={{
+          color: "#6B4CAF",
+          fontFamily: Fonts.Medium,
+          fontSize: 10,
+          backgroundColor: Colors.bg,
+          transform: [{ rotate: "-90deg" }],
+        }}
+        noOfSections={5}
+        yAxisTextNumberOfLines={5}
+        initialSpacing={6}
+        maxValue={6}
+        yAxisThickness={0}
+        xAxisThickness={0}
+        rulesType="dashed"
+        dashGap={6}
+        rulesColor="#66A2E4"
+        yAxisColor="transparent"
+        backgroundColor="transparent"
+        showVerticalLines={true}
+        verticalLinesColor="#66A2E4"
+        verticalLinesStrokeDashArray={[5, 10]}
+      />
+      <View
+        style={{
+          position: "absolute",
+          bottom: 350,
+          left: 30,
+          width: screenWidth - 70,
+          flexDirection: "row",
+          justifyContent: "space-between",
+          paddingHorizontal: 12,
+        }}
+      >
+        {xAxisLabel.map((d, i) => (
+          <Text
+            key={i}
+            style={{
+              fontFamily: Fonts.SemiBold,
+              fontSize: 10,
+              color: Colors.purple_text,
+            }}
+          >
+            {d}
           </Text>
         ))}
       </View>
-
-      <LineChart
-        data={data}
-        width={screenWidth - 32}
-        height={220}
-        yAxisSuffix=""
-        yAxisLabel=""
-        chartConfig={{
-          backgroundGradientFrom: "#fff",
-          backgroundGradientTo: "#fff",
-          decimalPlaces: 0,
-          color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-          labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-          propsForDots: {
-            r: "4",
-            strokeWidth: "2",
-            stroke: "#F9B233",
-          },
-        }}
-        bezier
-        style={{
-          marginVertical: 8,
-          borderRadius: 16,
-        }}
-        withShadow={false}
-      />
-    </View>
+    </LinearGradient>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-  },
-  monthsRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 4,
-  },
-  monthText: {
-    fontSize: 12,
-    fontWeight: "600",
-  },
-});
+const styles = StyleSheet.create({});
 
-export default TrustedChart;
+export default TrackingGraph;

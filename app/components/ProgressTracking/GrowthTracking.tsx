@@ -32,6 +32,56 @@ const topBarTabs = [
 const GrowthTracking = () => {
   const [activeTab, setActiveTab] = useState<string>("height");
   const [activeDuration, setActiveDuration] = useState<string>("M");
+  const heightXAxisLabels = ["May", "June", "July", "August", "Sep", "Oct"];
+  const heightYAxisLabels = ["0", "2 ft", "3 ft", "4 ft", "5 ft", "6 ft"];
+  const heightData = [
+    { value: 2, frontColor: "#C6A6FF" },
+    { value: 3, frontColor: "#C7A8FF" },
+    { value: 4, frontColor: "#B799FF" },
+    { value: 5, frontColor: "#A57CFF" },
+    { value: 6, frontColor: "#6A1BE2" },
+    { value: 3, frontColor: "#CBB3FF" },
+  ];
+  const weightYAxisLabels = [
+    "0",
+    "35 Kgs",
+    "40 Kgs",
+    "45 Kgs",
+    "50 Kgs",
+    "55 Kgs",
+  ];
+  const weightData = [
+    { value: 2, frontColor: "#C6A6FF" },
+    { value: 3, frontColor: "#C7A8FF" },
+    { value: 4, frontColor: "#B799FF" },
+    { value: 5, frontColor: "#A57CFF" },
+    { value: 6, frontColor: "#6A1BE2" },
+    { value: 3, frontColor: "#CBB3FF" },
+  ];
+  const circumferenceXAxisLabels = [
+    "1 Year",
+    "2 Years",
+    "3 Years",
+    "4 Years",
+    "5 Years",
+    "6 Years",
+  ];
+  const circumferenceYAxisLabels = [
+    "0",
+    "30 cm",
+    "35 cm",
+    "40 cm",
+    "45 cm",
+    "50 cm",
+  ];
+  const circumferenceData = [
+    { value: 2, frontColor: "#C6A6FF" },
+    { value: 3, frontColor: "#C7A8FF" },
+    { value: 4, frontColor: "#B799FF" },
+    { value: 5, frontColor: "#A57CFF" },
+    { value: 6, frontColor: "#6A1BE2" },
+    { value: 3, frontColor: "#CBB3FF" },
+  ];
   return (
     <ScrollView
       contentContainerStyle={{ flexGrow: 1, paddingBottom: 10 }}
@@ -107,7 +157,30 @@ const GrowthTracking = () => {
           </TouchableOpacity>
         ))}
       </View>
-      <TrackingGraph />
+      {activeTab == "height" && (
+        <TrackingGraph
+          title="Height Tracking"
+          xAxisLabel={heightXAxisLabels}
+          yAxisLabel={heightYAxisLabels}
+          data={heightData}
+        />
+      )}
+      {activeTab == "weight" && (
+        <TrackingGraph
+          title="Weight Tracking"
+          xAxisLabel={heightXAxisLabels}
+          yAxisLabel={weightYAxisLabels}
+          data={weightData}
+        />
+      )}
+      {activeTab == "circumference" && (
+        <TrackingGraph
+          title="Head Circumference"
+          xAxisLabel={circumferenceXAxisLabels}
+          yAxisLabel={circumferenceYAxisLabels}
+          data={circumferenceData}
+        />
+      )}
     </ScrollView>
   );
 };

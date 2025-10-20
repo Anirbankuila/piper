@@ -2,10 +2,8 @@ import Routes, { navigateScreen } from "@/app/common/Routes";
 import { Colors, Fonts } from "@/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import {
-  Dimensions,
   ImageBackground,
   ScrollView,
   StyleSheet,
@@ -13,21 +11,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { BarChart } from "react-native-gifted-charts";
 import CommonButton from "../CommonButton/CommonButton";
 import CustomToggle from "../CustomSwitch/CustomSwitch";
 
 const Questionnaires = () => {
-  const screenWidth = Dimensions.get('window').width;
-  const data = [
-    { value: 2, label: 'May', frontColor: '#C6A6FF' },
-    { value: 3, label: 'June', frontColor: '#C7A8FF' },
-    { value: 4, label: 'July', frontColor: '#B799FF' },
-    { value: 5, label: 'August', frontColor: '#A57CFF' },
-    { value: 6, label: 'Sep', frontColor: '#6A1BE2' },
-    { value: 3, label: 'Oct', frontColor: '#CBB3FF' },
-  ];
-
   const filters = [
     ["Once a month", "ADHD", "Autism", "Epilepsy"],
     ["Often", "Depression", "Anxiety"],
@@ -53,17 +40,6 @@ const Questionnaires = () => {
         <Text style={styles.questionHeaderText}>
           Take the questionnaires below to track your child’s progress.
         </Text>
-        {/* <View style={styles.filterWrapper}>
-          {filters.map((group, i) => (
-            <View key={i} style={styles.filterRow}>
-              {group.map((label) => (
-                <TouchableOpacity key={label} style={styles.filterButton}>
-                  <Text style={styles.filterText}>{label}</Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          ))}
-        </View> */}
         <View style={styles.filterWrapper}>
           {filters.map((group, i) => (
             <View key={i} style={styles.filterRow}>
@@ -116,69 +92,14 @@ const Questionnaires = () => {
                 name="notifications-outline"
                 size={16}
                 color="#F9B233"
+                tintColor="#F9B233"
+                fill="#F9B233"
               />
               <Text style={styles.reminderText}>Next available in 15 days</Text>
             </View>
           </View>
         </View>
       </View>
-      <LinearGradient
-        colors={['#E8DEFF', '#FFFFFF']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 0, y: 1 }}
-        style={{
-          borderRadius: 20,
-          paddingVertical: 20,
-          paddingHorizontal: 10,
-          alignItems: 'center',
-          width: screenWidth - 30,
-          alignSelf: 'center',
-          overflow: 'hidden'
-        }}>
-        <Text
-          style={{
-            fontSize: 14,
-            fontFamily: Fonts.SemiBold,
-            color: '#4A2E80',
-            marginBottom: 10,
-          }}>
-          Height Tracking
-        </Text>
-
-        {/* 👇 Custom top X-axis labels */}
-
-
-        {/* 👇 Actual Bar Chart */}
-        <BarChart
-          data={data}
-          width={screenWidth - 80}
-          height={180}
-          barWidth={12}
-          barBorderRadius={10}
-          spacing={35}
-          yAxisLabelTexts={['2 ft', '3 ft', '4 ft', '5 ft', '6 ft']}
-          yAxisTextStyle={{
-            color: '#6B4CAF',
-            fontFamily: Fonts.Medium,
-            fontSize: 11,
-          }}
-          noOfSections={6}
-          stepValue={1}
-          maxValue={6}
-          yAxisThickness={0}
-          xAxisThickness={0}
-          rulesType="dashed"
-          dashGap={10}
-          rulesColor="#66A2E4"
-          yAxisColor="transparent"
-          backgroundColor="transparent"
-          showVerticalLines={true}
-          verticalLinesColor="#66A2E4"
-          verticalLinesStrokeDashArray={[5, 10]}
-          yAxisAtTop={true}
-
-        />
-      </LinearGradient>
 
       <View style={styles.btnSection}>
         <CommonButton
@@ -206,7 +127,7 @@ const Questionnaires = () => {
 
       <CommonButton
         title="Track something else"
-        onPress={() => { }}
+        onPress={() => {}}
         backgroundColor={Colors.black}
         textStyle={{ color: Colors.bg }}
         style={{ marginHorizontal: 20, marginVertical: 6 }}
@@ -219,12 +140,10 @@ export default Questionnaires;
 
 const styles = StyleSheet.create({
   bannerSection: {
-    // flex: 1,
     backgroundColor: Colors.surface_light_purple,
     padding: 16,
     marginBottom: 24,
     alignItems: "center",
-    // justifyContent: "flex-end",
   },
   heading: {
     flexDirection: "row",
@@ -376,8 +295,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   cardTitle: {
-    fontSize: 18,
-    fontWeight: "700",
+    fontSize: 16,
+    lineHeight: 16,
+    fontFamily: Fonts.Medium,
     color: Colors.black,
   },
   reminderRow: {
