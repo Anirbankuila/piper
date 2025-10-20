@@ -2,22 +2,14 @@ import type ITab from "@/app/common/Interface/common";
 import { Colors, Fonts } from "@/constants/theme";
 import { Image } from "expo-image";
 import React from "react";
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 interface CustomBottomTabProps {
   tabs: ITab[];
   activeTab: string;
 }
-const CustomBottomTab: React.FC<CustomBottomTabProps> = ({
-  tabs,
-  activeTab,
-}) => {
+
+const CustomBottomTab: React.FC<CustomBottomTabProps> = ({ tabs, activeTab }) => {
   return (
     <View style={styles.tabBarContainer}>
       {tabs.map((tab, index) => {
@@ -28,13 +20,14 @@ const CustomBottomTab: React.FC<CustomBottomTabProps> = ({
             style={styles.tabButton}
             onPress={() => tab.onTabPress(tab.name)}
           >
-            <Image source={tab.iconPath} style={styles.tabIcon} />
+            <Image
+              source={isFocused && tab.activeIconPath ? tab.activeIconPath : tab.iconPath}
+              style={styles.tabIcon}
+            />
             <Text
               style={[
                 styles.tabNameText,
-                {
-                  color: isFocused ? Colors.blue_link : "#616161",
-                },
+                { color: isFocused ? Colors.blue_link : "#616161" },
               ]}
             >
               {tab.name}

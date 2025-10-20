@@ -2,12 +2,12 @@ import { primaryTabs } from "@/app/common/primaryTabs";
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import CustomBottomTab from "@/app/components/CustomBottomTab/CustomBottomTab";
+import ADHDTrackingChart from "@/app/components/ProgressTrack/ProgressTrack";
 import { Colors, Fonts } from "@/constants/theme";
 import { Image } from "expo-image";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
-import { LineChart } from "react-native-chart-kit";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const screenWidth = Dimensions.get("window").width;
@@ -44,125 +44,7 @@ const MedicalTeam = () => {
             care concierge, powered by AI.
           </Text>
         </View>
-        <View style={{ marginVertical: 20, paddingHorizontal: 15 }}>
-          <View
-            style={{
-              flexDirection: "row",
-              backgroundColor: "#EFE7FF",
-              borderRadius: 12,
-              elevation: 3,
-            }}
-          >
-            {/* Left Labels (rotated) */}
-
-            <View
-              style={{
-                flexDirection: "column",
-              }}
-            >
-              <View style={styles.header}>
-                <Text style={styles.headerText}>Timeline</Text>
-              </View>
-              {/* Month Labels Above Chart */}
-              <View style={styles.monthLabels}>
-                {months.map((month, index) => (
-                  <View
-                    key={index}
-                    style={{
-                      width: chartWidth / months.length,
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text style={styles.monthText}>{month}</Text>
-                  </View>
-                ))}
-              </View>
-
-              {/* Chart */}
-              <View style={{ flexDirection: "row" }}>
-                {/* <View style={styles.leftLabels}>
-                    {severity.map((s, index) => (
-                      <Text
-                        key={index}
-                        style={[styles.rotatedLabel, { color: s.color }]}
-                      >
-                        {s.label}
-                      </Text>
-                    ))}
-                  </View> */}
-                <LineChart
-                  data={{
-                    labels: [],
-                    datasets: [
-                      {
-                        data: [2, 3, 2.5, 5, 3.5, 2],
-                        color: () => "#9059FF",
-                      },
-                    ],
-                  }}
-                  width={screenWidth - 30}
-                  height={350}
-                  yAxisLabel=""
-                  yAxisSuffix=""
-                  chartConfig={{
-                    backgroundGradientFrom: "#EFE7FF",
-                    backgroundGradientTo: "#FFFFFF",
-                    decimalPlaces: 1,
-                    color: (opacity = 1) => `rgba(0, 122, 255, ${opacity})`,
-                    labelColor: () => "#777",
-                    style: { borderRadius: 12 },
-                    propsForDots: {
-                      r: "5",
-                      strokeWidth: "2",
-                      stroke: Colors.main_purple,
-                    },
-                  }}
-                  bezier
-                  style={styles.chart}
-                  fromZero
-                />
-              </View>
-
-              {/* Medications */}
-              {/* <View style={styles.barContainer}>
-              {medications.map((m, i) => (
-                <View
-                  key={i}
-                  style={[
-                    styles.bar,
-                    {
-                      backgroundColor: m.color,
-                      left: (m.start / 5) * chartWidth,
-                      width: ((m.end - m.start) / 5) * chartWidth,
-                    },
-                  ]}
-                >
-                  <Text style={styles.barText}>{m.name}</Text>
-                </View>
-              ))}
-            </View> */}
-
-              {/* Therapies */}
-              {/* <View style={styles.barContainer}>
-              {therapies.map((t, i) => (
-                <View
-                  key={i}
-                  style={[
-                    styles.bar,
-                    {
-                      backgroundColor: t.color,
-                      left: (t.start / 5) * chartWidth,
-                      width: ((t.end - t.start) / 5) * chartWidth,
-                    },
-                  ]}
-                >
-                  <Text style={styles.barText}>{t.name}</Text>
-                </View>
-              ))}
-            </View> */}
-            </View>
-          </View>
-        </View>
+        <ADHDTrackingChart />
 
         <View style={styles.lifeLogSection}>
           <Text style={styles.lifeLogTitle}>Life Logs</Text>
