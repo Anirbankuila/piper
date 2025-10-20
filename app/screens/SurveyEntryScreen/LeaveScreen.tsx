@@ -11,7 +11,6 @@ const LeaveScreen = () => {
 
   return (
     <View style={styles.container}>
-
       <View style={styles.modal}>
         <View style={styles.modalWrapp}>
           <Text style={styles.completeText}>Are you sure?</Text>
@@ -21,29 +20,27 @@ const LeaveScreen = () => {
           />
         </View>
         <Text style={styles.descriptionText}>
-          Do you want to leave this assessment? It will discard your current answers
+          Do you want to leave this assessment? It will discard your current
+          answers
         </Text>
         <View style={styles.btnWrap}>
           <CommonButton
             style={styles.pastLogBtn}
-            onPress={() => navigateScreen(Routes.homeTab)}
+            onPress={() => navigateScreen(Routes.progressTracking)}
             backgroundColor="#fff"
             color={Colors.primary}
             title="Leave"
           />
           <CommonButton
             onPress={() => navigation.goBack()}
-
             backgroundColor={Colors.error}
             color="#fff"
             title="Cancel"
             style={styles.cancelBtn}
-
           />
         </View>
-
       </View>
-    </View >
+    </View>
   );
 };
 
@@ -57,15 +54,14 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   modalWrapp: {
-    position: 'relative',
-    flexDirection: 'row',
+    position: "relative",
+    flexDirection: "row",
     padding: 12,
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: "space-between",
+    alignItems: "center",
     borderBottomWidth: 1,
     borderBottomColor: Colors.strokeColor,
-    width: '100%'
-
+    width: "100%",
   },
   image: {
     height: 24,
@@ -91,28 +87,28 @@ const styles = StyleSheet.create({
     alignContent: "center",
     color: Colors.text,
     paddingHorizontal: 12,
-    paddingTop: 12
+    paddingTop: 12,
   },
   btnSection: {
     flexDirection: "row",
     justifyContent: "space-between",
     gap: 5,
     marginTop: 15,
-    flex: 1
+    flex: 1,
   },
   btnWrap: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 10,
     marginTop: 15,
-    paddingHorizontal: 12
+    paddingHorizontal: 12,
   },
   pastLogBtn: {
     borderWidth: 1,
     width: "49%",
-    borderColor: Colors.primary
+    borderColor: Colors.primary,
   },
   cancelBtn: {
-    width: "49%"
-  }
+    width: "49%",
+  },
 });

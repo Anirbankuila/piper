@@ -2,36 +2,26 @@ import { SymptomItem } from "@/app/common/Interface/Medication";
 import { Colors, Fonts } from "@/constants/theme";
 import { Image } from "expo-image";
 import React, { useState } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import CommonButton from "../CommonButton/CommonButton";
 import CustomTopTabbar from "../CustomTopTab/CustomTopTabbar";
+import DurationTab from "../DurationTab/DurationTab";
 import ADHDTrackingChart from "../ProgressTrack/ProgressTrack";
-import GrowthTracking from "./GrowthTracking";
-import Questionnaires from "./Questionnaires";
 const topBarTabs = [
   {
     id: "ADHD",
     label: "ADHD",
     icon: require("../../../assets/icons/status-up.png"),
-    content: <></>,
   },
   {
     id: "autism",
     label: "Autism",
     icon: require("../../../assets/icons/note-2.png"),
-    content: <Questionnaires />,
   },
   {
     id: "depression",
     label: "Depression",
     icon: require("../../../assets/icons/health.png"),
-    content: <GrowthTracking />,
   },
 ];
 const symptomData: SymptomItem[] = [
@@ -75,7 +65,6 @@ const Progress = () => {
   const [activeDuration, setActiveDuration] = useState<string>("M");
   return (
     <View style={{ flex: 1 }}>
-      <View style={styles.tabBarContainer}></View>
       <CustomTopTabbar
         tabs={topBarTabs}
         activeTab={activeTab}
@@ -100,27 +89,11 @@ const Progress = () => {
             </Text>
           </View>
         </View>
-        <View style={styles.durationTab}>
-          {["D", "W", "M", "6M", "Y"].map((duration) => (
-            <TouchableOpacity
-              key={duration}
-              style={[
-                styles.durationButton,
-                activeDuration === duration && styles.activeDurationButton, // 👈 active style
-              ]}
-              onPress={() => setActiveDuration(duration)}
-            >
-              <Text
-                style={[
-                  styles.durationText,
-                  activeDuration === duration && styles.activeDurationText, // 👈 active text style
-                ]}
-              >
-                {duration}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+        <DurationTab
+          options={["D", "W", "M", "6M", "Y"]}
+          activeTab={activeDuration}
+          setActiveTab={setActiveDuration}
+        />
         <ADHDTrackingChart />
         <View style={styles.symptomSection}>
           <Text style={styles.breakDownText}>Symptom Breakdown</Text>
@@ -180,50 +153,6 @@ const Progress = () => {
               </View>
             </View>
           ))}
-          {/* <View style={styles.symptomItem}>
-            <View style={styles.upperContent}>
-              <View
-                style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
-              >
-                <View style={styles.iconWrapper}>
-                  <Image
-                    source={require("../../../assets/icons/health.png")}
-                    style={styles.symptomIconImg}
-                  />
-                </View>
-                <Text style={styles.symptomName}>Hyperactivity</Text>
-              </View>
-              <View>
-                <Text style={styles.valueScore}>
-                  <Text style={styles.obtainValue}>04</Text>
-                  <Text style={styles.totalValue}>/21</Text>
-                </Text>
-                <Text>Score</Text>
-              </View>
-            </View>
-            <View style={styles.divider}></View>
-            <View style={styles.lowerContent}>
-              <View
-                style={[styles.progressBar, { backgroundColor: Colors.bg }]}
-              >
-                <View
-                  style={[
-                    styles.filled,
-                    { width: `${80}%`, backgroundColor: "green" },
-                  ]}
-                />
-              </View>
-              <View style={styles.symptomStatus}>
-                <View style={styles.statusButton}>
-                  <View style={styles.statusDot}></View>
-                  <Text style={styles.statusText}>Normal</Text>
-                </View>
-                <View>
-                  <Text style={styles.timeSectionText}>5 mins ago</Text>
-                </View>
-              </View>
-            </View>
-          </View> */}
         </View>
         <CommonButton
           title="Share With Care Team"
@@ -240,20 +169,12 @@ const Progress = () => {
 export default Progress;
 
 const styles = StyleSheet.create({
-  tabBarContainer: {
-    // paddingVertical: 10,
-  },
-  mainContent: {
-    flex: 1,
-    backgroundColor: Colors.bg,
-    // marginTop: 10,
-  },
   progressBanner: {
     flex: 1,
     borderRadius: 15,
     backgroundColor: Colors.surface_bg,
     padding: 16,
-    marginBottom: 24,
+    marginBottom: 12,
     alignItems: "center",
     elevation: 1,
   },
@@ -263,12 +184,6 @@ const styles = StyleSheet.create({
     gap: 4,
     marginBottom: 15,
     alignItems: "center",
-  },
-  imageWrapper: {
-    height: 30,
-    width: 30,
-    borderRadius: 15,
-    overflow: "hidden",
   },
   headingImg: {
     height: 28,
@@ -289,32 +204,6 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.Regular,
     color: Colors.text,
     letterSpacing: 0.5,
-  },
-  durationTab: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginHorizontal: 10,
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    backgroundColor: Colors.surface_bg,
-    borderRadius: 8,
-  },
-  durationButton: {
-    paddingVertical: 4,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-    backgroundColor: "transparent",
-  },
-  activeDurationButton: {
-    backgroundColor: Colors.black,
-  },
-  durationText: {
-    color: Colors.grey,
-    fontSize: 16,
-    fontFamily: Fonts.Medium,
-  },
-  activeDurationText: {
-    color: Colors.bg,
   },
   symptomSection: {
     paddingHorizontal: 20,

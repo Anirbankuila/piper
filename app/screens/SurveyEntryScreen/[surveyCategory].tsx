@@ -23,7 +23,7 @@ const SurveyEntryScreen: React.FC = () => {
     );
     if (survey) setSurveyDetails(survey);
     navigation.setOptions({
-      title: survey?.bannerPageTitle,
+      headerTitle: survey?.bannerPageTitle,
     });
   }, [surveyCategory]);
 

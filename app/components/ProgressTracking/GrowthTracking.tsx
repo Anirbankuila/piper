@@ -3,14 +3,9 @@ import { BlurView } from "expo-blur";
 import { ImageBackground } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import CustomTopTabbar from "../CustomTopTab/CustomTopTabbar";
+import DurationTab from "../DurationTab/DurationTab";
 import TrackingGraph from "./TrackingGraph";
 const topBarTabs = [
   {
@@ -117,12 +112,12 @@ const GrowthTracking = () => {
               </View>
               <View style={styles.orderRow}>
                 <Text style={styles.label}>Weight</Text>
-                <Text style={styles.value}>41kgs</Text>
+                <Text style={styles.value}>41 Kgs</Text>
               </View>
               <View style={styles.orderRow}>
-                <Text style={styles.label}>Head Circumfernece</Text>
+                <Text style={styles.label}>Head Circumference</Text>
                 <View style={styles.statusContainer}>
-                  <Text style={styles.value}>55cm</Text>
+                  <Text style={styles.value}>55 cms</Text>
                 </View>
               </View>
             </View>
@@ -136,28 +131,13 @@ const GrowthTracking = () => {
         isOnlyLabel={true}
         styles={{ paddingTop: 20, alignItems: "center" }}
       />
-      <View style={styles.durationTab}>
-        {["D", "W", "M", "6M", "Y"].map((duration) => (
-          <TouchableOpacity
-            key={duration}
-            style={[
-              styles.durationButton,
-              activeDuration === duration && styles.activeDurationButton, // 👈 active style
-            ]}
-            onPress={() => setActiveDuration(duration)}
-          >
-            <Text
-              style={[
-                styles.durationText,
-                activeDuration === duration && styles.activeDurationText, // 👈 active text style
-              ]}
-            >
-              {duration}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-      {activeTab == "height" && (
+      <DurationTab
+        options={["D", "W", "M", "6M", "Y"]}
+        activeTab={activeDuration}
+        setActiveTab={setActiveDuration}
+        viewStyle={{ marginTop: 15 }}
+      />
+      {activeTab === "height" && (
         <TrackingGraph
           title="Height Tracking"
           xAxisLabel={heightXAxisLabels}
@@ -165,7 +145,7 @@ const GrowthTracking = () => {
           data={heightData}
         />
       )}
-      {activeTab == "weight" && (
+      {activeTab === "weight" && (
         <TrackingGraph
           title="Weight Tracking"
           xAxisLabel={heightXAxisLabels}
@@ -173,7 +153,7 @@ const GrowthTracking = () => {
           data={weightData}
         />
       )}
-      {activeTab == "circumference" && (
+      {activeTab === "circumference" && (
         <TrackingGraph
           title="Head Circumference"
           xAxisLabel={circumferenceXAxisLabels}
@@ -219,42 +199,17 @@ const styles = StyleSheet.create({
     color: Colors.bg,
     fontSize: 14,
     fontFamily: Fonts.Medium,
+    lineHeight: 16,
   },
   value: {
     color: Colors.bg,
     fontSize: 14,
     fontFamily: Fonts.Bold,
+    lineHeight: 16,
   },
   statusContainer: {
     flexDirection: "row",
     alignItems: "center",
     gap: 6,
-  },
-  durationTab: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginHorizontal: 10,
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    backgroundColor: Colors.surface_bg,
-    borderRadius: 8,
-    marginTop: 15,
-  },
-  durationButton: {
-    paddingVertical: 4,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-    backgroundColor: "transparent",
-  },
-  activeDurationButton: {
-    backgroundColor: Colors.black,
-  },
-  durationText: {
-    color: Colors.grey,
-    fontSize: 16,
-    fontFamily: Fonts.Medium,
-  },
-  activeDurationText: {
-    color: Colors.bg,
   },
 });

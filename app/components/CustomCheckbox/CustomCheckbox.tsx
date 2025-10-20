@@ -6,6 +6,7 @@ import {
   View,
   ViewStyle,
 } from "react-native";
+import { Checkbox } from "react-native-paper";
 import styles from "./CustomCheckCss";
 
 interface MultiOption {
@@ -18,6 +19,7 @@ interface CustomMultiSelectProps {
   selectedValues: (string | number)[]; // multiple selected values
   onSelect: (values: (string | number)[]) => void;
   optionStyle?: StyleProp<ViewStyle>;
+  isTypeOfCheckBox?: boolean;
 }
 
 const CustomMultiSelect: React.FC<CustomMultiSelectProps> = ({
@@ -25,6 +27,7 @@ const CustomMultiSelect: React.FC<CustomMultiSelectProps> = ({
   selectedValues,
   onSelect,
   optionStyle,
+  isTypeOfCheckBox,
 }) => {
   const handlePress = (id: string | number) => {
     if (selectedValues.includes(id)) {
@@ -46,9 +49,19 @@ const CustomMultiSelect: React.FC<CustomMultiSelectProps> = ({
             style={[styles.option, optionStyle]}
             onPress={() => handlePress(item.id)}
           >
-            <View style={styles.radioCircle}>
-              {isSelected && <View style={styles.selectedRb} />}
-            </View>
+            {isTypeOfCheckBox ? (
+              <Checkbox.Android
+                status={
+                  selectedValues.includes(item.id) ? "checked" : "unchecked"
+                }
+                onPress={() => handlePress(item.id)}
+              />
+            ) : (
+              <View style={styles.radioCircle}>
+                {isSelected && <View style={styles.selectedRb} />}
+              </View>
+            )}
+
             <Text style={styles.optionText}>{item.label}</Text>
           </TouchableOpacity>
         );

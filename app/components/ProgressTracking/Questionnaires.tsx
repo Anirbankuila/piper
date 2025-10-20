@@ -85,7 +85,7 @@ const Questionnaires = () => {
     >
       <ImageBackground
         source={require("../../../assets/images/questionnaires-bg.png")}
-        style={{ height: 200, paddingHorizontal: 10 }}
+        style={{ height: 180, paddingHorizontal: 10 }}
         resizeMode="cover"
       >
         <View style={styles.contentWrapper}>
@@ -100,11 +100,25 @@ const Questionnaires = () => {
           Take the questionnaires below to track your child’s progress.
         </Text>
         <View style={styles.filterWrapper}>
-          {filters.map((group, i) => (
-            <View key={i} style={styles.filterRow}>
-              {group.map((label) => (
+          {filters.map((group, index) => (
+            <View key={index} style={styles.filterRow}>
+              {/* Group button with triangle */}
+              <View style={styles.groupButtonWrapper}>
+                <TouchableOpacity style={styles.groupButton}>
+                  <Text style={styles.filterText}>{group[0]}</Text>
+                </TouchableOpacity>
+                {/* White triangle connected on the right */}
+                <View style={styles.triangle} />
+              </View>
+
+              {/* Other group items */}
+              {group.slice(1).map((label) => (
                 <TouchableOpacity key={label} style={styles.filterButton}>
-                  <Text style={styles.filterText}>{label}</Text>
+                  <Text
+                    style={[styles.filterText, { color: Colors.main_purple }]}
+                  >
+                    {label}
+                  </Text>
                 </TouchableOpacity>
               ))}
             </View>
@@ -130,15 +144,12 @@ const Questionnaires = () => {
               <View
                 style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
               >
-                {/* <Image
-                  source={item.icon}
-                  style={{ width: 24, height: 24, resizeMode: "contain" }}
-                /> */}
                 <Text style={styles.cardTitle}>{item.title}</Text>
               </View>
 
               <CustomToggle
                 value={item.isToggled}
+                isForToggle={false}
                 onPress={() => handleToggle(item)}
               />
             </View>
@@ -249,7 +260,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     flex: 1,
     borderRadius: 8,
-    padding: 6,
+    paddingLeft: 2,
   },
   description: {
     fontSize: 14,
@@ -338,9 +349,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     marginBottom: 10,
+    gap: 4,
   },
   filterButton: {
-    backgroundColor: Colors.purple_text,
+    backgroundColor: Colors.surface_light_purple,
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 8,
@@ -349,13 +361,13 @@ const styles = StyleSheet.create({
   filterText: {
     color: Colors.bg,
     fontFamily: Fonts.SemiBold,
-    fontSize: 11,
+    fontSize: 10,
   },
 
   card: {
     backgroundColor: Colors.surface_bg,
-    borderRadius: 16,
-    padding: 16,
+    borderRadius: 8,
+    padding: 10,
     marginBottom: 12,
   },
   timeLabel: {
@@ -434,5 +446,30 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.Medium,
     color: Colors.text,
     marginTop: 5,
+  },
+
+  groupButtonWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  groupButton: {
+    backgroundColor: Colors.purple_text,
+    borderRadius: 8,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+  },
+  groupText: {
+    color: "#fff",
+    fontWeight: "600",
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    borderTopWidth: 6,
+    borderBottomWidth: 6,
+    borderLeftWidth: 6,
+    borderTopColor: "transparent",
+    borderBottomColor: "transparent",
+    borderLeftColor: Colors.purple_text,
   },
 });
