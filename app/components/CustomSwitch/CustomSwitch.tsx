@@ -1,18 +1,29 @@
 import React, { useRef, useState } from "react";
 import { Animated, Pressable, StyleSheet } from "react-native";
-
-const CustomToggle = () => {
+interface CustomToggleInterface {
+  value?: boolean;
+  onPress?: () => void;
+  isForToggle?: boolean;
+}
+const CustomToggle: React.FC<CustomToggleInterface> = ({
+  value = false,
+  onPress,
+  isForToggle = false,
+}) => {
   const [isEnabled, setIsEnabled] = useState(false);
-  const offset = useRef(new Animated.Value(0)).current;
+  const offset = useRef(new Animated.Value(value ? 1 : 0)).current;
 
   const toggleSwitch = () => {
-    const toValue = isEnabled ? 0 : 1;
+    if (!isForToggle && onPress) onPress();
+    const newValue = !isEnabled;
+    const toValue = newValue ? 1 : 0;
     Animated.timing(offset, {
       toValue,
       duration: 200,
       useNativeDriver: false,
     }).start();
-    setIsEnabled(!isEnabled);
+
+    setIsEnabled(newValue);
   };
 
   const translateX = offset.interpolate({
@@ -29,10 +40,7 @@ const CustomToggle = () => {
     <Pressable onPress={toggleSwitch}>
       <Animated.View style={[styles.toggle, { backgroundColor }]}>
         <Animated.View
-          style={[
-            styles.circle,
-            { transform: [{ translateX }] },
-          ]}
+          style={[styles.circle, { transform: [{ translateX }] }]}
         />
       </Animated.View>
     </Pressable>

@@ -1,11 +1,36 @@
+import { SurveyDemoData } from "@/app/common/data/surveyDemoData";
+import { CategoryWiseSurvey } from "@/app/common/Interface/Sruvey";
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import { Colors, Fonts } from "@/constants/theme";
 import { Image } from "expo-image";
-import React from "react";
+import { useLocalSearchParams } from "expo-router";
+import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 const SurveyEntryScreen: React.FC = () => {
+  const { surveyCategory } = useLocalSearchParams<{
+    surveyCategory: string;
+  }>();
+  const [surveyDetails, setSurveyDetails] = useState<
+    CategoryWiseSurvey | undefined
+  >(undefined);
+  // Find survey details dynamically
+  useEffect(() => {
+    const survey = SurveyDemoData.find(
+      (s) => s.categoryName === surveyCategory
+    );
+    console.log(survey);
+    if (survey) setSurveyDetails(survey);
+  }, [surveyCategory]);
+
+  if (!surveyDetails) {
+    return (
+      <View style={Styles.notFound}>
+        <Text style={Styles.notFoundText}>Survey not found</Text>
+      </View>
+    );
+  }
   return (
     <ScrollView
       contentContainerStyle={Styles.container}
@@ -13,10 +38,7 @@ const SurveyEntryScreen: React.FC = () => {
     >
       {/* Top Image */}
       <View style={Styles.topImageContainer}>
-        <Image
-          source={require("../../../assets/images/portrait-person.png")}
-          style={Styles.topImage}
-        />
+        <Image source={surveyDetails.bannerImage} style={Styles.topImage} />
       </View>
 
       {/* Blur Content Section */}
@@ -26,19 +48,23 @@ const SurveyEntryScreen: React.FC = () => {
           style={Styles.blurImg}
         />
         <View style={Styles.content}>
-          <Text style={Styles.title}>Welcome To {"\n"}ADHD Tracking</Text>
-          <Text style={Styles.desc}>
-            This assessment uses standardized questions to give you a
-            visualization of the effectiveness of your child’s treatment for
-            ADHD Symptoms.
-          </Text>
+          {/* <Text style={Styles.title}>Welcome To {"\n"}ADHD Tracking</Text> */}
+          <Text style={Styles.title}>{surveyDetails.title}</Text>
+          <Text style={Styles.desc}>{surveyDetails.description}</Text>
 
           <View style={Styles.bottomButton}>
             <CommonButton
               title="Start"
               textStyle={Styles.buttonText}
               style={Styles.button}
-              onPress={() => navigateScreen(Routes.surveyQuestionScreen)}
+              onPress={() =>
+                navigateScreen({
+                  pathname: `/${Routes.surveyQuestionScreen}`,
+                  params: {
+                    categoryQuestion: surveyCategory, // must pass id here
+                  },
+                })
+              }
             />
           </View>
         </View>
@@ -105,5 +131,14 @@ const Styles = StyleSheet.create({
   },
   bottomButton: {
     position: "relative",
+  },
+  notFound: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  notFoundText: {
+    fontSize: 16,
+    color: "#999",
   },
 });

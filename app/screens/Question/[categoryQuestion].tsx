@@ -1,7 +1,11 @@
+import { SurveyDemoData } from "@/app/common/data/surveyDemoData";
+import { Questions } from "@/app/common/Interface/Sruvey";
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
+import CommonInput from "@/app/components/CommonInput/CommonInput";
 import { Colors, Fonts } from "@/constants/theme";
-import React, { useState } from "react";
+import { useLocalSearchParams } from "expo-router";
+import React, { useEffect, useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -10,87 +14,47 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-const questions = [
-  {
-    id: 1,
-    question: "When were you formally diagnosed with ADHD?",
-    options: ["Never", "Occasionally", "Often", "Very Often"],
-  },
-  {
-    id: 2,
-    question: "Are you currently taking steps to manage your ADHD?",
-    options: ["Never", "Occasionally", "Often", "Very Often"],
-  },
-  {
-    id: 3,
-    question:
-      "“My relationship have been negatively impacted by my ADHD symptoms”",
-    options: ["Never", "Sometimes", "Often", "Always"],
-  },
-  {
-    id: 4,
-    question: "I find myself struggling to prioritize my time effectively",
-    options: ["Never", "Sometimes", "Often", "Always"],
-  },
-  {
-    id: 5,
-    question:
-      "I find myself struggling with the fear of rejection or criticism",
-    options: ["Never", "Sometimes", "Often", "Always"],
-  },
-  {
-    id: 6,
-    question: "I find myself consumed by negative emotions",
-    options: ["Never", "Sometimes", "Often", "Always"],
-  },
-  {
-    id: 7,
-    question:
-      "I act on impulse without fully thinking through the consequences",
-    options: ["Never", "Sometimes", "Often", "Always"],
-  },
-  {
-    id: 8,
-    question: "I find that poor time management interferes with my daily life",
-    options: ["Never", "Sometimes", "Often", "Always"],
-  },
-  {
-    id: 9,
-    question:
-      "I find myself struggling to use my time effectively in the morning",
-    options: ["Never", "Sometimes", "Often", "Always"],
-  },
-  {
-    id: 10,
-    question: "I avoid starting or completed tasks",
-    options: ["Never", "Sometimes", "Often", "Always"],
-  },
-  // ... more questions
-];
 const SurveyQuestionScreen = () => {
+  const { categoryQuestion } = useLocalSearchParams<{
+    categoryQuestion: string;
+  }>();
+  const [questions, setQuestions] = useState<Questions[]>([]);
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
 
+  useEffect(() => {
+    const surveyData = SurveyDemoData.find(
+      (s) => s.categoryName === categoryQuestion
+    );
+
+    if (surveyData?.questions && Array.isArray(surveyData.questions)) {
+      setQuestions(surveyData.questions);
+    } else {
+      setQuestions([]);
+    }
+
+    setCurrent(0);
+    setSelected(null);
+  }, [categoryQuestion]);
+
   const totalQuestions = questions.length;
-  const progressWidth = ((current + 1) / totalQuestions) * 100;
+  const progressWidth = totalQuestions
+    ? ((current + 1) / totalQuestions) * 100
+    : 0;
 
   const nextQuestion = () => {
-    // if (current === totalQuestions) {
-    //   //   navigateScreen(Routes.s);
-    // }
     if (current < totalQuestions - 1) {
-      setCurrent(current + 1);
+      setCurrent((prev) => prev + 1);
       setSelected(null);
     }
   };
 
   const prevQuestion = () => {
     if (current > 0) {
-      setCurrent(current - 1);
+      setCurrent((prev) => prev - 1);
       setSelected(null);
     }
   };
-
   const currentQuestion = questions[current];
   return (
     <KeyboardAvoidingView
@@ -125,6 +89,7 @@ const SurveyQuestionScreen = () => {
             <Text style={[styles.optionText]}>{option}</Text>
           </TouchableOpacity>
         ))}
+        {/* {currentQuestion.isInputEnable && <CommonInput />} */}
 
         {/* Navigation Buttons */}
         {current === totalQuestions - 1 ? (
@@ -154,24 +119,6 @@ const SurveyQuestionScreen = () => {
                 { backgroundColor: selected !== null ? "#000" : "#999" },
               ]}
             />
-            {/* <TouchableOpacity
-            style={styles.prevButton}
-            onPress={prevQuestion}
-            disabled={current === 0}
-          >
-            <Text style={styles.prevText}>Previous</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[
-              styles.nextButton,
-              { backgroundColor: selected !== null ? "#000" : "#999" },
-            ]}
-            onPress={nextQuestion}
-            disabled={selected === null}
-          >
-            <Text style={styles.nextText}>Next</Text>
-          </TouchableOpacity> */}
           </View>
         )}
       </View>
@@ -197,11 +144,11 @@ const styles = StyleSheet.create({
   },
   progressBar: {
     height: 4,
-    backgroundColor: "#007AFF",
+    backgroundColor: Colors.primary,
   },
   questionNumber: {
     fontSize: 13,
-    color: "#007AFF",
+    color: Colors.primary,
     marginTop: 15,
   },
   questionText: {
