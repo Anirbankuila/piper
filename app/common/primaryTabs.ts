@@ -4,6 +4,7 @@ export const primaryTabs = [
   {
     name: "Home",
     iconPath: require("../../assets/icons/home.png"),
+    activeIconPath:require("../../assets/icons/homeActive.png"),
     onTabPress: () => {
       navigateScreen(Routes.homeTab);
     },
@@ -11,6 +12,7 @@ export const primaryTabs = [
   {
     name: "LifeLog",
     iconPath: require("../../assets/icons/booknew.png"),
+    activeIconPath:require("../../assets/icons/bookactive.png"),
     onTabPress: () => {
       navigateScreen(Routes.lifeLogTab);
     },
@@ -18,13 +20,15 @@ export const primaryTabs = [
   {
     name: "Piper",
     iconPath: require("../../assets/icons/pipertabicon.png"),
+    activeIconPath:require("../../assets/icons/pipertab.png"),
     onTabPress: () => {
-      navigateScreen(Routes.lifeLogTab);
+      navigateScreen(Routes.piperTab);
     },
   },
   {
     name: "Calendar",
     iconPath: require("../../assets/icons/calendartab.png"),
+    activeIconPath:require("../../assets/icons/calenderActive.png"),
     onTabPress: () => {
       navigateScreen(Routes.calendarTab);
     },
@@ -32,6 +36,7 @@ export const primaryTabs = [
   {
     name: "Profile",
     iconPath: require("../../assets/images/profile.png"),
+    activeIconPath:require("../../assets/icons/profile.png"),
     onTabPress: () => {
       navigateScreen(Routes.profileTab);
     },

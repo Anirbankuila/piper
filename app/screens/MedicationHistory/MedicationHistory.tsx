@@ -1,3 +1,5 @@
+import { primaryTabs } from "@/app/common/primaryTabs";
+import CustomBottomTab from "@/app/components/CustomBottomTab/CustomBottomTab";
 import { Colors, Fonts } from "@/constants/theme";
 import React, { useRef, useState } from "react";
 import {
@@ -70,78 +72,82 @@ const MedicationsScreen = () => {
     };
 
     return (
-        <View style={styles.container}>
-            <View style={styles.searchContainer}>
-                <TextInput
-                    style={styles.searchInput}
-                    placeholder="Search medications..."
-                    placeholderTextColor="#888"
-                    value={search}
-                    onChangeText={setSearch}
-                />
-                <TouchableOpacity style={styles.filterButton}>
-                    <FunnelIcon size={20} color="#fff" />
-                </TouchableOpacity>
-            </View>
-            <Text style={styles.header}>Medications</Text>
-            {/* ✅ Combined FlatList */}
-            <FlatList
-                data={groupedData}
-                keyExtractor={(item) => item.id}
-                contentContainerStyle={styles.listContainer}
-                renderItem={({ item }) => {
-                    if (item.type === "header") {
-                        return <Text style={styles.sectionHeader}>{item.title}</Text>;
+        <>
+            <View style={styles.container}>
+                <View style={styles.searchContainer}>
+                    <TextInput
+                        style={styles.searchInput}
+                        placeholder="Search medications..."
+                        placeholderTextColor="#888"
+                        value={search}
+                        onChangeText={setSearch}
+                    />
+                    <TouchableOpacity style={styles.filterButton}>
+                        <FunnelIcon size={20} color="#fff" />
+                    </TouchableOpacity>
+                </View>
+                <Text style={styles.header}>Medications</Text>
+                {/* ✅ Combined FlatList */}
+                <FlatList
+                    data={groupedData}
+                    keyExtractor={(item) => item.id}
+                    contentContainerStyle={styles.listContainer}
+                    renderItem={({ item }) => {
+                        if (item.type === "header") {
+                            return <Text style={styles.sectionHeader}>{item.title}</Text>;
+                        }
+                        return (
+                            <View style={styles.medCard}>
+                                <Text style={styles.medName}>{item.name}</Text>
+                                {item.type === "current" && (
+                                    <Text style={styles.medDosage}>{item.dosage}</Text>
+                                )}
+                            </View>
+                        );
+                    }}
+                    ListEmptyComponent={
+                        <Text style={styles.emptyText}>No medicines found.</Text>
                     }
-                    return (
-                        <View style={styles.medCard}>
-                            <Text style={styles.medName}>{item.name}</Text>
-                            {item.type === "current" && (
-                                <Text style={styles.medDosage}>{item.dosage}</Text>
-                            )}
-                        </View>
-                    );
-                }}
-                ListEmptyComponent={
-                    <Text style={styles.emptyText}>No medicines found.</Text>
-                }
-            />
-            <TouchableOpacity
-                style={styles.fab}
-                onPress={() => rbSheetRef.current?.open()}
-            >
-                <PlusIcon size={24} color={Colors.primary} />
-            </TouchableOpacity>
-
-            {/* 🔽 Bottom Sheet */}
-            <RBSheet
-                ref={rbSheetRef}
-                closeOnPressMask
-                customStyles={{
-                    container: {
-                        borderTopLeftRadius: 20,
-                        borderTopRightRadius: 20,
-                        padding: 20,
-                    },
-                    draggableIcon: {
-                        backgroundColor: "#ccc",
-                    },
-                }}
-            >
-                <Text style={styles.sheetTitle}>Add New Medicine</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Enter medicine name"
-                    placeholderTextColor="#888"
-                    value={newMedicine}
-                    onChangeText={setNewMedicine}
                 />
-
-                <TouchableOpacity style={styles.addButton} onPress={handleAddMedicine}>
-                    <Text style={styles.addButtonText}>Add Medicine</Text>
+                <TouchableOpacity
+                    style={styles.fab}
+                    onPress={() => rbSheetRef.current?.open()}
+                >
+                    <PlusIcon size={24} color={Colors.primary} />
                 </TouchableOpacity>
-            </RBSheet>
-        </View>
+
+                {/* 🔽 Bottom Sheet */}
+                <RBSheet
+                    ref={rbSheetRef}
+                    closeOnPressMask
+                    customStyles={{
+                        container: {
+                            borderTopLeftRadius: 20,
+                            borderTopRightRadius: 20,
+                            padding: 20,
+                        },
+                        draggableIcon: {
+                            backgroundColor: "#ccc",
+                        },
+                    }}
+                >
+                    <Text style={styles.sheetTitle}>Add New Medicine</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Enter medicine name"
+                        placeholderTextColor="#888"
+                        value={newMedicine}
+                        onChangeText={setNewMedicine}
+                    />
+
+                    <TouchableOpacity style={styles.addButton} onPress={handleAddMedicine}>
+                        <Text style={styles.addButtonText}>Add Medicine</Text>
+                    </TouchableOpacity>
+                </RBSheet>
+            </View>
+            <CustomBottomTab activeTab="" tabs={primaryTabs} />
+        </>
+
     );
 };
 

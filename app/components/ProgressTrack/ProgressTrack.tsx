@@ -14,8 +14,8 @@ export default function ADHDTrackingChart() {
     ];
 
     const medications = [
-        { name: "Adderall 5mg", color: "#E8DEFF", borderColor: "#9059FF", textColor: Colors.main_purple, start: "June", end: "Aug" },
-        { name: "Moneklc 3mg", color: "#FFE7ED", borderColor: "#FA114F", textColor: "#940027", start: "June", end: "Sep" },
+        { name: "Adderall 5mg", color: "#E8DEFF", borderColor: "#9059FF", textColor: Colors.main_purple, start: "June", end: "Sep" },
+        { name: "Moneklc 3mg", color: "#FFE7ED", borderColor: "#FA114F", textColor: "#940027", start: "May", end: "July" },
     ];
 
     const therapies = {
@@ -65,35 +65,39 @@ export default function ADHDTrackingChart() {
             </View>
 
             {/* === SECTION 1: ADHD QUESTIONNAIRES === */}
-            <Text style={styles.sectionTitle}>ADHD Questionnaires</Text>
+            <View style={styles.adhdWrap}>
+                <Text style={styles.sectionTitle}>ADHD Questionnaires</Text>
 
-            <View style={styles.row}>
-                {months.map((m) => {
-                    const q = questionnaires.find((item) => item.month === m);
+                <View style={styles.row}>
+                    {months.map((m) => {
+                        const q = questionnaires.find((item) => item.month === m);
+                        return (
+                            <View key={m} style={styles.cell}>
+                                {q && <View style={[styles.dot, { backgroundColor: getColor(q.status) }]} />}
+                            </View>
+                        );
+                    })}
+                </View>
+            </View>
+
+            {/* === SECTION 2: MEDICATIONS === */}
+            <View style={styles.adhdWrap}>
+                <Text style={styles.sectionTitle}>Medications</Text>
+                {medications.map((med) => {
+                    const startIdx = getMonthIndex(med.start);
+                    const endIdx = getMonthIndex(med.end);
+                    const width = (endIdx - startIdx + 1) * 50; // each month cell ≈ 50px wide
+
                     return (
-                        <View key={m} style={styles.cell}>
-                            {q && <View style={[styles.dot, { backgroundColor: getColor(q.status) }]} />}
+                        <View key={med.name} style={styles.row}>
+                            <View style={{ width: startIdx * 70 }} />
+                            <View style={[styles.bar, { backgroundColor: med.color, width, borderColor: med.borderColor }]}>
+                                <Text style={[styles.barText, { color: med.textColor }]}>{med.name}</Text>
+                            </View>
                         </View>
                     );
                 })}
             </View>
-
-            {/* === SECTION 2: MEDICATIONS === */}
-            <Text style={styles.sectionTitle}>Medications</Text>
-            {medications.map((med) => {
-                const startIdx = getMonthIndex(med.start);
-                const endIdx = getMonthIndex(med.end);
-                const width = (endIdx - startIdx + 1) * 50; // each month cell ≈ 50px wide
-
-                return (
-                    <View key={med.name} style={styles.row}>
-                        <View style={{ width: startIdx * 50 }} />
-                        <View style={[styles.bar, { backgroundColor: med.color, width, borderColor: med.borderColor }]}>
-                            <Text style={[styles.barText, { color: med.textColor }]}>{med.name}</Text>
-                        </View>
-                    </View>
-                );
-            })}
 
             {/* === SECTION 3: THERAPIES === */}
             <Text style={styles.sectionTitle}>Therapies</Text>
@@ -128,7 +132,7 @@ export default function ADHDTrackingChart() {
             </View>
             <Text style={styles.therapyLabel}>Occupational Therapy</Text>
 
-             <View style={styles.monthRow}>
+            <View style={styles.monthRow}>
                 {months.map((m) => (
                     <Text key={m} style={styles.monthText}>
                         {m}
@@ -179,13 +183,27 @@ const styles = StyleSheet.create({
         width: 60,
         textAlign: "center",
         fontSize: 11,
-        fontFamily:Fonts.Bold,
-        color:Colors.purple_text
+        fontFamily: Fonts.Bold,
+        color: Colors.purple_text
     },
     sectionTitle: {
-        fontSize: 13,
-        fontWeight: "600",
+        fontSize: 12,
+        fontFamily: Fonts.Bold,
+        backgroundColor: Colors.bg,
+        paddingHorizontal: 5,
+        borderRadius: 4,
         marginVertical: 10,
+        justifyContent:'center',
+        marginHorizontal:'auto'
+        
+    },
+    adhdWrap: {
+        borderBottomWidth:0.7,
+        borderStyle: "dashed",
+        borderColor: Colors.primary,
+        // alignItems: 'flex-start',
+        paddingBottom: 10,
+        width:'100%'
     },
     row: {
         flexDirection: "row",
@@ -240,7 +258,7 @@ const styles = StyleSheet.create({
         top: "50%",
         left: 0,
         right: 0,
-        height: 1,
+        height: 0.5,
         backgroundColor: Colors.strokeColor,
     },
     markerRow: {

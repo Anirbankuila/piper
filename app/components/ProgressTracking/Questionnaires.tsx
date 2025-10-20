@@ -23,6 +23,7 @@ const reminders: ReminderCardItem[] = [
     nextAvailable: "Next available in 15 days",
     icon: require("../../../assets/icons/golden-bell.png"),
     isSurveyAvailable: true,
+    headerTitle: "ADHD",
   },
   {
     id: "2",
@@ -60,6 +61,7 @@ const reminders: ReminderCardItem[] = [
     nextAvailable: "Next available in 25 days",
     icon: require("../../../assets/icons/golden-bell.png"),
     isSurveyAvailable: true,
+    headerTitle: "Epilepsy Survey",
   },
   // add more dynamically
 ];
@@ -73,7 +75,8 @@ const Questionnaires = () => {
       navigateScreen({
         pathname: `/${Routes.surveyEntry}`,
         params: {
-          surveyCategory: item.categoryName, // must pass id here
+          surveyCategory: item.categoryName,
+          headerTitle: item.headerTitle ?? "",
         },
       });
     }
@@ -127,7 +130,16 @@ const Questionnaires = () => {
             <Text style={styles.timeLabel}>{item.duration}</Text>
 
             <View style={styles.cardRow}>
-              <Text style={styles.cardTitle}>{item.title}</Text>
+              <View
+                style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
+              >
+                {/* <Image
+                  source={item.icon}
+                  style={{ width: 24, height: 24, resizeMode: "contain" }}
+                /> */}
+                <Text style={styles.cardTitle}>{item.title}</Text>
+              </View>
+
               <CustomToggle
                 value={item.isToggled}
                 onPress={() => handleToggle(item)}
@@ -147,28 +159,48 @@ const Questionnaires = () => {
         ))}
       </View>
 
-      <View style={styles.btnSection}>
-        <CommonButton
-          title="Allergies"
-          onPress={() => navigateScreen(Routes.allergyHistory)}
-          backgroundColor={Colors.black}
-          textStyle={{ color: Colors.bg }}
-          style={{ marginHorizontal: 20, marginVertical: 5 }}
-        />
-        <CommonButton
-          title="Immunization"
-          onPress={() => navigateScreen(Routes.immunizationHistory)}
-          backgroundColor={Colors.black}
-          textStyle={{ color: Colors.bg }}
-          style={{ marginHorizontal: 20, marginVertical: 5 }}
-        />
-        <CommonButton
-          title="Lab Report"
-          onPress={() => navigateScreen(Routes.labResult)}
-          backgroundColor={Colors.black}
-          textStyle={{ color: Colors.bg }}
-          style={{ marginHorizontal: 20, marginVertical: 5 }}
-        />
+      <View style={styles.viewDocuments}>
+        <View style={styles.viewDocumentsWrap}>
+          <TouchableOpacity
+            style={styles.eachDoc}
+            onPress={() => navigateScreen(Routes.allergyHistory)}
+          >
+            <View style={styles.eachDocIcon}>
+              <Image
+                source={require("../../../assets/icons/profile-remove.png")}
+                style={styles.icon}
+                contentFit="cover"
+              />
+            </View>
+            <Text style={styles.catTitle}>Allergies</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.eachDoc}
+            onPress={() => navigateScreen(Routes.immunizationHistory)}
+          >
+            <View style={styles.eachDocIcon}>
+              <Image
+                source={require("../../../assets/icons/shield.png")}
+                style={styles.icon}
+                contentFit="cover"
+              />
+            </View>
+            <Text style={styles.catTitle}>Immunization</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.eachDoc}
+            onPress={() => navigateScreen(Routes.labResult)}
+          >
+            <View style={styles.eachDocIcon}>
+              <Image
+                source={require("../../../assets/icons/iconsax-hospital.png")}
+                style={styles.icon}
+                contentFit="cover"
+              />
+            </View>
+            <Text style={styles.catTitle}>Lab Result</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       <CommonButton
@@ -319,8 +351,8 @@ const styles = StyleSheet.create({
   },
   filterText: {
     color: Colors.bg,
-    fontWeight: "600",
-    fontSize: 13,
+    fontFamily: Fonts.SemiBold,
+    fontSize: 11,
   },
 
   card: {
@@ -370,5 +402,40 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexWrap: "wrap",
     alignContent: "center",
+  },
+  viewDocuments: {
+    position: "relative",
+  },
+  viewDocumentsWrap: {
+    position: "relative",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    padding: 0,
+  },
+  eachDoc: {
+    width: "30%",
+    alignItems: "center",
+    marginBottom: 15,
+  },
+  eachDocIcon: {
+    width: 52,
+    height: 52,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: Colors.surface_bg,
+    borderRadius: 26,
+  },
+  icon: {
+    width: 28,
+    height: 28,
+    tintColor: Colors.primary,
+  },
+  catTitle: {
+    fontSize: 12,
+    fontFamily: Fonts.Medium,
+    color: Colors.text,
+    marginTop: 5,
   },
 });

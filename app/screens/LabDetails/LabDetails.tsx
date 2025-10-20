@@ -8,6 +8,8 @@ interface LabDetail {
     result: string; // e.g., "256 mg/dL"
     status: "In range" | "Out of range";
     referenceRange: string; // e.g., "65-99 mg/dL"
+    date: string,
+    time: string
 }
 
 const screenWidth = Dimensions.get("window").width - 32; // 16px padding each side
@@ -22,6 +24,8 @@ const LabDetailsScreen: React.FC = () => {
             result: "256 mg/dL",
             status: "Out of range",
             referenceRange: "65-99 mg/dL",
+            date: "10/11/2025",
+            time: "08.30 PM"
         },
         {
             id: "2",
@@ -29,6 +33,8 @@ const LabDetailsScreen: React.FC = () => {
             result: "19 mg/dL",
             status: "In range",
             referenceRange: "9-27 mg/dL",
+            date: "10/11/2025",
+            time: "08.30 PM"
         },
     ];
 
@@ -53,10 +59,18 @@ const LabDetailsScreen: React.FC = () => {
                 onChangeText={setSearch}
             />
 
+
             <FlatList
                 data={filteredTests}
                 keyExtractor={(item) => item.id}
                 contentContainerStyle={styles.listContainer}
+                ListHeaderComponent={() => (
+                    <View style={styles.dateWrap}>
+                        <Text style={styles.testDate}>July 18, 2020</Text>
+                        <Text style={styles.testTime}>08.20 PM</Text>
+                    </View>
+                )}
+
                 renderItem={({ item }) => {
                     const [minStr, maxStr] = item.referenceRange.replace(" mg/dL", "").split("-");
                     const min = parseFloat(minStr);
@@ -139,6 +153,18 @@ const styles = StyleSheet.create({
         color: Colors.text,
         marginBottom: 16,
     },
+    dateWrap: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginBottom: 20
+    },
+    testDate: {
+        fontSize: 14, fontFamily: Fonts.SemiBold, color: Colors.purple_text,
+    },
+    testTime: {
+        fontSize: 14, fontFamily: Fonts.Medium, color: Colors.primary,
+    },
     listContainer: { paddingBottom: 20 },
     card: { backgroundColor: Colors.surface_bg, borderRadius: 12, padding: 16, marginBottom: 12 },
     testName: { fontSize: 14, fontFamily: Fonts.SemiBold, color: Colors.black, marginBottom: 4 },
@@ -181,7 +207,7 @@ const styles = StyleSheet.create({
     dotValue: {
         position: "absolute",
         bottom: 20, // above the dot
-        left:-10,
+        left: -10,
         fontSize: 12,
         fontFamily: Fonts.SemiBold,
         color: Colors.black,

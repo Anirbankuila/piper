@@ -1,3 +1,5 @@
+import { primaryTabs } from "@/app/common/primaryTabs";
+import CustomBottomTab from "@/app/components/CustomBottomTab/CustomBottomTab";
 import { Colors, Fonts } from "@/constants/theme";
 import React, { useRef, useState } from "react";
 import {
@@ -56,86 +58,89 @@ const AllergyScreen = () => {
     };
 
     return (
-        <View style={styles.container}>
-            {/* 🔍 Search bar */}
-            <View style={styles.searchContainer}>
-                <TextInput
-                    style={styles.searchInput}
-                    placeholder="Search allergies..."
-                    placeholderTextColor="#888"
-                    value={search}
-                    onChangeText={setSearch}
-                />
-                <TouchableOpacity style={styles.filterButton}>
-                    <FunnelIcon size={20} color={Colors.black} />
-                </TouchableOpacity>
-            </View>
+        <>
+            <View style={styles.container}>
+                {/* 🔍 Search bar */}
+                <View style={styles.searchContainer}>
+                    <TextInput
+                        style={styles.searchInput}
+                        placeholder="Search allergies..."
+                        placeholderTextColor="#888"
+                        value={search}
+                        onChangeText={setSearch}
+                    />
+                    <TouchableOpacity style={styles.filterButton}>
+                        <FunnelIcon size={20} color={Colors.black} />
+                    </TouchableOpacity>
+                </View>
 
-            {/* 📋 Allergies list */}
-            <FlatList
-                data={groupedData}
-                keyExtractor={(item) => item.id}
-                contentContainerStyle={styles.listContainer}
-                renderItem={({ item }) => {
-                    if (item.type === "header") {
+                {/* 📋 Allergies list */}
+                <FlatList
+                    data={groupedData}
+                    keyExtractor={(item) => item.id}
+                    contentContainerStyle={styles.listContainer}
+                    renderItem={({ item }) => {
+                        if (item.type === "header") {
+                            return (
+                                <View style={{ marginBottom: 8 }}>
+                                    <Text style={styles.sectionHeader}>{item.title}</Text>
+                                    {item.category === "general" && (
+                                        <Text style={styles.subText}>
+                                            Current allergies synched to athenahealth
+                                        </Text>
+                                    )}
+                                </View>
+                            );
+                        }
                         return (
-                            <View style={{ marginBottom: 8 }}>
-                                <Text style={styles.sectionHeader}>{item.title}</Text>
-                                {item.category === "general" && (
-                                    <Text style={styles.subText}>
-                                        Current allergies synched to athenahealth
-                                    </Text>
-                                )}
+                            <View style={styles.medCard}>
+                                <Text style={styles.medName}>{item.name}</Text>
                             </View>
                         );
+                    }}
+                    ListEmptyComponent={
+                        <Text style={styles.emptyText}>No allergies found.</Text>
                     }
-                    return (
-                        <View style={styles.medCard}>
-                            <Text style={styles.medName}>{item.name}</Text>
-                        </View>
-                    );
-                }}
-                ListEmptyComponent={
-                    <Text style={styles.emptyText}>No allergies found.</Text>
-                }
-            />
-
-            {/* ➕ Floating Add Button */}
-            <TouchableOpacity
-                style={styles.fab}
-                onPress={() => rbSheetRef.current?.open()}
-            >
-                <PlusIcon size={24} color={Colors.primary} />
-            </TouchableOpacity>
-
-            {/* 🔽 Bottom Sheet */}
-            <RBSheet
-                ref={rbSheetRef}
-                closeOnPressMask
-                customStyles={{
-                    container: {
-                        borderTopLeftRadius: 20,
-                        borderTopRightRadius: 20,
-                        padding: 20,
-                    },
-                    draggableIcon: {
-                        backgroundColor: "#ccc",
-                    },
-                }}
-            >
-                <Text style={styles.sheetTitle}>Add New Allergy</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Enter allergy name"
-                    placeholderTextColor="#888"
-                    value={newAllergy}
-                    onChangeText={setNewAllergy}
                 />
-                <TouchableOpacity style={styles.addButton} onPress={handleAddAllergy}>
-                    <Text style={styles.addButtonText}>Add</Text>
+
+                {/* ➕ Floating Add Button */}
+                <TouchableOpacity
+                    style={styles.fab}
+                    onPress={() => rbSheetRef.current?.open()}
+                >
+                    <PlusIcon size={24} color={Colors.primary} />
                 </TouchableOpacity>
-            </RBSheet>
-        </View>
+
+                {/* 🔽 Bottom Sheet */}
+                <RBSheet
+                    ref={rbSheetRef}
+                    closeOnPressMask
+                    customStyles={{
+                        container: {
+                            borderTopLeftRadius: 20,
+                            borderTopRightRadius: 20,
+                            padding: 20,
+                        },
+                        draggableIcon: {
+                            backgroundColor: "#ccc",
+                        },
+                    }}
+                >
+                    <Text style={styles.sheetTitle}>Add New Allergy</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Enter allergy name"
+                        placeholderTextColor="#888"
+                        value={newAllergy}
+                        onChangeText={setNewAllergy}
+                    />
+                    <TouchableOpacity style={styles.addButton} onPress={handleAddAllergy}>
+                        <Text style={styles.addButtonText}>Add</Text>
+                    </TouchableOpacity>
+                </RBSheet>
+            </View>
+            <CustomBottomTab activeTab="" tabs={primaryTabs} />
+        </>
     );
 };
 

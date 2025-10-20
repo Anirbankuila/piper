@@ -1,10 +1,11 @@
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonInput from "@/app/components/CommonInput/CommonInput";
+import CustomRBSheet, { CustomRBSheetRef } from "@/app/components/CustomBottomSheet/CustomRBSheet";
 import { Colors, Fonts } from "@/constants/theme";
 import { ImageBackground } from "expo-image";
 import { useNavigation } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
     Image,
     NativeScrollEvent,
@@ -32,6 +33,7 @@ const Login: React.FC = () => {
     const navigation = useNavigation();
     const [showBack, setShowBack] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
 
     const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -46,6 +48,11 @@ const Login: React.FC = () => {
             headerBackVisible: showBack,
         });
     }, [navigation, showBack]);
+    const forgotSheetRef = useRef<CustomRBSheetRef>(null);
+
+    const openForgotSheet = () => {
+        forgotSheetRef.current?.open();
+    };
 
     return (
         <ScrollView
@@ -107,10 +114,11 @@ const Login: React.FC = () => {
                     </View>
                     <Text
                         style={Styles.link}
-                        onPress={() => navigateScreen(Routes.privacy)}
+                        onPress={openForgotSheet} // open the sheet
                     >
                         Forgot password?
                     </Text>
+
                 </View>
                 <Text style={Styles.orText}>Or</Text>
                 <TouchableOpacity style={Styles.faceIdBtn} onPress={() => navigateScreen(Routes.faceDetection)}>
@@ -134,6 +142,74 @@ const Login: React.FC = () => {
                     onPress={() => navigateScreen(Routes.profile)}
                 />
             </View>
+            <CustomRBSheet ref={forgotSheetRef} title="Reset Password">
+                <View style={{ padding: 10 }}>
+                    <Text style={{ fontFamily: Fonts.Medium, fontSize: 14, marginBottom: 12 }}>
+                        Enter your phone number and set a new password
+                    </Text>
+
+                    {/* Phone */}
+                    <CommonInput
+                        placeholder="Phone"
+                        keyboardType="phone-pad"
+                        onChangeText={(text) => console.log("Phone:", text)}
+                    />
+
+                    {/* New Password */}
+                    <View style={Styles.passwordWrapper}>
+                        <CommonInput
+                            placeholder="Password"
+                            secureTextEntry={!showPassword} // ✅ toggle visibility
+                            onChangeText={(text) => console.log(text)}
+                        />
+                        <TouchableOpacity
+                            style={Styles.iconWrapper}
+                            onPress={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? (
+                                <EyeSlashIcon size={20} color={Colors.primary} />
+                            ) : (
+                                <EyeIcon size={20} color={Colors.primary} />
+                            )}
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* Confirm Password */}
+                    <View style={Styles.passwordWrapper}>
+                        <CommonInput
+                            placeholder="Password"
+                            secureTextEntry={!showConfirmPassword} // ✅ toggle visibility
+                            onChangeText={(text) => console.log(text)}
+                        />
+                        <TouchableOpacity
+                            style={Styles.iconWrapper}
+                            onPress={() => setShowConfirmPassword(!showConfirmPassword)}
+                        >
+                            {showConfirmPassword ? (
+                                <EyeSlashIcon size={20} color={Colors.primary} />
+                            ) : (
+                                <EyeIcon size={20} color={Colors.primary} />
+                            )}
+                        </TouchableOpacity>
+                    </View>
+
+
+                    <CommonButton
+                        title="Reset Password"
+                        textStyle={Styles.buttonText}
+                        style={Styles.button}
+                        backgroundColor="#fff"
+                        color="#000"
+                        onPress={() => {
+                            forgotSheetRef.current?.close();
+                            console.log("Password reset submitted");
+                            // Optional: show a snackbar or popup
+                        }}
+                    />
+                </View>
+            </CustomRBSheet>
+
+
         </ScrollView>
     );
 };
@@ -257,7 +333,7 @@ const Styles = StyleSheet.create({
         fontSize: 12,
         fontFamily: Fonts.Medium,
         color: Colors.black,
-        marginVertical:14
+        marginVertical: 14
     },
     faceIdBtn: {
         width: '100%',
