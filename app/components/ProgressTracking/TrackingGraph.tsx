@@ -27,15 +27,15 @@ const TrackingGraph: React.FC<TrackingGraphProps> = ({
       start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1 }}
       style={{
-        borderRadius: 20,
-        paddingVertical: 20,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        paddingTop: 20,
         paddingHorizontal: 10,
         alignItems: "center",
         width: screenWidth - 30,
         alignSelf: "center",
         overflow: "hidden",
         marginTop: 15,
-        elevation: 2,
       }}
     >
       <Text
@@ -44,7 +44,7 @@ const TrackingGraph: React.FC<TrackingGraphProps> = ({
           fontFamily: Fonts.SemiBold,
           color: "#4A2E80",
           marginBottom: 10,
-          paddingBottom: 50,
+          paddingBottom: 30,
         }}
       >
         {title}
@@ -61,8 +61,9 @@ const TrackingGraph: React.FC<TrackingGraphProps> = ({
         yAxisTextStyle={{
           color: "#6B4CAF",
           fontFamily: Fonts.Medium,
-          fontSize: 10,
+          fontSize: 9,
           backgroundColor: Colors.bg,
+          paddingHorizontal: 2,
           transform: [{ rotate: "-90deg" }],
         }}
         noOfSections={5}
@@ -83,12 +84,12 @@ const TrackingGraph: React.FC<TrackingGraphProps> = ({
       <View
         style={{
           position: "absolute",
-          bottom: 350,
+          bottom: 310,
           left: 30,
           width: screenWidth - 70,
           flexDirection: "row",
           justifyContent: "space-between",
-          paddingHorizontal: 12,
+          paddingHorizontal: 10,
         }}
       >
         {xAxisLabel.map((d, i) => (

@@ -14,7 +14,10 @@ const CustomToggle: React.FC<CustomToggleInterface> = ({
   const offset = useRef(new Animated.Value(value ? 1 : 0)).current;
 
   const toggleSwitch = () => {
-    if (!isForToggle && onPress) onPress();
+    if (!isForToggle && onPress) {
+      onPress();
+      return;
+    }
     const newValue = !isEnabled;
     const toValue = newValue ? 1 : 0;
     Animated.timing(offset, {

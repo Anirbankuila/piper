@@ -35,7 +35,7 @@ const SurveyQuestionScreen = () => {
     if (surveyData?.questions && Array.isArray(surveyData.questions)) {
       setQuestions(surveyData.questions);
       navigation.setOptions({
-        title: surveyData?.headerTitle,
+        headerTitle: surveyData.headerTitle,
       });
     } else {
       setQuestions([]);
@@ -105,7 +105,8 @@ const SurveyQuestionScreen = () => {
               <CustomMultiSelect
                 optionStyle={styles.selectBox}
                 options={formatOption(currentQuestion.options ?? [])}
-                selectedValues={selectedValues} // must be an array
+                selectedValues={selectedValues}
+                isTypeOfCheckBox
                 onSelect={(newSelected) => setSelectedValues(newSelected)}
               />
             )}
@@ -260,7 +261,7 @@ const styles = StyleSheet.create({
   },
   selectBox: {
     backgroundColor: Colors.surface_bg,
-    padding: 16,
+    padding: 8,
     borderRadius: 12,
     marginBottom: 12,
   },
