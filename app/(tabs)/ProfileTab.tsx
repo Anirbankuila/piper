@@ -72,7 +72,7 @@ const ProfileTab = () => {
               />
             }
             title="Log Out"
-            onPress={() => handleMenuPress("Log Out")}
+            onPress={() =>navigateScreen(Routes.logIn)}
           />
         </View>
       </ScrollView>

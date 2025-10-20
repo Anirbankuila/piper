@@ -26,7 +26,7 @@ const DocumentSuccess = () => {
         <View style={Styles.btnWrap}>
           <CommonButton
             style={Styles.doneBtn}
-            onPress={() => navigateScreen(Routes.medicalTeamReport)}
+            onPress={() => navigateScreen(Routes.homeTab)}
             backgroundColor={Colors.primary}
             color="#fff"
             title="Done"

@@ -71,39 +71,7 @@ export default function HomeTab() {
               </View>
             </TouchableOpacity>
 
-            {open && (
-              <TouchableWithoutFeedback onPress={() => setOpen(false)}>
-                <View style={styles.overlay}>
-                  <TouchableWithoutFeedback>
-                    <View style={styles.dropdown}>
-                      {["Sarah", "Miley", "Dennis"].map((name, index) => (
-                        <View key={index} style={styles.dropdownItem}>
-                          <Image
-                            source={
-                              name === "Sarah"
-                                ? require("../../assets/images/Sarah.png")
-                                : name === "Miley"
-                                  ? require("../../assets/images/Miley.png")
-                                  : require("../../assets/images/Dennis.png")
-                            }
-                            style={styles.dropdownPhoto}
-                          />
-                          <Text style={styles.dropdownName}>{name}</Text>
-                        </View>
-                      ))}
 
-                      <TouchableOpacity
-                        style={styles.addProfileButton}
-                        onPress={() => console.log("Add Profile pressed")}
-                      >
-                        <Text style={styles.dropdownName}>Add Profile</Text>
-                        <AntDesign name="plus-circle" size={20} color="#000" />
-                      </TouchableOpacity>
-                    </View>
-                  </TouchableWithoutFeedback>
-                </View>
-              </TouchableWithoutFeedback>
-            )}
           </View>
 
           {/* SEARCH */}
@@ -151,7 +119,7 @@ export default function HomeTab() {
               <View style={styles.cardIcon}>
                 <Image
                   source={require("../../assets/images/uploadDoc.png")}
-                  style={{ width: 60, height: 42 }}
+                  style={{ width: 66, height: 46 }}
                 />
               </View>
               <View style={styles.cardCountSection}>
@@ -179,7 +147,7 @@ export default function HomeTab() {
               <View style={styles.cardIcon}>
                 <Image
                   source={require("../../assets/images/growth.png")}
-                  style={{ width: 42, height: 42 }}
+                  style={{ width: 46, height: 46}}
                 />
               </View>
               <View style={[styles.evencardCountSection]}>
@@ -205,7 +173,7 @@ export default function HomeTab() {
               <View style={styles.cardIcon}>
                 <Image
                   source={require("../../assets/images/medicine.png")}
-                  style={{ width: 32, height: 42 }}
+                  style={{ width: 36, height: 46 }}
                 />
               </View>
               <View style={[styles.evencardCountSection]}>
@@ -247,9 +215,9 @@ export default function HomeTab() {
           </LinearGradient>
         </View>
         <CommonButton title="Sync your athenahealth records now!" style={styles.syncBtn} textStyle={styles.syncText} onPress={() => rbSheetRef.current?.open()} />
-       <CustomRBSheet ref={rbSheetRef} title="athenahealth">
-        <AthenaLoginContent rbSheetRef={rbSheetRef as React.RefObject<CustomRBSheetRef>} />
-    </CustomRBSheet>
+        <CustomRBSheet ref={rbSheetRef} title="athenahealth">
+          <AthenaLoginContent rbSheetRef={rbSheetRef as React.RefObject<CustomRBSheetRef>} />
+        </CustomRBSheet>
       </View>
       <Divider text={"Johnny's Care Team"} />
       <View style={[styles.sectionContainer, styles.careTeamContainer]}>
@@ -350,6 +318,39 @@ export default function HomeTab() {
           />
         </TouchableOpacity>
       </View>
+      {open && (
+        <TouchableWithoutFeedback onPress={() => setOpen(false)}>
+          <View style={styles.overlay}>
+            <TouchableWithoutFeedback>
+              <View style={styles.dropdown}>
+                {["Sarah", "Miley", "Dennis"].map((name, index) => (
+                  <View key={index} style={styles.dropdownItem}>
+                    <Image
+                      source={
+                        name === "Sarah"
+                          ? require("../../assets/images/Sarah.png")
+                          : name === "Miley"
+                            ? require("../../assets/images/Miley.png")
+                            : require("../../assets/images/Dennis.png")
+                      }
+                      style={styles.dropdownPhoto}
+                    />
+                    <Text style={styles.dropdownName}>{name}</Text>
+                  </View>
+                ))}
+
+                <TouchableOpacity
+                  style={styles.addProfileButton}
+                  onPress={() => console.log("Add Profile pressed")}
+                >
+                  <Text style={styles.dropdownName}>Add Profile</Text>
+                  <AntDesign name="plus-circle" size={20} color="#000" />
+                </TouchableOpacity>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+        </TouchableWithoutFeedback>
+      )}
     </ScrollView>
   );
 }

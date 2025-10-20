@@ -10,11 +10,13 @@ const Header: React.FC<HeaderProps> = ({ backgroundColor = "#FFF3E9" }) => {
   return (
     <View style={[styles.header, { backgroundColor }]}>
       {/* Left Side Logo */}
-      <Image
-        source={require("../../../assets/icons/logo.png")}
-        style={styles.logo}
-        resizeMode="contain"
-      />
+      <TouchableOpacity  onPress={() => navigateScreen(Routes.homeTab)}>
+        <Image
+          source={require("../../../assets/icons/logo.png")}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+      </TouchableOpacity>
 
       {/* Right Side Icons */}
       <View style={styles.rightIcons}>

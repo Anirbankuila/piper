@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   dropdown: {
     position: "absolute",
     width: '80%',
-    top: 40, // adjust depending on header height
+    top: 120, // adjust depending on header height
     left: 50,
     backgroundColor: "#fff",
     borderRadius: 8,
@@ -374,7 +374,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     textAlign: 'center',
     flexDirection: 'row',
-    marginVertical: 10
+    marginVertical: 10,
+    height:52
   },
   cardTitle: {
     fontSize: 14,

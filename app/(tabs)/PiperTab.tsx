@@ -3,11 +3,15 @@ import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import {
   Image,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -24,67 +28,80 @@ const PiperTab = () => {
     "Based on your Life Log entries, we might want to track sleep a little closer. Want to set that up?",
     "You mentioned meltdowns last week. I’ve pulled a few tips to try, ready when you are.",
   ];
+
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={{ flexGrow: 1 }}
-      showsVerticalScrollIndicator={false}
+    <KeyboardAvoidingView
+      style={{ flex: 1, backgroundColor: Colors.surface_bg }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
     >
-      <StatusBar
-        barStyle="dark-content" // text/icons will be dark (black/gray)
-        backgroundColor="#FFF3E9" // same as your top background
-      />
-      <View
-        style={{
-          paddingTop: insets.top - 10,
-          backgroundColor: Colors.surface_bg,
-        }}
-      >
-        <Header backgroundColor={Colors.surface_bg} />
-      </View>
-      <View style={styles.chatHistory}>
-        <TouchableOpacity onPress={() => navigateScreen(Routes.chatList)}>
-          <Text style={styles.chatHistoryTitle}>Chat History</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.chartTop}>
-        <Image
-          source={require("../../assets/images/piper.png")} // put your logo inside assets folder
-          style={styles.piperImg}
-          resizeMode="cover"
-        />
-        <View style={styles.chatDirect}>
-          <Text style={styles.chartTitle}>
-            I have gathered this from Johnny’s {"\n"}info and life log, hope
-            this helps !
-          </Text>
-          <Text style={styles.chatLink}>
-            Click on any you&apos;d like my help with!
-          </Text>
-          <View style={styles.chartSuggestion}>
-            {chats.map((chat, index) => (
-              <LinearGradient
-                key={index}
-                colors={["#E100FF", "#007AFF"]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={styles.gradientBorder}
-              >
-                <View style={styles.innerBox}>
-                  <TouchableOpacity style={styles.eachChat}>
-                    <Text style={{ color: Colors.primary }}>{chat}</Text>
-                  </TouchableOpacity>
-                </View>
-              </LinearGradient>
-            ))}
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <ScrollView
+          style={styles.container}
+          contentContainerStyle={{ flexGrow: 1 }}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
+          <StatusBar
+            barStyle="dark-content"
+            backgroundColor="#FFF3E9"
+          />
+          <View
+            style={{
+              paddingTop: insets.top - 10,
+              backgroundColor: Colors.surface_bg,
+            }}
+          >
+            <Header backgroundColor={Colors.surface_bg} />
           </View>
-        </View>
-      </View>
-      <View style={styles.chatSearchWrap}>
-        <PiperSearch onMicPress={() => setVisible(true)} />
-        <PiperModal visible={visible} onClose={() => setVisible(false)} />
-      </View>
-    </ScrollView>
+
+          <View style={styles.chatHistory}>
+            <TouchableOpacity onPress={() => navigateScreen(Routes.chatList)}>
+              <Text style={styles.chatHistoryTitle}>Chat History</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.chartTop}>
+            <Image
+              source={require("../../assets/images/piper.png")}
+              style={styles.piperImg}
+              resizeMode="cover"
+            />
+            <View style={styles.chatDirect}>
+              <Text style={styles.chartTitle}>
+                I have gathered this from Johnny’s {"\n"}info and life log, hope
+                this helps!
+              </Text>
+              <Text style={styles.chatLink}>
+                Click on any you&apos;d like my help with!
+              </Text>
+              <View style={styles.chartSuggestion}>
+                {chats.map((chat, index) => (
+                  <LinearGradient
+                    key={index}
+                    colors={["#E100FF", "#007AFF"]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                    style={styles.gradientBorder}
+                  >
+                    <View style={styles.innerBox}>
+                      <TouchableOpacity style={styles.eachChat}>
+                        <Text style={{ color: Colors.primary }}>{chat}</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </LinearGradient>
+                ))}
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.chatSearchWrap}>
+            <PiperSearch onMicPress={() => setVisible(true)} />
+            <PiperModal visible={visible} onClose={() => setVisible(false)} />
+          </View>
+        </ScrollView>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -96,8 +113,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.surface_bg,
   },
   chatHistory: {
-    position: "relative",
-    textAlign: "right",
     padding: 24,
     borderBottomWidth: 1,
     borderBottomColor: Colors.strokeColor,
@@ -106,18 +121,16 @@ const styles = StyleSheet.create({
     textAlign: "right",
   },
   chartTop: {
-    position: "relative",
-    textAlign: "center",
     paddingHorizontal: 24,
-    flex: 1,
+    marginBottom:30
   },
   piperImg: {
     width: 133,
     height: 133,
-    marginHorizontal: "auto",
+    alignSelf: "center",
   },
   chatDirect: {
-    position: "relative",
+    marginTop: 16,
   },
   chartTitle: {
     fontSize: 16,
@@ -140,16 +153,15 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
   },
   gradientBorder: {
-    padding: 1, // border thickness
+    padding: 1,
     borderRadius: 8,
     marginBottom: 4,
   },
   innerBox: {
-    backgroundColor: "#fff", // inside background
+    backgroundColor: "#fff",
     borderRadius: 8,
   },
   chatSearchWrap: {
-    flex: 1,
     justifyContent: "flex-end",
     paddingHorizontal: 24,
     paddingVertical: 10,

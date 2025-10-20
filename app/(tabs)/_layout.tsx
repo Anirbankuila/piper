@@ -3,6 +3,7 @@ import { Tabs, useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { XMarkIcon } from "react-native-heroicons/outline";
+import Routes, { navigateScreen } from "../common/Routes";
 export default function TabLayout() {
   const router = useRouter();
   return (
@@ -109,7 +110,7 @@ export default function TabLayout() {
             color: Colors.text,
           },
           headerLeft: () => (
-            <TouchableOpacity style={styles.headerButton}>
+            <TouchableOpacity style={styles.headerButton} onPress={() => navigateScreen(Routes.homeTab)}>
               <Image
                 source={require("../../assets/icons/logo.png")}
                 style={styles.headerIcon}

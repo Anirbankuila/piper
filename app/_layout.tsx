@@ -728,7 +728,7 @@ const screens = [
       headerShadowVisible: false,
       headerStyle: { backgroundColor: "#fff" },
       headerLeft: () => (
-        <TouchableOpacity onPress={() => router.back()}>
+        <TouchableOpacity onPress={() => navigateScreen(Routes.homeTab)}>
           <Image source={require("../assets/icons/logo.png")} />
         </TouchableOpacity>
       ),
@@ -776,7 +776,7 @@ const screens = [
       headerShadowVisible: false,
       headerStyle: { backgroundColor: "#fff", marginBottom: 0 },
       headerLeft: () => (
-        <TouchableOpacity onPress={() => router.back()}>
+        <TouchableOpacity onPress={() => navigateScreen(Routes.homeTab)}>
           <Image source={require("../assets/icons/logo.png")} />
         </TouchableOpacity>
       ),
