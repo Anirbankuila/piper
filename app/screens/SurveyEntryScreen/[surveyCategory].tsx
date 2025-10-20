@@ -3,9 +3,8 @@ import { CategoryWiseSurvey } from "@/app/common/Interface/Sruvey";
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import { Colors, Fonts } from "@/constants/theme";
-import { Header } from "@react-navigation/elements";
 import { Image } from "expo-image";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useNavigation } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
@@ -16,12 +15,16 @@ const SurveyEntryScreen: React.FC = () => {
   const [surveyDetails, setSurveyDetails] = useState<
     CategoryWiseSurvey | undefined
   >(undefined);
+  const navigation = useNavigation();
   // Find survey details dynamically
   useEffect(() => {
     const survey = SurveyDemoData.find(
       (s) => s.categoryName === surveyCategory
     );
     if (survey) setSurveyDetails(survey);
+    navigation.setOptions({
+      title: survey?.bannerPageTitle,
+    });
   }, [surveyCategory]);
 
   if (!surveyDetails) {
@@ -36,7 +39,6 @@ const SurveyEntryScreen: React.FC = () => {
       contentContainerStyle={Styles.container}
       showsVerticalScrollIndicator={false}
     >
-      <Header title={"Hello"} />
       {/* Top Image */}
       <View style={Styles.topImageContainer}>
         <Image source={surveyDetails.bannerImage} style={Styles.topImage} />
@@ -63,6 +65,7 @@ const SurveyEntryScreen: React.FC = () => {
                   pathname: `/${Routes.surveyQuestionScreen}`,
                   params: {
                     categoryQuestion: surveyCategory, // must pass id here
+                    headerTitle: surveyDetails.headerTitle,
                   },
                 })
               }

@@ -23,7 +23,6 @@ const reminders: ReminderCardItem[] = [
     nextAvailable: "Next available in 15 days",
     icon: require("../../../assets/icons/golden-bell.png"),
     isSurveyAvailable: true,
-    headerTitle: "ADHD",
   },
   {
     id: "2",
@@ -61,7 +60,6 @@ const reminders: ReminderCardItem[] = [
     nextAvailable: "Next available in 25 days",
     icon: require("../../../assets/icons/golden-bell.png"),
     isSurveyAvailable: true,
-    headerTitle: "Epilepsy Survey",
   },
   // add more dynamically
 ];
@@ -76,7 +74,6 @@ const Questionnaires = () => {
         pathname: `/${Routes.surveyEntry}`,
         params: {
           surveyCategory: item.categoryName,
-          headerTitle: item.headerTitle ?? "",
         },
       });
     }

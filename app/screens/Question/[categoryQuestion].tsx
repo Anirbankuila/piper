@@ -4,7 +4,7 @@ import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import CommonInput from "@/app/components/CommonInput/CommonInput";
 import { Colors, Fonts } from "@/constants/theme";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useNavigation } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
   KeyboardAvoidingView,
@@ -22,6 +22,7 @@ const SurveyQuestionScreen = () => {
   const [questions, setQuestions] = useState<Questions[]>([]);
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const surveyData = SurveyDemoData.find(
@@ -29,13 +30,17 @@ const SurveyQuestionScreen = () => {
     );
     if (surveyData?.questions && Array.isArray(surveyData.questions)) {
       setQuestions(surveyData.questions);
+      console.log(surveyData.headerTitle);
+      navigation.setOptions({
+        title: surveyData?.headerTitle,
+      });
     } else {
       setQuestions([]);
     }
 
     setCurrent(0);
     setSelected(null);
-  }, [categoryQuestion]);
+  }, [categoryQuestion, navigation]);
 
   const totalQuestions = questions.length;
   const progressWidth = totalQuestions
