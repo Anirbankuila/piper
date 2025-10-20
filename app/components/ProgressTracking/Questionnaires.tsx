@@ -73,7 +73,7 @@ const Questionnaires = () => {
       navigateScreen({
         pathname: `/${Routes.surveyEntry}`,
         params: {
-          surveyCategory: item.categoryName, // must pass id here
+          surveyCategory: item.categoryName,
         },
       });
     }
@@ -156,11 +156,8 @@ const Questionnaires = () => {
         ))}
       </View>
 
-    
       <View style={styles.viewDocuments}>
         <View style={styles.viewDocumentsWrap}>
-         
-          
           <TouchableOpacity
             style={styles.eachDoc}
             onPress={() => navigateScreen(Routes.allergyHistory)}
@@ -200,13 +197,12 @@ const Questionnaires = () => {
             </View>
             <Text style={styles.catTitle}>Lab Result</Text>
           </TouchableOpacity>
-
         </View>
       </View>
 
       <CommonButton
         title="Track something else"
-        onPress={() => { }}
+        onPress={() => {}}
         backgroundColor={Colors.black}
         textStyle={{ color: Colors.bg }}
         style={{ marginHorizontal: 20, marginVertical: 6 }}
@@ -352,7 +348,7 @@ const styles = StyleSheet.create({
   },
   filterText: {
     color: Colors.bg,
-    fontFamily:Fonts.SemiBold,
+    fontFamily: Fonts.SemiBold,
     fontSize: 11,
   },
 
@@ -412,7 +408,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    padding: 0
+    padding: 0,
   },
   eachDoc: {
     width: "30%",
@@ -431,7 +427,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 28,
     height: 28,
-    tintColor: Colors.primary
+    tintColor: Colors.primary,
   },
   catTitle: {
     fontSize: 12,

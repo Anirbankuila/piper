@@ -882,7 +882,7 @@ const screens = [
       statusBarStyle: "dark" as const,
     },
   },
-   {
+  {
     name: Routes.labDetails,
     options: {
       headerTitle: "Lab Results",

@@ -4,11 +4,12 @@ import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import CommonInput from "@/app/components/CommonInput/CommonInput";
 import { Colors, Fonts } from "@/constants/theme";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useNavigation } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -21,21 +22,25 @@ const SurveyQuestionScreen = () => {
   const [questions, setQuestions] = useState<Questions[]>([]);
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const surveyData = SurveyDemoData.find(
       (s) => s.categoryName === categoryQuestion
     );
-
     if (surveyData?.questions && Array.isArray(surveyData.questions)) {
       setQuestions(surveyData.questions);
+      console.log(surveyData.headerTitle);
+      navigation.setOptions({
+        title: surveyData?.headerTitle,
+      });
     } else {
       setQuestions([]);
     }
 
     setCurrent(0);
     setSelected(null);
-  }, [categoryQuestion]);
+  }, [categoryQuestion, navigation]);
 
   const totalQuestions = questions.length;
   const progressWidth = totalQuestions
@@ -72,24 +77,34 @@ const SurveyQuestionScreen = () => {
         <Text style={styles.questionNumber}>
           {`${current + 1}/${totalQuestions}`}
         </Text>
+        {currentQuestion && (
+          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            {/* Question Text */}
+            <Text style={styles.questionText}>{currentQuestion.question}</Text>
 
-        {/* Question Text */}
-        <Text style={styles.questionText}>{currentQuestion.question}</Text>
-
-        {/* Options */}
-        {currentQuestion.options.map((option, index) => (
-          <TouchableOpacity
-            key={index}
-            style={[styles.optionButton]}
-            onPress={() => setSelected(index)}
-          >
-            <View style={styles.radioCircle}>
-              {selected === index && <View style={styles.selectedRb} />}
-            </View>
-            <Text style={[styles.optionText]}>{option}</Text>
-          </TouchableOpacity>
-        ))}
-        {/* {currentQuestion.isInputEnable && <CommonInput />} */}
+            {/* Options */}
+            {currentQuestion.options.map((option, index) => (
+              <TouchableOpacity
+                key={index}
+                style={[styles.optionButton]}
+                onPress={() => setSelected(index)}
+              >
+                <View style={styles.radioCircle}>
+                  {selected === index && <View style={styles.selectedRb} />}
+                </View>
+                <Text style={[styles.optionText]}>{option}</Text>
+              </TouchableOpacity>
+            ))}
+            {currentQuestion.isInputEnable && (
+              <CommonInput
+                onChangeText={() => {}}
+                placeholder={currentQuestion.inputPlaceholder}
+                keyboardType={currentQuestion.inputType}
+              />
+            )}
+            {}
+          </ScrollView>
+        )}
 
         {/* Navigation Buttons */}
         {current === totalQuestions - 1 ? (

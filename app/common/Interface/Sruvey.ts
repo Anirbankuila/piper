@@ -1,3 +1,5 @@
+import { TextInputProps } from "react-native";
+
 export interface CategoryWiseSurvey {
   categoryName: string;
   bannerImage: any;
@@ -14,5 +16,5 @@ export interface Questions {
   isMultipleSelection?: boolean;
   isInputEnable?: boolean;
   inputPlaceholder?: string;
-  inputType?: string;
+  inputType?: TextInputProps["keyboardType"];
 }
