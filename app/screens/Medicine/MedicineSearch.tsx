@@ -47,7 +47,7 @@ const MedicineSearch = () => {
   const [filteredMedicines, setFilteredMedicines] =
     useState<Medication[]>(medications);
 
-  const onSearch = (searchText: string) => {
+  const onSearch = (searchText: string | undefined) => {
     if (!searchText) {
       setFilteredMedicines(medications);
       return;
@@ -69,6 +69,9 @@ const MedicineSearch = () => {
           showCrossIcon
           onChangeText={(text) => {
             onSearch(text);
+          }}
+          clearSearchInput={() => {
+            onSearch(undefined);
           }}
         />
         {filteredMedicines.length > 0 ? (

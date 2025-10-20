@@ -84,7 +84,10 @@ const Medicine = () => {
         contentContainerStyle={Styles.container}
         showsVerticalScrollIndicator={false}
       >
-        <StatusBar backgroundColor={Colors.surface_light_pitch} translucent={true} />
+        <StatusBar
+          backgroundColor={Colors.surface_light_pitch}
+          translucent={true}
+        />
         <View
           style={[
             Styles.headerWrapper,
@@ -131,14 +134,7 @@ const Medicine = () => {
               <Text style={Styles.pushNotifyText}>
                 Enable Push Notification
               </Text>
-              <CustomToggle />
-              {/* <Switch
-                trackColor={{ false: "#d3d3d3", true: "#34C759" }}
-                thumbColor={isEnabled ? "#34C759" : "#f4f3f4"}
-                ios_backgroundColor="#d3d3d3"
-                onValueChange={toggleSwitch}
-                value={isEnabled}
-              /> */}
+              <CustomToggle value={true} />
             </View>
             <View style={Styles.medicineDetails}>
               <View style={Styles.medicineBtn}>

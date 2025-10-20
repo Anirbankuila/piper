@@ -1,6 +1,7 @@
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import { Colors, Fonts } from "@/constants/theme";
+import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
   FlatList,
@@ -22,23 +23,33 @@ interface Doctor {
 const doctorsData: Doctor[] = [
   {
     id: "1",
-    name: "Dr. John Doe",
+    name: "Dr.Will little",
     image: require("../../../assets/images/avatar-image.png"),
   },
   {
     id: "2",
-    name: "Dr. Jane Smith",
-    image: require("../../../assets/images/avatar-image.png"),
+    name: "Dr.Beth Davis",
+    image: require("../../../assets/images/avatar-doctor-img2.png"),
   },
   {
     id: "3",
-    name: "Dr. Emily White",
+    name: "Dr.Will little",
     image: require("../../../assets/images/avatar-image.png"),
   },
   {
     id: "4",
-    name: "Dr. Robert Brown",
+    name: "Dr.Beth Davis",
+    image: require("../../../assets/images/avatar-doctor-img2.png"),
+  },
+  {
+    id: "5",
+    name: "Dr.Will little",
     image: require("../../../assets/images/avatar-image.png"),
+  },
+  {
+    id: "6",
+    name: "Dr.Beth Davis",
+    image: require("../../../assets/images/avatar-doctor-img2.png"),
   },
 ];
 
@@ -58,7 +69,17 @@ const DoctorListScreen: React.FC = () => {
 
   const renderItem = ({ item }: ListRenderItemInfo<Doctor>) => (
     <View style={styles.doctorRow}>
-      <Image source={item.image} style={styles.doctorImage} />
+      <View style={styles.imageWrapper}>
+        <Image source={item.image} style={styles.doctorImage} />
+
+        <View style={styles.verifiedBadge}>
+          <Ionicons
+            name="checkmark"
+            size={13}
+            color={Colors.light.background}
+          />
+        </View>
+      </View>
       <Text style={styles.doctorName}>{item.name}</Text>
       <Checkbox.Android
         status={checkedDoctors.includes(item.id) ? "checked" : "unchecked"}
@@ -106,7 +127,7 @@ const DoctorListScreen: React.FC = () => {
         <CommonButton
           onPress={() => navigateScreen(Routes.reportShareSuccess)}
           backgroundColor="#000"
-          color="#fff"
+          color={Colors.light.background}
           title="Send Report"
         />
       </View>
@@ -117,7 +138,7 @@ const DoctorListScreen: React.FC = () => {
 export default DoctorListScreen;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fff" },
+  container: { flex: 1, backgroundColor: Colors.light.background },
   searchContainer: { paddingHorizontal: 16 },
   searchWrapper: {
     flexDirection: "row",
@@ -145,7 +166,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: Colors.strokeColor,
   },
-  doctorName: { flex: 1, fontSize: 16, marginLeft: 8 },
+  doctorName: { flex: 1, fontSize: 14, fontFamily: Fonts.Bold, marginLeft: 8 },
   doctorImage: { width: 52, height: 52, borderRadius: 26 },
   searchIcon: { width: 20, height: 20, marginEnd: 10 },
 
@@ -155,5 +176,17 @@ const styles = StyleSheet.create({
     left: 16,
     right: 16,
     zIndex: 10,
+  },
+  imageWrapper: {
+    position: "relative",
+  },
+  verifiedBadge: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    backgroundColor: Colors.green_alert,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: Colors.light.background,
   },
 });

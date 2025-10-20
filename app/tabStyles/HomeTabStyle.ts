@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
 
   dropdown: {
     position: "absolute",
-    width: '80%',
+    width: "80%",
     top: 120, // adjust depending on header height
     left: 50,
     backgroundColor: "#fff",
@@ -105,9 +105,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     padding: 12,
-    borderBottomColor: '#D9D9DC',
+    borderBottomColor: "#D9D9DC",
     borderBottomWidth: 1,
-    flex: 1
+    flex: 1,
   },
   dropdownPhoto: {
     width: 32,
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     paddingTop: 60, // adjust depending on header
   },
   addProfileButton: {
-    flexDirection: "row",        // horizontal layout
+    flexDirection: "row", // horizontal layout
     alignItems: "center",
     justifyContent: "space-between",
     padding: 12,
@@ -150,10 +150,10 @@ const styles = StyleSheet.create({
     // paddingHorizontal: 30,
   },
   gradientContainer: {
-    position: 'relative',
+    position: "relative",
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
-    overflow: 'hidden'
+    overflow: "hidden",
   },
   alexPersonalImg: {
     width: 240,
@@ -187,14 +187,14 @@ const styles = StyleSheet.create({
     color: Colors.purple_text,
     fontFamily: Fonts.Bold,
     lineHeight: 20,
-    textAlign: 'center'
+    textAlign: "center",
   },
   subText: {
     fontSize: 10,
-    color: '#141514',
+    color: "#141514",
     marginVertical: 2,
     fontFamily: Fonts.Regular,
-    textAlign: 'center'
+    textAlign: "center",
   },
   cardBtn: {
     backgroundColor: "#9059ff",
@@ -202,16 +202,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
     borderRadius: 6,
     alignItems: "center",
-    marginTop: 8
+    marginTop: 8,
   },
   btnText: {
     fontSize: 10,
     fontFamily: Fonts.Medium,
     lineHeight: 16,
-    color: '#fff'
+    color: "#fff",
   },
   homeSearch: {
-    marginBottom: 10
+    marginBottom: 10,
   },
   piperTextContainer: {
     flex: 1,
@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#141514",
     opacity: 0.5,
-    fontFamily: Fonts.Medium
+    fontFamily: Fonts.Medium,
   },
   cardDetailsContainer: {
     flexDirection: "row",
@@ -371,11 +371,11 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   cardIcon: {
-    justifyContent: 'flex-end',
-    textAlign: 'center',
-    flexDirection: 'row',
+    justifyContent: "flex-end",
+    textAlign: "center",
+    flexDirection: "row",
     marginVertical: 10,
-    height:52
+    height: 52,
   },
   cardTitle: {
     fontSize: 14,
@@ -388,17 +388,17 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.Medium,
     marginTop: 2,
     minHeight: 24,
-    height: 32
+    height: 32,
   },
   cardBtnHeading: {
     fontSize: 20,
     fontFamily: Fonts.Bold,
-    color: '#141514'
+    color: "#141514",
   },
   cardSubText: {
     fontSize: 11,
     color: Colors.black,
-    fontFamily: Fonts.Medium
+    fontFamily: Fonts.Medium,
   },
 
   cardCountSection: {
@@ -431,14 +431,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    padding: 0
-
+    padding: 0,
   },
   eachTeamMember: {
     width: "30%",
     alignItems: "center",
     marginBottom: 15,
-
   },
   careTeamMember: {
     width: 52,
@@ -475,8 +473,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     backgroundColor: "#F3F5F7",
     width: width / 2.25,
-    borderWidth:1,
-    borderColor:'#E0D3F3'
+    borderWidth: 1,
+    borderColor: "#E0D3F3",
   },
   summaryText: {
     fontFamily: Fonts.SemiBold,
@@ -486,14 +484,17 @@ const styles = StyleSheet.create({
   },
   summaryImg: {
     resizeMode: "contain",
-    marginRight:5
+    marginRight: 5,
   },
   syncBtn: {
-    marginTop:8,
-    backgroundColor:"#7B3BD4"
+    marginTop: 8,
+    backgroundColor: "#7B3BD4",
   },
   syncText: {
-    color: Colors.bg
-  }
+    color: Colors.bg,
+    fontSize: 14,
+    fontFamily: Fonts.SemiBold,
+    lineHeight: 16,
+  },
 });
 export default styles;
