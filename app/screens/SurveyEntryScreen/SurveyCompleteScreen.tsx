@@ -1,3 +1,4 @@
+import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import { Colors, Fonts } from "@/constants/theme";
 import { Image } from "expo-image";
@@ -7,41 +8,34 @@ import { StyleSheet, Text, View } from "react-native";
 const SurveyCompleteScreen = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.modal}>
+      <View style={styles.modalWrapp}>
         <Image
-          source={require("../../../assets/images/notebook pens and sticker.png")}
+          source={require("../../../assets/images/saveimg.png")}
           style={styles.image}
         />
-        <Text style={styles.completeText}>Survey Completed!</Text>
-        <Text style={styles.descriptionText}>
-          Your responses suggest patterns that may be associated with Attention
-          Deficit Hyperactivity Disorder (ADHD). This is not a diagnosis, but a
-          helpful first step toward understanding your focus, behavior, and
-          attention levels.
-        </Text>
-        <View style={styles.btnSection}>
-          <CommonButton
-            title="Back To Home"
-            onPress={() => {}}
-            style={{
-              borderWidth: 1,
-              width: "auto",
-              paddingVertical: 8,
-              paddingInline: 12,
-            }}
-            textStyle={{ fontSize: 14 }}
-          />
-          <CommonButton
-            title="See Progress"
-            onPress={() => {}}
-            backgroundColor={Colors.black}
-            textStyle={{ fontSize: 14, color: Colors.bg }}
-            style={{
-              borderWidth: 1,
-              width: "auto",
-              padding: 11,
-            }}
-          />
+        <View style={styles.modal}>
+          <Text style={styles.completeText}>Questionnaire completed!</Text>
+          <Text style={styles.descriptionText}>
+            Your responses suggest patterns that may be associated with Attention
+            Deficit Hyperactivity Disorder (ADHD). This is not a diagnosis, but a
+            helpful first step toward understanding your focus, behavior, and
+            attention levels.
+          </Text>
+          <View style={styles.btnWrap}>
+            <CommonButton
+              style={styles.pastLogBtn}
+              onPress={() => navigateScreen(Routes.homeTab)}
+              backgroundColor="#fff"
+              color={Colors.primary}
+              title="Back to Home"
+            />
+            <CommonButton
+              onPress={() => navigateScreen(Routes.progressTracking)}
+              backgroundColor={Colors.primary}
+              color="#fff"
+              title="See Progress"
+            />
+          </View>
         </View>
       </View>
     </View>
@@ -53,14 +47,20 @@ export default SurveyCompleteScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#D2FFF6",
+    backgroundColor: Colors.warm,
     justifyContent: "center",
     padding: 15,
   },
+  modalWrapp: {
+    position: 'relative'
+
+  },
   image: {
-    height: 86,
-    width: 150,
+    height: 140,
+    width: 255,
     resizeMode: "contain",
+    justifyContent: 'center',
+    marginHorizontal: 'auto'
   },
   modal: {
     padding: 25,
@@ -69,24 +69,35 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   completeText: {
-    color: "#0064D2",
-    fontSize: 20,
+    color: Colors.purple_text,
+    fontSize: 16,
+    lineHeight: 16,
     marginBottom: 10,
-    fontWeight: "600",
     fontFamily: Fonts.SemiBold,
   },
   descriptionText: {
     fontFamily: Fonts.Regular,
-    fontSize: 14,
+    fontSize: 12,
     lineHeight: 15,
     textAlign: "justify",
     alignContent: "center",
+    color: Colors.text
   },
   btnSection: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingInline: 10,
-    gap: 15,
+    gap: 5,
     marginTop: 15,
+    flex: 1
+  },
+  btnWrap: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    marginTop:15
+  },
+  pastLogBtn: {
+    borderWidth: 1,
+    borderColor: Colors.primary
   },
 });

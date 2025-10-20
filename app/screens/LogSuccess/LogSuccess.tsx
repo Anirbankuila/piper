@@ -1,7 +1,6 @@
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import { Colors } from "@/constants/theme";
-import { router } from "expo-router";
 import React from "react";
 import { Image, ScrollView, Text, View } from "react-native";
 import Styles from "./LogSuccessCss";
@@ -35,9 +34,7 @@ const LogSuccess = () => {
             title="Back to Home"
           />
           <CommonButton
-            onPress={() => {
-              router.replace("/screens/AllLogs/AllLogs");
-            }}
+            onPress={() => navigateScreen(Routes.allLogs)}
             backgroundColor={Colors.primary}
             color="#fff"
             title="View Past Logs"

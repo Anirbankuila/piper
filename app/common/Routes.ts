@@ -68,6 +68,7 @@ const Routes = {
   immunizationHistory: "screens/ImmunizationScreen/ImmunizationScreen",
   labResult: "screens/LabResult/LabResult",
   labDetails: "screens/LabDetails/LabDetails",
+  leaveScreen:"screens/SurveyEntryScreen/LeaveScreen"
 };
 
 export function navigateScreen(

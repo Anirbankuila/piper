@@ -10,7 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { router, Stack } from "expo-router";
 import { ActivityIndicator, Image, TouchableOpacity } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import Routes from "./common/Routes";
+import Routes, { navigateScreen } from "./common/Routes";
 const screens = [
   { name: "index", options: { headerShown: false } },
   {
@@ -667,7 +667,7 @@ const screens = [
         </TouchableOpacity>
       ),
       headerRight: () => (
-        <TouchableOpacity onPress={() => router.back()}>
+        <TouchableOpacity onPress={() => navigateScreen(Routes.leaveScreen)}>
           <Ionicons name="close-circle-outline" size={26} color="black" />
         </TouchableOpacity>
       ),
@@ -678,6 +678,15 @@ const screens = [
     name: Routes.SurveyCompleteScreen,
     options: {
       headerTitle: "ADHD",
+      headerShadowVisible: false,
+      headerStyle: { backgroundColor: Colors.bg },
+      statusBarStyle: "dark" as const,
+    },
+  },
+  {
+    name: Routes.leaveScreen,
+    options: {
+      headerTitle: "Back to questionnaire",
       headerShadowVisible: false,
       headerStyle: { backgroundColor: Colors.bg },
       statusBarStyle: "dark" as const,
