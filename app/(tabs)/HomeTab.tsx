@@ -247,9 +247,9 @@ export default function HomeTab() {
           </LinearGradient>
         </View>
         <CommonButton title="Sync your athenahealth records now!" style={styles.syncBtn} textStyle={styles.syncText} onPress={() => rbSheetRef.current?.open()} />
-        <CustomRBSheet ref={rbSheetRef} title="athenahealth">
-         <AthenaLoginContent />
-        </CustomRBSheet>
+       <CustomRBSheet ref={rbSheetRef} title="athenahealth">
+        <AthenaLoginContent rbSheetRef={rbSheetRef as React.RefObject<CustomRBSheetRef>} />
+    </CustomRBSheet>
       </View>
       <Divider text={"Johnny's Care Team"} />
       <View style={[styles.sectionContainer, styles.careTeamContainer]}>

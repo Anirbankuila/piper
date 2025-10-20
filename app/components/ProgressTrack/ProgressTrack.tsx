@@ -14,8 +14,8 @@ export default function ADHDTrackingChart() {
     ];
 
     const medications = [
-        { name: "Adderall 5mg", color: "#E8DEFF", borderColor: "#9059FF", textColor: Colors.main_purple, start: "June", end: "Aug" },
-        { name: "Moneklc 3mg", color: "#FFE7ED", borderColor: "#FA114F", textColor: "#940027", start: "June", end: "Sep" },
+        { name: "Adderall 5mg", color: "#E8DEFF", borderColor: "#9059FF", textColor: Colors.main_purple, start: "June", end: "Sep" },
+        { name: "Moneklc 3mg", color: "#FFE7ED", borderColor: "#FA114F", textColor: "#940027", start: "May", end: "July" },
     ];
 
     const therapies = {
@@ -56,13 +56,13 @@ export default function ADHDTrackingChart() {
                 </View>
             </View>
             {/* === MONTHS AT TOP === */}
-            {/* <View style={styles.monthRow}>
+            <View style={styles.monthRow}>
                 {months.map((m) => (
                     <Text key={m} style={styles.monthText}>
                         {m}
                     </Text>
                 ))}
-            </View> */}
+            </View>
 
             {/* === SECTION 1: ADHD QUESTIONNAIRES === */}
             <View style={styles.adhdWrap}>
@@ -90,7 +90,7 @@ export default function ADHDTrackingChart() {
 
                     return (
                         <View key={med.name} style={styles.row}>
-                            <View style={{ width: startIdx * 50 }} />
+                            <View style={{ width: startIdx * 70 }} />
                             <View style={[styles.bar, { backgroundColor: med.color, width, borderColor: med.borderColor }]}>
                                 <Text style={[styles.barText, { color: med.textColor }]}>{med.name}</Text>
                             </View>
@@ -193,12 +193,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
         borderRadius: 4,
         marginVertical: 10,
+        justifyContent:'center',
+        marginHorizontal:'auto'
+        
     },
     adhdWrap: {
-        borderBottomWidth: 1,
+        borderBottomWidth:0.7,
         borderStyle: "dashed",
         borderColor: Colors.primary,
-        alignItems: 'center',
+        // alignItems: 'flex-start',
         paddingBottom: 10,
         width:'100%'
     },
