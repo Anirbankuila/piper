@@ -30,3 +30,14 @@ export interface SymptomItem {
   status: string;
   timeAgo: string;
 }
+
+export interface ReminderCardItem {
+  id: string;
+  title: string;
+  duration: string;
+  isToggled: boolean;
+  nextAvailable: string;
+  icon: any; // Image source
+  categoryName: string;
+  isSurveyAvailable?: boolean;
+}

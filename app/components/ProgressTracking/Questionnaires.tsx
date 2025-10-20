@@ -1,6 +1,6 @@
+import { ReminderCardItem } from "@/app/common/Interface/Medication";
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import { Colors, Fonts } from "@/constants/theme";
-import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import React from "react";
 import {
@@ -13,12 +13,71 @@ import {
 } from "react-native";
 import CommonButton from "../CommonButton/CommonButton";
 import CustomToggle from "../CustomSwitch/CustomSwitch";
-
+const reminders: ReminderCardItem[] = [
+  {
+    id: "1",
+    title: "ADHD",
+    categoryName: "adhd",
+    duration: "5 mins",
+    isToggled: true,
+    nextAvailable: "Next available in 15 days",
+    icon: require("../../../assets/icons/golden-bell.png"),
+    isSurveyAvailable: true,
+  },
+  {
+    id: "2",
+    title: "Autism",
+    categoryName: "autism",
+    duration: "8 mins",
+    isToggled: true,
+    nextAvailable: "Next available in 16 days",
+    icon: require("../../../assets/icons/golden-bell.png"),
+  },
+  {
+    id: "3",
+    title: "Depression",
+    categoryName: "depression",
+    duration: "5 mins",
+    isToggled: false,
+    nextAvailable: "Can be taken daily or weekly",
+    icon: require("../../../assets/icons/star.png"),
+  },
+  {
+    id: "4",
+    title: "Anxiety",
+    duration: "3 mins",
+    categoryName: "anxiety",
+    isToggled: true,
+    nextAvailable: "Can be taken daily or weekly",
+    icon: require("../../../assets/icons/star.png"),
+  },
+  {
+    id: "5",
+    title: "Epilepsy",
+    categoryName: "epilepsy",
+    duration: "10 mins",
+    isToggled: true,
+    nextAvailable: "Next available in 25 days",
+    icon: require("../../../assets/icons/golden-bell.png"),
+    isSurveyAvailable: true,
+  },
+  // add more dynamically
+];
 const Questionnaires = () => {
   const filters = [
     ["Once a month", "ADHD", "Autism", "Epilepsy"],
     ["Often", "Depression", "Anxiety"],
   ];
+  const handleToggle = (item: ReminderCardItem) => {
+    if (item.isSurveyAvailable) {
+      navigateScreen({
+        pathname: `/${Routes.surveyEntry}`,
+        params: {
+          surveyCategory: item.categoryName, // must pass id here
+        },
+      });
+    }
+  };
   return (
     <ScrollView
       contentContainerStyle={{ flexGrow: 1, paddingBottom: 10 }}
@@ -63,42 +122,38 @@ const Questionnaires = () => {
         <Text style={styles.dueDateText}>23rd Sep,2026</Text>
       </View>
       <View style={styles.symptomSection}>
-        <View style={styles.card}>
-          <Text style={styles.timeLabel}>5 mins</Text>
-          <View style={styles.cardRow}>
-            <Text style={styles.cardTitle}>ADHD</Text>
-            <CustomToggle />
-          </View>
-          <View style={styles.reminderRow}>
-            <View style={styles.reminderBadge}>
-              <Ionicons
-                name="notifications-outline"
-                size={16}
-                color="#F9B233"
+        {reminders.map((item) => (
+          <View key={item.id} style={styles.card}>
+            <Text style={styles.timeLabel}>{item.duration}</Text>
+
+            <View style={styles.cardRow}>
+              <View
+                style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
+              >
+                <Image
+                  source={item.icon}
+                  style={{ width: 24, height: 24, resizeMode: "contain" }}
+                />
+                <Text style={styles.cardTitle}>{item.title}</Text>
+              </View>
+
+              <CustomToggle
+                value={item.isToggled}
+                onPress={() => handleToggle(item)}
               />
-              <Text style={styles.reminderText}>Next available in 15 days</Text>
+            </View>
+
+            <View style={styles.reminderRow}>
+              <View style={styles.reminderBadge}>
+                <Image
+                  source={item.icon}
+                  style={{ width: 16, height: 16, marginRight: 4 }}
+                />
+                <Text style={styles.reminderText}>{item.nextAvailable}</Text>
+              </View>
             </View>
           </View>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.timeLabel}>5 mins</Text>
-          <View style={styles.cardRow}>
-            <Text style={styles.cardTitle}>ADHD</Text>
-            <CustomToggle />
-          </View>
-          <View style={styles.reminderRow}>
-            <View style={styles.reminderBadge}>
-              <Ionicons
-                name="notifications-outline"
-                size={16}
-                color="#F9B233"
-                tintColor="#F9B233"
-                fill="#F9B233"
-              />
-              <Text style={styles.reminderText}>Next available in 15 days</Text>
-            </View>
-          </View>
-        </View>
+        ))}
       </View>
 
       <View style={styles.btnSection}>

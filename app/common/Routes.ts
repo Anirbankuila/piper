@@ -52,8 +52,8 @@ const Routes = {
   medicineDetails: "screens/AddMedicineDetails/MedicineDetails",
   medicationNudge: "screens/MedicationNudge/MedicationNudge",
   medicineSearch: "screens/Medicine/MedicineSearch",
-  surveyEntry: "screens/SurveyEntryScreen/SurveyEntryScreen",
-  surveyQuestionScreen: "screens/SurveyEntryScreen/SurveyQuestionScreen",
+  surveyEntry: "screens/SurveyEntryScreen/[surveyCategory]",
+  surveyQuestionScreen: "screens/Question/[categoryQuestion]",
   SurveyCompleteScreen: "screens/SurveyEntryScreen/SurveyCompleteScreen",
   DeleteLog: "screens/DeleteLog/DeleteLog",
   AddChildTeam: "screens/AddChildTeam/AddChildTeam",
@@ -63,11 +63,11 @@ const Routes = {
   reportShareSuccess: "screens/ReportShareSuccess/ReportShareSuccess",
   medicalTeam: "screens/MedicalTeam/MedicalTeam",
   progressTracking: "screens/ProgressTracking/ProgressTracking",
-  medicationHistory:"screens/MedicationHistory/MedicationHistory",
-  allergyHistory:"screens/AllergyHistory/AllergyHistory",
-  immunizationHistory:"screens/ImmunizationScreen/ImmunizationScreen",
-  labResult:"screens/LabResult/LabResult",
-  labDetails:"screens/LabDetails/LabDetails"
+  medicationHistory: "screens/MedicationHistory/MedicationHistory",
+  allergyHistory: "screens/AllergyHistory/AllergyHistory",
+  immunizationHistory: "screens/ImmunizationScreen/ImmunizationScreen",
+  labResult: "screens/LabResult/LabResult",
+  labDetails: "screens/LabDetails/LabDetails",
 };
 
 export function navigateScreen(
