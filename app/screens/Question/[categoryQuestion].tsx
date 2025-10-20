@@ -3,6 +3,9 @@ import { Questions } from "@/app/common/Interface/Sruvey";
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import CommonInput from "@/app/components/CommonInput/CommonInput";
+import CustomMultiSelect from "@/app/components/CustomCheckbox/CustomCheckbox";
+import DatePicker from "@/app/components/Datepicker/DatePicker";
+import GenderSelect from "@/app/components/GenderSelect/GenderSelect";
 import { Colors, Fonts } from "@/constants/theme";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import React, { useEffect, useState } from "react";
@@ -22,6 +25,7 @@ const SurveyQuestionScreen = () => {
   const [questions, setQuestions] = useState<Questions[]>([]);
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
+  const [selectedValues, setSelectedValues] = useState<(string | number)[]>([]);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -30,7 +34,6 @@ const SurveyQuestionScreen = () => {
     );
     if (surveyData?.questions && Array.isArray(surveyData.questions)) {
       setQuestions(surveyData.questions);
-      console.log(surveyData.headerTitle);
       navigation.setOptions({
         title: surveyData?.headerTitle,
       });
@@ -61,6 +64,8 @@ const SurveyQuestionScreen = () => {
     }
   };
   const currentQuestion = questions[current];
+  const formatOption = (options: string[]) =>
+    options.map((opt, index) => ({ id: index, label: opt }));
   return (
     <KeyboardAvoidingView
       style={{ flex: 1, backgroundColor: Colors.surface_bg }}
@@ -83,18 +88,27 @@ const SurveyQuestionScreen = () => {
             <Text style={styles.questionText}>{currentQuestion.question}</Text>
 
             {/* Options */}
-            {currentQuestion.options.map((option, index) => (
-              <TouchableOpacity
-                key={index}
-                style={[styles.optionButton]}
-                onPress={() => setSelected(index)}
-              >
-                <View style={styles.radioCircle}>
-                  {selected === index && <View style={styles.selectedRb} />}
-                </View>
-                <Text style={[styles.optionText]}>{option}</Text>
-              </TouchableOpacity>
-            ))}
+            {!currentQuestion.isMultipleSelection &&
+              currentQuestion?.options?.map((option, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={[styles.optionButton]}
+                  onPress={() => setSelected(index)}
+                >
+                  <View style={styles.radioCircle}>
+                    {selected === index && <View style={styles.selectedRb} />}
+                  </View>
+                  <Text style={[styles.optionText]}>{option}</Text>
+                </TouchableOpacity>
+              ))}
+            {currentQuestion.isMultipleSelection && (
+              <CustomMultiSelect
+                optionStyle={styles.selectBox}
+                options={formatOption(currentQuestion.options ?? [])}
+                selectedValues={selectedValues} // must be an array
+                onSelect={(newSelected) => setSelectedValues(newSelected)}
+              />
+            )}
             {currentQuestion.isInputEnable && (
               <CommonInput
                 onChangeText={() => {}}
@@ -102,7 +116,68 @@ const SurveyQuestionScreen = () => {
                 keyboardType={currentQuestion.inputType}
               />
             )}
-            {}
+            {currentQuestion.childQuestions?.map((child, childIndex) => (
+              <React.Fragment key={childIndex}>
+                {/* Child Question Text */}
+                {child.question && (
+                  <Text style={styles.questionText}>{child.question}</Text>
+                )}
+
+                {/* Child Options */}
+                {child.options?.map((option, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    style={styles.optionButton}
+                    onPress={() => {}}
+                  >
+                    <View style={styles.radioCircle}>
+                      {/* optional: add child-specific selected state */}
+                    </View>
+                    <Text style={styles.optionText}>{option}</Text>
+                  </TouchableOpacity>
+                ))}
+
+                {/* Child Input (if enabled) */}
+                {child.isInputEnable && (
+                  <CommonInput
+                    onChangeText={() => {}}
+                    placeholder={child.inputPlaceholder}
+                    keyboardType={child.inputType}
+                  />
+                )}
+                {child.isTimeType && (
+                  <DatePicker
+                    placeHolderText="Set Remainder"
+                    isForTimePicker
+                    value={new Date()}
+                    onChange={(dateTime) => {}}
+                  />
+                )}
+                {child.isDateType && (
+                  <DatePicker
+                    placeHolderText="Set Remainder"
+                    value={new Date()}
+                    onChange={(dateTime) => {}}
+                  />
+                )}
+                {child.isDropDownType && (
+                  <GenderSelect
+                    value={
+                      Array.isArray(child.dropDownOptions)
+                        ? child.dropDownOptions[0]
+                        : ""
+                    }
+                    placeHolderText="Choose Option"
+                    style={{ fontSize: 14, fontFamily: Fonts.Regular }}
+                    options={child.dropDownOptions}
+                    onChange={
+                      (val: string) => {}
+                      // updateChildForm(child.id, "gender", val)
+                    }
+                  />
+                )}
+              </React.Fragment>
+            ))}
           </ScrollView>
         )}
 
@@ -128,11 +203,7 @@ const SurveyQuestionScreen = () => {
               backgroundColor={Colors.black}
               color={Colors.bg}
               onPress={nextQuestion}
-              disabled={selected === null}
-              style={[
-                styles.nextButton,
-                { backgroundColor: selected !== null ? "#000" : "#999" },
-              ]}
+              style={[styles.nextButton]}
             />
           </View>
         )}
@@ -186,6 +257,12 @@ const styles = StyleSheet.create({
   optionText: {
     color: Colors.text,
     fontFamily: Fonts.Regular,
+  },
+  selectBox: {
+    backgroundColor: Colors.surface_bg,
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 12,
   },
   navButtons: {
     flexDirection: "row",

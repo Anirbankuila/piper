@@ -11,10 +11,16 @@ export interface CategoryWiseSurvey {
 }
 export interface Questions {
   id: number;
-  question: string;
-  options: string[];
+  question?: string;
+  options?: string[];
   isMultipleSelection?: boolean;
+  inputLabel?: string;
   isInputEnable?: boolean;
   inputPlaceholder?: string;
   inputType?: TextInputProps["keyboardType"];
+  childQuestions?: Questions[];
+  isDateType?: boolean;
+  isTimeType?: boolean;
+  isDropDownType?: boolean;
+  dropDownOptions?: string[];
 }

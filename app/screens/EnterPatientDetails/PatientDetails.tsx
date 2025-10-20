@@ -1,5 +1,6 @@
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import CommonInput from "@/app/components/CommonInput/CommonInput";
+import CountryPickerBottomSheet from "@/app/components/CountryPickerBottomSheet/CountryPickerBottomSheet";
 import DatePicker from "@/app/components/Datepicker/DatePicker";
 import GenderSelect from "@/app/components/GenderSelect/GenderSelect";
 import { Colors } from "@/constants/theme";
@@ -75,11 +76,8 @@ const PatientDetails = () => {
           placeHolderText="Gender"
           style={styles.inputText}
         />
-        <GenderSelect
-          onChange={() => {}}
-          placeHolderText="Country"
-          style={styles.inputText}
-        />
+        <CountryPickerBottomSheet style={styles.inputText} />
+        {/* <GenderSelect onChange={() => {}} placeHolderText="Country" /> */}
         {/* <GenderSelect onChange={() => {}} value="male" /> */}
         <CommonInput
           placeholder="Mobile Number"

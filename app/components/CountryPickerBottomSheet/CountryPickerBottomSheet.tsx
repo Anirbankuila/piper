@@ -1,19 +1,21 @@
+import { Fonts } from "@/constants/theme";
 import countries from "@/countries.json"; // your JSON file
 import { Ionicons } from "@expo/vector-icons";
 import React, {
-    ForwardedRef,
-    forwardRef,
-    useImperativeHandle,
-    useRef,
-    useState,
+  ForwardedRef,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useState,
 } from "react";
 import {
-    FlatList,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  TextStyle,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import RBSheet from "react-native-raw-bottom-sheet";
 
@@ -25,6 +27,7 @@ interface Country {
 interface CountryPickerProps {
   onSelectCountry?: (country: Country) => void;
   label?: string;
+  style: TextStyle;
 }
 
 export interface CountryPickerRef {
@@ -33,11 +36,12 @@ export interface CountryPickerRef {
 }
 
 const CountryPickerRBSheet = (
-  { onSelectCountry, label }: CountryPickerProps,
+  { onSelectCountry, label, style }: CountryPickerProps,
   ref: ForwardedRef<CountryPickerRef>
 ) => {
   const [search, setSearch] = useState("");
-  const [filteredCountries, setFilteredCountries] = useState<Country[]>(countries);
+  const [filteredCountries, setFilteredCountries] =
+    useState<Country[]>(countries);
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
 
   const rbSheetRef = useRef<any>(null);
@@ -82,12 +86,7 @@ const CountryPickerRBSheet = (
         activeOpacity={0.8}
         onPress={() => rbSheetRef.current?.open()}
       >
-        <Text
-          style={[
-            styles.inputText,
-            !selectedCountry && { color: "#999" },
-          ]}
-        >
+        <Text style={[styles.inputText, !selectedCountry && { color: "#999" }]}>
           {selectedCountry
             ? `${getFlagEmoji(selectedCountry.code)} ${selectedCountry.name}`
             : "Select Country"}
@@ -110,7 +109,7 @@ const CountryPickerRBSheet = (
         }}
       >
         <View style={styles.sheetContent}>
-          <Text style={styles.title}>Select Country</Text>
+          <Text style={[styles.title]}>Select Country</Text>
 
           {/* Search Box with clear icon */}
           <View style={styles.searchWrapper}>
@@ -178,10 +177,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: "600",
     textAlign: "center",
     marginBottom: 10,
+    fontFamily: Fonts.Regular,
   },
   searchWrapper: {
     flexDirection: "row",

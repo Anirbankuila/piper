@@ -90,7 +90,7 @@ const epilepsyQuestions: Questions[] = [
     question: "Missed medication dose?",
     options: ["Yes", "No"],
     isInputEnable: true,
-    inputPlaceholder: "Others",
+    inputPlaceholder: "Medication Name",
     inputType: "default",
   },
   {
@@ -117,11 +117,21 @@ const epilepsyQuestions: Questions[] = [
     inputPlaceholder: "Others",
     inputType: "default",
   },
-  // {
-  //   id: 8,
-  //   question: "Time",
-  //   options: [],
-  // },
+  {
+    id: 8,
+    question: "Time",
+    options: [],
+    childQuestions: [
+      {
+        id: 8.1,
+        isTimeType: true,
+      },
+      {
+        id: 8.2,
+        isDateType: true,
+      },
+    ],
+  },
   {
     id: 9,
     question: "Consciousness",
@@ -189,27 +199,54 @@ const epilepsyQuestions: Questions[] = [
     inputPlaceholder: "Others",
     inputType: "default",
   },
-  // {
-  //   id: 17,
-  //   question: "Return to baseline",
-  //   options: [],
-  //   isInputEnable: true,
-  //   inputPlaceholder: "Others",
-  //   inputType: "default",
-  // },
+  {
+    id: 17,
+    question: "Return to baseline",
+    options: [],
+    childQuestions: [
+      {
+        id: 17.1,
+        isDropDownType: true,
+        dropDownOptions: ["Hour", "Minutes", "Second"],
+      },
+      {
+        id: 17.2,
+        isDropDownType: true,
+        dropDownOptions: ["Hour", "Minutes", "Second"],
+      },
+    ],
+  },
   {
     id: 18,
     question: "Memory of event",
     options: ["Full", "Partial", "None"],
   },
-  // {
-  //   id: 19,
-  //   question: "Post-seizure symptoms",
-  //   options: ["Confusion", "Sleepiness", "Headache", "Difficulty speaking"],
-  //   isInputEnable: true,
-  //   inputPlaceholder: "Others",
-  //   inputType: "default",
-  // },
+  {
+    id: 19,
+    question: "Stress",
+    options: ["Yes", "No"],
+    childQuestions: [
+      {
+        id: 19.1,
+        question: "Menstrual cycle phase (if applicable)",
+        isInputEnable: true,
+        inputPlaceholder: "Write .....",
+        inputType: "default",
+      },
+      {
+        id: 19.2,
+        question: "Flashing light exposure",
+        options: ["Yes", "No"],
+      },
+      {
+        id: 19.3,
+        question: "Recent major life changes",
+        isInputEnable: true,
+        inputPlaceholder: "Write .....",
+        inputType: "default",
+      },
+    ],
+  },
 ];
 export const SurveyDemoData: CategoryWiseSurvey[] = [
   {

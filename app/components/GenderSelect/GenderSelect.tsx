@@ -64,7 +64,7 @@ const GenderSelect: React.FC<GenderSelectProps> = ({
         }}
       >
         <View style={styles.sheetContent}>
-          <Text style={[styles.sheetTitle, style]}>Choose Gender</Text>
+          <Text style={[styles.sheetTitle, style]}>{placeHolderText}</Text>
           {options.map((opt, index) => (
             <TouchableOpacity
               key={index}

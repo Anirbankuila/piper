@@ -89,7 +89,13 @@ const DatePicker: React.FC<DatePickerProps> = ({
                   hour: "2-digit",
                   minute: "2-digit",
                 })
-              : date.toDateString()
+              : isForTimePicker
+              ? date.toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: true, // AM/PM
+                })
+              : date.toDateString() // date only
             : placeHolderText}
         </Text>
         <ChevronDownIcon size={16} color={date ? Colors.black : Colors.grey} />
