@@ -3,6 +3,7 @@ import { CategoryWiseSurvey } from "@/app/common/Interface/Sruvey";
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import { Colors, Fonts } from "@/constants/theme";
+import { Header } from "@react-navigation/elements";
 import { Image } from "expo-image";
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
@@ -20,7 +21,6 @@ const SurveyEntryScreen: React.FC = () => {
     const survey = SurveyDemoData.find(
       (s) => s.categoryName === surveyCategory
     );
-    console.log(survey);
     if (survey) setSurveyDetails(survey);
   }, [surveyCategory]);
 
@@ -36,6 +36,7 @@ const SurveyEntryScreen: React.FC = () => {
       contentContainerStyle={Styles.container}
       showsVerticalScrollIndicator={false}
     >
+      <Header title={"Hello"} />
       {/* Top Image */}
       <View style={Styles.topImageContainer}>
         <Image source={surveyDetails.bannerImage} style={Styles.topImage} />

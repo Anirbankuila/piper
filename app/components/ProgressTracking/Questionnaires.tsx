@@ -127,16 +127,7 @@ const Questionnaires = () => {
             <Text style={styles.timeLabel}>{item.duration}</Text>
 
             <View style={styles.cardRow}>
-              <View
-                style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
-              >
-                <Image
-                  source={item.icon}
-                  style={{ width: 24, height: 24, resizeMode: "contain" }}
-                />
-                <Text style={styles.cardTitle}>{item.title}</Text>
-              </View>
-
+              <Text style={styles.cardTitle}>{item.title}</Text>
               <CustomToggle
                 value={item.isToggled}
                 onPress={() => handleToggle(item)}

@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -26,7 +27,6 @@ const SurveyQuestionScreen = () => {
     const surveyData = SurveyDemoData.find(
       (s) => s.categoryName === categoryQuestion
     );
-
     if (surveyData?.questions && Array.isArray(surveyData.questions)) {
       setQuestions(surveyData.questions);
     } else {
@@ -72,24 +72,34 @@ const SurveyQuestionScreen = () => {
         <Text style={styles.questionNumber}>
           {`${current + 1}/${totalQuestions}`}
         </Text>
+        {currentQuestion && (
+          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            {/* Question Text */}
+            <Text style={styles.questionText}>{currentQuestion.question}</Text>
 
-        {/* Question Text */}
-        <Text style={styles.questionText}>{currentQuestion.question}</Text>
-
-        {/* Options */}
-        {currentQuestion.options.map((option, index) => (
-          <TouchableOpacity
-            key={index}
-            style={[styles.optionButton]}
-            onPress={() => setSelected(index)}
-          >
-            <View style={styles.radioCircle}>
-              {selected === index && <View style={styles.selectedRb} />}
-            </View>
-            <Text style={[styles.optionText]}>{option}</Text>
-          </TouchableOpacity>
-        ))}
-        {/* {currentQuestion.isInputEnable && <CommonInput />} */}
+            {/* Options */}
+            {currentQuestion.options.map((option, index) => (
+              <TouchableOpacity
+                key={index}
+                style={[styles.optionButton]}
+                onPress={() => setSelected(index)}
+              >
+                <View style={styles.radioCircle}>
+                  {selected === index && <View style={styles.selectedRb} />}
+                </View>
+                <Text style={[styles.optionText]}>{option}</Text>
+              </TouchableOpacity>
+            ))}
+            {currentQuestion.isInputEnable && (
+              <CommonInput
+                onChangeText={() => {}}
+                placeholder={currentQuestion.inputPlaceholder}
+                keyboardType={currentQuestion.inputType}
+              />
+            )}
+            {}
+          </ScrollView>
+        )}
 
         {/* Navigation Buttons */}
         {current === totalQuestions - 1 ? (
