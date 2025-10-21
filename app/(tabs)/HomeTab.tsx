@@ -1,7 +1,7 @@
-import { Colors } from "@/constants/theme";
+import { Colors, Fonts } from "@/constants/theme";
 import { AntDesign } from "@expo/vector-icons";
 import { BlurView } from "expo-blur";
-import { Image } from "expo-image";
+import { Image, ImageBackground } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useRef, useState } from "react";
 import {
@@ -31,13 +31,12 @@ export default function HomeTab() {
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       {/* <StatusBar backgroundColor="#FFF9F2" translucent={true} /> */}
       {/* User Info */}
-      <LinearGradient
+      {/* <LinearGradient
         colors={["#FFDFBD", "#FF8000"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 0, y: 1 }}
         style={styles.gradientContainer}
       >
-        {/* USER INFO */}
         <View>
           <TouchableOpacity
             style={styles.userInfo}
@@ -58,9 +57,6 @@ export default function HomeTab() {
             </View>
           </TouchableOpacity>
         </View>
-
-        {/* SEARCH */}
-        {/* PIPER INTRO SECTION */}
         <View style={styles.piperIntroContainer}>
           <Image
             source={require("../../assets/images/piperHomeImg.png")}
@@ -84,7 +80,58 @@ export default function HomeTab() {
           />
           <PiperModal visible={visible} onClose={() => setVisible(false)} />
         </View>
-      </LinearGradient>
+      </LinearGradient> */}
+      <ImageBackground
+        source={require("../../assets/images/homeBg.png")} // ← your background image
+        style={styles.gradientContainer} // same style as before
+        contentFit="cover"
+      >
+        <View>
+          <TouchableOpacity
+            style={styles.userInfo}
+            onPress={() => setOpen(!open)}
+          >
+            <Image
+              source={require("../../assets/images/profile.png")}
+              style={styles.profilePhoto}
+              contentFit="contain"
+            />
+            <View style={styles.userDetails}>
+              <Text style={styles.userName}>Johnny</Text>
+              <ChevronDownIcon
+                size={20}
+                color={Colors.text}
+                style={styles.dropdownIcon}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.piperIntroContainer}>
+          <Image
+            source={require("../../assets/images/piperHomeImg.png")}
+            style={styles.alexPersonalImg}
+          />
+          <BlurView intensity={60} tint="light" style={styles.piperDetailsCard}>
+            <Text style={styles.mainText}>Hi, I’m Piper!</Text>
+            <Text style={styles.subText}>
+              Your organized bestie{"\n"}and personal assistant.
+            </Text>
+
+            <TouchableOpacity style={styles.cardBtn}>
+              <Text style={styles.btnText}>Let’s take a tour</Text>
+            </TouchableOpacity>
+          </BlurView>
+        </View>
+
+        <View style={{ paddingHorizontal: 20 }}>
+          <Searchbar
+            containerStyle={styles.homeSearch}
+            onMicPress={() => setVisible(true)}
+          />
+          <PiperModal visible={visible} onClose={() => setVisible(false)} />
+        </View>
+      </ImageBackground>
       <Divider text={"Everything You Need In One Place"} />
       <View style={styles.sectionContainer}>
         {/* Progress Tracking Card */}
@@ -144,7 +191,7 @@ export default function HomeTab() {
                   { paddingVertical: 11, alignItems: "center" },
                 ]}
               >
-                <Text style={[styles.cardSubText, { fontWeight: "600" }]}>
+                <Text style={[styles.cardSubText, { fontFamily: Fonts.SemiBold }]}>
                   View Progress
                 </Text>
               </View>
@@ -329,8 +376,8 @@ export default function HomeTab() {
                         name === "Sarah"
                           ? require("../../assets/images/Sarah.png")
                           : name === "Miley"
-                          ? require("../../assets/images/Miley.png")
-                          : require("../../assets/images/Dennis.png")
+                            ? require("../../assets/images/Miley.png")
+                            : require("../../assets/images/Dennis.png")
                       }
                       style={styles.dropdownPhoto}
                     />

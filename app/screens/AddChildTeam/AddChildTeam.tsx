@@ -1,10 +1,16 @@
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import CommonInput from "@/app/components/CommonInput/CommonInput";
 import React, { useState } from "react";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  Platform,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CommonButton from "../../components/CommonButton/CommonButton";
-import CustomSelect from "../../components/GenderSelect/GenderSelect";
 import Styles from "./AddChildTeamCss";
 
 // -------------------------
@@ -70,23 +76,26 @@ const ChildTeam: React.FC = () => {
   };
 
   return (
-    <ScrollView
+    <KeyboardAwareScrollView
+      style={{ flex: 1 }}
       contentContainerStyle={Styles.container}
       showsVerticalScrollIndicator={false}
+      enableOnAndroid={true}
+      extraScrollHeight={Platform.OS === "ios" ? 80 : 100}
+      keyboardShouldPersistTaps="handled"
     >
       <View style={Styles.content}>
-        {/* Top */}
-        
         {/* Add Child Header */}
         <View style={Styles.addChild}>
           <Text style={Styles.addtitle}>Add your child’s team</Text>
-         
         </View>
 
         {/* Child Forms */}
         {childForms.map((child) => (
           <View key={child.id} style={Styles.formWrap}>
-            {child.imageUri && <Image source={{ uri: child.imageUri }} />}
+            {child.imageUri && (
+              <Image source={{ uri: child.imageUri }} style={Styles.previewImg} />
+            )}
 
             <TouchableOpacity
               style={Styles.uploadPhoto}
@@ -120,18 +129,16 @@ const ChildTeam: React.FC = () => {
               keyboardType="phone-pad"
               onChangeText={(text) => updateChildForm(child.id, "phone", text)}
             />
-
-            <CustomSelect
+            <CommonInput
+              placeholder="Role in your child's life"
+              style={Styles.eachInput}
               value={child.gender || ""}
-              placeHolderText="Role in your child's life"
-              options={["Mother", "Father", "Teacher", "Doctor", "Other"]}
-              onChange={(val: string) =>
+              onChangeText={(val: string) =>
                 updateChildForm(child.id, "gender", val)
               }
             />
           </View>
         ))}
-
       </View>
 
       {/* Bottom Continue Button */}
@@ -143,7 +150,7 @@ const ChildTeam: React.FC = () => {
           onPress={() => navigateScreen(Routes.addChildSuccess)}
         />
       </View>
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 };
 

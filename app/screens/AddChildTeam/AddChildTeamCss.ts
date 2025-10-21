@@ -122,6 +122,12 @@ const Styles = StyleSheet.create({
   formWrap: {
     marginTop: 10,
   },
+  previewImg:{
+    width:50,
+    height:50,
+    borderRadius:25,
+    marginHorizontal:'auto'
+  },
   uploadPhoto: {
     flexDirection: "row",
     alignItems: "center",
@@ -153,7 +159,7 @@ const Styles = StyleSheet.create({
   },
   addtitle: {
     fontSize: 24,
-    lineHeight: 25,
+    lineHeight: 30,
     fontFamily: Fonts.Bold,
     color: Colors.primary,
     marginBottom: 0,

@@ -43,7 +43,7 @@ const ProfileTab = () => {
             title="Profile"
             onPress={() => navigateScreen(Routes.updateProfile)}
           />
-          <MenuItem
+          {/* <MenuItem
             icon={
               <Image
                 source={require("../../assets/icons/notification-icon.png")}
@@ -62,7 +62,7 @@ const ProfileTab = () => {
             }
             title="Order Genetic test"
             onPress={() => navigateScreen(Routes.patientDetails)}
-          />
+          /> */}
           <MenuItem
             icon={
               <Image

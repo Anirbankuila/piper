@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   dropdown: {
     position: "absolute",
     width: "80%",
-    top: 120, // adjust depending on header height
+    top: 30, // adjust depending on header height
     left: 50,
     backgroundColor: "#fff",
     borderRadius: 8,
