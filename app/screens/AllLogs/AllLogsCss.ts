@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
 import { Colors, Fonts } from "../../../constants/theme";
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -22,24 +22,30 @@ const Styles = StyleSheet.create({
   },
   topSecLeft: {
     position: "relative",
-<<<<<<< Updated upstream
-    paddingLeft: 10,
-    width: "78%",
-=======
     paddingLeft: 24,
-    width: width * 0.7, // same as "80%" but based on screen width
->>>>>>> Stashed changes
+    width: width * 0.7,
   },
   topBg: {
-    width: 157,
-    height: 140,
-    textAlign: "center",
-    justifyContent: "center",
-    position: "absolute",
+    width: width * 0.42,        // ~35% of screen width
+    height: height * 0.25,      // ~18% of screen height
+    textAlign: 'center',
+    justifyContent: "flex-end",
+    position: 'absolute',
+    alignItems:'flex-end',
     right: 0,
-    bottom: 0,
-    marginLeft: 5,
+    bottom: -height * 0.04,   
   },
+  
+  // topBg: { 
+  //   width: 157, 
+  //   height: 140, 
+  //   textAlign: "center", 
+  //   justifyContent: "center", 
+  //   position: "absolute", 
+  //   right: 0, 
+  //   bottom: 0, 
+  //   marginLeft: 5, 
+  // },
   topSecHeading: {
     fontSize: 20,
     fontFamily: Fonts.Bold,

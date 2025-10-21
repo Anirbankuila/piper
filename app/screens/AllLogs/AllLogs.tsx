@@ -56,7 +56,7 @@ const AllLogs = () => {
                 Real life, logged by you, remembered by me.
               </Text>
               <Text style={Styles.para}>
-                Click any life log below to edit or share with your care
+                Click any life log below to edit or share  with your care
                 team.
               </Text>
             </View>

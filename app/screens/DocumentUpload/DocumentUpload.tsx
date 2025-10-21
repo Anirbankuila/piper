@@ -7,6 +7,7 @@ import { Colors, Fonts } from "@/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
+  Dimensions,
   Image,
   ScrollView,
   StyleSheet,
@@ -14,6 +15,7 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
+const { width,height } = Dimensions.get("window");
 
 const UploadDoc = () => {
   const [visible, setVisible] = useState(false);
@@ -232,21 +234,20 @@ const Styles = StyleSheet.create({
   },
   bgImage: {
     justifyContent: "flex-end",
-    textAlign: "right",
-    marginTop: -150,
+    alignItems: "flex-end", // aligns content to right
+    marginTop: -height * 0.2, // dynamic negative margin (20% of screen height)
   },
+
   topBg: {
-    // position: "absolute",
-    width: "100%",
-    marginLeft: "auto",
-    height: 224,
+    width: width,             // full screen width
+    height: height * 0.28,    // 28% of screen height
     zIndex: 0,
-    // justifyContent: "flex-end",
+    resizeMode: "contain",    // scales image proportionally
   },
   headingRow: {
     flexDirection: "row",
     alignItems: "center",
-    width: "71%",
+    width: width * 0.60
     // keep the same left padding as topSecLeft if needed
   },
 
@@ -262,14 +263,14 @@ const Styles = StyleSheet.create({
     borderBottomColor: "transparent",
     borderLeftColor: Colors.bg, // triangle color (matches heading color)
     position: "absolute",
-    right: -10,
+    right: -8,
     transform: [{ rotate: "20deg" }],
     bottom: -3,
   },
 
   topSecHeading: {
     fontSize: 14,
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
     paddingVertical: 12,
     fontFamily: Fonts.SemiBold,
     color: Colors.primary,

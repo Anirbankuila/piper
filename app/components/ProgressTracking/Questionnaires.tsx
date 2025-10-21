@@ -4,6 +4,7 @@ import { Colors, Fonts } from "@/constants/theme";
 import { Image, ImageBackground } from "expo-image";
 import React from "react";
 import {
+  Dimensions,
   ScrollView,
   StyleSheet,
   Text,
@@ -12,6 +13,8 @@ import {
 } from "react-native";
 import CommonButton from "../CommonButton/CommonButton";
 import CustomToggle from "../CustomSwitch/CustomSwitch";
+const { width, height } = Dimensions.get("window");
+
 const reminders: ReminderCardItem[] = [
   {
     id: "1",
@@ -84,13 +87,13 @@ const Questionnaires = () => {
     >
       <ImageBackground
         source={require("../../../assets/images/questionnaire-banner.png")}
-        style={{ height: 180, paddingHorizontal: 8 }}
+        style={[{ height: 180, paddingHorizontal: 8 }]}
         contentFit="cover"
       >
         <View style={[styles.contentWrapper]}>
           <Text style={styles.title}>Tracking what matters!</Text>
           <Text style={styles.description}>
-            See your child’s progress over time, what’s working and what’s not.
+            See your child’s progress over  time, what’s working and what’s not.
           </Text>
         </View>
         {/* <View style={{ flex: 1 }}>
@@ -263,11 +266,11 @@ const styles = StyleSheet.create({
   },
   contentWrapper: {
     justifyContent: "center",
-    width: "72%",
+    width: width * 0.64,      // 72% of screen width dynamically
     textAlign: "center",
     flex: 1,
     borderRadius: 8,
-    top: -5,
+    top: -height * 0.006,     // small dynamic offset instead of fixed -5px
   },
   description: {
     fontSize: 14,
@@ -285,8 +288,8 @@ const styles = StyleSheet.create({
     lineHeight: 19,
   },
   calendarIcon: {
-    height: 24,
-    width: 24,
+    height: 16,
+    width: 16,
     marginRight: 5,
     tintColor: Colors.black,
   },
