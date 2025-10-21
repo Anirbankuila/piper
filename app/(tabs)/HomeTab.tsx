@@ -152,8 +152,7 @@ export default function HomeTab() {
               </View>
               <View style={[styles.evencardCountSection]}>
                 <Text style={styles.cardBtnHeading}>
-                  10
-                  <Text style={styles.cardSubText}> View Progress</Text>
+                  V<Text style={styles.cardSubText}>iew Progress</Text>
                 </Text>
               </View>
             </TouchableOpacity>
