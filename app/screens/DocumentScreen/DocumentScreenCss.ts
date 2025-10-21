@@ -29,7 +29,7 @@ const Styles = StyleSheet.create({
   title: {
     fontSize: 24,
     lineHeight: 28,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
     fontWeight: "bold",
     color: Colors.primary,
     marginBottom: 28,
@@ -38,7 +38,7 @@ const Styles = StyleSheet.create({
     fontSize: 17,
     textAlign: "left",
     marginVertical: 10,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
     color: Colors.text,
   },
   formWrap: {
@@ -65,12 +65,12 @@ const Styles = StyleSheet.create({
   backButtonText: {
     fontSize: 16,
     color: Colors.text,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
   },
   selectText: {
     fontSize: 16,
     color: "#141514",
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.Bold,
   },
 
   optionWrap: {

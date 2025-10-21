@@ -83,10 +83,9 @@ const DocumentScreen: React.FC = () => {
             return (
               <View key={option.id} style={Styles.optionWrap}>
                 <CustomRadio
-                  optionStyle={Styles.selectBoxOption}
                   options={[option]}
                   selectedValue={selectedOption}
-                  onSelect={handleOptionSelect}
+                  onSelect={(id) => setSelectedOption(id as string)}
                 />
 
                 {selectedOption === option.id && (
@@ -105,7 +104,7 @@ const DocumentScreen: React.FC = () => {
                         ? selectedReminder.label
                         : "Select Reminder"}
                     </Text>
-                    <ChevronDownIcon style={Styles.inputBoxIcon} />
+                    <ChevronDownIcon />
                   </TouchableOpacity>
                 )}
               </View>
@@ -117,7 +116,7 @@ const DocumentScreen: React.FC = () => {
                 optionStyle={Styles.selectBox}
                 options={[option]}
                 selectedValue={selectedOption}
-                onSelect={handleOptionSelect}
+                onSelect={(id) => setSelectedOption(id as string)}
               />
             );
           }
@@ -149,7 +148,7 @@ const DocumentScreen: React.FC = () => {
           ))}
         </RBSheet>
 
-        <View style={Styles.bottomButton}>
+        <View>
           <CommonButton
             title="Continue"
             textStyle={Styles.buttonText}
