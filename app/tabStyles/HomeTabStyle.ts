@@ -348,14 +348,14 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-between",
   },
-  cardContainer: {
+cardContainer: {
     width: "49%",
     borderTopRightRadius: 32,
     borderBottomLeftRadius: 32,
     padding: 12,
     marginVertical: 4,
-    minHeight: 160,
     justifyContent: "space-between",
+    minHeight: height * 0.2, // 👈 ~20% of screen height (adjust as needed)
   },
   evenContainer: {
     width: "49%",
@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     flexDirection: "row",
     marginVertical: 10,
-    height: 52,
+    height: height * 0.06, // 👈 6% of screen height (approx 52 on standard 870px height)
   },
   cardTitle: {
     fontSize: 14,
@@ -387,8 +387,8 @@ const styles = StyleSheet.create({
     color: Colors.bg,
     fontFamily: Fonts.Medium,
     marginTop: 2,
-    minHeight: 38,
-    height: 38,
+    minHeight: height * 0.05, // 👈 5% of screen height
+    height: height * 0.05,    // adjust percentage as needed
   },
   cardBtnHeading: {
     fontSize: 20,
