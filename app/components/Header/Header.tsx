@@ -10,7 +10,7 @@ const Header: React.FC<HeaderProps> = ({ backgroundColor = "#FFF3E9" }) => {
   return (
     <View style={[styles.header, { backgroundColor }]}>
       {/* Left Side Logo */}
-      <TouchableOpacity  onPress={() => navigateScreen(Routes.homeTab)}>
+      <TouchableOpacity onPress={() => navigateScreen(Routes.homeTab)}>
         <Image
           source={require("../../../assets/icons/logo.png")}
           style={styles.logo}
@@ -20,7 +20,10 @@ const Header: React.FC<HeaderProps> = ({ backgroundColor = "#FFF3E9" }) => {
 
       {/* Right Side Icons */}
       <View style={styles.rightIcons}>
-        <TouchableOpacity style={styles.iconBtn} onPress={() => navigateScreen(Routes.medicationNudge)}>
+        <TouchableOpacity
+          style={styles.iconBtn}
+          onPress={() => navigateScreen(Routes.medicationNudge)}
+        >
           <Image
             source={require("../../../assets/icons/medical.png")}
             style={styles.eachIcon}

@@ -8,22 +8,14 @@ import {
 } from "@expo-google-fonts/inter";
 import { Ionicons } from "@expo/vector-icons";
 import { router, Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { ActivityIndicator, Image, TouchableOpacity } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Routes, { navigateScreen } from "./common/Routes";
+import HeaderLeft from "./components/Header/HeaderLeft";
+import HeaderRight from "./components/Header/HeaderRight";
 const screens = [
   { name: "index", options: { headerShown: false } },
-  {
-    name: Routes.onBoarding,
-    options: {
-      headerShown: false,
-      headerStyle: {
-        backgroundColor: "transparent", // 👈 header er background color
-      },
-      headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
-    },
-  },
   {
     name: Routes.logIn,
     options: {
@@ -34,7 +26,6 @@ const screens = [
       headerTintColor: "#000", // back button color
       headerShadowVisible: false,
     },
-    statusBarStyle: "dark" as const,
   },
   {
     name: Routes.faceDetection,
@@ -48,7 +39,6 @@ const screens = [
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -63,7 +53,6 @@ const screens = [
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -78,7 +67,6 @@ const screens = [
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -94,7 +82,6 @@ const screens = [
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -119,7 +106,6 @@ const screens = [
       headerTintColor: "#000", // back button color
       headerShadowVisible: false,
     },
-    statusBarStyle: "dark" as const,
   },
   {
     name: Routes.document,
@@ -130,7 +116,6 @@ const screens = [
       headerTintColor: "#000", // back button color
       headerShadowVisible: false,
     },
-    statusBarStyle: "dark" as const,
   },
   {
     name: Routes.childTeam,
@@ -144,7 +129,6 @@ const screens = [
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -165,7 +149,6 @@ const screens = [
         backgroundColor: Colors.surface_light_pitch, // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -175,7 +158,6 @@ const screens = [
       headerBackTitle: "Back",
       headerBackTitleVisible: true,
       headerShadowVisible: false,
-      statusBarStyle: "dark" as const,
       statusBarBackgroundColor: Colors.surface_light_pitch,
       headerStyle: {
         backgroundColor: Colors.surface_light_pitch,
@@ -203,7 +185,6 @@ const screens = [
         backgroundColor: Colors.surface_light_pitch, // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
 
@@ -237,7 +218,6 @@ const screens = [
       },
       headerTintColor: "#000", // 👈 text & back button color
       headerShadowVisible: true,
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -256,7 +236,6 @@ const screens = [
       },
       headerTintColor: "#000", // 👈 text & back button color
       headerShadowVisible: false,
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -271,7 +250,6 @@ const screens = [
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -286,7 +264,6 @@ const screens = [
         elevation: 0, // For Android shadow removal
         shadowOpacity: 0, // For iOS shadow removal
       },
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -315,7 +292,6 @@ const screens = [
         backgroundColor: Colors.warm, // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -330,7 +306,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -345,7 +320,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -372,7 +346,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -387,7 +360,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -402,7 +374,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -417,7 +388,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -432,7 +402,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -447,7 +416,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -462,7 +430,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -477,7 +444,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -492,7 +458,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -507,7 +472,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -522,7 +486,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -537,7 +500,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -552,7 +514,6 @@ const screens = [
         backgroundColor: "transparent", // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -567,7 +528,6 @@ const screens = [
         backgroundColor: "transparent",
       },
       headerTintColor: "#000",
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -581,14 +541,19 @@ const screens = [
       headerStyle: {
         backgroundColor: Colors.warm, // 👈 header er background color
       },
-      statusBarStyle: "dark" as const,
     },
   },
   {
     name: Routes.medicine,
     options: {
-      headerShown: false,
-      statusBarStyle: "dark" as const,
+      headerShown: true,
+      title: "",
+      headerShadowVisible: false,
+      headerStyle: {
+        backgroundColor: Colors.surface_light_pitch, // 👈 header er background color
+      },
+      headerLeft: () => <HeaderLeft />,
+      headerRight: () => <HeaderRight />,
     },
   },
   {
@@ -616,7 +581,6 @@ const screens = [
       headerStyle: {
         backgroundColor: "transparent", // 👈 header er background color
       },
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -630,7 +594,6 @@ const screens = [
       headerStyle: {
         backgroundColor: "transparent", // 👈 header er background color
       },
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -651,7 +614,6 @@ const screens = [
           style={{ width: "100%", height: "100%" }}
         />
       ),
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -671,7 +633,6 @@ const screens = [
           <Ionicons name="close-circle-outline" size={26} color="black" />
         </TouchableOpacity>
       ),
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -680,7 +641,6 @@ const screens = [
       headerTitle: "ADHD",
       headerShadowVisible: false,
       headerStyle: { backgroundColor: Colors.bg },
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -703,7 +663,6 @@ const screens = [
       headerStyle: {
         backgroundColor: Colors.bg, // 👈 header er background color
       },
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -717,7 +676,6 @@ const screens = [
       headerStyle: {
         backgroundColor: Colors.warm, // 👈 header er background color
       },
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -737,7 +695,6 @@ const screens = [
           <Ionicons name="close-circle-outline" size={26} color="black" />
         </TouchableOpacity>
       ),
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -751,7 +708,6 @@ const screens = [
       headerStyle: {
         backgroundColor: Colors.bg, // 👈 header er background color
       },
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -814,12 +770,6 @@ const screens = [
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
       ),
-      // headerRight: () => (
-      //   <TouchableOpacity onPress={() => router.back()}>
-      //     <Ionicons name="close-circle-outline" size={26} color="black" />
-      //   </TouchableOpacity>
-      // ),
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -834,12 +784,6 @@ const screens = [
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
       ),
-      // headerRight: () => (
-      //   <TouchableOpacity onPress={() => router.back()}>
-      //     <Ionicons name="close-circle-outline" size={26} color="black" />
-      //   </TouchableOpacity>
-      // ),
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -854,12 +798,6 @@ const screens = [
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
       ),
-      // headerRight: () => (
-      //   <TouchableOpacity onPress={() => router.back()}>
-      //     <Ionicons name="close-circle-outline" size={26} color="black" />
-      //   </TouchableOpacity>
-      // ),
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -874,12 +812,6 @@ const screens = [
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
       ),
-      // headerRight: () => (
-      //   <TouchableOpacity onPress={() => router.back()}>
-      //     <Ionicons name="close-circle-outline" size={26} color="black" />
-      //   </TouchableOpacity>
-      // ),
-      statusBarStyle: "dark" as const,
     },
   },
   {
@@ -894,12 +826,6 @@ const screens = [
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
       ),
-      // headerRight: () => (
-      //   <TouchableOpacity onPress={() => router.back()}>
-      //     <Ionicons name="close-circle-outline" size={26} color="black" />
-      //   </TouchableOpacity>
-      // ),
-      statusBarStyle: "dark" as const,
     },
   },
 ];
@@ -920,7 +846,11 @@ export default function RootLayout() {
         style={{ flex: 1, backgroundColor: "#fff" }}
         edges={["left", "right", "bottom"]}
       >
-        <Stack initialRouteName="index">
+        <StatusBar style="dark" translucent={false} />
+        <Stack
+          initialRouteName="index"
+          screenOptions={{ statusBarStyle: "dark" }}
+        >
           {screens.map((screen) => (
             <Stack.Screen
               key={screen.name}

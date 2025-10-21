@@ -1,8 +1,7 @@
 import { Image } from "expo-image";
 import React from "react";
-import { ScrollView, StatusBar, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Colors } from "../../constants/theme";
 import Routes, { navigateScreen } from "../common/Routes";
 import MenuItem from "../components/MenuItem/MenuItem";
 import styles from "../tabStyles/ProfileTabStyle";
@@ -15,11 +14,11 @@ const ProfileTab = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar
+      {/* <StatusBar
         barStyle="dark-content"
         translucent
         backgroundColor={Colors.bg}
-      />
+      /> */}
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {/* Profile Section */}
@@ -72,7 +71,7 @@ const ProfileTab = () => {
               />
             }
             title="Log Out"
-            onPress={() =>navigateScreen(Routes.logIn)}
+            onPress={() => navigateScreen(Routes.logIn)}
           />
         </View>
       </ScrollView>

@@ -3,22 +3,21 @@ import { AntDesign } from "@expo/vector-icons";
 import { BlurView } from "expo-blur";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
-import { StatusBar } from "expo-status-bar";
 import React, { useRef, useState } from "react";
 import {
   ScrollView,
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  View
+  View,
 } from "react-native";
 import { ChevronDownIcon, PlusIcon } from "react-native-heroicons/outline";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Routes, { navigateScreen } from "../common/Routes";
 import AthenaLoginContent from "../components/AthenaLogin/AthenaLoginContent";
 import CommonButton from "../components/CommonButton/CommonButton";
-import CustomRBSheet, { CustomRBSheetRef } from "../components/CustomBottomSheet/CustomRBSheet";
-import Header from "../components/Header/Header";
+import CustomRBSheet, {
+  CustomRBSheetRef,
+} from "../components/CustomBottomSheet/CustomRBSheet";
 import Divider from "../components/HomePageDivider/Divider";
 import PiperModal from "../components/PiperModal/PiperModal";
 import Searchbar from "../components/Searchbar/Searchbar";
@@ -28,82 +27,70 @@ export default function HomeTab() {
   const rbSheetRef = useRef<CustomRBSheetRef>(null);
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
-  const insets = useSafeAreaInsets();
-  const progressData = [
-    { day: "M", height: 40, color: "#FF9500", isActive: false },
-    { day: "T", height: 60, color: "#FF9500", isActive: false },
-    { day: "W", height: 30, color: "#34C759", isActive: false },
-    { day: "T", height: 80, color: "#FF3B30", isActive: false },
-    { day: "F", height: 50, color: "#FF9500", isActive: true },
-    { day: "S", height: 80, color: "#E5E5EA", isActive: false },
-    { day: "S", height: 80, color: "#E5E5EA", isActive: false },
-  ];
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <StatusBar backgroundColor="#FFF9F2" translucent={true} />
-      <View
-        style={[
-          styles.headerWrapper,
-          {
-            paddingTop: insets.top - 10,
-          },
-        ]}
+      {/* <StatusBar backgroundColor="#FFF9F2" translucent={true} /> */}
+      {/* User Info */}
+      <LinearGradient
+        colors={["#FFDFBD", "#FF8000"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        style={styles.gradientContainer}
       >
-        <Header backgroundColor="#FFDFBD" />
-        {/* User Info */}
-        <LinearGradient
-          colors={["#FFDFBD", "#FF8000"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 0, y: 1 }}
-          style={styles.gradientContainer}
-        >
-          {/* USER INFO */}
-          <View>
-            <TouchableOpacity style={styles.userInfo} onPress={() => setOpen(!open)}>
-              <Image
-                source={require("../../assets/images/profile.png")}
-                style={styles.profilePhoto}
-                contentFit="contain"
-              />
-              <View style={styles.userDetails}>
-                <Text style={styles.userName}>Johnny</Text>
-                <ChevronDownIcon size={20} color={Colors.text} style={styles.dropdownIcon} />
-              </View>
-            </TouchableOpacity>
-
-
-          </View>
-
-          {/* SEARCH */}
-          {/* PIPER INTRO SECTION */}
-          <View style={styles.piperIntroContainer}>
+        {/* USER INFO */}
+        <View>
+          <TouchableOpacity
+            style={styles.userInfo}
+            onPress={() => setOpen(!open)}
+          >
             <Image
-              source={require("../../assets/images/piperHomeImg.png")}
-              style={styles.alexPersonalImg}
+              source={require("../../assets/images/profile.png")}
+              style={styles.profilePhoto}
+              contentFit="contain"
             />
-            <BlurView intensity={60} tint="light" style={styles.piperDetailsCard}>
-              <Text style={styles.mainText}>Hi, I’m Piper!</Text>
-              <Text style={styles.subText}>
-                Your organized bestie{"\n"}and personal assistant.
-              </Text>
+            <View style={styles.userDetails}>
+              <Text style={styles.userName}>Johnny</Text>
+              <ChevronDownIcon
+                size={20}
+                color={Colors.text}
+                style={styles.dropdownIcon}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
 
-              <TouchableOpacity style={styles.cardBtn}>
-                <Text style={styles.btnText}>Let’s take a tour</Text>
-              </TouchableOpacity>
-            </BlurView>
-          </View>
-          <View style={{ paddingHorizontal: 20 }}>
-            <Searchbar containerStyle={styles.homeSearch} onMicPress={() => setVisible(true)} />
-            <PiperModal visible={visible} onClose={() => setVisible(false)} />
-          </View>
-        </LinearGradient>
-      </View>
+        {/* SEARCH */}
+        {/* PIPER INTRO SECTION */}
+        <View style={styles.piperIntroContainer}>
+          <Image
+            source={require("../../assets/images/piperHomeImg.png")}
+            style={styles.alexPersonalImg}
+          />
+          <BlurView intensity={60} tint="light" style={styles.piperDetailsCard}>
+            <Text style={styles.mainText}>Hi, I’m Piper!</Text>
+            <Text style={styles.subText}>
+              Your organized bestie{"\n"}and personal assistant.
+            </Text>
+
+            <TouchableOpacity style={styles.cardBtn}>
+              <Text style={styles.btnText}>Let’s take a tour</Text>
+            </TouchableOpacity>
+          </BlurView>
+        </View>
+        <View style={{ paddingHorizontal: 20 }}>
+          <Searchbar
+            containerStyle={styles.homeSearch}
+            onMicPress={() => setVisible(true)}
+          />
+          <PiperModal visible={visible} onClose={() => setVisible(false)} />
+        </View>
+      </LinearGradient>
       <Divider text={"Everything You Need In One Place"} />
       <View style={styles.sectionContainer}>
         {/* Progress Tracking Card */}
         <View style={styles.cardDetailsContainer}>
           <LinearGradient
-            colors={['#7B3BD4', '#A35AED']}
+            colors={["#7B3BD4", "#A35AED"]}
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}
             locations={[0.39, 0.88]} // 👈 stops for 39% and 88%
@@ -127,18 +114,19 @@ export default function HomeTab() {
                   21<Text style={styles.cardSubText}> Uploaded docs</Text>
                 </Text>
               </View>
-
             </TouchableOpacity>
           </LinearGradient>
 
           <LinearGradient
-            colors={['#7B3BD4', '#A35AED']}
+            colors={["#7B3BD4", "#A35AED"]}
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}
             locations={[0.39, 0.88]} // 👈 stops for 39% and 88%
             style={[styles.evenContainer]}
           >
-            <TouchableOpacity onPress={() => navigateScreen(Routes.progressTracking)}>
+            <TouchableOpacity
+              onPress={() => navigateScreen(Routes.progressTracking)}
+            >
               {/* Top Row */}
               <View style={styles.cardContent}>
                 <Text style={styles.cardTitle}>Progress Tracking</Text>
@@ -147,18 +135,23 @@ export default function HomeTab() {
               <View style={styles.cardIcon}>
                 <Image
                   source={require("../../assets/images/growth.png")}
-                  style={{ width: 46, height: 46}}
+                  style={{ width: 46, height: 46 }}
                 />
               </View>
-              <View style={[styles.evencardCountSection]}>
-                <Text style={styles.cardBtnHeading}>
-                  V<Text style={styles.cardSubText}>iew Progress</Text>
+              <View
+                style={[
+                  styles.evencardCountSection,
+                  { paddingVertical: 11, alignItems: "center" },
+                ]}
+              >
+                <Text style={[styles.cardSubText, { fontWeight: "600" }]}>
+                  View Progress
                 </Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>
           <LinearGradient
-            colors={['#7B3BD4', '#A35AED']}
+            colors={["#7B3BD4", "#A35AED"]}
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}
             locations={[0.39, 0.88]} // 👈 stops for 39% and 88%
@@ -177,17 +170,15 @@ export default function HomeTab() {
               </View>
               <View style={[styles.evencardCountSection]}>
                 <Text style={styles.cardBtnHeading}>
-                  3
-                  <Text style={styles.cardSubText}> Currently taking </Text>
+                  3<Text style={styles.cardSubText}> Currently taking </Text>
                 </Text>
               </View>
 
               {/* Arrow Button */}
-
             </TouchableOpacity>
           </LinearGradient>
           <LinearGradient
-            colors={['#7B3BD4', '#A35AED']}
+            colors={["#7B3BD4", "#A35AED"]}
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}
             locations={[0.39, 0.88]} // 👈 stops for 39% and 88%
@@ -196,7 +187,9 @@ export default function HomeTab() {
             <TouchableOpacity onPress={() => navigateScreen(Routes.allLogs)}>
               <View style={styles.cardContent}>
                 <Text style={styles.cardTitle}>Life Log</Text>
-                <Text style={styles.cardSubTitle}>Real moments as they happen</Text>
+                <Text style={styles.cardSubTitle}>
+                  Real moments as they happen
+                </Text>
               </View>
 
               <View style={styles.cardIcon}>
@@ -213,9 +206,16 @@ export default function HomeTab() {
             </TouchableOpacity>
           </LinearGradient>
         </View>
-        <CommonButton title="Sync your athenahealth records now!" style={styles.syncBtn} textStyle={styles.syncText} onPress={() => rbSheetRef.current?.open()} />
+        <CommonButton
+          title="Sync your athenahealth records now!"
+          style={styles.syncBtn}
+          textStyle={styles.syncText}
+          onPress={() => rbSheetRef.current?.open()}
+        />
         <CustomRBSheet ref={rbSheetRef} title="athenahealth">
-          <AthenaLoginContent rbSheetRef={rbSheetRef as React.RefObject<CustomRBSheetRef>} />
+          <AthenaLoginContent
+            rbSheetRef={rbSheetRef as React.RefObject<CustomRBSheetRef>}
+          />
         </CustomRBSheet>
       </View>
       <Divider text={"Johnny's Care Team"} />
@@ -329,8 +329,8 @@ export default function HomeTab() {
                         name === "Sarah"
                           ? require("../../assets/images/Sarah.png")
                           : name === "Miley"
-                            ? require("../../assets/images/Miley.png")
-                            : require("../../assets/images/Dennis.png")
+                          ? require("../../assets/images/Miley.png")
+                          : require("../../assets/images/Dennis.png")
                       }
                       style={styles.dropdownPhoto}
                     />

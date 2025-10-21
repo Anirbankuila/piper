@@ -3,7 +3,9 @@ import { Tabs, useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { XMarkIcon } from "react-native-heroicons/outline";
-import Routes, { navigateScreen } from "../common/Routes";
+
+import HeaderLeft from "../components/Header/HeaderLeft";
+import HeaderRight from "../components/Header/HeaderRight";
 export default function TabLayout() {
   const router = useRouter();
   return (
@@ -26,12 +28,20 @@ export default function TabLayout() {
           fontFamily: Fonts.Medium,
           marginTop: 4,
         },
+        headerLeft: () => <HeaderLeft />,
+        headerRight: () => <HeaderRight />,
       }}
     >
       <Tabs.Screen
         name="HomeTab"
         options={{
           title: "Home",
+          headerShown: true,
+          headerTitle: "",
+          headerStyle: {
+            backgroundColor: "#FFDFBD",
+          },
+          headerShadowVisible: false,
           tabBarIcon: ({ focused }) => (
             <Image
               source={
@@ -48,6 +58,12 @@ export default function TabLayout() {
         name="LifeLogTab"
         options={{
           title: "Life Log",
+          headerShown: true,
+          headerTitle: "",
+          headerShadowVisible: false,
+          headerStyle: {
+            backgroundColor: "#FFF3E9",
+          },
           tabBarIcon: ({ focused }) => (
             <Image
               source={
@@ -65,6 +81,12 @@ export default function TabLayout() {
         options={{
           title: "Piper",
           tabBarActiveTintColor: "#F36F3B",
+          headerShown: true,
+          headerTitle: "",
+          headerShadowVisible: false,
+          headerStyle: {
+            backgroundColor: Colors.surface_bg,
+          },
           tabBarIcon: ({ focused }) => (
             <Image
               source={
@@ -81,6 +103,12 @@ export default function TabLayout() {
         name="CalendarTab"
         options={{
           title: "Calendar",
+          headerShown: true,
+          headerTitle: "",
+          headerShadowVisible: false,
+          headerStyle: {
+            backgroundColor: Colors.bg,
+          },
           tabBarIcon: ({ focused }) => (
             <Image
               source={
@@ -99,6 +127,7 @@ export default function TabLayout() {
           title: "Profile",
           headerShown: true,
           headerTitle: "",
+
           headerStyle: {
             backgroundColor: Colors.bg,
           },
@@ -109,20 +138,12 @@ export default function TabLayout() {
             fontWeight: "600",
             color: Colors.text,
           },
-          headerLeft: () => (
-            <TouchableOpacity style={styles.headerButton} onPress={() => navigateScreen(Routes.homeTab)}>
-              <Image
-                source={require("../../assets/icons/logo.png")}
-                style={styles.headerIcon}
-              />
-            </TouchableOpacity>
-          ),
           headerRight: () => (
             <TouchableOpacity
               onPress={() => router.replace("/(tabs)/HomeTab")}
               style={[styles.headerButton, styles.closeButton]}
             >
-              <XMarkIcon size={20} color={Colors.text} />
+              <XMarkIcon size={16} color={Colors.text} />
             </TouchableOpacity>
           ),
           tabBarIcon: ({ focused }) => (

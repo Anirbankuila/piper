@@ -7,7 +7,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -16,7 +15,6 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Routes, { navigateScreen } from "../common/Routes";
-import Header from "../components/Header/Header";
 import PiperModal from "../components/PiperModal/PiperModal";
 import PiperSearch from "../components/PiperSearch/PiperSearch";
 
@@ -42,18 +40,7 @@ const PiperTab = () => {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
-          <StatusBar
-            barStyle="dark-content"
-            backgroundColor="#FFF3E9"
-          />
-          <View
-            style={{
-              paddingTop: insets.top - 10,
-              backgroundColor: Colors.surface_bg,
-            }}
-          >
-            <Header backgroundColor={Colors.surface_bg} />
-          </View>
+          {/* <StatusBar barStyle="dark-content" backgroundColor="#FFF3E9" /> */}
 
           <View style={styles.chatHistory}>
             <TouchableOpacity onPress={() => navigateScreen(Routes.chatList)}>
@@ -113,7 +100,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.surface_bg,
   },
   chatHistory: {
-    padding: 24,
+    padding: 15,
     borderBottomWidth: 1,
     borderBottomColor: Colors.strokeColor,
   },
@@ -122,7 +109,7 @@ const styles = StyleSheet.create({
   },
   chartTop: {
     paddingHorizontal: 24,
-    marginBottom:30
+    marginBottom: 30,
   },
   piperImg: {
     width: 133,

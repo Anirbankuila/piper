@@ -17,14 +17,14 @@ const Styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    fontFamily: Fonts.semiBold,
+    fontFamily: Fonts.SemiBold,
     marginBottom: 10,
     color: "#fff", // text stands out on background
   },
   subtitle: {
     fontSize: 15,
-    fontFamily: Fonts.medium,
-    color: "#fff",
+    fontFamily: Fonts.Medium,
+    color: "#FFFFFF",
     marginBottom: 30,
   },
 });

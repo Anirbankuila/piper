@@ -1,13 +1,11 @@
 import { Medication } from "@/app/common/Interface/Medication";
 import { primaryTabs } from "@/app/common/primaryTabs";
 import CustomBottomTab from "@/app/components/CustomBottomTab/CustomBottomTab";
-import Header from "@/app/components/Header/Header";
 import Searchbar from "@/app/components/Searchbar/Searchbar";
 import { Colors } from "@/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
 import dayjs from "dayjs";
 import { Image, ImageBackground } from "expo-image";
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
@@ -84,42 +82,28 @@ const Medicine = () => {
         contentContainerStyle={Styles.container}
         showsVerticalScrollIndicator={false}
       >
-        <StatusBar
-          backgroundColor={Colors.surface_light_pitch}
-          translucent={true}
-        />
-        <View
-          style={[
-            Styles.headerWrapper,
-            {
-              paddingTop: insets.top - 10,
-            },
-          ]}
+        <ImageBackground
+          source={require("../../../assets/images/medicationbg.png")}
+          style={Styles.piperIntroContainer}
+          contentFit="cover"
         >
-          <Header backgroundColor={Colors.surface_light_pitch} />
-          <ImageBackground
-            source={require("../../../assets/images/medicationbg.png")}
-            style={Styles.piperIntroContainer}
-            contentFit="cover"
-          >
-            <Image
-              source={require("../../../assets/images/alexa.png")}
-              style={Styles.alexPersonalImg}
-            />
-            <View style={Styles.messageWrapper}>
-              <View style={Styles.messageBox}>
-                <Text style={Styles.title}>
-                  Track and Manage Medications in One Spot
-                </Text>
-                <Text style={Styles.subtitle}>
-                  Start by adding medicines here, I can set reminders to take
-                  them or refill them.
-                </Text>
-              </View>
-              <View style={Styles.pointer} />
+          <Image
+            source={require("../../../assets/images/alexa.png")}
+            style={Styles.alexPersonalImg}
+          />
+          <View style={Styles.messageWrapper}>
+            <View style={Styles.messageBox}>
+              <Text style={Styles.title}>
+                Track and Manage Medications in One Spot
+              </Text>
+              <Text style={Styles.subtitle}>
+                Start by adding medicines here, I can set reminders to take them
+                or refill them.
+              </Text>
             </View>
-          </ImageBackground>
-        </View>
+            <View style={Styles.pointer} />
+          </View>
+        </ImageBackground>
         <View style={Styles.mainContent}>
           <Searchbar
             placeholderText="Search Medicine"

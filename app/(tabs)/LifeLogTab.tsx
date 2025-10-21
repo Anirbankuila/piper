@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import {
   Image,
   ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -14,7 +13,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Routes, { navigateScreen } from "../common/Routes";
 import AskPiperInput from "../components/AskPiperInput/AskPiperInput";
 import CommonButton from "../components/CommonButton/CommonButton";
-import Header from "../components/Header/Header";
 import PiperModal from "../components/PiperModal/PiperModal";
 import CustomRadio from "../components/Radiobutton/Radiobutton";
 const LifeLogTab = () => {
@@ -54,13 +52,10 @@ const LifeLogTab = () => {
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <StatusBar
+      {/* <StatusBar
         barStyle="dark-content" // text/icons will be dark (black/gray)
         backgroundColor="#FFF3E9" // same as your top background
-      />
-      <View style={{ paddingTop: insets.top - 10, backgroundColor: "#FFF3E9" }}>
-        <Header backgroundColor="#FFF3E9" />
-      </View>
+      /> */}
       <View style={styles.topSec}>
         <View style={styles.topSecLeft}>
           <Text style={styles.topSecHeading}>
@@ -134,13 +129,12 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.bg,
   },
   topSec: {
-    backgroundColor:"#FFF3E9",
+    backgroundColor: "#FFF3E9",
     position: "relative",
-    marginTop: -5,
     width: "100%",
-    flexDirection:'row',
-    alignItems:'center',
-    paddingRight:30
+    flexDirection: "row",
+    alignItems: "center",
+    paddingRight: 30,
   },
   topSecLeft: {
     position: "relative",
@@ -150,9 +144,9 @@ const styles = StyleSheet.create({
   topBg: {
     width: "30%",
     height: 150,
-    textAlign:'center',
-    justifyContent:'center',
-    marginRight:30
+    textAlign: "center",
+    justifyContent: "center",
+    marginRight: 30,
   },
   topSecHeading: {
     fontSize: 20,
@@ -188,7 +182,6 @@ const styles = StyleSheet.create({
   icon: {
     width: 24,
     height: 24,
-    
   },
   eachItemTitle: {
     fontSize: 12,

@@ -50,8 +50,8 @@ export default function Index() {
         >
           <Text style={Styles.title}>Hi, I’m Piper!</Text>
           <Text style={Styles.subtitle}>
-            I am the health and care concierge for parents of neurodiverse kids
-            and teens, powered by AI.
+            I am the health and education concierge for parents of neurodiverse
+            kids and teens, powered by AI.
           </Text>
 
           <CommonButton
