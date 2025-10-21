@@ -388,7 +388,7 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.Medium,
     marginTop: 2,
     minHeight: 24,
-    height: 32,
+    height: 40,
   },
   cardBtnHeading: {
     fontSize: 20,
