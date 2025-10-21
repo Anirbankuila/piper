@@ -124,7 +124,7 @@ export default function HomeTab() {
               </View>
               <View style={styles.cardCountSection}>
                 <Text style={styles.cardBtnHeading}>
-                  21<Text style={styles.cardSubText}> uploaded docs</Text>
+                  21<Text style={styles.cardSubText}> Uploaded docs</Text>
                 </Text>
               </View>
 
@@ -153,7 +153,7 @@ export default function HomeTab() {
               <View style={[styles.evencardCountSection]}>
                 <Text style={styles.cardBtnHeading}>
                   10
-                  <Text style={styles.cardSubText}> moments logged</Text>
+                  <Text style={styles.cardSubText}> View Progress</Text>
                 </Text>
               </View>
             </TouchableOpacity>
@@ -179,7 +179,7 @@ export default function HomeTab() {
               <View style={[styles.evencardCountSection]}>
                 <Text style={styles.cardBtnHeading}>
                   3
-                  <Text style={styles.cardSubText}> currently taking </Text>
+                  <Text style={styles.cardSubText}> Currently taking </Text>
                 </Text>
               </View>
 
@@ -208,7 +208,7 @@ export default function HomeTab() {
               </View>
               <View style={styles.cardCountSection}>
                 <Text style={styles.cardBtnHeading}>
-                  12<Text style={styles.cardSubText}> moments logged</Text>
+                  12<Text style={styles.cardSubText}> Logged</Text>
                 </Text>
               </View>
             </TouchableOpacity>

@@ -41,6 +41,7 @@ export default function ADHDTrackingChart() {
 
     return (
         <View style={styles.container}>
+            <Text style={styles.sectionTitle}>ADHD Questionnaires</Text>
             <View style={styles.legend}>
                 <View style={[styles.legendItem]}>
                     <View style={[styles.legendDot, { backgroundColor: "#01BA38" }]} />
@@ -56,17 +57,11 @@ export default function ADHDTrackingChart() {
                 </View>
             </View>
             {/* === MONTHS AT TOP === */}
-            <View style={styles.monthRow}>
-                {months.map((m) => (
-                    <Text key={m} style={styles.monthText}>
-                        {m}
-                    </Text>
-                ))}
-            </View>
+
 
             {/* === SECTION 1: ADHD QUESTIONNAIRES === */}
             <View style={styles.adhdWrap}>
-                <Text style={styles.sectionTitle}>ADHD Questionnaires</Text>
+
 
                 <View style={styles.row}>
                     {months.map((m) => {
@@ -78,29 +73,46 @@ export default function ADHDTrackingChart() {
                         );
                     })}
                 </View>
+                <View style={styles.monthRow}>
+                    {months.map((m) => (
+                        <Text key={m} style={styles.monthText}>
+                            {m}
+                        </Text>
+                    ))}
+                </View>
             </View>
+
 
             {/* === SECTION 2: MEDICATIONS === */}
             <View style={styles.adhdWrap}>
                 <Text style={styles.sectionTitle}>Medications</Text>
+                <View style={[styles.monthRow,]}>
+                    {months.map((m) => (
+                        <Text key={m} style={styles.monthText}>
+                            {m}
+                        </Text>
+                    ))}
+                </View>
                 {medications.map((med) => {
                     const startIdx = getMonthIndex(med.start);
                     const endIdx = getMonthIndex(med.end);
                     const width = (endIdx - startIdx + 1) * 50; // each month cell ≈ 50px wide
 
                     return (
-                        <View key={med.name} style={styles.row}>
-                            <View style={{ width: startIdx * 70 }} />
+                        <View key={med.name} style={[styles.row,]}>
+                            <View style={{ width: startIdx * 80 }} />
                             <View style={[styles.bar, { backgroundColor: med.color, width, borderColor: med.borderColor }]}>
                                 <Text style={[styles.barText, { color: med.textColor }]}>{med.name}</Text>
                             </View>
                         </View>
                     );
                 })}
+
             </View>
 
             {/* === SECTION 3: THERAPIES === */}
             <Text style={styles.sectionTitle}>Therapies</Text>
+            <Text style={[styles.therapyLabel, {}]}>Speech Therapy</Text>
 
             {/* --- Speech Therapy Line --- */}
             <View style={styles.lineContainer}>
@@ -115,7 +127,7 @@ export default function ADHDTrackingChart() {
                     ))}
                 </View>
             </View>
-            <Text style={styles.therapyLabel}>Speech Therapy</Text>
+
 
             {/* --- Occupational Therapy Line --- */}
             <View style={styles.lineContainer}>
@@ -150,14 +162,15 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.surface_light_purple,
         marginHorizontal: 12,
         borderRadius: 10,
-        marginTop: 10
+        marginTop: 10,
+        paddingTop:5
 
     },
     legend: {
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: 8,
+        marginBottom: 18,
     },
     legendItem: {
         flexDirection: "row",
@@ -176,7 +189,7 @@ const styles = StyleSheet.create({
     },
     monthRow: {
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: 'space-between',
         marginBottom: 10,
     },
     monthText: {
@@ -193,17 +206,17 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
         borderRadius: 4,
         marginVertical: 10,
-        justifyContent:'center',
-        marginHorizontal:'auto'
-        
+        justifyContent: 'center',
+        marginHorizontal: 'auto'
+
     },
     adhdWrap: {
-        borderBottomWidth:0.7,
+        borderBottomWidth: 0.7,
         borderStyle: "dashed",
         borderColor: Colors.primary,
         // alignItems: 'flex-start',
         paddingBottom: 10,
-        width:'100%'
+        width: '100%'
     },
     row: {
         flexDirection: "row",
@@ -212,7 +225,7 @@ const styles = StyleSheet.create({
 
     },
     cell: {
-        width: 60,
+        width: 64,
         alignItems: "center",
     },
     dot: {
@@ -245,6 +258,9 @@ const styles = StyleSheet.create({
         fontSize: 10,
         marginBottom: 5,
         fontFamily: Fonts.Medium,
+        textAlign: 'left',
+        marginRight: 'auto',
+        marginLeft:5
     },
     lineContainer: {
         position: "relative",
