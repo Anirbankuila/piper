@@ -53,10 +53,10 @@ const AllLogs = () => {
           <View style={Styles.topSec}>
             <View style={Styles.topSecLeft}>
               <Text style={Styles.topSecHeading}>
-                Real life, logged by you, {"\n"}remembered by me.
+                Real life, logged by you, remembered by me.
               </Text>
               <Text style={Styles.para}>
-                Click any life log below to edit or {"\n"}share with your care
+                Click any life log below to edit or share with your care
                 team.
               </Text>
             </View>

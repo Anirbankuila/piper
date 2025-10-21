@@ -2,6 +2,7 @@ import { Colors, Fonts } from "@/constants/theme";
 import * as ImagePicker from "expo-image-picker";
 import React, { useState } from "react";
 import {
+  Dimensions,
   Image,
   ScrollView,
   StyleSheet,
@@ -15,6 +16,8 @@ import AskPiperInput from "../components/AskPiperInput/AskPiperInput";
 import CommonButton from "../components/CommonButton/CommonButton";
 import PiperModal from "../components/PiperModal/PiperModal";
 import CustomRadio from "../components/Radiobutton/Radiobutton";
+const { width , height } = Dimensions.get("window");
+
 const LifeLogTab = () => {
   const insets = useSafeAreaInsets();
   console.log(insets);
@@ -139,14 +142,15 @@ const styles = StyleSheet.create({
   topSecLeft: {
     position: "relative",
     padding: 24,
-    width: "70%",
+    width: width * 0.7, // ✅ 70% of the screen width dynamically
   },
   topBg: {
-    width: "30%",
-    height: 150,
-    textAlign: "center",
+    width: width * 0.3,       // 30% of screen width
+    height: height * 0.2,     // 20% of screen height (adjust as needed)
     justifyContent: "center",
-    marginRight: 30,
+    alignItems: "center",     // better for centering content
+    marginRight: width * 0.08, // 8% of screen width instead of fixed 30px
+    textAlign: "center",
   },
   topSecHeading: {
     fontSize: 20,

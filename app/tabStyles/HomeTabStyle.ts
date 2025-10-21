@@ -145,7 +145,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 1,
     width: width,
     // paddingHorizontal: 30,
   },
@@ -156,14 +155,14 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   alexPersonalImg: {
-    width: 240,
-    height: 180,
+    width: width * 0.6,     // 60% of screen width
+    height: width * 0.45,   // proportional height
     resizeMode: "contain",
   },
 
   piperDetailsCard: {
     // marginTop: 20,
-    marginRight: 20,
+    marginRight: 30,
     borderRadius: 15,
     padding: 12,
     textAlign: "center",

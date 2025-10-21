@@ -79,10 +79,10 @@ export default function LogDetails() {
         <View style={Styles.topSec}>
           <View style={Styles.topSecLeft}>
             <Text style={Styles.topSecHeading}>
-              Morning meds didn’t {"\n"}go as planned.
+              Morning meds didn’t go as planned.
             </Text>
             <Text style={Styles.para}>
-              That sounds like a hard start {"\n"}to the day. I’ve got it
+              That sounds like a hard start to the day. I’ve got it
               logged.
             </Text>
           </View>

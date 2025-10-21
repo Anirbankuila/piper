@@ -1,6 +1,6 @@
 import { Colors, Fonts } from "@/constants/theme";
 import { Dimensions, StyleSheet } from "react-native";
-const { width } = Dimensions.get("window");
+const { width , height } = Dimensions.get("window");
 const Styles = StyleSheet.create({
   container: {
     flexGrow: 1,
@@ -15,17 +15,17 @@ const Styles = StyleSheet.create({
     justifyContent: "center",
     width: width,
     paddingHorizontal: 22,
-    paddingTop:50,
-    paddingBottom:60
+    paddingTop: 50,
+    paddingBottom: 60
   },
   alexPersonalImg: {
-    position:'absolute',
-    left:0,    
-    bottom:0,
-    width: 196,
-    height: 190,
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    width: width * 0.48, // ✅ roughly 45% of screen width
+    height: height * 0.22, // ✅ around 22% of screen height
     resizeMode: "contain",
-    zIndex:9
+    zIndex: 9,
   },
   piperCard: {
     borderRadius: 20,
@@ -37,36 +37,35 @@ const Styles = StyleSheet.create({
     alignItems: "center",
   },
   messageWrapper: {
-    flex: 1,
-    position: "relative",
-    width:'100%',
-    justifyContent:'flex-end',
-    marginLeft:'auto'
+    width: "100%",
+    justifyContent: "flex-end",
+    alignItems: "flex-end", // ✅ ensures message aligns right
+    marginVertical: 8,
+  },
 
-  },
   messageBox: {
-    backgroundColor: "white",
-    padding: 12,
-    paddingLeft:20,
-    marginLeft:'auto',
-    width:'60%',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    borderBottomEndRadius: 10,
+    backgroundColor: "#fff",
+    paddingVertical: 10,
+    marginTop:10,
+    paddingHorizontal: 16,
+    maxWidth: width * 0.55, // ✅ responsive
+   borderRadius: 10,
+    position: "relative", // ✅ important for pointer positioning
   },
+
   pointer: {
     position: "absolute",
-    bottom: -8,
+    bottom: -18, // ✅ below the message box
+    left: -5, // ✅ place pointer towards bottom-right
     width: 0,
-    left: 0,
     height: 0,
-    borderLeftWidth: 10,
-    borderRightWidth: 10,
-    borderTopWidth: 10,
+    borderLeftWidth: 8,
+    borderRightWidth: 8,
+    borderTopWidth: 8,
     borderLeftColor: "transparent",
     borderRightColor: "transparent",
-    borderTopColor: "white", // same as message box background
-    transform: [{ rotate: "160deg" }], // gives diagonal shape
+    borderTopColor: "#fff", // ✅ same as messageBox background
+    transform: [{ rotate: "180deg" }], // ✅ ensures pointer faces down
   },
   title: {
     fontSize: 14,
@@ -192,7 +191,7 @@ const Styles = StyleSheet.create({
     marginRight: 5,
   },
   activeFilterButton: { backgroundColor: Colors.black },
-  filterText: {  fontFamily: Fonts.Medium },
+  filterText: { fontFamily: Fonts.Medium },
   activeFilterText: { color: Colors.bg },
   noDataText: {
     textAlign: "center",

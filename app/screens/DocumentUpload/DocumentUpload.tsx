@@ -129,7 +129,7 @@ const UploadDoc = () => {
                 </View>
                 <Text style={Styles.catTitle}>School</Text>
               </TouchableOpacity>
-               <TouchableOpacity
+               {/* <TouchableOpacity
                 style={Styles.eachDoc}
                 onPress={() => navigateScreen(Routes.allergyDocuments)}
               >
@@ -167,7 +167,7 @@ const UploadDoc = () => {
                   />
                 </View>
                 <Text style={Styles.catTitle}>Therapy</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               <TouchableOpacity style={Styles.eachDoc}>
                 <View style={Styles.eachDocIcon}>
                   <Ionicons name="add" size={28} color="#000" />

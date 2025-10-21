@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { Colors, Fonts } from "../../../constants/theme";
-
+const { width } = Dimensions.get("window");
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -22,8 +22,13 @@ const Styles = StyleSheet.create({
   },
   topSecLeft: {
     position: "relative",
+<<<<<<< Updated upstream
     paddingLeft: 10,
     width: "78%",
+=======
+    paddingLeft: 24,
+    width: width * 0.7, // same as "80%" but based on screen width
+>>>>>>> Stashed changes
   },
   topBg: {
     width: 157,

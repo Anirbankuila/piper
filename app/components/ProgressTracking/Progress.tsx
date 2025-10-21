@@ -76,7 +76,7 @@ const Progress = () => {
         <View style={styles.progressBanner}>
           <View style={styles.heading}>
             <Image
-              source={require("../../../assets/icons/pipersmall.png")}
+              source={require("../../../assets/images/alex-personal.png")}
               style={styles.headingImg}
             />
             <Text style={styles.title}>How Johnny is doing</Text>
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.surface_bg,
     padding: 16,
     marginBottom: 12,
-    alignItems: "center",
+    // alignItems: "center",
     elevation: 1,
   },
   heading: {
@@ -187,8 +187,9 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
   },
   headingImg: {
-    height: 28,
-    width: 28,
+    height: 32,
+    width: 32,
+    borderRadius:16,
   },
   title: {
     color: Colors.purple_text,

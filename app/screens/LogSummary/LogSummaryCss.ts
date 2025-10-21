@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { Colors, Fonts } from "../../../constants/theme";
-
+const { width } = Dimensions.get("window");
 const Styles = StyleSheet.create({
   container: {
     flexGrow: 1,
@@ -19,10 +19,10 @@ const Styles = StyleSheet.create({
     alignItems:'center',
     paddingVertical:25
   },
-  topSecLeft: {
+   topSecLeft: {
     position: "relative",
     paddingLeft: 24,
-    width: "80%",
+    width: width * 0.60, // same as "80%" but based on screen width
   },
   topBg: {
     width: 157,
