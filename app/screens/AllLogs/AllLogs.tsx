@@ -1,5 +1,6 @@
 import { primaryTabs } from "@/app/common/primaryTabs";
 import Routes, { navigateScreen } from "@/app/common/Routes";
+import CommonButton from "@/app/components/CommonButton/CommonButton";
 import CustomBottomTab from "@/app/components/CustomBottomTab/CustomBottomTab";
 import { Colors } from "@/constants/theme";
 import React from "react";
@@ -107,6 +108,15 @@ const AllLogs = () => {
             ))}
           </View>
         </View>
+        <CommonButton
+          onPress={() => {
+            navigateScreen(Routes.lifeLogTab);
+          }}
+          title="Add Log"
+          backgroundColor={Colors.black}
+          style={{ marginHorizontal: 20 }}
+          textStyle={{ color: Colors.bg }}
+        />
       </ScrollView>
       <CustomBottomTab activeTab="LifeLog" tabs={primaryTabs} />
     </>
@@ -114,5 +124,3 @@ const AllLogs = () => {
 };
 
 export default AllLogs;
-
-

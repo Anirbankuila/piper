@@ -2,7 +2,8 @@ import { IMedicineDetails } from "@/app/common/Interface/Medication";
 import CommonButton from "@/app/components/CommonButton/CommonButton";
 import CommonInput from "@/app/components/CommonInput/CommonInput";
 import DatePicker from "@/app/components/Datepicker/DatePicker";
-import { Colors } from "@/constants/theme";
+import GenderSelect from "@/app/components/GenderSelect/GenderSelect";
+import { Colors, Fonts } from "@/constants/theme";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
@@ -49,7 +50,19 @@ const MedicineDetails = () => {
             onChangeField("remainder", dateTime);
           }}
         />
-        <CommonInput
+        <GenderSelect
+          onChange={() => {}}
+          placeHolderText="Dosage Amount"
+          options={["500mg", "250mg", "300mg"]}
+          style={{ fontFamily: Fonts.Regular, fontSize: 14 }}
+        />
+        <GenderSelect
+          onChange={() => {}}
+          placeHolderText="Choose Daily"
+          options={["After Lunch", "Morning", "Before Sleeping"]}
+          style={{ fontFamily: Fonts.Regular, fontSize: 14 }}
+        />
+        {/* <CommonInput
           onChangeText={(text) => {
             onChangeField("dosageAmount", text);
           }}
@@ -62,7 +75,7 @@ const MedicineDetails = () => {
           }}
           placeholder="Choose Daily"
           value={medicineDetailsForm.chooseDaily.toString()}
-        />
+        /> */}
         <DatePicker
           placeHolderText="Start Date"
           value={medicineDetailsForm.startDate}

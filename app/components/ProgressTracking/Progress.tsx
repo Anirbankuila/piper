@@ -183,7 +183,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     gap: 4,
     marginBottom: 15,
-    alignItems: "center",
+    alignSelf: "flex-start",
+    paddingLeft: 5,
   },
   headingImg: {
     height: 28,

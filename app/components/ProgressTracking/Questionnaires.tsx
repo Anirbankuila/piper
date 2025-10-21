@@ -1,10 +1,9 @@
 import { ReminderCardItem } from "@/app/common/Interface/Medication";
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import { Colors, Fonts } from "@/constants/theme";
-import { Image } from "expo-image";
+import { Image, ImageBackground } from "expo-image";
 import React from "react";
 import {
-  ImageBackground,
   ScrollView,
   StyleSheet,
   Text,
@@ -84,16 +83,23 @@ const Questionnaires = () => {
       showsVerticalScrollIndicator={false}
     >
       <ImageBackground
-        source={require("../../../assets/images/questionnaires-bg.png")}
-        style={{ height: 180, paddingHorizontal: 10 }}
-        resizeMode="cover"
+        source={require("../../../assets/images/questionnaire-banner.png")}
+        style={{ height: 180, paddingHorizontal: 8 }}
+        contentFit="cover"
       >
-        <View style={styles.contentWrapper}>
+        <View style={[styles.contentWrapper]}>
           <Text style={styles.title}>Tracking what matters!</Text>
           <Text style={styles.description}>
             See your child’s progress over time, what’s working and what’s not.
           </Text>
         </View>
+        {/* <View style={{ flex: 1 }}>
+          <Image
+            source={require("../../../assets/images/talktodocimg.png")}
+            style={{ height: 180, width: 150 }}
+            contentFit="cover"
+          />
+        </View> */}
       </ImageBackground>
       <View style={styles.filteringSection}>
         <Text style={styles.questionHeaderText}>
@@ -253,14 +259,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: Fonts.Bold,
     lineHeight: 25,
+    marginBottom: 4,
   },
   contentWrapper: {
     justifyContent: "center",
-    width: "80%",
+    width: "72%",
     textAlign: "center",
     flex: 1,
     borderRadius: 8,
-    paddingLeft: 2,
+    top: -5,
   },
   description: {
     fontSize: 14,
@@ -289,7 +296,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 14,
     paddingVertical: 6,
     paddingHorizontal: 12,
-    backgroundColor: Colors.surface_light_purple,
+    backgroundColor: Colors.surface_light_pitch,
     borderRadius: 8,
     alignItems: "center",
   },
@@ -352,7 +359,7 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   filterButton: {
-    backgroundColor: Colors.surface_light_purple,
+    backgroundColor: Colors.surface_light_pitch,
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 8,
