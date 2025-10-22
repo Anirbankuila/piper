@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
 import { Colors, Fonts } from "../../../constants/theme";
-const { width , height } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 const Styles = StyleSheet.create({
   container: {
     flexGrow: 1,
@@ -11,28 +11,29 @@ const Styles = StyleSheet.create({
     position: "relative",
   },
   topSec: {
-    backgroundColor:Colors.surface_light_pitch,
+    backgroundColor: Colors.surface_light_pitch,
     position: "relative",
     marginTop: -5,
     width: "100%",
-    flexDirection:'row',
-    alignItems:'center',
-    paddingVertical:25
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 25,
+    overflow: "hidden",
   },
-   topSecLeft: {
+  topSecLeft: {
     position: "relative",
     paddingLeft: 24,
-    width: width * 0.60, // same as "80%" but based on screen width
+    width: width * 0.6, // same as "80%" but based on screen width
   },
   topBg: {
-    width: width * 0.40,        // ~35% of screen width
-    height: height * 0.22,      // ~18% of screen height
-    textAlign: 'center',
+    width: width * 0.4, // ~35% of screen width
+    height: height * 0.22, // ~18% of screen height
+    textAlign: "center",
     justifyContent: "flex-end",
-    position: 'absolute',
-    alignItems:'flex-end',
+    position: "absolute",
+    alignItems: "flex-end",
     right: 0,
-    bottom: -height * 0.03,   
+    bottom: -height * 0.03,
   },
   topSecHeading: {
     fontSize: 20,

@@ -20,11 +20,6 @@ const screens = [
     name: Routes.logIn,
     options: {
       headerShown: false,
-      title: "",
-      headerBackTitleVisible: false,
-      headerTransparent: true, // header overlays the screen
-      headerTintColor: "#000", // back button color
-      headerShadowVisible: false,
     },
   },
   {
@@ -285,7 +280,7 @@ const screens = [
     options: {
       headerShown: true,
       title: "Document Upload", // Title in header
-      headerBackTitle: "", // Back button text
+      headerBackTitle: "Back", // Back button text
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow
       headerStyle: {
@@ -303,7 +298,7 @@ const screens = [
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow
       headerStyle: {
-        backgroundColor: "transparent", // 👈 header er background color
+        backgroundColor: Colors.bg, // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
     },
@@ -313,11 +308,11 @@ const screens = [
     options: {
       headerShown: true,
       title: "Document Details", // Title in header
-      headerBackTitle: "", // Back button text
+      headerBackTitle: "Back", // Back button text
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow
       headerStyle: {
-        backgroundColor: "transparent", // 👈 header er background color
+        backgroundColor: Colors.bg, // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
     },
@@ -338,14 +333,6 @@ const screens = [
     name: Routes.documentSuccess,
     options: {
       headerShown: false,
-      title: "Document Details", // Title in header
-      headerBackTitle: "", // Back button text
-      headerBackTitleVisible: false, // Make sure it's visible
-      headerShadowVisible: false, // Remove bottom shadow
-      headerStyle: {
-        backgroundColor: "transparent", // 👈 header er background color
-      },
-      headerTintColor: "#000", // 👈 text & back button color
     },
   },
   {
@@ -357,7 +344,7 @@ const screens = [
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow
       headerStyle: {
-        backgroundColor: "transparent", // 👈 header er background color
+        backgroundColor: Colors.bg, // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
     },
@@ -367,11 +354,11 @@ const screens = [
     options: {
       headerShown: true,
       title: "School Documents", // Title in header
-      headerBackTitle: "", // Back button text
+      headerBackTitle: "Back", // Back button text
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow
       headerStyle: {
-        backgroundColor: "transparent", // 👈 header er background color
+        backgroundColor: Colors.bg, // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
     },
@@ -399,7 +386,7 @@ const screens = [
       headerBackTitleVisible: true, // Make sure it's visible
       headerShadowVisible: false, // Remove bottom shadow
       headerStyle: {
-        backgroundColor: "transparent", // 👈 header er background color
+        backgroundColor: Colors.bg, // 👈 header er background color
       },
       headerTintColor: "#000", // 👈 text & back button color
     },
@@ -506,14 +493,6 @@ const screens = [
     name: Routes.shareSuccess,
     options: {
       headerShown: false,
-      title: "School Documents", // Title in header
-      headerBackTitle: "", // Back button text
-      headerBackTitleVisible: false, // Make sure it's visible
-      headerShadowVisible: false, // Remove bottom shadow
-      headerStyle: {
-        backgroundColor: "transparent", // 👈 header er background color
-      },
-      headerTintColor: "#000", // 👈 text & back button color
     },
   },
   {
@@ -525,7 +504,7 @@ const screens = [
       headerBackTitleVisible: false,
       headerShadowVisible: false,
       headerStyle: {
-        backgroundColor: "transparent",
+        backgroundColor: Colors.bg,
       },
       headerTintColor: "#000",
     },
@@ -574,13 +553,6 @@ const screens = [
     name: Routes.medicationNudge,
     options: {
       headerShown: false,
-      title: "", // Title in header
-      headerBackTitle: "", // Back button text
-      headerBackTitleVisible: false, // Make sure it's visible
-      headerShadowVisible: false, // Remove bottom shadow
-      headerStyle: {
-        backgroundColor: "transparent", // 👈 header er background color
-      },
     },
   },
   {
@@ -669,13 +641,6 @@ const screens = [
     name: Routes.addChildSuccess,
     options: {
       headerShown: false,
-      title: "", // Title in header
-      headerBackTitle: "", // Back button text
-      headerBackTitleVisible: true, // Make sure it's visible
-      headerShadowVisible: false, // Remove bottom shadow
-      headerStyle: {
-        backgroundColor: Colors.warm, // 👈 header er background color
-      },
     },
   },
   {
@@ -714,14 +679,6 @@ const screens = [
     name: Routes.reportShareSuccess,
     options: {
       headerShown: false,
-      title: "", // Title in header
-      headerBackTitle: "", // Back button text
-      headerBackTitleVisible: false, // Make sure it's visible
-      headerShadowVisible: false, // Remove bottom shadow
-      headerStyle: {
-        backgroundColor: "transparent", // 👈 header er background color
-      },
-      headerTintColor: "#000", // 👈 text & back button color
     },
   },
   {
@@ -748,14 +705,6 @@ const screens = [
     name: Routes.progressTracking,
     options: {
       headerShown: false,
-      title: "", // Title in header
-      headerBackTitle: "", // Back button text
-      headerBackTitleVisible: false, // Make sure it's visible
-      headerShadowVisible: false, // Remove bottom shadow
-      headerStyle: {
-        backgroundColor: "transparent", // 👈 header er background color
-      },
-      statusBarStyle: "dark" as const,
     },
   },
   {

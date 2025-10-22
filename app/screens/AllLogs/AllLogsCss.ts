@@ -19,32 +19,33 @@ const Styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 25,
+    overflow: "hidden",
   },
   topSecLeft: {
     position: "relative",
     paddingLeft: 24,
-    width: width * 0.60,
+    width: width * 0.6,
   },
   topBg: {
-    width: width * 0.42,        // ~35% of screen width
-    height: height * 0.25,      // ~18% of screen height
-    textAlign: 'center',
+    width: width * 0.42, // ~35% of screen width
+    height: height * 0.25, // ~18% of screen height
+    textAlign: "center",
     justifyContent: "flex-end",
-    position: 'absolute',
-    alignItems:'flex-end',
+    position: "absolute",
+    alignItems: "flex-end",
     right: 0,
-    bottom: -height * 0.04,   
+    bottom: -height * 0.04,
   },
-  
-  // topBg: { 
-  //   width: 157, 
-  //   height: 140, 
-  //   textAlign: "center", 
-  //   justifyContent: "center", 
-  //   position: "absolute", 
-  //   right: 0, 
-  //   bottom: 0, 
-  //   marginLeft: 5, 
+
+  // topBg: {
+  //   width: 157,
+  //   height: 140,
+  //   textAlign: "center",
+  //   justifyContent: "center",
+  //   position: "absolute",
+  //   right: 0,
+  //   bottom: 0,
+  //   marginLeft: 5,
   // },
   topSecHeading: {
     fontSize: 20,
@@ -98,7 +99,7 @@ const Styles = StyleSheet.create({
     padding: 4,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent:'flex-start',
+    justifyContent: "flex-start",
     gap: 5,
     width: 85,
     marginTop: 10,
