@@ -51,7 +51,7 @@ const AllLogs = () => {
       >
         <View style={Styles.content}>
           <View style={Styles.topSec}>
-            <View style={Styles.topSecLeft}>
+            {/* <View style={Styles.topSecLeft}>
               <Text style={Styles.topSecHeading}>
                 Real life, logged by you, remembered by me.
               </Text>
@@ -64,6 +64,15 @@ const AllLogs = () => {
               source={require("../../../assets/images/alllogimg.png")}
               style={Styles.topBg}
               resizeMode="contain"
+            /> */}
+            <Image
+              source={require("../../../assets/images/all-logs-banner-image.png")}
+              resizeMode="cover"
+              style={{
+                width: "100%",
+                height: 136, // adjust banner height as needed
+                resizeMode: "cover",
+              }}
             />
           </View>
 

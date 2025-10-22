@@ -5,8 +5,16 @@ import { Colors } from "@/constants/theme";
 import * as ImagePicker from "expo-image-picker";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect } from "react";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Styles from "./LogSummaryCss"; // 👈 external css import
+const { width, height } = Dimensions.get("window");
 const logs = [
   {
     id: "1",
@@ -77,21 +85,30 @@ export default function LogDetails() {
     >
       <View style={Styles.content}>
         <View style={Styles.topSec}>
-          <View style={Styles.topSecLeft}>
+          {/* <View style={Styles.topSecLeft}>
             <Text style={Styles.topSecHeading}>
               Morning meds didn’t go as planned.
             </Text>
             <Text style={Styles.para}>
-              That sounds like a hard start to the day. I’ve got it
-              logged.
+              That sounds like a hard start to the day. I’ve got it logged.
             </Text>
           </View>
           <Image
             source={require("../../../assets/images/logsummarybg.png")}
             style={Styles.topBg}
-            resizeMode="contain"
+            resizeMode="cover"
+          /> */}
+          <Image
+            source={require("../../../assets/images/logsummary-banner-image.png")}
+            resizeMode="cover"
+            style={{
+              width: "98%",
+              height: 136, // adjust banner height as needed
+              resizeMode: "cover",
+            }}
           />
         </View>
+
         <View style={Styles.logsSummaryWrap}>
           <View style={Styles.logsSummary}>
             <Text style={Styles.summaryTitle}>Log Summary</Text>

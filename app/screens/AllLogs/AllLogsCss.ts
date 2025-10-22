@@ -1,6 +1,13 @@
 import { Dimensions, StyleSheet } from "react-native";
 import { Colors, Fonts } from "../../../constants/theme";
 const { width, height } = Dimensions.get("window");
+const BASE_WIDTH = 390;
+const BASE_HEIGHT = 844;
+
+// Horizontal and vertical scaling
+export const scale = (size: number) => (width / BASE_WIDTH) * size;
+export const verticalScale = (size: number) => (height / BASE_HEIGHT) * size;
+
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -13,50 +20,41 @@ const Styles = StyleSheet.create({
   },
   topSec: {
     backgroundColor: Colors.surface_light_pitch,
-    position: "relative",
-    marginTop: -5,
+    // position: "relative",
     width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 25,
-    overflow: "hidden",
+    // flexDirection: "row",
+    // alignItems: "center",
+    // paddingVertical: scale(25),
+    // overflow: "hidden",
   },
   topSecLeft: {
     position: "relative",
-    paddingLeft: 24,
-    width: width * 0.6,
+    padding: scale(15),
+    width: width * 0.7,
   },
   topBg: {
-    width: width * 0.42, // ~35% of screen width
-    height: height * 0.25, // ~18% of screen height
+    width: width * 0.42,
+    height: height * 0.22,
     textAlign: "center",
     justifyContent: "flex-end",
     position: "absolute",
     alignItems: "flex-end",
     right: 0,
-    bottom: -height * 0.04,
+    bottom: 0,
   },
-
-  // topBg: {
-  //   width: 157,
-  //   height: 140,
-  //   textAlign: "center",
-  //   justifyContent: "center",
-  //   position: "absolute",
-  //   right: 0,
-  //   bottom: 0,
-  //   marginLeft: 5,
-  // },
   topSecHeading: {
-    fontSize: 20,
+    fontSize: scale(19),
     fontFamily: Fonts.Bold,
     color: Colors.primary,
+    fontWeight: "600",
+    lineHeight: scale(25),
   },
   para: {
-    fontSize: 14,
+    fontSize: scale(14),
     fontFamily: Fonts.Regular,
     color: Colors.text,
-    marginTop: 5,
+    marginTop: verticalScale(4),
+    lineHeight: scale(17),
   },
   logWrapper: {
     position: "relative",

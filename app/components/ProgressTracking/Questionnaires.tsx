@@ -14,7 +14,12 @@ import {
 import CommonButton from "../CommonButton/CommonButton";
 import CustomToggle from "../CustomSwitch/CustomSwitch";
 const { width, height } = Dimensions.get("window");
+const BASE_WIDTH = 390;
+const BASE_HEIGHT = 844;
 
+// Horizontal and vertical scaling
+export const scale = (size: number) => (width / BASE_WIDTH) * size;
+export const verticalScale = (size: number) => (height / BASE_HEIGHT) * size;
 const reminders: ReminderCardItem[] = [
   {
     id: "1",
@@ -85,32 +90,26 @@ const Questionnaires = () => {
       contentContainerStyle={{ flexGrow: 1, paddingBottom: 10 }}
       showsVerticalScrollIndicator={false}
     >
-      {/* <ImageBackground
-        source={require("../../../assets/images/questionnaire-banner.png")}
-        style={[{ height: 180, paddingHorizontal: 8 }]}
-        contentFit="cover"
-      >
-        <View style={[styles.contentWrapper]}>
-          <Text style={styles.title}>Tracking what matters!</Text>
-          <Text style={styles.description}>
-            See your child’s progress over  time, what’s working and what’s not.
-          </Text>
-        </View>
-        
-      </ImageBackground> */}
       <View style={styles.topSec}>
-        <View style={styles.topSecLeft}>
-          <Text style={styles.topSecHeading}>
-            Tracking what matters!
-          </Text>
+        {/* <View style={styles.topSecLeft}>
+          <Text style={styles.topSecHeading}>Tracking what matters!</Text>
           <Text style={styles.para}>
-            See your child’s progress over  time, what’s working and what’s not.
+            See your child’s progress over time, what’s working and what’s not.
           </Text>
         </View>
         <Image
           source={require("../../../assets/images/questionarie.png")} // put your logo inside assets folder
           style={styles.topBg}
           contentFit="cover"
+        /> */}
+        <Image
+          source={require("../../../assets/images/questionnaire-banner-image.png")}
+          contentFit="cover"
+          style={{
+            width: "100%",
+            height: 136, // adjust banner height as needed
+            resizeMode: "cover",
+          }}
         />
       </View>
       <View style={styles.filteringSection}>
@@ -231,7 +230,7 @@ const Questionnaires = () => {
 
       <CommonButton
         title="Track something else"
-        onPress={() => { }}
+        onPress={() => {}}
         backgroundColor={Colors.black}
         textStyle={{ color: Colors.bg }}
         style={{ marginHorizontal: 20, marginVertical: 6 }}
@@ -275,45 +274,47 @@ const styles = StyleSheet.create({
   },
   contentWrapper: {
     justifyContent: "center",
-    width: width * 0.64,      // 72% of screen width dynamically
+    width: width * 0.64, // 72% of screen width dynamically
     textAlign: "center",
     flex: 1,
     borderRadius: 8,
-    top: -height * 0.006,     // small dynamic offset instead of fixed -5px
+    top: -height * 0.006, // small dynamic offset instead of fixed -5px
   },
   topSec: {
-    backgroundColor: "#FFF3E9",
-    position: "relative",
+    // backgroundColor: "#FFF3E9",
+    // position: "relative",
     width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-     paddingVertical: 20,
+    // flexDirection: "row",
+    // alignItems: "center",
+    // paddingVertical: verticalScale(20),
   },
   topSecLeft: {
     position: "relative",
-    padding: 24,
-    width: width * 0.62, // ✅ 70% of the screen width dynamically
+    padding: scale(24),
+    width: scale(width * 0.7), // ✅ 70% of the screen width dynamically
   },
   topBg: {
-    width: width * 0.44,       // 30% of screen width
-    height: height * 0.22,     // 20% of screen height (adjust as needed)
+    width: scale(width * 0.35), // 30% of screen width
+    height: verticalScale(height * 0.15), // 20% of screen height (adjust as needed)
     textAlign: "center",
     justifyContent: "flex-end",
-    position: 'absolute',
-    alignItems: 'flex-end',
+    position: "absolute",
+    alignItems: "flex-end",
     right: 0,
     bottom: 0,
   },
   topSecHeading: {
-    fontSize: 20,
+    fontSize: scale(19),
     fontFamily: Fonts.Bold,
     color: Colors.primary,
+    fontWeight: "600",
+    lineHeight: scale(25),
   },
   para: {
-    fontSize: 14,
+    fontSize: scale(14),
     fontFamily: Fonts.Regular,
     color: Colors.text,
-    marginTop: 5,
+    marginTop: verticalScale(4),
   },
   description: {
     fontSize: 14,

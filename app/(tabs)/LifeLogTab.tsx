@@ -10,17 +10,19 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Routes, { navigateScreen } from "../common/Routes";
 import AskPiperInput from "../components/AskPiperInput/AskPiperInput";
 import CommonButton from "../components/CommonButton/CommonButton";
 import PiperModal from "../components/PiperModal/PiperModal";
 import CustomRadio from "../components/Radiobutton/Radiobutton";
-const { width , height } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
+const BASE_WIDTH = 390;
+const BASE_HEIGHT = 844;
 
+// Horizontal and vertical scaling
+export const scale = (size: number) => (width / BASE_WIDTH) * size;
+export const verticalScale = (size: number) => (height / BASE_HEIGHT) * size;
 const LifeLogTab = () => {
-  const insets = useSafeAreaInsets();
-  console.log(insets);
   const [visible, setVisible] = useState(false);
   const [selectLog, setSelectLog] = useState<string | number>("");
 
@@ -55,15 +57,10 @@ const LifeLogTab = () => {
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      {/* <StatusBar
-        barStyle="dark-content" // text/icons will be dark (black/gray)
-        backgroundColor="#FFF3E9" // same as your top background
-      /> */}
       <View style={styles.topSec}>
-        <View style={styles.topSecLeft}>
-          <Text style={styles.topSecHeading}>
-            Big win? Hard day? Log it here.
-          </Text>
+        {/* <View style={styles.topSecLeft}>
+          <Text style={styles.topSecHeading}>Big win? Hard day?</Text>
+          <Text style={styles.topSecHeading}>Log it here .</Text>
           <Text style={styles.para}>
             Life Log captures the real moments as they happen.
           </Text>
@@ -72,6 +69,15 @@ const LifeLogTab = () => {
           source={require("../../assets/images/log-img.png")} // put your logo inside assets folder
           style={styles.topBg}
           resizeMode="cover"
+        /> */}
+        <Image
+          source={require("../../assets/images/lifelog-banner-image.png")}
+          resizeMode="cover"
+          style={{
+            width: "100%",
+            height: 136, // adjust banner height as needed
+            resizeMode: "cover",
+          }}
         />
       </View>
       <View style={styles.askPiperWrap}>
@@ -133,35 +139,40 @@ const styles = StyleSheet.create({
   },
   topSec: {
     backgroundColor: "#FFF3E9",
-    position: "relative",
+    // position: "relative",
     width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    paddingRight: 30,
+    // flexDirection: "row",
+    // alignItems: "center",
+    // paddingVertical: verticalScale(20),
   },
   topSecLeft: {
     position: "relative",
-    padding: 24,
+    padding: scale(24),
     width: width * 0.7, // ✅ 70% of the screen width dynamically
   },
   topBg: {
-    width: width * 0.3,       // 30% of screen width
-    height: height * 0.2,     // 20% of screen height (adjust as needed)
-    justifyContent: "center",
-    alignItems: "center",     // better for centering content
-    marginRight: width * 0.08, // 8% of screen width instead of fixed 30px
     textAlign: "center",
+    width: width * 0.42, // 30% of screen width
+    height: height * 0.22, // 20% of screen height (adjust as needed)
+    justifyContent: "flex-end",
+    position: "absolute",
+    alignItems: "flex-end",
+    right: 0,
+    bottom: 0,
   },
   topSecHeading: {
-    fontSize: 20,
+    fontSize: scale(19),
     fontFamily: Fonts.Bold,
     color: Colors.primary,
+    fontWeight: "600",
+    lineHeight: scale(25),
   },
   para: {
-    fontSize: 14,
+    fontSize: scale(14),
     fontFamily: Fonts.Regular,
     color: Colors.text,
-    marginTop: 5,
+    marginTop: verticalScale(4),
+    lineHeight: scale(17),
   },
   askPiperWrap: {
     padding: 24,
