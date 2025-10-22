@@ -25,14 +25,14 @@ const Styles = StyleSheet.create({
     width: width * 0.60, // same as "80%" but based on screen width
   },
   topBg: {
-    width: width * 0.42,        // ~35% of screen width
-    height: height * 0.25,      // ~18% of screen height
+    width: width * 0.40,        // ~35% of screen width
+    height: height * 0.22,      // ~18% of screen height
     textAlign: 'center',
     justifyContent: "flex-end",
     position: 'absolute',
     alignItems:'flex-end',
     right: 0,
-    bottom: -height * 0.04,   
+    bottom: -height * 0.03,   
   },
   topSecHeading: {
     fontSize: 20,

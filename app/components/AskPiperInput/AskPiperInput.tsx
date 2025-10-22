@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         paddingVertical: 0,
         fontFamily: Fonts.Regular,
         color: Colors.textLight,
-        height: 36,
+        // height: 36,
         borderRightWidth: 1,
         borderRightColor: Colors.strokeColor
     },
