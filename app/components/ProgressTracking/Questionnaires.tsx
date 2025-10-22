@@ -1,7 +1,7 @@
 import { ReminderCardItem } from "@/app/common/Interface/Medication";
 import Routes, { navigateScreen } from "@/app/common/Routes";
 import { Colors, Fonts } from "@/constants/theme";
-import { Image, ImageBackground } from "expo-image";
+import { Image } from "expo-image";
 import React from "react";
 import {
   Dimensions,
@@ -85,7 +85,7 @@ const Questionnaires = () => {
       contentContainerStyle={{ flexGrow: 1, paddingBottom: 10 }}
       showsVerticalScrollIndicator={false}
     >
-      <ImageBackground
+      {/* <ImageBackground
         source={require("../../../assets/images/questionnaire-banner.png")}
         style={[{ height: 180, paddingHorizontal: 8 }]}
         contentFit="cover"
@@ -96,14 +96,23 @@ const Questionnaires = () => {
             See your child’s progress over  time, what’s working and what’s not.
           </Text>
         </View>
-        {/* <View style={{ flex: 1 }}>
-          <Image
-            source={require("../../../assets/images/talktodocimg.png")}
-            style={{ height: 180, width: 150 }}
-            contentFit="cover"
-          />
-        </View> */}
-      </ImageBackground>
+        
+      </ImageBackground> */}
+      <View style={styles.topSec}>
+        <View style={styles.topSecLeft}>
+          <Text style={styles.topSecHeading}>
+            Tracking what matters!
+          </Text>
+          <Text style={styles.para}>
+            See your child’s progress over  time, what’s working and what’s not.
+          </Text>
+        </View>
+        <Image
+          source={require("../../../assets/images/questionarie.png")} // put your logo inside assets folder
+          style={styles.topBg}
+          contentFit="cover"
+        />
+      </View>
       <View style={styles.filteringSection}>
         <Text style={styles.questionHeaderText}>
           Take the questionnaires below to track your child’s progress.
@@ -222,7 +231,7 @@ const Questionnaires = () => {
 
       <CommonButton
         title="Track something else"
-        onPress={() => {}}
+        onPress={() => { }}
         backgroundColor={Colors.black}
         textStyle={{ color: Colors.bg }}
         style={{ marginHorizontal: 20, marginVertical: 6 }}
@@ -271,6 +280,40 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 8,
     top: -height * 0.006,     // small dynamic offset instead of fixed -5px
+  },
+  topSec: {
+    backgroundColor: "#FFF3E9",
+    position: "relative",
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+     paddingVertical: 20,
+  },
+  topSecLeft: {
+    position: "relative",
+    padding: 24,
+    width: width * 0.62, // ✅ 70% of the screen width dynamically
+  },
+  topBg: {
+    width: width * 0.44,       // 30% of screen width
+    height: height * 0.22,     // 20% of screen height (adjust as needed)
+    textAlign: "center",
+    justifyContent: "flex-end",
+    position: 'absolute',
+    alignItems: 'flex-end',
+    right: 0,
+    bottom: 0,
+  },
+  topSecHeading: {
+    fontSize: 20,
+    fontFamily: Fonts.Bold,
+    color: Colors.primary,
+  },
+  para: {
+    fontSize: 14,
+    fontFamily: Fonts.Regular,
+    color: Colors.text,
+    marginTop: 5,
   },
   description: {
     fontSize: 14,

@@ -23,7 +23,7 @@ const Styles = StyleSheet.create({
   topSecLeft: {
     position: "relative",
     paddingLeft: 24,
-    width: width * 0.7,
+    width: width * 0.60,
   },
   topBg: {
     width: width * 0.42,        // ~35% of screen width
@@ -98,8 +98,9 @@ const Styles = StyleSheet.create({
     padding: 4,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent:'flex-start',
     gap: 5,
-    width: 75,
+    width: 85,
     marginTop: 10,
   },
   logStatusIndicator: {
