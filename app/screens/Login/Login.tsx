@@ -223,7 +223,7 @@ const Styles = StyleSheet.create({
   piperIntroContainer: {
     position: "relative",
     width: "100%",
-    height: 280,
+    height: 300,
     borderBottomLeftRadius: 40,
     borderBottomRightRadius: 40,
     overflow: "hidden", // 👈 ensures image respects radius
@@ -251,7 +251,7 @@ const Styles = StyleSheet.create({
     fontFamily: Fonts.Bold,
     color: Colors.main_purple,
     marginTop: 35,
-    marginLeft: 10,
+    textAlign: "center",
   },
 
   imageBottomContainer: {
